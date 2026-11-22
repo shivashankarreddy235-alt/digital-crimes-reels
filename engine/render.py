@@ -7,8 +7,8 @@
   python3 engine/render.py voice  EP FILE       # owner's own recorded voiceover (one file) instead of AI voice
 
 build:
-  - If EP/voice/durations.json exists with ok:true and matches EP/vo_request.json, every scene is stretched
-    to fit its voice clip (clip + 0.8 s), the "AI VOICE" tag is shown, and the build writes
+  - If EP/voice/durations.json exists with ok:true and matches EP/vo_request.json, every scene is set
+    to max(its `min`, voice clip + 0.8 s), the "AI VOICE" tag is shown, and the build writes
     EP/mix/music.m4a + EP/mix/mix_request.json. Commit and push those; the GitHub Action mixes the voice
     and commits EP/mix/mixed.m4a; then run `finish`.
   - Otherwise it makes a music-only EP/reel.mp4 + EP/cover.jpg directly.
@@ -60,8 +60,8 @@ def open_page(p, ep):
     pg.wait_for_function("window.ready===true")
     vd = voice_plan(ep)
     if vd:
-        base = pg.evaluate("window.EPISODE.scenes.map(s=>s.dur)")
-        new = [max(b0, (v + VO_LEAD + VO_TAIL) if v else 0) for b0, v in zip(base, vd + [0] * len(base))]
+        base = pg.evaluate("window.EPISODE.scenes.map(s=>[s.dur, s.min || s.dur])")
+        new = [max(mn, v + VO_LEAD + VO_TAIL) if v else d for (d, mn), v in zip(base, vd + [0] * len(base))]
         pg.evaluate(f"applyDurations({json.dumps(new)})")
         pg.evaluate("setAiVoice(true)")
     return b, pg, vd

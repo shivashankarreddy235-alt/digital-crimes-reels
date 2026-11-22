@@ -66,7 +66,9 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
    technical/legal terms in English where people say them that way (CDR, IMEI, Section 94, BNSS).
 4. **Build the reel.** Copy `engine/reel_template.html` to `episodes/D/reel.html`. Keep the ENGINE
    section unchanged; rewrite the EPISODE section: scene functions (local time `lt`, length `D`) and
-   `window.EPISODE` (title, voice 'English'|'Hindi', laws, cover, scenes with `dur`, sounds and `vo`).
+   `window.EPISODE` (title, voice 'English'|'Hindi', laws, cover, scenes with `dur`, `min`, sounds, `vo`).
+   `min` = seconds the scene's animations need; with the voice, scene length = max(min, clip + 0.8 s),
+   so keep each scene's animation beats inside its `min` and in the same order as its voiceover.
    Reuse the components: tower, sector, waves, phone, sim, mapPanel, dataTable, lawCard, pill, card,
    iPin and the icons; add new drawing helpers inside the EPISODE section when a topic needs them.
    Every visual beat gets a `pop`; big reveals get an `impact`.
@@ -87,7 +89,7 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
    - No voice → it writes a music-only `reel.mp4` + `cover.jpg` directly.
    Extract and look at 3 frames from the finished video; check the length is 90–125 s.
 8. Write `caption.txt` (format below) and `status.json` (status `pending`). If the AI voice is in the reel,
-   the caption must include the line `Voiceover: AI-generated in my own voice.` (the reel also shows
+   the caption must include the line `Voiceover: AI-generated.` (the reel also shows
    an "AI VOICE" tag automatically).
 9. Run the **pre-post checklist**. Commit `EPnn: <topic> (pending review)` (never `.work/`), push.
 10. Update the Status column in `content/calendar.md`.
@@ -123,8 +125,9 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
 
 ## Voice
 
-- The voice is the **owner's own ElevenLabs Instant Voice Clone**, made by the owner from their own
-  recording. Never use anyone else's voice, a sound-alike, or a stock voice presented as the owner.
+- The voice is the one the owner chose in their ElevenLabs account (ELEVENLABS_VOICE_ID): their own
+  clone or a voice they selected there. Never clone or imitate anyone else, and never describe a stock
+  voice as the owner's own voice.
 - Generation runs on GitHub Actions (`.github/workflows/voiceover.yml`), using the repository secret
   `ELEVENLABS_API_KEY` and variable `ELEVENLABS_VOICE_ID`, model `eleven_multilingual_v2` (English and
   Hindi). Clean voice clips live only in the private Actions cache; only durations and the final mix
@@ -167,7 +170,7 @@ non-sensational legal awareness.
 Save this and send it to someone who needs it.
 
 Legal awareness only. Not legal advice.
-[Voiceover: AI-generated in my own voice.]   <- only when the AI voice is used
+[Voiceover: AI-generated.]   <- only when the AI voice is used
 
 #Topic #CyberLaw #CyberForensics #<second topic tag> #DigitalCrimes
 ```

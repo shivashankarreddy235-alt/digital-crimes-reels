@@ -9,6 +9,8 @@
    - Rewrite only the EPISODE section at the bottom: scene functions + window.EPISODE.
    - Scene functions get LOCAL time (lt = seconds since the scene started) and the scene length D.
      Use only local times inside scenes, so scene lengths can stretch to fit the voiceover.
+   - Each scene has `dur` (length without voice) and `min` (time its animations need). With the AI voice,
+     render.py sets length = max(min, clip + 0.8 s).
    - Sounds are listed per scene in local time: pops [t, Hz, gain], impacts [t, gain, shakePx],
      risers [t], ring [[a,b]], typing [[a,b]].
    ===================================================================================== */
@@ -342,29 +344,29 @@ window.EPISODE={
   laws:'BNSS 2023 · BSA 2023 · DoT Unified Licence',
   cover:[0,4.2],            // [scene index, local time] for the cover frame
   scenes:[
-    {id:'hook',fn:sHook,dur:8.0,pops:[[0.2,660],[0.55,880],[1.0,520,0.1]],risers:[2.8],impacts:[[3.4,0.8,16]],
+    {id:'hook',fn:sHook,dur:8.0,min:5.0,pops:[[0.2,660],[0.55,880],[1.0,520,0.1]],risers:[2.8],impacts:[[3.4,0.8,16]],
      vo:'Your phone is never really alone. It stays connected to a mobile tower, and that connection can catch a criminal.'},
-    {id:'tower',fn:sTower,dur:12.0,pops:[[1.0,600],[1.6,700],[2.2,800],[2.6,990,0.1],[3.4,880],[4.4,520,0.12],[5.0,990,0.1]],
+    {id:'tower',fn:sTower,dur:12.0,min:7.0,pops:[[1.0,600],[1.6,700],[2.2,800],[2.6,990,0.1],[3.4,880],[4.4,520,0.12],[5.0,990,0.1]],
      vo:'A tower is a base station. Its antennas split the area around it into sectors, often three, like slices of a pizza. Your phone uses the one with the strongest signal.'},
-    {id:'cell',fn:sCell,dur:9.5,pops:[[0.8,740]],typing:[[1.1,1.8]],impacts:[],
+    {id:'cell',fn:sCell,dur:9.5,min:6.0,pops:[[0.8,740]],typing:[[1.1,1.8]],impacts:[],
      vo:'Each tower sector has a Cell ID. Every call, SMS or data session notes which cell served you.'},
-    {id:'move',fn:sMove,dur:7.5,pops:[[1.2,700],[3.1,800],[4.9,900]],
+    {id:'move',fn:sMove,dur:7.5,min:7.0,pops:[[1.2,700],[3.1,800],[4.9,900]],
      vo:'Move around, and your phone hops from tower to tower, leaving footprints.'},
-    {id:'cdr',fn:sCDR,dur:12.5,typing:[[0.8,3.6]],pops:[[4.2,520,0.12],[4.6,660,0.08],[4.95,700,0.08],[5.3,740,0.08],[5.65,780,0.08],[6.0,820,0.08],[6.35,860,0.08],[7.6,990,0.1]],
+    {id:'cdr',fn:sCDR,dur:12.5,min:9.0,typing:[[0.8,3.6]],pops:[[4.2,520,0.12],[4.6,660,0.08],[4.95,700,0.08],[5.3,740,0.08],[5.65,780,0.08],[6.0,820,0.08],[6.35,860,0.08],[7.6,990,0.1]],
      vo:'Those footprints live in the Call Detail Record: who called whom, when, for how long, from which handset, and through which tower. Internet use is logged too, in the IPDR.'},
-    {id:'sim',fn:sSim,dur:11.0,pops:[[0.9,440,0.12],[2.1,660],[3.2,700],[3.8,800]],impacts:[[4.6,0.7,14]],
+    {id:'sim',fn:sSim,dur:11.0,min:6.5,pops:[[0.9,440,0.12],[2.1,660],[3.2,700],[3.8,800]],impacts:[[4.6,0.7,14]],
      vo:'Changed the SIM? The handset has its own IMEI number, and it shows up in the records too, linking the new SIM to the same phone.'},
-    {id:'dump',fn:sDump,dur:12.5,pops:[[0.3,600],[0.5,700],[1.2,990,0.1],[3.6,440,0.12],[5.6,880]],risers:[4.0],impacts:[[4.6,0.8,16]],
+    {id:'dump',fn:sDump,dur:12.5,min:7.5,pops:[[0.3,600],[0.5,700],[1.2,990,0.1],[3.6,440,0.12],[5.6,880]],risers:[4.0],impacts:[[4.6,0.8,16]],
      vo:'At a crime scene, police can ask for a tower dump: every phone that used the nearby towers in that window. Match two scenes, and one number stands out.'},
-    {id:'gps',fn:sGps,dur:8.5,pops:[[0.5,600],[1.6,700],[3.2,880]],
+    {id:'gps',fn:sGps,dur:8.5,min:5.5,pops:[[0.5,600],[1.6,700],[3.2,880]],
      vo:'But a tower is not GPS. It shows an area, not an exact spot. Tighter in cities, much wider in villages.'},
-    {id:'law',fn:sLaw,dur:12.0,pops:[[0.6,740]],typing:[[1.1,3.8]],impacts:[[5.4,0.6,10]],
+    {id:'law',fn:sLaw,dur:12.0,min:7.5,pops:[[0.6,740]],typing:[[1.1,3.8]],impacts:[[5.4,0.6,10]],
      vo:'Courts and police can require operators to produce these records under Section 94 of the BNSS. And operators must keep them for at least two years.'},
-    {id:'court',fn:sCourt,dur:11.5,pops:[[0.6,740],[4.6,880]],typing:[[1.1,2.8]],
+    {id:'court',fn:sCourt,dur:11.5,min:6.5,pops:[[0.6,740],[4.6,880]],typing:[[1.1,2.8]],
      vo:'In court, a CDR needs a certificate under Section 63 of the Bharatiya Sakshya Adhiniyam. Without it, the Supreme Court has held, it is not admissible.'},
-    {id:'both',fn:sBoth,dur:7.0,pops:[[0.5,600],[1.3,800],[3.0,990,0.1]],
+    {id:'both',fn:sBoth,dur:7.0,min:5.5,pops:[[0.5,600],[1.3,800],[3.0,990,0.1]],
      vo:'And it cuts both ways. The same records can prove an innocent person was somewhere else. Save this, and share it.'},
-    {id:'outro',fn:sOut,dur:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
+    {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};
 boot();
 </script></body></html>
