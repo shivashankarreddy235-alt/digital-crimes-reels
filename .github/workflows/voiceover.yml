@@ -1,0 +1,65 @@
+name: Voiceover (ElevenLabs)
+
+# Turns each episode's voiceover script into the owner's cloned voice and mixes it with the music.
+# Needs: repository secret ELEVENLABS_API_KEY and repository variable ELEVENLABS_VOICE_ID.
+# Clean voice clips stay in the private Actions cache; only durations and the final mix are committed.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "episodes/*/vo_request.json"
+      - "episodes/*/mix/mix_request.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: voiceover
+  cancel-in-progress: false
+
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide what to do
+        id: plan
+        run: python3 engine/voice_action.py plan >> "$GITHUB_OUTPUT"
+
+      - name: Restore voice clips
+        if: steps.plan.outputs.mode != 'none'
+        uses: actions/cache/restore@v4
+        with:
+          path: .vocache
+          key: vo-${{ steps.plan.outputs.hash }}
+
+      - name: Install ffmpeg
+        if: steps.plan.outputs.mode != 'none'
+        run: command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+
+      - name: Generate or mix
+        if: steps.plan.outputs.mode != 'none'
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ vars.ELEVENLABS_VOICE_ID }}
+        run: python3 engine/voice_action.py run
+
+      - name: Save voice clips
+        if: steps.plan.outputs.mode == 'tts'
+        uses: actions/cache/save@v4
+        with:
+          path: .vocache
+          key: vo-${{ steps.plan.outputs.hash }}
+
+      - name: Commit results
+        if: steps.plan.outputs.mode != 'none'
+        run: |
+          git config user.name "digital-crimes-voice"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add episodes/*/voice/durations.json episodes/*/mix/mixed.m4a episodes/*/mix/mixed.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Voiceover: ${{ steps.plan.outputs.mode }} for ${{ steps.plan.outputs.ep }}"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
