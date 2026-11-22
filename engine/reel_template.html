@@ -185,16 +185,18 @@ function outro(lt,laws){logoHUD(540,800,190,lt);
 // inside the profile-grid crop (y 240-1680).
 const PERSON=new Image();let PERSON_OK=false;
 function drawCover(){const C=window.EPISODE.coverSpec;if(!C)return false;ctx.setTransform(1,0,0,1,0,0);bg(3.0);
-  const P=PERSON_OK;if(C.visual)C.visual(P);
-  if(P){const h=1250,s=h/PERSON.height,w=PERSON.width*s,x=1080-w+(C.personShift||90),y=1780-h;
-    ctx.save();ctx.shadowColor='rgba(46,230,255,0.85)';ctx.shadowBlur=46;ctx.drawImage(PERSON,x,y,w,h);ctx.restore();
-    ctx.save();ctx.globalCompositeOperation='source-atop';const rg=ctx.createLinearGradient(x,0,x+w,0);rg.addColorStop(0,'rgba(46,230,255,0.10)');rg.addColorStop(0.5,'rgba(0,0,0,0)');ctx.fillStyle=rg;ctx.fillRect(x,y,w,h);ctx.restore();}
-  const g=ctx.createLinearGradient(0,1480,0,1920);g.addColorStop(0,'rgba(3,5,11,0)');g.addColorStop(1,'rgba(3,5,11,0.96)');ctx.fillStyle=g;ctx.fillRect(0,1480,1080,440);
+  const P=PERSON_OK;
+  // headline geometry first, so the face never sits under the text
+  const x=P?80:540,maxW=P?920:940;let y=P?500:600;const L=C.lines.map(([t,c])=>{const sz=fit(t,900,DISP,maxW,P?150:180);const o={t,c,sz,y};y+=sz*1.04;return o;});
+  const textBottom=y-(L.length?L[L.length-1].sz*1.04:0)+28;
+  if(C.visual)C.visual(P);
+  if(P){const h=C.personH||1300,s=h/PERSON.height,w=PERSON.width*s,px=1080-w+(C.personShift??60),py=Math.max(textBottom+20,C.personTop||0);
+    ctx.save();ctx.shadowColor='rgba(46,230,255,0.85)';ctx.shadowBlur=46;ctx.drawImage(PERSON,px,py,w,h);ctx.restore();}
+  const g=ctx.createLinearGradient(0,1500,0,1920);g.addColorStop(0,'rgba(3,5,11,0)');g.addColorStop(1,'rgba(3,5,11,0.96)');ctx.fillStyle=g;ctx.fillRect(0,1500,1080,420);
   if(C.tag)pill(P?80:540,340,C.tag,C.tagColor||COL.cyan,{size:34,ls:4,align:P?'left':'center',fillA:'33'});
-  const maxW=P?620:940,x=P?80:540;let y=P?540:600;
-  C.lines.forEach(([t,c])=>{const sz=fit(t,900,DISP,maxW,P?150:180);ctx.save();ctx.font=font(900,sz,DISP);ctx.textAlign=P?'left':'center';ctx.lineJoin='round';
+  L.forEach(({t,c,sz,y})=>{ctx.save();ctx.font=font(900,sz,DISP);ctx.textAlign=P?'left':'center';ctx.lineJoin='round';
     ctx.lineWidth=sz*0.09;ctx.strokeStyle='rgba(2,4,10,0.9)';ctx.strokeText(t,x,y);ctx.fillStyle=c||COL.white;if(c&&c!==COL.white){ctx.shadowColor=c;ctx.shadowBlur=40;}
-    ctx.fillText(t,x,y);ctx.restore();y+=sz*1.04;});
+    ctx.fillText(t,x,y);ctx.restore();});
   logoMark(112,186,34);brand(162,208,46);overlay();return true;}
 window.renderCover=(q=0.92)=>drawCover()?cv.toDataURL('image/jpeg',q):null;
 
@@ -366,9 +368,9 @@ window.EPISODE={
   aiVoice:false,            // set by render.py when the cloned-voice track is used
   laws:'BNSS 2023 · BSA 2023 · DoT Unified Licence',
   cover:[0,4.2],            // fallback cover frame [scene index, local time] when there is no coverSpec
-  coverSpec:{tag:'CYBER FORENSICS',lines:[['YOUR PHONE',COL.white],['IS NEVER',COL.white],['ALONE',COL.cyan]],
-    person:null,           // e.g. 'people/shocked_phone.png' (owner's own cut-out photo)
-    visual:P=>{ctx.save();ctx.globalAlpha=0.9;tower(P?330:540,1560,P?560:640,COL.cyan,0.6);waves(P?330:540,P?1000:920,0.4,COL.cyan,3,200,0.9);ctx.restore();}},
+  coverSpec:{tag:'CYBER FORENSICS',lines:[['YOUR PHONE IS',COL.white],['NEVER ALONE',COL.cyan]],
+    person:'people/grey_blazer_tie.png', // owner's cut-out from assets/people/ (rotate daily; null = no photo)
+    visual:P=>{ctx.save();ctx.globalAlpha=0.9;tower(P?250:540,1600,P?600:640,COL.cyan,0.6);waves(P?250:540,P?1000:960,0.4,COL.cyan,3,200,0.9);ctx.restore();}},
   scenes:[
     {id:'hook',fn:sHook,dur:8.0,min:5.0,pops:[[0.2,660],[0.55,880],[1.0,520,0.1]],risers:[2.8],impacts:[[3.4,0.8,16]],
      vo:'Your phone is never really alone. It stays connected to a mobile tower, and that connection can catch a criminal.'},
