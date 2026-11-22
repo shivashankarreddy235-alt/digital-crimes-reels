@@ -43,7 +43,7 @@ def plan():
         if os.path.exists(req):
             h = sha(req)
             done = load(os.path.join(ep, "voice", "durations.json"), {})
-            if done.get("request_hash") != h:
+            if done.get("request_hash") != h or not done.get("ok"):
                 return {"mode": "tts", "ep": ep, "hash": h}
             if os.path.exists(mreq):
                 mh = sha(mreq)
