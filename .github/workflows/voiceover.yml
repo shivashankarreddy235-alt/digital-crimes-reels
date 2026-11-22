@@ -10,6 +10,7 @@ on:
     paths:
       - "episodes/*/vo_request.json"
       - "episodes/*/mix/mix_request.json"
+      - ".github/workflows/voiceover.yml"
   workflow_dispatch:
 
 permissions:
@@ -60,7 +61,7 @@ jobs:
         run: |
           git config user.name "digital-crimes-voice"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add episodes/*/voice/durations.json episodes/*/mix/mixed.m4a episodes/*/mix/mixed.json 2>/dev/null || true
+          git add -A episodes
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "Voiceover: ${{ steps.plan.outputs.mode }} for ${{ steps.plan.outputs.ep }}"
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
