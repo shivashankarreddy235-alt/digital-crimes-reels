@@ -48,14 +48,15 @@ jobs:
         run: python3 engine/voice_action.py run
 
       - name: Save voice clips
-        if: steps.plan.outputs.mode == 'tts'
+        if: steps.plan.outputs.mode == 'tts' && hashFiles('.vocache/**/*.mp3') != ''
+        continue-on-error: true
         uses: actions/cache/save@v4
         with:
           path: .vocache
           key: vo-${{ steps.plan.outputs.hash }}
 
       - name: Commit results
-        if: steps.plan.outputs.mode != 'none'
+        if: always() && steps.plan.outputs.mode != 'none'
         run: |
           git config user.name "digital-crimes-voice"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
