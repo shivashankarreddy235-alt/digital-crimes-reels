@@ -186,8 +186,18 @@ caption. The educational line always sits directly under the hook.
 
 Every episode sets `EPISODE.coverSpec`; `render.py build`/`finish` turn it into `cover.jpg` (also
 `render.py cover EP`). Make it scroll-stopping and human:
-- **Hook:** 2–3 short lines, at most about 9 words, one accent word in colour (e.g. YOUR PHONE / IS NEVER /
-  ALONE). It should make people curious, but every claim must be true (no clickbait promises).
+- **Hook (most important):** 2 short lines, 5–8 words, the second line in an accent colour. The words alone
+  must make someone stop scrolling. Use one of these patterns:
+  - secret / reveal: THIS TOWER KNOWS / WHERE YOU WERE
+  - "how": HOW POLICE FIND YOU / WITHOUT GPS
+  - question + twist: CHANGED THE SIM? / THE IMEI REMEMBERS
+  - myth-buster: "DIGITAL ARREST" / DOESN'T EXIST
+  - number shock (only real, sourced numbers): ₹52,000 CRORE / LOST TO SCAMS
+  - warning: NEVER SCAN THIS / TO RECEIVE MONEY
+  Every hook must be **true to the reel** — no fake promises, no "guaranteed", no fear beyond the facts, no
+  "lawyer reveals", no real names. Write 5, keep the best 3, render all 3 (`render.py cover` after editing
+  `coverSpec.lines`), use the strongest as `cover.jpg`, and show the 3 side by side in the review message so
+  the owner can pick another.
 - **Person:** a cut-out photo of the owner from `assets/people/` whose expression fits the hook
   (shocked, pointing, explaining, serious). Rotate photos; don't reuse yesterday's. If the folder has no
   photos, use the text-and-visual layout (`person: null`).

@@ -187,8 +187,9 @@ const PERSON=new Image();let PERSON_OK=false;
 function drawCover(){const C=window.EPISODE.coverSpec;if(!C)return false;ctx.setTransform(1,0,0,1,0,0);bg(3.0);
   const P=PERSON_OK;
   // headline geometry first, so the face never sits under the text
-  const x=P?80:540,maxW=P?920:940;let y=P?500:600;const L=C.lines.map(([t,c])=>{const sz=fit(t,900,DISP,maxW,P?150:180);const o={t,c,sz,y};y+=sz*1.04;return o;});
-  const textBottom=y-(L.length?L[L.length-1].sz*1.04:0)+28;
+  // baseline of each line = previous baseline + this line's cap height + gap, so mixed sizes never overlap
+  const x=P?80:540,maxW=P?920:940;let y=P?420:520;const L=C.lines.map(([t,c])=>{const sz=fit(t,900,DISP,maxW,P?150:180);y+=sz*0.74+22;return {t,c,sz,y};});
+  const textBottom=y+30;
   if(C.visual)C.visual(P);
   if(P){const h=C.personH||1300,s=h/PERSON.height,w=PERSON.width*s,px=1080-w+(C.personShift??60),py=Math.max(textBottom+20,C.personTop||0);
     ctx.save();ctx.shadowColor='rgba(46,230,255,0.85)';ctx.shadowBlur=46;ctx.drawImage(PERSON,px,py,w,h);ctx.restore();}
@@ -368,7 +369,7 @@ window.EPISODE={
   aiVoice:false,            // set by render.py when the cloned-voice track is used
   laws:'BNSS 2023 · BSA 2023 · DoT Unified Licence',
   cover:[0,4.2],            // fallback cover frame [scene index, local time] when there is no coverSpec
-  coverSpec:{tag:'CYBER FORENSICS',lines:[['YOUR PHONE IS',COL.white],['NEVER ALONE',COL.cyan]],
+  coverSpec:{tag:'CYBER FORENSICS',lines:[['THIS TOWER KNOWS',COL.white],['WHERE YOU WERE',COL.cyan]],
     person:'people/grey_blazer_tie.png', // owner's cut-out from assets/people/ (rotate daily; null = no photo)
     visual:P=>{ctx.save();ctx.globalAlpha=0.9;tower(P?250:540,1600,P?600:640,COL.cyan,0.6);waves(P?250:540,P?1000:960,0.4,COL.cyan,3,200,0.9);ctx.restore();}},
   scenes:[
