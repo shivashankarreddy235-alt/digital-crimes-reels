@@ -1,6 +1,6 @@
 # EP01 — How a mobile tower can catch a criminal
 
-On-screen text English · voice English · about 117 s music-only (scenes stretch to fit the voice).
+On-screen text English · voice English · 103.9 s with the AI voiceover (scenes fitted to the voice).
 
 | # | Scene | Default length | Voiceover (English) |
 | --- | --- | --- | --- |
