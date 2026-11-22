@@ -15,7 +15,10 @@ build:
 Intermediate files go to EP/.work (git-ignored).
 """
 import base64
+import functools
 import hashlib
+import http.server
+import threading
 import json
 import os
 import subprocess
@@ -53,10 +56,27 @@ def voice_plan(ep):
     return info["durations"]
 
 
+_SERVER = None
+
+
+def page_url(ep):
+    """Serve the repository over local HTTP so the logo images don't taint the canvas (file:// does)."""
+    global _SERVER
+    root = os.path.dirname(ENGINE)
+    if _SERVER is None:
+        class Quiet(http.server.SimpleHTTPRequestHandler):
+            def log_message(self, *a):
+                pass
+        _SERVER = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Quiet, directory=root))
+        threading.Thread(target=_SERVER.serve_forever, daemon=True).start()
+    rel = os.path.relpath(os.path.abspath(os.path.join(ep, "reel.html")), root)
+    return f"http://127.0.0.1:{_SERVER.server_address[1]}/{rel}"
+
+
 def open_page(p, ep):
     b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--no-sandbox"])
     pg = b.new_page(viewport={"width": 1080, "height": 1920})
-    pg.goto("file://" + os.path.abspath(os.path.join(ep, "reel.html")))
+    pg.goto(page_url(ep))
     pg.wait_for_function("window.ready===true")
     vd = voice_plan(ep)
     if vd:
@@ -76,7 +96,7 @@ def vo(ep):
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path="/usr/bin/google-chrome", args=["--no-sandbox"])
         pg = b.new_page()
-        pg.goto("file://" + os.path.abspath(os.path.join(ep, "reel.html")))
+        pg.goto(page_url(ep))
         pg.wait_for_function("window.ready===true")
         info = pg.evaluate("({voice:window.EPISODE.voice,segs:window.EPISODE.scenes.map(s=>({scene:s.id,text:s.vo||''}))})")
         b.close()
@@ -147,8 +167,7 @@ def build(ep):
         os.makedirs(mix, exist_ok=True)
         run(["ffmpeg", "-y", "-loglevel", "error", "-i", music, "-c:a", "aac", "-b:a", "160k", os.path.join(mix, "music.m4a")])
         req = {"request_hash": sha(os.path.join(ep, "vo_request.json")), "T": tl["T"],
-               "offsets": [round(s["start"] + VO_LEAD, 3) for s in tl["scenes"]],
-               "video_sha": sha(video)}
+               "offsets": [round(s["start"] + VO_LEAD, 3) for s in tl["scenes"]]}
         json.dump(req, open(os.path.join(mix, "mix_request.json"), "w"), indent=1)
         print("WAITING_FOR_MIX: commit + push mix/music.m4a and mix/mix_request.json, wait for mix/mixed.m4a, then run finish")
     else:

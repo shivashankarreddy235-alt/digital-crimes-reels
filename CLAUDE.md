@@ -12,7 +12,7 @@ recordings or secrets in it.
 - Owner's decisions: review before every post · posts go live at **7:00 AM IST** · reels are
   **90–120 seconds** · on-screen text always **English** · voice alternates: odd episodes **English
   voice**, even episodes **Hindi voice** · voice = the owner's own ElevenLabs voice clone (see "Voice") ·
-  original synthesized music only · the owner's logo in `assets/logo.png` when present.
+  original synthesized music only · the owner's logo and wordmark from `assets/`.
 
 ## Content mix
 
@@ -36,7 +36,8 @@ engine/reel_template.html  engine v2 + EP01 (tower) scenes and the component lib
 engine/render.py           vo | stills | build | finish | voice   (see its docstring)
 engine/audio.py            original score + sound effects, driven by window.TIMELINE
 engine/voice_action.py     run by .github/workflows/voiceover.yml (ElevenLabs TTS + mixing, on GitHub)
-assets/logo.png            owner's logo (optional; engine falls back to the shield)
+assets/logo.png            owner's logo, dark-background version (header + animated end screen)
+assets/wordmark.png        owner's "DigitalCrimes" wordmark in white (header + end screen)
 content/calendar.md        schedule (date, voice language, type, topic, hook, facts) + topic bank
 episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix/, reel.mp4, cover.jpg,
                            caption.txt, script.md, sources.md, status.json
