@@ -38,6 +38,7 @@ engine/audio.py            original score + sound effects, driven by window.TIME
 engine/voice_action.py     run by .github/workflows/voiceover.yml (ElevenLabs TTS + mixing, on GitHub)
 assets/logo.png            owner's logo, dark-background version (header + animated end screen)
 assets/wordmark.png        owner's "DigitalCrimes" wordmark in white (header + end screen)
+assets/people/             owner's own cut-out photos for covers (see its README)
 content/calendar.md        schedule (date, voice language, type, topic, hook, facts) + topic bank
 episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix/, reel.mp4, cover.jpg,
                            caption.txt, script.md, sources.md, status.json
@@ -180,6 +181,20 @@ Save this and send it to someone who needs it.
 
 Exactly 5 hashtags (Instagram's limit). No "comment X / type X / DM for…" prompts, no @mentions in the
 caption. The educational line always sits directly under the hook.
+
+## Cover (thumbnail)
+
+Every episode sets `EPISODE.coverSpec`; `render.py build`/`finish` turn it into `cover.jpg` (also
+`render.py cover EP`). Make it scroll-stopping and human:
+- **Hook:** 2–3 short lines, at most about 9 words, one accent word in colour (e.g. YOUR PHONE / IS NEVER /
+  ALONE). It should make people curious, but every claim must be true (no clickbait promises).
+- **Person:** a cut-out photo of the owner from `assets/people/` whose expression fits the hook
+  (shocked, pointing, explaining, serious). Rotate photos; don't reuse yesterday's. If the folder has no
+  photos, use the text-and-visual layout (`person: null`).
+- **Visual:** the topic's main diagram element behind the text (tower, phone, SIM, map pin…).
+- Never: AI-generated people, stock or strangers' photos, real officials, robes, courts, "Advocate" titles,
+  emblems or logos of agencies. Keep the hook and face inside y 240–1680 (Instagram's grid crop).
+- Look at the cover before sending it for review.
 
 ## Account tags
 

@@ -5,6 +5,7 @@
   python3 engine/render.py build  EP            # render; see below
   python3 engine/render.py finish EP            # after the Action mixed the voice: -> reel.mp4 + cover.jpg
   python3 engine/render.py voice  EP FILE       # owner's own recorded voiceover (one file) instead of AI voice
+  python3 engine/render.py cover  EP            # (re)make cover.jpg from EPISODE.coverSpec
 
 build:
   - If EP/voice/durations.json exists with ok:true and matches EP/vo_request.json, every scene is set
@@ -196,6 +197,14 @@ def mux(ep, video, audio):
 
 
 def cover(ep, t):
+    """Designed cover from EPISODE.coverSpec when present, else the frame at time t."""
+    with sync_playwright() as p:
+        b, pg, _ = open_page(p, ep)
+        d = pg.evaluate("renderCover()")
+        b.close()
+    if d:
+        open(os.path.join(ep, "cover.jpg"), "wb").write(base64.b64decode(d.split(",")[1]))
+        return
     run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(t), "-i", os.path.join(ep, "reel.mp4"), "-frames:v", "1",
          "-q:v", "2", os.path.join(ep, "cover.jpg")])
 
@@ -217,5 +226,5 @@ def voice(ep, vfile):
 
 if __name__ == "__main__":
     cmd, ep = sys.argv[1], sys.argv[2]
-    {"vo": lambda: vo(ep), "stills": lambda: stills(ep, [float(x) for x in sys.argv[3:]]), "build": lambda: build(ep),
+    {"cover": lambda: cover(ep, 0), "vo": lambda: vo(ep), "stills": lambda: stills(ep, [float(x) for x in sys.argv[3:]]), "build": lambda: build(ep),
      "finish": lambda: finish(ep), "voice": lambda: voice(ep, sys.argv[3])}.get(cmd, lambda: sys.exit(__doc__))()
