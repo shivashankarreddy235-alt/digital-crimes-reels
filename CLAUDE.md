@@ -89,13 +89,13 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
      `python3 engine/render.py finish episodes/D` → `reel.mp4` + `cover.jpg`.
    - No voice → it writes a music-only `reel.mp4` + `cover.jpg` directly.
    Extract and look at 3 frames from the finished video; check the length is 90–125 s.
-8. Write `caption.txt` (format below) and `status.json` (status `pending`). If the AI voice is in the reel,
+8. Write `caption.txt` (format below), `tags.json` (see "Account tags") and `status.json` (status `pending`). If the AI voice is in the reel,
    the caption must include the line `Voiceover: AI-generated.` (the reel also shows
    an "AI VOICE" tag automatically).
 9. Run the **pre-post checklist**. Commit `EPnn: <topic> (pending review)` (never `.work/`), push.
 10. Update the Status column in `content/calendar.md`.
 11. Send the owner the reel and cover (SendUserFile), then one message (SendUserMessage): the caption,
-    the voiceover script, whether the AI voice is in it, and: "Reply **post** to approve it for 7:00 AM
+    the tags, the voiceover script, whether the AI voice is in it, and: "Reply **post** to approve it for 7:00 AM
     tomorrow, tell me what to change, or send a voice note and I'll use your real voice instead.
     Reply **skip** to skip tomorrow."
 12. When the owner replies in that session:
@@ -117,7 +117,10 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
    `cover_url` = the same folder's `cover.jpg`.
 4. Windsor.ai `execute_action`: connector `instagram`, account `17841412954133912`, action
    `create_video_post`, params `{"video_url": ..., "cover_url": ..., "caption": <caption.txt exactly>,
-   "share_to_feed": true}`. Post only the approved file and caption.
+   "share_to_feed": true, "user_tags": [{"username": h} for h in tags.json]}` (omit `user_tags` when
+   tags.json is missing or empty). Post only the approved file, caption and tags. If the post is refused
+   because of a tag (e.g. a handle no longer exists), retry once without `user_tags` and tell the owner
+   which tag failed.
 5. Success → status `posted`, `posted_at`, `media_id` (and permalink if returned). `git rm` reel.mp4 and
    `mix/music.m4a`, `mix/mixed.m4a` (Instagram keeps its own copy), commit `EPnn posted`, push, update
    the calendar. Tell the owner it is live, with the link. If the reel has the AI voice, remind them that
@@ -163,20 +166,26 @@ non-sensational legal awareness.
 
 ```
 <line 1: the hook, repeated>
+⚖️ For educational purposes only. Not legal advice.
 
 <2–3 sentences: the key facts and the law, with section numbers>
 
 <1 takeaway or action line: 1930 / cybercrime.gov.in / Sanchar Saathi / the right forum, where relevant>
 
 Save this and send it to someone who needs it.
-
-Legal awareness only. Not legal advice.
 [Voiceover: AI-generated.]   <- only when the AI voice is used
 
 #Topic #CyberLaw #CyberForensics #<second topic tag> #DigitalCrimes
 ```
 
-Exactly 5 hashtags.
+Exactly 5 hashtags (Instagram's limit). No "comment X / type X / DM for…" prompts, no @mentions in the
+caption. The educational line always sits directly under the hook.
+
+## Account tags
+
+Follow `content/tags.md`: up to 10 relevant cyber-community pages from its **Approved** list only — never
+advocates, personal accounts or government accounts, never guessed handles, rotate daily. Run A writes
+`episodes/D/tags.json` and lists the tags in the review message. Run B passes them as `user_tags`.
 
 ## Pre-post checklist
 
@@ -184,7 +193,8 @@ Exactly 5 hashtags.
 2. Nothing asks viewers to contact, hire or message the owner.
 3. No identifiable client, victim, accused person, judge or officer; only masked sample data.
 4. No emblem or agency logo; no real people; no how-to for tampering, spoofing or evasion.
-5. Disclaimer and "Laws cited" on the outro; caption has the disclaimer, AI-voice line if used, 5 hashtags.
+5. Disclaimer and "Laws cited" on the outro; caption has the educational line under the hook, the AI-voice
+   line if used, 5 hashtags, no comment/DM prompts; tags only from the Approved list.
 6. Safe zones respected; frames checked by eye; length 90–125 s; file ≤ 100 MB.
 
 ## Housekeeping
