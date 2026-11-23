@@ -11,8 +11,9 @@ recordings or secrets in it.
 - Public file host: GitHub Pages, `https://shivashankarreddy235-alt.github.io/digital-crimes-reels/`
 - Owner's decisions: review before every post, **by email** (see "Review by email") · **two reels a day**: slot `am` goes live at
   **7:00 AM IST**, slot `pm` at **8:00 PM IST** · reels are
-  **90–120 seconds** · on-screen text always **English** · voice alternates: odd episodes **English
-  voice**, even episodes **Hindi voice** · voice = the owner's own ElevenLabs voice clone (see "Voice") ·
+  **90–120 seconds** · on-screen text and titles always **English** · voice **Hindi for every episode** (owner's instruction,
+  23 Nov 2026, until he says otherwise; this replaces the old English/Hindi alternation) ·
+  voice = the owner's own ElevenLabs voice clone (see "Voice") ·
   original synthesized music only · the owner's logo and wordmark from `assets/`.
 
 ## Content mix
@@ -47,8 +48,8 @@ episodes/YYYY-MM-DD-am/    one folder per reel: the 7:00 AM reel (…-pm/ for th
 ```
 
 **Slots.** Two reels a day. Slot `am` posts at 7:00 AM IST, slot `pm` at 8:00 PM IST. Episodes run in
-calendar order: odd episodes (English voice) take the `am` slot, even episodes (Hindi voice) the `pm`
-slot. Below, **D** is the reel's date, **S** its slot and **E** its folder `episodes/D-S`.
+calendar order: odd episodes take the `am` slot, even episodes the `pm` slot. Every episode has a Hindi
+voice and English on-screen text (owner's instruction, 23 Nov 2026, until he says otherwise). Below, **D** is the reel's date, **S** its slot and **E** its folder `episodes/D-S`.
 
 `status.json`: `{"episode": n, "date": "YYYY-MM-DD", "slot": "am|pm", "topic": "...", "language": "...",
 "status": "pending|approved|posted|skipped", "approved_at": null, "posted_at": null, "media_id": null,
@@ -61,7 +62,7 @@ slot. Below, **D** is the reel's date, **S** its slot and **E** its folder `epis
 - **Evening build, 6:40 PM IST:** D = tomorrow, S = `am` (posts at 7:00 AM tomorrow).
 
 1. Take the (D, S) row in `content/calendar.md` (if none, take the next topic from the topic bank
-   keeping the 2:1 rhythm, add a row, alternate the voice language).
+   keeping the 2:1 rhythm, add a row with voice Hindi).
    If `E/status.json` exists: `approved`/`posted` → stop and tell the owner; `pending` →
    if it has no `review_thread_id`, send it for review (step 11) instead of rebuilding; if it has one,
    stop (Run C handles the reply). Exception: if it went out music-only and its
