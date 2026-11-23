@@ -217,7 +217,8 @@ Every episode sets `EPISODE.coverSpec`; `render.py build`/`finish` turn it into 
 
 ## Account tags
 
-Follow `content/tags.md`: up to 10 relevant cyber-community pages from its **Approved** list only — never
+Follow `content/tags.md`. Every reel tags the owner's own account **adv.shivashankar** (owner's instruction,
+23 Nov 2026), plus up to 9 relevant cyber-community pages from its **Approved** list only — never other
 advocates, personal accounts or government accounts, never guessed handles, rotate from reel to reel.
 Run A writes `E/tags.json` and lists the tags in the review message. Run B passes them as `user_tags`.
 

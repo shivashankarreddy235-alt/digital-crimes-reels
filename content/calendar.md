@@ -9,7 +9,7 @@ a starting point: every run verifies it before scripting (see CLAUDE.md). Keep t
 | EP | Date | Slot | Voice | Type | Topic | Hook (first 2 s) | Facts and law to verify | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 01 | 2026-11-23 | am | English | Forensics | How a mobile tower can catch a criminal | Your phone is never really alone. | Cell sectors, CDR, IMEI, tower dump; BNSS s.94; DoT 2-year CDR retention; BSA s.63 | posted |
-| 02 | 2026-11-23 | pm | Hindi | Technology | How GPS knows exactly where you are | No signal? GPS still knows where you are. | Satellites, signal timing, trilateration; GPS vs NavIC; GPS vs tower location | pending |
+| 02 | 2026-11-23 | pm | Hindi | Technology | How GPS knows exactly where you are | No signal? GPS still knows where you are. | Satellites, signal timing, trilateration; GPS vs NavIC; GPS vs tower location | approved |
 | 03 | 2026-11-24 | am | English | Client: digital arrest | Digital arrest: how the scam works and how callers are traced | "You are under digital arrest." | BNSS s.43; BNS s.204, 308, 318, 319, 336; IT Act s.66D; CDR/IPDR/mule-account trail |  |
 | 04 | 2026-11-24 | pm | Hindi | Technology | What an IMEI number is, and why changing it is a crime | Your phone has a fingerprint. 15 digits. | IMEI basics; CEIR / Sanchar Saathi blocking; Telecommunications Act 2023 (tampering with identifiers) — explain, never show how |  |
 | 05 | 2026-11-25 | am | English | Technology | How a SIM card connects you to the network | This tiny chip proves who you are. | IMSI, SIM authentication, why SIM swap is dangerous; IT Act s.66C |  |
