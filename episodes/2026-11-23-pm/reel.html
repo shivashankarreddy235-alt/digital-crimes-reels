@@ -278,15 +278,15 @@ function sHook(lt){
   if(a2>0){txt('GPS still knows',540,525+(1-a2)*24,{size:fit('GPS still knows',900,DISP,920,96),weight:900,font:DISP,align:'center',alpha:a2});
     txt('where you are.',540,625+(1-a2)*24,{size:96,weight:900,font:DISP,align:'center',alpha:a2,color:COL.cyan,glow:30});}
   const S=[[175,790,0.35],[905,760,-0.35]],sa=eOut(p(lt,1.1,0.5)),bk=eOut(p(lt,1.5,0.6));
-  S.forEach(([x,y,r])=>{beam(x,y+40,540,836,lt,COL.cyan,bk,sa);satellite(x,y,44,COL.cyan,r,sa);});
-  bigPhone(540,1150,310,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy+62,sw,sh-62);ctx.fillStyle='#0a1020';ctx.fillRect(sx,sy,sw,62);
+  S.forEach(([x,y,r])=>{beam(x,y+40,540,826,lt,COL.cyan,bk,sa);satellite(x,y,44,COL.cyan,r,sa);});
+  bigPhone(540,1120,300,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy+62,sw,sh-62);ctx.fillStyle='#0a1020';ctx.fillRect(sx,sy,sw,62);
     for(let i=0;i<4;i++){ctx.fillStyle='rgba(255,255,255,0.22)';ctx.fillRect(sx+18+i*11,sy+44-(8+i*6),7,8+i*6);}
     iCross(sx+36,sy+31,20,COL.red);txt('No service',sx+82,sy+42,{size:30,weight:800,color:COL.red});
     if(lt>2.1){const pk=eBack(clamp(p(lt,2.1,0.45))),px=sx+sw/2,py=sy+sh*0.58;
       ctx.save();ctx.globalAlpha=clamp(p(lt,2.5,0.3))*(0.55+0.45*Math.sin(lt*4));stroke(COL.green,3);ctx.beginPath();ctx.arc(px,py,46+8*Math.sin(lt*4),0,7);ctx.stroke();ctx.restore();
       iPin(px,py-(1-pk)*140,34,COL.green);}
   },eOut(p(lt,0,0.4)));
-  const a3=eOut(p(lt,3.1,0.4));if(a3>0)pill(540,1470,'How? Let’s break it down.',COL.amber,{size:34,alpha:a3});}
+  const a3=eOut(p(lt,3.1,0.4));if(a3>0)pill(540,1478,'How? Let’s break it down.',COL.amber,{size:34,alpha:a3});}
 
 function sSats(lt){tag('THE GPS SATELLITES',330,0.1,lt);head('Always circling overhead',450,0.2,lt,{size:80});
   const cx=540,cy=900,R=180,ea=eOut(p(lt,0.3,0.6));if(ea<=0)return;const orbs=[[-0.5,0],[0.5,0.33],[0.02,0.66]];
@@ -296,21 +296,21 @@ function sSats(lt){tag('THE GPS SATELLITES',330,0.1,lt);head('Always circling ov
   sats.filter(s=>s[2]).forEach(([x,y,,k])=>satellite(x,y,22,COL.cyan,0,ea*k*0.35));
   earth(cx,cy,R,lt,ea);
   sats.filter(s=>!s[2]).forEach(([x,y,,k])=>satellite(x,y,22,COL.cyan,0,ea*k));
-  const st=[[1.4,'About 20,200 km above Earth',COL.cyan],[3.2,'At least 24 kept in service',COL.amber],[5.0,'Each one circles Earth twice a day',COL.green]];
+  const st=[[1.4,'About 20,200 km above Earth',COL.cyan],[3.2,'At least 24 kept in service',COL.amber],[5.6,'Each one circles Earth twice a day',COL.green]];
   st.forEach(([t0,s,c],i)=>{const e=eOut(p(lt,t0,0.4));if(e>0)pill(540,1310+i*86,s,c,{size:34,alpha:e});});}
 
 function sSignal(lt){tag('WHAT IT SENDS',330,0.1,lt,COL.amber);head('Where it is + the exact time',450,0.2,lt,{size:78});
   const sa=eOut(p(lt,0.3,0.5));
-  const wk=eOut(p(lt,2.2,0.5));if(wk>0){for(let k=0;k<4;k++){const ph=((lt*0.7+k/4)%1);ctx.save();ctx.globalAlpha=wk*(1-ph)*0.8;stroke(COL.cyan,4);ctx.beginPath();ctx.arc(360,690,40+ph*250,Math.PI*0.2,Math.PI*0.8);ctx.stroke();ctx.restore();}}
+  const wk=eOut(p(lt,2.6,0.5));if(wk>0){for(let k=0;k<4;k++){const ph=((lt*0.7+k/4)%1);ctx.save();ctx.globalAlpha=wk*(1-ph)*0.8;stroke(COL.cyan,4);ctx.beginPath();ctx.arc(360,690,40+ph*250,Math.PI*0.2,Math.PI*0.8);ctx.stroke();ctx.restore();}}
   satellite(360,650,66,COL.cyan,0,sa);
-  const ca=eOut(p(lt,0.8,0.5));if(ca>0){ctx.save();ctx.globalAlpha=ca;ctx.save();stroke(COL.amber,3);ctx.setLineDash([8,8]);ctx.beginPath();ctx.moveTo(500,650);ctx.lineTo(700,650);ctx.stroke();ctx.restore();
+  const ca=eOut(p(lt,1.1,0.5));if(ca>0){ctx.save();ctx.globalAlpha=ca;ctx.save();stroke(COL.amber,3);ctx.setLineDash([8,8]);ctx.beginPath();ctx.moveTo(500,650);ctx.lineTo(700,650);ctx.stroke();ctx.restore();
     iClock(800,650,74,COL.amber,lt);txt('ATOMIC CLOCK',800,778,{size:30,weight:800,color:COL.amber,align:'center',ls:3});txt('on board',800,818,{size:30,weight:500,color:COL.dim,align:'center'});ctx.restore();}
-  const ma=eOut(p(lt,2.6,0.4));if(ma>0){ctx.save();ctx.globalAlpha=ma;ctx.translate(0,(1-ma)*40);card(90,990,900,420,COL.cyan);
+  const ma=eOut(p(lt,3.0,0.4));if(ma>0){ctx.save();ctx.globalAlpha=ma;ctx.translate(0,(1-ma)*40);card(90,990,900,420,COL.cyan);
     txt('BROADCAST · NON-STOP',140,1062,{size:30,weight:800,color:COL.cyan,ls:3,font:MONO});
     const L1='I AM HERE: my orbit position',L2='SENT AT: 10:42:07.000000000',fs=fit(L1,700,MONO,800,40);
-    const n1=Math.floor(L1.length*clamp((lt-2.9)/1.0)),n2=Math.floor(L2.length*clamp((lt-4.3)/1.1));
+    const n1=Math.floor(L1.length*clamp((lt-3.5)/1.0)),n2=Math.floor(L2.length*clamp((lt-4.9)/1.2));
     txt(L1.slice(0,n1),140,1170,{size:fs,weight:700,font:MONO});txt(L2.slice(0,n2),140,1255,{size:fs,weight:700,font:MONO,color:COL.amber,glow:10,glowColor:COL.amber});
-    const fa=eOut(p(lt,5.6,0.4));if(fa>0)txt('From every satellite, all the time.',140,1360,{size:32,weight:600,color:COL.dim,alpha:fa});ctx.restore();}}
+    const fa=eOut(p(lt,6.6,0.4));if(fa>0)txt('From every satellite, all the time.',140,1360,{size:32,weight:600,color:COL.dim,alpha:fa});ctx.restore();}}
 
 function sDist(lt){tag('TIME = DISTANCE',330,0.1,lt,COL.green);head('Delay × speed of light',450,0.2,lt,{size:84});
   const A=[210,640],B=[850,1000],sa=eOut(p(lt,0.3,0.4));satellite(A[0],A[1],42,COL.cyan,0.5,sa);
@@ -318,56 +318,56 @@ function sDist(lt){tag('TIME = DISTANCE',330,0.1,lt,COL.green);head('Delay × sp
   const k=clamp(p(lt,0.8,1.8));if(k>0){ctx.save();stroke('rgba(46,230,255,0.5)',3);ctx.setLineDash([10,10]);ctx.beginPath();ctx.moveTo(A[0]+40,A[1]+40);ctx.lineTo(B[0]-40,B[1]-80);ctx.stroke();ctx.restore();
     const x=lerp(A[0]+40,B[0]-40,k),y=lerp(A[1]+40,B[1]-80,k);if(k<1){ctx.save();ctx.fillStyle=COL.white;ctx.shadowColor=COL.cyan;ctx.shadowBlur=30;ctx.beginPath();ctx.arc(x,y,13,0,7);ctx.fill();ctx.restore();}
     pill(470,880,'300,000 km per second',COL.cyan,{size:30,alpha:eOut(p(lt,1.0,0.4))});}
-  const ra=eOut(p(lt,2.8,0.4));if(ra>0){ctx.save();ctx.globalAlpha=ra;card(560,560,420,200,COL.amber);txt('TRAVEL TIME',600,620,{size:28,weight:800,color:COL.amber,ls:3});
-    const v=(0.067*clamp(p(lt,2.8,0.8))).toFixed(3);txt(v+' s',600,720,{size:76,weight:800,font:MONO,glow:14,glowColor:COL.amber});ctx.restore();}
-  const ea=eOut(p(lt,4.6,0.5));if(ea>0){ctx.save();ctx.globalAlpha=ea;ctx.translate(0,(1-ea)*40);card(90,1110,900,300,COL.cyan);
+  const ra=eOut(p(lt,3.2,0.4));if(ra>0){ctx.save();ctx.globalAlpha=ra;card(560,560,420,200,COL.amber);txt('TRAVEL TIME',600,620,{size:28,weight:800,color:COL.amber,ls:3});
+    const v=(0.067*clamp(p(lt,3.2,0.8))).toFixed(3);txt(v+' s',600,720,{size:76,weight:800,font:MONO,glow:14,glowColor:COL.amber});ctx.restore();}
+  const ea=eOut(p(lt,5.2,0.5));if(ea>0){ctx.save();ctx.globalAlpha=ea;ctx.translate(0,(1-ea)*40);card(90,1110,900,300,COL.cyan);
     txt('DISTANCE = TIME × SPEED OF LIGHT',140,1175,{size:fit('DISTANCE = TIME × SPEED OF LIGHT',800,BODY,800,30,2),weight:800,color:COL.cyan,ls:2});
     txt('0.067 s × 300,000 km/s',140,1260,{size:fit('0.067 s × 300,000 km/s',700,MONO,800,44),weight:700,font:MONO});
     txt('≈ 20,100 km',140,1360,{size:72,weight:900,font:DISP,color:COL.cyan,glow:20});ctx.restore();}
-  const wa=eOut(p(lt,7.4,0.4));if(wa>0)pill(540,1480,'Clock off by 1 microsecond = 300 m off',COL.red,{size:32,alpha:wa,fillA:'33'});}
+  const wa=eOut(p(lt,8.2,0.4));if(wa>0)pill(540,1480,'Clock off by 1 microsecond = 300 m off',COL.red,{size:32,alpha:wa,fillA:'33'});}
 
 const TRI={A:[290,880],B:[820,860],C:[470,1290],X:[560,1060]};
 function reflectX(){const[ax,ay]=TRI.A,[bx,by]=TRI.B,[px,py]=TRI.X;const dx=bx-ax,dy=by-ay,t=((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy);const fx=ax+t*dx,fy=ay+t*dy;return[2*fx-px,2*fy-py];}
 function sTri(lt){tag('TRILATERATION',330,0.1,lt,COL.violet);head('Where the circles meet',450,0.2,lt,{size:84});
   const X0=70,Y0=520,PW=940,PH=800;panel(X0,Y0,PW,PH,COL.violet,eOut(p(lt,0.2,0.4)));
   const d=(P,Q)=>Math.hypot(P[0]-Q[0],P[1]-Q[1]);const X=TRI.X,X2=reflectX();
-  const circ=[[TRI.A,COL.cyan,0.5],[TRI.B,COL.amber,3.0],[TRI.C,COL.green,5.2]];
+  const circ=[[TRI.A,COL.cyan,0.5],[TRI.B,COL.amber,3.5],[TRI.C,COL.green,5.8]];
   ctx.save();rr(X0,Y0,PW,PH,24);ctx.clip();
   circ.forEach(([P,c,t0])=>{const k=eOut(p(lt,t0,0.8));if(k<=0)return;const r=d(P,X)*k;ctx.save();ctx.fillStyle=c+'12';ctx.beginPath();ctx.arc(P[0],P[1],r,0,7);ctx.fill();stroke(c,4);ctx.shadowColor=c;ctx.shadowBlur=14;ctx.stroke();ctx.restore();});
   ctx.restore();
   circ.forEach(([P,c,t0],i)=>{const k=eOut(p(lt,t0-0.2,0.3));if(k>0){satellite(P[0],P[1],20,c,0,k);txt('SAT '+(i+1),P[0],P[1]-34,{size:30,weight:800,color:c,align:'center',alpha:k});}});
-  const two=p(lt,3.8,0.3),one=p(lt,6.0,0.3);
+  const two=p(lt,4.4,0.3),one=p(lt,6.6,0.3);
   if(two>0){[X,X2].forEach((Q,i)=>{const fade=i===1?1-clamp(one*1.5):1;if(fade<=0)return;ctx.save();ctx.globalAlpha=two*fade;ctx.fillStyle=COL.white;ctx.shadowColor=COL.white;ctx.shadowBlur=24;ctx.beginPath();ctx.arc(Q[0],Q[1],14+3*Math.sin(lt*8),0,7);ctx.fill();ctx.restore();});}
   if(one>0){const pk=eBack(clamp(one));iPin(X[0],X[1]-(1-pk)*80,34,COL.red);pill(X[0]+140,X[1]-20,'YOU',COL.red,{size:30,ls:3,alpha:clamp(one*2)});}
-  const fa=eOut(p(lt,7.6,0.5));if(fa>0){ctx.save();ctx.globalAlpha=fa;satellite(860,1200,26,COL.violet,0,1);iClock(940,1270,26,COL.violet,lt);txt('SAT 4',860,1150,{size:30,weight:800,color:COL.violet,align:'center'});ctx.restore();}
-  const caps=[[0.5,'1 satellite: somewhere on this circle',COL.cyan],[3.0,'2 satellites: only 2 points left',COL.amber],[5.2,'3 satellites: 1 point',COL.green],[7.6,'4th satellite: fixes the phone’s clock error',COL.violet]];
+  const fa=eOut(p(lt,8.0,0.5));if(fa>0){ctx.save();ctx.globalAlpha=fa;satellite(860,1200,26,COL.violet,0,1);iClock(940,1270,26,COL.violet,lt);txt('SAT 4',860,1150,{size:30,weight:800,color:COL.violet,align:'center'});ctx.restore();}
+  const caps=[[0.5,'1 satellite: somewhere on this circle',COL.cyan],[3.5,'2 satellites: only 2 points left',COL.amber],[5.8,'3 satellites: 1 point',COL.green],[8.0,'4th satellite: fixes the phone’s clock error',COL.violet]];
   let ci=-1;caps.forEach(([t0],i)=>{if(lt>=t0)ci=i;});if(ci>=0){const[t0,s,c]=caps[ci];pill(540,1400,s,c,{size:32,alpha:eOut(p(lt,t0,0.3))});}
-  const ma=eOut(p(lt,9.2,0.4));if(ma>0)txt('Minimum: 4 satellites',540,1500,{size:44,weight:900,font:DISP,align:'center',color:COL.amber,alpha:ma,glow:14});}
+  const ma=eOut(p(lt,9.6,0.4));if(ma>0)txt('Minimum: 4 satellites',540,1500,{size:44,weight:900,font:DISP,align:'center',color:COL.amber,alpha:ma,glow:14});}
 
 function sTwist(lt){tag('THE TWIST',330,0.1,lt,COL.red);head('Satellites don’t track you',450,0.2,lt,{size:80});
   const sa=eOut(p(lt,0.3,0.4));satellite(540,620,54,COL.cyan,0,sa);
   const dk=eOut(p(lt,1.0,0.6));arrow(540,700,540,850,COL.cyan,7,dk);if(dk>0)pill(720,790,'ONE-WAY SIGNAL',COL.cyan,{size:28,ls:2,align:'left',alpha:dk});
-  const uk=eOut(p(lt,2.4,0.5));if(uk>0){ctx.save();ctx.globalAlpha=0.9;arrow(360,870,360,710,COL.red,7,uk);ctx.restore();
-    const xk=eOut(p(lt,3.0,0.3));if(xk>0){ctx.save();ctx.globalAlpha=xk;iCross(360,790,70*eBack(xk),COL.red);ctx.restore();}}
-  bigPhone(540,1100,240,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy,sw,sh);const ck=p(lt,4.6,1.2);if(ck<=0)return;
+  const uk=eOut(p(lt,3.0,0.5));if(uk>0){ctx.save();ctx.globalAlpha=0.9;arrow(360,870,360,710,COL.red,7,uk);ctx.restore();
+    const xk=eOut(p(lt,3.6,0.3));if(xk>0){ctx.save();ctx.globalAlpha=xk;iCross(360,790,70*eBack(xk),COL.red);ctx.restore();}}
+  bigPhone(540,1100,240,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy,sw,sh);const ck=p(lt,5.3,1.2);if(ck<=0)return;
     ctx.fillStyle='rgba(7,12,26,0.82)';ctx.fillRect(sx,sy+sh*0.18,sw,sh*0.5);
     txt('YOUR PHONE',sx+sw/2,sy+sh*0.27,{size:28,weight:900,color:COL.green,align:'center'});txt('CALCULATES',sx+sw/2,sy+sh*0.34,{size:28,weight:900,color:COL.green,align:'center'});
     const L=['LAT ●●.●●●●','LON ●●.●●●●'];L.forEach((s,i)=>{const n=Math.floor(s.length*clamp(ck*2-i*0.6));txt(s.slice(0,n),sx+sw/2,sy+sh*(0.46+i*0.09),{size:26,weight:700,font:MONO,align:'center'});});
     if(ck>0.8)iPin(sx+sw/2,sy+sh*0.88,22,COL.green);},sa);
-  const c1=eOut(p(lt,3.0,0.4)),c2=eOut(p(lt,6.6,0.4));
+  const c1=eOut(p(lt,3.6,0.4)),c2=eOut(p(lt,7.4,0.4));
   if(c1>0)pill(540,1400,'The satellite never learns where you are',COL.red,{size:32,alpha:c1});
   if(c2>0)pill(540,1486,'No SIM, no mobile network: GPS still works',COL.green,{size:32,alpha:c2});}
 
 function sAgps(lt){tag('A-GPS',330,0.1,lt,COL.cyan);head('The network only speeds it up',450,0.2,lt,{size:76});
   const a=eOut(p(lt,0.3,0.4));if(a>0){ctx.save();ctx.globalAlpha=a;card(90,540,900,400,COL.cyan);txt('WITH NETWORK  ·  A-GPS',140,604,{size:30,weight:800,color:COL.cyan,ls:3});
     tower(210,815,190,COL.white,lt);phone(870,740,70,COL.cyan);ctx.restore();
-    const k=eOut(p(lt,0.9,1.0));if(k>0){const x=lerp(330,620,k);ctx.save();stroke('rgba(46,230,255,0.5)',3);ctx.setLineDash([10,10]);ctx.beginPath();ctx.moveTo(280,730);ctx.lineTo(820,730);ctx.stroke();ctx.restore();
+    const k=eOut(p(lt,2.6,1.0));if(k>0){const x=lerp(330,620,k);ctx.save();stroke('rgba(46,230,255,0.5)',3);ctx.setLineDash([10,10]);ctx.beginPath();ctx.moveTo(280,730);ctx.lineTo(820,730);ctx.stroke();ctx.restore();
       pill(x,730,'satellite orbit data',COL.cyan,{size:30,alpha:a});}
-    const f=eOut(p(lt,2.4,0.7));bar(140,860,620,30,f,COL.green);const ta=eOut(p(lt,3.0,0.3));if(ta>0)txt('FAST FIX',940,885,{size:32,weight:900,color:COL.green,align:'right',alpha:ta});}
-  const b=eOut(p(lt,4.4,0.4));if(b>0){ctx.save();ctx.globalAlpha=b;card(90,980,900,400,COL.amber);txt('WITHOUT NETWORK',140,1044,{size:30,weight:800,color:COL.amber,ls:3});
+    const f=eOut(p(lt,3.8,0.7));bar(140,860,620,30,f,COL.green);const ta=eOut(p(lt,4.4,0.3));if(ta>0)txt('FAST FIX',940,885,{size:32,weight:900,color:COL.green,align:'right',alpha:ta});}
+  const b=eOut(p(lt,5.4,0.4));if(b>0){ctx.save();ctx.globalAlpha=b;card(90,980,900,400,COL.amber);txt('WITHOUT NETWORK',140,1044,{size:30,weight:800,color:COL.amber,ls:3});
     satellite(230,1170,40,COL.cyan,0.2,1);phone(820,1200,74,COL.cyan);beam(270,1200,770,1200,lt,COL.cyan,1,0.8);ctx.restore();
-    const f=clamp(p(lt,4.8,3.2))*0.92;bar(140,1300,620,30,f,COL.amber);const ta=eOut(p(lt,5.6,0.3));if(ta>0)txt('SLOWER START',940,1325,{size:32,weight:900,color:COL.amber,align:'right',alpha:ta});}
-  const c=eOut(p(lt,6.0,0.4));if(c>0)caption('Either way, the position comes from the satellites.',1460,c,COL.white,34);}
+    const f=clamp(p(lt,5.8,2.6))*0.92;bar(140,1300,620,30,f,COL.amber);const ta=eOut(p(lt,6.6,0.3));if(ta>0)txt('SLOWER START',940,1325,{size:32,weight:900,color:COL.amber,align:'right',alpha:ta});}
+  const c=eOut(p(lt,7.4,0.4));if(c>0)caption('Either way, the position comes from the satellites.',1460,c,COL.white,34);}
 
 function sAcc(lt){tag('HOW ACCURATE?',330,0.1,lt,COL.green);head('About 5 m under open sky',450,0.2,lt,{size:80});
   const a=eOut(p(lt,0.4,0.4)),b=eOut(p(lt,3.2,0.4));
@@ -388,26 +388,26 @@ function sAcc(lt){tag('HOW ACCURATE?',330,0.1,lt,COL.green);head('About 5 m unde
     txt('vs',470,1320,{size:40,weight:800,color:COL.dim,align:'center'});ctx.restore();}}
 
 function sNavic(lt){tag('INDIA’S OWN SYSTEM',330,0.1,lt,COL.amber);head('NavIC, built by ISRO',450,0.2,lt,{size:84});
-  const ga=eOut(p(lt,0.3,0.5));if(ga>0){earth(300,820,190,lt,ga);const ca=eOut(p(lt,2.4,0.6));
+  const ga=eOut(p(lt,0.3,0.5));if(ga>0){earth(300,820,190,lt,ga);const ca=eOut(p(lt,3.8,0.6));
     if(ca>0){ctx.save();ctx.globalAlpha=ga*ca*(0.75+0.25*Math.sin(lt*3));const g=ctx.createRadialGradient(320,780,10,320,780,120);g.addColorStop(0,'rgba(255,182,39,0.55)');g.addColorStop(1,'rgba(255,182,39,0)');
       ctx.fillStyle=g;ctx.beginPath();ctx.arc(320,780,120,0,7);ctx.fill();stroke(COL.amber,3);ctx.setLineDash([8,8]);ctx.beginPath();ctx.arc(320,780,110,0,7);ctx.stroke();ctx.restore();}
     [[150,590],[300,560],[450,590]].forEach(([x,y],i)=>satellite(x,y,18,COL.amber,0,ga*clamp(p(lt,0.8+i*0.2,0.4))));}
-  const na=eOut(p(lt,0.9,0.4));if(na>0){txt('NavIC',560,700,{size:96,weight:900,font:DISP,color:COL.amber,alpha:na,glow:20});txt('formerly IRNSS',566,750,{size:30,weight:600,color:COL.dim,alpha:na});}
-  const cv2=eOut(p(lt,2.4,0.4));if(cv2>0)para('Covers India and up to 1,500 km beyond its borders',566,830,420,{size:34,weight:700,alpha:cv2,lh:44});
-  const b=eOut(p(lt,5.0,0.5));if(b>0){ctx.save();ctx.globalAlpha=b;ctx.translate(0,(1-b)*50);card(90,1080,900,400,COL.amber);
+  const na=eOut(p(lt,2.0,0.4));if(na>0){txt('NavIC',560,700,{size:96,weight:900,font:DISP,color:COL.amber,alpha:na,glow:20});txt('formerly IRNSS',566,750,{size:30,weight:600,color:COL.dim,alpha:na});}
+  const cv2=eOut(p(lt,3.8,0.4));if(cv2>0)para('Covers India and up to 1,500 km beyond its borders',566,830,420,{size:34,weight:700,alpha:cv2,lh:44});
+  const b=eOut(p(lt,7.2,0.5));if(b>0){ctx.save();ctx.globalAlpha=b;ctx.translate(0,(1-b)*50);card(90,1080,900,400,COL.amber);
     pill(140,1140,'NEW · 30 OCT 2026',COL.amber,{size:28,ls:2,align:'left',fillA:'33'});
     txt('NVS-03 launched on GSLV-F18',140,1240,{size:fit('NVS-03 launched on GSLV-F18',800,DISP,800,54),weight:800,font:DISP});
-    const c1=eOut(p(lt,6.6,0.4)),c2=eOut(p(lt,7.6,0.4));
+    const c1=eOut(p(lt,9.4,0.4)),c2=eOut(p(lt,10.4,0.4));
     if(c1>0)pill(140,1330,'L1 · L5 · S signals',COL.cyan,{size:30,align:'left',alpha:c1});
     if(c2>0)pill(140,1415,'Indigenous atomic clock on board',COL.green,{size:30,align:'left',alpha:c2});ctx.restore();}}
 
 const LAW94=[['A Court, or the officer in charge of a police station, can require production of ',0],['electronic records and devices',1],[' likely to hold digital evidence.',0]];
 const LAW63=[['In court, an electronic record needs a ',0],['certificate',1],[' to be admissible.',0]];
 function sLaw(lt){tag('AS EVIDENCE',330,0.1,lt,COL.amber);head('Where location gets stored',450,0.2,lt,{size:80});
-  const ch=[[0.5,'Satellite: nothing',COL.red],[1.6,'Your phone',COL.cyan],[2.2,'Apps & accounts',COL.cyan]];
+  const ch=[[0.5,'Satellite: nothing',COL.red],[2.6,'Your phone',COL.cyan],[3.2,'Apps & accounts',COL.cyan]];
   let x=90;ch.forEach(([t0,s,c])=>{const e=eOut(p(lt,t0,0.3));ctx.save();ctx.font=font(700,30);const w=ctx.measureText(s).width+36;ctx.restore();if(e>0)pill(x,560,s,c,{size:30,align:'left',alpha:e,fillA:'33'});x+=w+20;});
-  const a=eOut(p(lt,3.6,0.5));if(a>0){ctx.save();ctx.translate(0,(1-a)*50);lawCard(90,620,900,400,'BNSS, 2023 · SECTION 94','Summons to produce document or other thing',LAW94,(lt-4.0)*55,COL.amber,a);ctx.restore();}
-  const b=eOut(p(lt,7.8,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*50);lawCard(90,1050,900,340,'BSA, 2023 · SECTION 63','Admissibility of electronic records',LAW63,(lt-8.2)*55,COL.cyan,b);ctx.restore();
+  const a=eOut(p(lt,4.4,0.5));if(a>0){ctx.save();ctx.translate(0,(1-a)*50);lawCard(90,620,900,400,'BNSS, 2023 · SECTION 94','Summons to produce document or other thing',LAW94,(lt-4.8)*55,COL.amber,a);ctx.restore();}
+  const b=eOut(p(lt,8.8,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*50);lawCard(90,1050,900,340,'BSA, 2023 · SECTION 63','Admissibility of electronic records',LAW63,(lt-9.2)*55,COL.cyan,b);ctx.restore();
     txt('Old law: Section 65B, Indian Evidence Act',540,1450,{size:30,weight:600,color:COL.dim,align:'center',alpha:b});}}
 
 const PRIV=[['A bail condition cannot let police ',0],['constantly track',1],[' an accused person’s movements.',0]];
@@ -416,8 +416,8 @@ function sPriv(lt){tag('PRIVACY',330,0.1,lt,COL.violet);head('Your location is p
   const b=eOut(p(lt,1.8,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*50);ctx.globalAlpha=b;card(90,880,900,470,COL.violet);
     txt('SUPREME COURT · 8 JULY 2024',140,950,{size:30,weight:800,color:COL.violet,ls:3});
     txt('The Google Maps “pin” bail-condition case',140,1000,{size:fit('The Google Maps “pin” bail-condition case',500,BODY,800,30),weight:500,color:COL.dim});
-    ctx.fillStyle=COL.violet+'55';ctx.fillRect(140,1030,800,2);richType(PRIV,140,1100,800,42,58,(lt-2.4)*45);ctx.restore();}
-  const c=eOut(p(lt,6.4,0.3));if(c>0){const sc=1.6-0.6*eBack(clamp(p(lt,6.4,0.4)));ctx.save();ctx.translate(540,1440);ctx.scale(sc,sc);pill(0,0,'Article 21 · Right to privacy',COL.amber,{size:36,alpha:c,fillA:'33'});ctx.restore();}}
+    ctx.fillStyle=COL.violet+'55';ctx.fillRect(140,1030,800,2);richType(PRIV,140,1100,800,42,58,(lt-2.8)*32);ctx.restore();}
+  const c=eOut(p(lt,8.2,0.3));if(c>0){const sc=1.6-0.6*eBack(clamp(p(lt,8.2,0.4)));ctx.save();ctx.translate(540,1440);ctx.scale(sc,sc);pill(0,0,'Article 21 · Right to privacy',COL.amber,{size:36,alpha:c,fillA:'33'});ctx.restore();}}
 
 function sTake(lt){tag('TAKEAWAY',330,0.1,lt,COL.green);head('Who can see your location?',450,0.2,lt,{size:80});
   const a=eOut(p(lt,0.3,0.4));if(a<=0)return;ctx.save();ctx.globalAlpha=a;card(90,540,900,620,COL.cyan);
@@ -445,27 +445,27 @@ window.EPISODE={
       for(let k=0;k<3;k++){ctx.save();ctx.globalAlpha=0.7-k*0.2;stroke(COL.cyan,4);ctx.beginPath();ctx.arc(sx,sy+40,70+k*60,Math.PI*0.25,Math.PI*0.75);ctx.stroke();ctx.restore();}
       satellite(sx,sy,P?60:80,COL.cyan,-0.25,1);iPin(sx+(P?10:0),sy+520,44,COL.red);ctx.restore();}},
   scenes:[
-    {id:'hook',fn:sHook,dur:7.0,min:4.5,pops:[[0.1,660],[1.1,600],[1.3,880],[3.1,990,0.1]],impacts:[[2.4,0.8,14]],
+    {id:'hook',fn:sHook,dur:7.0,min:4.2,pops:[[0.1,660],[1.1,600],[1.3,880],[3.1,990,0.1]],impacts:[[2.4,0.8,14]],
      vo:'Network नहीं है, फिर भी GPS बता देता है कि आप कहाँ हैं। कैसे?'},
-    {id:'sats',fn:sSats,dur:8.0,min:6.0,pops:[[0.3,520],[1.4,700],[3.2,800],[5.0,900]],
+    {id:'sats',fn:sSats,dur:8.0,min:6.2,pops:[[0.3,520],[1.4,700],[3.2,800],[5.6,900]],
      vo:'धरती से करीब बीस हज़ार किलोमीटर ऊपर, कम से कम चौबीस GPS satellites घूमते हैं। हर एक, दिन में दो चक्कर।'},
-    {id:'signal',fn:sSignal,dur:8.0,min:6.5,pops:[[0.3,600],[0.8,760],[2.2,520,0.1],[2.6,700]],typing:[[2.9,3.9],[4.3,5.4]],
+    {id:'signal',fn:sSignal,dur:8.0,min:7.0,pops:[[0.3,600],[1.1,760],[2.6,520,0.1],[3.0,700]],typing:[[3.5,4.5],[4.9,6.1]],
      vo:'हर satellite में atomic clock है। वो लगातार बताता है: मैं यहाँ हूँ, और ये signal ठीक इतने बजे भेजा।'},
-    {id:'dist',fn:sDist,dur:11.0,min:8.5,pops:[[0.3,600],[1.0,700],[2.8,800],[4.6,880]],risers:[6.4],impacts:[[7.4,0.7,12]],
+    {id:'dist',fn:sDist,dur:11.0,min:9.0,pops:[[0.3,600],[1.0,700],[3.2,800],[5.2,880]],risers:[7.2],impacts:[[8.2,0.7,12]],
      vo:'Signal रोशनी की रफ़्तार से आता है। फ़ोन नापता है कि कितना वक़्त लगा, और उससे दूरी निकाल लेता है। एक microsecond की गलती, यानी तीन सौ मीटर की गलती।'},
-    {id:'tri',fn:sTri,dur:11.5,min:10.0,pops:[[0.5,600],[3.0,700],[3.8,990,0.1],[5.2,800],[7.6,880]],impacts:[[6.0,0.8,14],[9.2,0.5,8]],
+    {id:'tri',fn:sTri,dur:11.5,min:10.2,pops:[[0.5,600],[3.5,700],[4.4,990,0.1],[5.8,800],[8.0,880]],impacts:[[6.6,0.8,14],[9.6,0.5,8]],
      vo:'एक satellite से आप एक घेरे पर कहीं हैं। दूसरे से दो जगहें बचती हैं, तीसरे से सिर्फ़ एक। चौथा, फ़ोन की घड़ी की गलती ठीक करता है।'},
-    {id:'twist',fn:sTwist,dur:10.0,min:8.0,pops:[[0.3,600],[1.0,700],[2.4,440,0.12],[4.6,880],[6.6,990,0.1]],risers:[2.2],impacts:[[3.0,0.8,16]],typing:[[4.6,5.8]],
+    {id:'twist',fn:sTwist,dur:10.0,min:8.0,pops:[[0.3,600],[1.0,700],[3.0,440,0.12],[5.3,880],[7.4,990,0.1]],risers:[2.8],impacts:[[3.6,0.8,16]],typing:[[5.3,6.5]],
      vo:'सबसे ज़रूरी बात: GPS एकतरफ़ा है। Satellite को नहीं पता कि आप कहाँ हैं। हिसाब आपका फ़ोन खुद लगाता है, इसलिए बिना network के भी GPS चलता है।'},
-    {id:'agps',fn:sAgps,dur:9.0,min:7.0,pops:[[0.3,600],[0.9,700],[3.0,990,0.1],[4.4,600],[5.6,520,0.1],[6.0,800]],
+    {id:'agps',fn:sAgps,dur:9.0,min:7.8,pops:[[0.3,600],[2.6,700],[4.4,990,0.1],[5.4,600],[6.6,520,0.1],[7.4,800]],
      vo:'Network सिर्फ़ रफ़्तार बढ़ाता है। A-GPS में फ़ोन satellites का data internet से ले लेता है। बिना network, बस थोड़ी देर लगती है।'},
     {id:'acc',fn:sAcc,dur:10.0,min:7.5,pops:[[0.4,600],[1.0,880],[3.2,600],[4.2,520,0.1],[6.6,800]],
      vo:'खुले आसमान में phone का GPS करीब पाँच मीटर तक सही होता है, ऊँची इमारतों के बीच कम। फिर भी, tower की location से कहीं ज़्यादा सटीक।'},
-    {id:'navic',fn:sNavic,dur:11.5,min:8.5,pops:[[0.3,600],[0.9,880],[2.4,700],[5.0,740],[6.6,800],[7.6,900]],impacts:[[5.0,0.6,10]],
+    {id:'navic',fn:sNavic,dur:11.5,min:11.0,pops:[[0.3,600],[2.0,880],[3.8,700],[7.2,740],[9.4,800],[10.4,900]],impacts:[[7.2,0.6,10]],
      vo:'भारत का अपना system भी है: ISRO का NavIC, जो भारत और पंद्रह सौ किलोमीटर आगे तक काम करता है। तीस अक्टूबर को इसका नया satellite NVS-03 launch हुआ।'},
-    {id:'law',fn:sLaw,dur:12.0,min:10.0,pops:[[0.5,440,0.1],[1.6,700],[2.2,760],[3.6,740],[7.8,740]],typing:[[4.0,6.6],[8.2,9.3]],
+    {id:'law',fn:sLaw,dur:12.0,min:10.6,pops:[[0.5,440,0.1],[2.6,700],[3.2,760],[4.4,740],[8.8,740]],typing:[[4.8,7.4],[9.2,10.3]],
      vo:'Satellite आपकी location नहीं रखता, पर फ़ोन और apps रख सकते हैं। जाँच में ये records BNSS की Section 94 के तहत मंगाए जा सकते हैं, और कोर्ट में BSA की Section 63 का certificate चाहिए।'},
-    {id:'privacy',fn:sPriv,dur:10.0,min:7.5,pops:[[0.3,600],[1.8,740]],typing:[[2.4,4.6]],impacts:[[6.5,0.8,14]],
+    {id:'privacy',fn:sPriv,dur:10.0,min:9.0,pops:[[0.3,600],[1.8,740]],typing:[[2.8,5.5]],impacts:[[8.3,0.8,14]],
      vo:'Location आपकी privacy भी है। 2024 में Supreme Court ने कहा: bail की ऐसी शर्त नहीं लग सकती, जिससे police आरोपी को लगातार track करे। ये Article 21 के ख़िलाफ़ है।'},
     {id:'take',fn:sTake,dur:6.5,min:5.0,pops:[[0.6,600],[1.1,700],[1.6,800],[2.4,990,0.12],[3.2,880],[4.0,700]],
      vo:'तो देखिए, कौन-कौन से apps आपकी location देख रहे हैं। Save कीजिए, share कीजिए।'},
