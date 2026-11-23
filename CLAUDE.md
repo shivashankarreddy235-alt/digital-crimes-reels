@@ -173,7 +173,9 @@ connector (load its tools with ToolSearch if they are deferred). Owner's address
   shows nothing, also `search_threads` for `subject:"Digital Crimes review" EPnn in:sent newer_than:3d`
   in case Gmail split the reply into a new thread.
 - Read only the reply's own text, above the quoted original ("On … wrote:"). Process unhandled replies
-  oldest first, then add each id to `handled_reply_ids`.
+  oldest first. **Claim before acting:** add the reply's id to `handled_reply_ids`, commit
+  `EPnn: handling reply`, push; if the push is rejected, pull, re-read status.json and skip any reply
+  another run has already claimed. Right before posting, re-check that status is not `posted`.
 - First word (any case) **post / approve / approved / yes** → approved (Run A step 12). A POST counts only
   if it is newer than the latest version Claude emailed — never approve a version the owner hasn't seen.
 - **skip** → skipped.
