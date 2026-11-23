@@ -1,0 +1,58 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "Network नहीं है, फिर भी GPS बता देता है कि आप कहाँ हैं। कैसे?"
+  },
+  {
+   "scene": "sats",
+   "text": "धरती से करीब बीस हज़ार किलोमीटर ऊपर, कम से कम चौबीस GPS satellites घूमते हैं। हर एक, दिन में दो चक्कर।"
+  },
+  {
+   "scene": "signal",
+   "text": "हर satellite में atomic clock है। वो लगातार बताता है: मैं यहाँ हूँ, और ये signal ठीक इतने बजे भेजा।"
+  },
+  {
+   "scene": "dist",
+   "text": "Signal रोशनी की रफ़्तार से आता है। फ़ोन नापता है कि उसे कितना वक़्त लगा, और उससे दूरी निकाल लेता है। एक microsecond की गलती, यानी तीन सौ मीटर की गलती।"
+  },
+  {
+   "scene": "tri",
+   "text": "एक satellite से आप एक घेरे पर कहीं हैं। दूसरे से दो जगहें बचती हैं, तीसरे से सिर्फ़ एक। चौथा, फ़ोन की घड़ी की गलती ठीक करता है।"
+  },
+  {
+   "scene": "twist",
+   "text": "और सबसे ज़रूरी बात: GPS एकतरफ़ा है। Satellite को नहीं पता कि आप कहाँ हैं। हिसाब आपका फ़ोन खुद लगाता है, इसलिए बिना network के भी GPS चलता है।"
+  },
+  {
+   "scene": "agps",
+   "text": "Network हो, तो फ़ोन satellites की जानकारी internet से ले लेता है। इसे A-GPS कहते हैं, और location जल्दी मिलती है। बिना network, बस थोड़ी देर लगती है।"
+  },
+  {
+   "scene": "acc",
+   "text": "खुले आसमान में smartphone का GPS करीब पाँच मीटर तक सही होता है। ऊँची इमारतों और घर के अंदर कम। फिर भी tower की location से कहीं ज़्यादा सटीक।"
+  },
+  {
+   "scene": "navic",
+   "text": "भारत का अपना system है: ISRO का NavIC, जो भारत और आसपास पंद्रह सौ किलोमीटर तक काम करता है। तीस अक्टूबर को इसका नया satellite NVS-03 launch हुआ, देश में बनी atomic clock के साथ।"
+  },
+  {
+   "scene": "law",
+   "text": "Satellite आपकी location नहीं रखता, पर फ़ोन और apps रख सकते हैं। जाँच में ये records BNSS की Section 94 के तहत मंगाए जा सकते हैं, और कोर्ट में BSA की Section 63 का certificate चाहिए।"
+  },
+  {
+   "scene": "privacy",
+   "text": "पर location आपकी privacy भी है। 2024 में Supreme Court ने कहा: bail की ऐसी शर्त नहीं लग सकती, जिससे police आरोपी की हर हरकत लगातार track करे। ये Article 21 के ख़िलाफ़ है।"
+  },
+  {
+   "scene": "take",
+   "text": "तो देखिए, कौन-कौन से apps आपकी location देख रहे हैं। Save कीजिए, share कीजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": ""
+  }
+ ]
+}
