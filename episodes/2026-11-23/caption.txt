@@ -1,11 +1,11 @@
-"You are under digital arrest." No, you're not.
+Your phone is never really alone.
+⚖️ For educational purposes only. Not legal advice.
 
-There is no "digital arrest" in Indian law. Under Section 43(1) of the BNSS, an arrest needs the police to actually touch or confine you. A video call can't do that. The caller is the one committing crimes: impersonating a public servant, cheating, extortion and forgery under the BNS, and Section 66D of the IT Act.
+Every call, SMS and data session is logged with the tower and sector that served it: the Call Detail Record (CDR). Courts and police can require operators to produce these records under Section 94 of the BNSS, and under the DoT licence operators must keep them for at least two years. In court, a CDR needs a certificate under Section 63 of the Bharatiya Sakshya Adhiniyam.
 
-Threatened on a call? Disconnect, call 1930, report at cybercrime.gov.in, and report the number on Sanchar Saathi (Chakshu).
+The same records can also prove an innocent person was somewhere else.
 
 Save this and send it to someone who needs it.
+Voiceover: AI-generated.
 
-Legal awareness only. Not legal advice.
-
-#DigitalArrest #CyberFraud #CyberLaw #CyberSafety #DigitalCrimes
+#CyberForensics #CyberLaw #MobileTower #CallDetailRecord #DigitalCrimes

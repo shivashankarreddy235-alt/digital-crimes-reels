@@ -1,11 +1,18 @@
-# EP01 — Digital arrest (English) · 46.5 s
+# EP01 — How a mobile tower can catch a criminal
 
-| Time | On screen | Voiceover (English) | Voiceover (Hinglish, alternative) |
+On-screen text English · voice English · 103.9 s with the AI voiceover (scenes fitted to the voice).
+
+| # | Scene | Default length | Voiceover (English) |
 | --- | --- | --- | --- |
-| 0:00–0:04 | "You are under DIGITAL ARREST" · phone call from "CBI Officer" · SCAM stamp · "It does not exist in Indian law." | "You are under digital arrest." Hear that? It's a scam. | "Aap digital arrest mein hain." Ye sunte hi samajh jaiye, ye scam hai. |
-| 0:04–0:11 | How the scam works: the call → fake papers → isolation → the transfer | How it works: a scary call. A fake warrant on WhatsApp. "Stay on camera, tell no one." Then your savings vanish. | Tarika simple hai: dar wala call, WhatsApp pe fake warrant, "camera on rakho, kisi ko mat batao", aur phir savings gayab. |
-| 0:11–0:19 | There is NO "digital arrest" in Indian law · BNSS s.43(1) text · "A video call can't arrest you." | Indian law has no "digital arrest". Section 43 of the BNSS says an arrest means physically touching or confining you. A video call can't do that. | Indian law mein "digital arrest" naam ki koi cheez nahi hai. BNSS Section 43: arrest ke liye body ko touch ya confine karna zaroori hai. Video call se arrest nahi hota. |
-| 0:19–0:28 | The caller is the criminal: BNS 204, 318·319, 308, 336; IT Act 66D | The caller is the criminal: impersonating a public servant, cheating, extortion, forgery, and Section 66D of the IT Act. | Asli criminal call karne wala hai: public servant ki impersonation, cheating, extortion, forgery, aur IT Act Section 66D. |
-| 0:28–0:35 | Red flags (4) · "Genuine agencies don't arrest anyone on a video call — or ask you to transfer money." | Red flags: don't disconnect, don't tell your family, transfer money to "verify". Genuine agencies don't do this. | Red flags: call mat kaato, family ko mat batao, "verify" ke liye paise bhejo. Asli agencies aisa nahi karti. |
-| 0:35–0:42 | 1930 · Disconnect · cybercrime.gov.in · Sanchar Saathi (Chakshu) | Disconnect. Call 1930 or report on cybercrime.gov.in, and report the number on Chakshu. The sooner, the better. | Turant call kaatiye. 1930 par call kijiye ya cybercrime.gov.in par report kijiye. Number ko Chakshu par report kijiye. Jitni jaldi, utna behtar. |
-| 0:42–0:46 | DIGITAL CRIMES · Save this · Share it with your parents · disclaimer | Save this. Share it with your parents. Digital Crimes. | Save kijiye, parents ko share kijiye. Digital Crimes. |
+| 1 | hook | 8.0 s | Your phone is never really alone. It stays connected to a mobile tower, and that connection can catch a criminal. |
+| 2 | tower | 12.0 s | A tower is a base station. Its antennas split the area around it into sectors, often three, like slices of a pizza. Your phone uses the one with the strongest signal. |
+| 3 | cell | 9.5 s | Each tower sector has a Cell ID. Every call, SMS or data session notes which cell served you. |
+| 4 | move | 7.5 s | Move around, and your phone hops from tower to tower, leaving footprints. |
+| 5 | cdr | 12.5 s | Those footprints live in the Call Detail Record: who called whom, when, for how long, from which handset, and through which tower. Internet use is logged too, in the IPDR. |
+| 6 | sim | 11.0 s | Changed the SIM? The handset has its own IMEI number, and it shows up in the records too, linking the new SIM to the same phone. |
+| 7 | dump | 12.5 s | At a crime scene, police can ask for a tower dump: every phone that used the nearby towers in that window. Match two scenes, and one number stands out. |
+| 8 | gps | 8.5 s | But a tower is not GPS. It shows an area, not an exact spot. Tighter in cities, much wider in villages. |
+| 9 | law | 12.0 s | Courts and police can require operators to produce these records under Section 94 of the BNSS. And operators must keep them for at least two years. |
+| 10 | court | 11.5 s | In court, a CDR needs a certificate under Section 63 of the Bharatiya Sakshya Adhiniyam. Without it, the Supreme Court has held, it is not admissible. |
+| 11 | both | 7.0 s | And it cuts both ways. The same records can prove an innocent person was somewhere else. Save this, and share it. |
+| 12 | outro | 5.5 s | (none) |
