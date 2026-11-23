@@ -1,0 +1,11 @@
+No signal? GPS still knows where you are.
+⚖️ For educational purposes only. Not legal advice.
+
+At least 24 GPS satellites keep broadcasting their position and the exact time; your phone turns the signal delays from at least 4 of them into a location, even with no mobile network. The satellites never learn where you are, but your phone and apps may store it: investigators can require such records under Section 94 BNSS, and in court they need a Section 63 BSA certificate. In July 2024 the Supreme Court held that a bail condition cannot let police constantly track an accused (Article 21).
+
+Check which apps can see your location: Settings → Location → App permissions.
+
+Save this and send it to someone who needs it.
+Voiceover: AI-generated.
+
+#GPS #CyberLaw #CyberForensics #NavIC #DigitalCrimes
