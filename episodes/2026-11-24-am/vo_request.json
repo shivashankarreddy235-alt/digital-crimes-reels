@@ -1,50 +1,50 @@
 {
  "model_id": "eleven_multilingual_v2",
- "language": "en",
+ "language": "hi",
  "segments": [
   {
    "scene": "hook",
-   "text": "“You are under digital arrest.” It’s a scam. Here’s how these callers are traced."
+   "text": "“आप digital arrest में हैं।” ये scam है। देखिए, ऐसे callers trace कैसे होते हैं।"
   },
   {
    "scene": "play",
-   "text": "First, a call about a parcel or a crime in your name. Then a video call with a fake officer and fake warrants. “Stay on camera. Tell no one. Send money to verify.”"
+   "text": "पहले call: आपके नाम पर parcel, या आपका number किसी crime से जुड़ा है। फिर video call पर नकली officer, नकली warrant। “Camera पर रहिए। किसी को मत बताइए। Verify के लिए पैसे भेजिए।”"
   },
   {
    "scene": "law",
-   "text": "Indian law has no “digital arrest”. Under BNSS Section 43, an arrest means actually touching or confining the person. And I4C says police, CBI, ED and judges don’t arrest on video calls."
+   "text": "Indian law में “digital arrest” होता ही नहीं। BNSS Section 43 में arrest का मतलब है व्यक्ति को सच में छूना या रोकना। और I4C कहता है: police, CBI, ED या judges video call पर arrest नहीं करते।"
   },
   {
    "scene": "crimes",
-   "text": "The caller is the criminal: personating a public servant, cheating, forgery and extortion under the BNS, and Section 66D of the IT Act."
+   "text": "असली अपराधी call करने वाला है: public servant बनना, cheating, forgery, extortion, ये BNS में अपराध हैं, साथ में IT Act की Section 66D।"
   },
   {
    "scene": "scale",
-   "text": "In 2024 alone: over 1.2 lakh complaints, and 1,935 crore rupees lost."
+   "text": "सिर्फ़ 2024 में: एक लाख तेईस हज़ार से ज़्यादा शिकायतें, और एक हज़ार नौ सौ पैंतीस करोड़ रुपये का नुकसान।"
   },
   {
    "scene": "money",
-   "text": "Trail one: money. It hops through layers of mule accounts, rented out or opened in someone else’s name. Investigators follow every hop through bank statements and KYC."
+   "text": "पहला trail: पैसा। पैसा mule accounts की कई layers से गुज़रता है, यानी किराए के या दूसरों के नाम पर खुले accounts। Investigators bank statements और KYC से हर कदम पकड़ते हैं।"
   },
   {
    "scene": "hold",
-   "text": "Speed matters. A complaint on one-nine-three-zero alerts the banks in the chain, and money still there can be put on hold."
+   "text": "जल्दी कीजिए। एक नौ तीन शून्य पर शिकायत होते ही chain के banks को alert जाता है, और बचा हुआ पैसा hold हो सकता है।"
   },
   {
    "scene": "phone",
-   "text": "Trail two: the phone. Call records, SIM KYC, the IMEI, and IP logs for WhatsApp calls. Police can require them under BNSS Section 94."
+   "text": "दूसरा trail: phone। Call records, SIM का KYC, IMEI, और WhatsApp calls के IP logs। BNSS Section 94 के तहत police ये records मँगवा सकती है।"
   },
   {
    "scene": "abroad",
-   "text": "Many calls come from abroad, faking Indian numbers. A telecom department system now blocks such calls, and over 83,000 WhatsApp accounts used in these scams have been blocked."
+   "text": "कई calls विदेश से आती हैं, Indian number का नक़ाब पहनकर। Telecom department का system अब इन्हें block करता है, और ऐसे तिरासी हज़ार से ज़्यादा WhatsApp accounts भी block हुए हैं।"
   },
   {
    "scene": "court",
-   "text": "The Supreme Court has ordered a CBI investigation, and asked WhatsApp and other platforms how they will stop these scams."
+   "text": "Supreme Court ने CBI जाँच का आदेश दिया है, और WhatsApp व दूसरे platforms से पूछा है कि ये scams कैसे रुकेंगे।"
   },
   {
    "scene": "act",
-   "text": "Got this call? Hang up. Never pay. Call one-nine-three-zero or report on cybercrime dot gov dot in. Flag the number on Chakshu, and share this with your parents."
+   "text": "ऐसा call आए तो? Call काटिए। पैसे मत भेजिए। एक नौ तीन शून्य पर call कीजिए, या cybercrime dot gov dot in पर शिकायत कीजिए। Number चक्षु पर report कीजिए, और ये video माता-पिता को भेजिए।"
   },
   {
    "scene": "outro",
