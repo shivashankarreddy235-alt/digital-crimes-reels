@@ -270,15 +270,15 @@ function sHook(lt){const a1=eOut(p(lt,0.1,0.35)),a2=eOut(p(lt,0.35,0.35));
   txt('“You are under',540,392+(1-a1)*24,{size:84,weight:900,font:DISP,align:'center',alpha:a1});
   txt('DIGITAL ARREST.”',540,498+(1-a2)*24,{size:fit('DIGITAL ARREST.”',900,DISP,940,104),weight:900,font:DISP,align:'center',alpha:a2,color:COL.red,glow:30});
   const pa=eOut(p(lt,0.2,0.5));ctx.save();ctx.globalAlpha=pa;ctx.translate(0,(1-pa)*80);videoCallPhone(540,1010,420,720,lt,lt<2.0);ctx.restore();
-  stamp(540,1000,'SCAM',COL.red,p(lt,2.0,0.35),-0.18,110);
-  const a3=eOut(p(lt,3.1,0.4));if(a3>0)txt('These callers leave trails.',540,1472,{size:fit('These callers leave trails.',700,BODY,900,54),weight:700,align:'center',color:COL.cyan,alpha:a3,glow:14});}
+  stamp(540,1000,'SCAM',COL.red,p(lt,2.2,0.35),-0.18,110);
+  const a3=eOut(p(lt,3.0,0.4));if(a3>0)txt('These callers leave trails.',540,1472,{size:fit('These callers leave trails.',700,BODY,900,54),weight:700,align:'center',color:COL.cyan,alpha:a3,glow:14});}
 
 const STEPS=[['THE CALL','A “parcel” in your name, or your number “linked to a crime”',COL.amber,'phone'],
   ['THE VIDEO CALL','A fake officer. A fake warrant on screen.',COL.red,'cam'],
   ['ISOLATION','“Stay on camera. Tell no one.”',COL.violet,'lock'],
   ['THE TRANSFER','“Send your money for verification.”',COL.red,'rupee']];
 function sPlay(lt){tag('HOW THE SCAM RUNS',330,0.1,lt,COL.red);head('One script, four steps',450,0.2,lt,{size:80});
-  const at=[0.5,5.0,8.6,10.4];
+  const at=[0.5,3.9,7.8,9.8];
   STEPS.forEach(([h,b,c,ic],i)=>{const e=eOut(p(lt,at[i],0.45));if(e<=0)return;const y=520+i*235;ctx.save();ctx.globalAlpha=e;ctx.translate((1-e)*-70,0);
     card(90,y,900,205,c);ctx.fillStyle=c+'2a';ctx.beginPath();ctx.arc(178,y+102,58,0,7);ctx.fill();stroke(c,3);ctx.stroke();
     if(ic==='phone')iPhone(178,y+102,46,c);else if(ic==='cam')iCam(184,y+102,40,c);else if(ic==='lock')iLock(178,y+98,40,c);else iRupee(178,y+100,44,c);
@@ -287,8 +287,8 @@ function sPlay(lt){tag('HOW THE SCAM RUNS',330,0.1,lt,COL.red);head('One script,
 
 const LAW43=[['In making an arrest, the police officer … shall ',0],['actually touch or confine the body',1],[' of the person to be arrested, unless there be a submission to the custody by word or action.',0]];
 function sLaw(lt){tag('WHAT THE LAW SAYS',330,0.1,lt,COL.amber);head('There is no “digital arrest”',450,0.2,lt,{size:76});
-  const a=eOut(p(lt,2.1,0.5));if(a>0){ctx.save();ctx.translate(0,(1-a)*60);lawCard(90,520,880,480,'BNSS, 2023 · SECTION 43(1)','Arrest how made',LAW43,(lt-2.5)*62,COL.amber,a,{size:36,lh:50});ctx.restore();}
-  const b=eOut(p(lt,7.3,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*60);ctx.globalAlpha=b;card(90,1040,880,400,COL.red);iVideoOff(196,1158,52,COL.white);
+  const a=eOut(p(lt,3.1,0.5));if(a>0){ctx.save();ctx.translate(0,(1-a)*60);lawCard(90,520,880,480,'BNSS, 2023 · SECTION 43(1)','Arrest how made',LAW43,(lt-3.5)*62,COL.amber,a,{size:36,lh:50});ctx.restore();}
+  const b=eOut(p(lt,10.1,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*60);ctx.globalAlpha=b;card(90,1040,880,400,COL.red);iVideoOff(196,1158,52,COL.white);
     txt('I4C ADVISORY · OCT 2024',290,1130,{size:28,weight:800,color:COL.red,ls:3});
     para('CBI, police, customs, ED and judges do NOT arrest you on a video call.',290,1190,640,{size:38,weight:700,lh:48});
     txt('I4C: Indian Cyber Crime Coordination Centre, MHA',140,1398,{size:fit('I4C: Indian Cyber Crime Coordination Centre, MHA',500,BODY,790,30),weight:500,color:COL.dim});ctx.restore();}}
@@ -296,31 +296,31 @@ function sLaw(lt){tag('WHAT THE LAW SAYS',330,0.1,lt,COL.amber);head('There is n
 const CRIMES=[['BNS 204','Personating a public servant',COL.red],['BNS 318–319','Cheating, and cheating by personation',COL.amber],
   ['BNS 336','Forgery: fake warrants and notices',COL.amber],['BNS 308','Extortion: money taken by fear',COL.red],['IT ACT 66D','Cheating by personation using a phone or computer',COL.violet]];
 function sCrimes(lt){tag('THE CALLER IS THE CRIMINAL',330,0.1,lt,COL.red);head('Every step is an offence',450,0.2,lt,{size:80});
-  const at=[1.9,3.2,4.2,4.9,6.5];
+  const at=[2.6,5.1,6.0,7.0,9.5];
   CRIMES.forEach(([code,desc,c],i)=>{const e=eOut(p(lt,at[i],0.4));if(e<=0)return;const y=530+i*158;ctx.save();ctx.globalAlpha=e;ctx.translate((1-e)*70,0);card(90,y,900,138,c);
     txt(code,128,y+84,{size:fit(code,800,MONO,260,40),weight:800,font:MONO,color:c,glow:10});
     const n=nlines(desc,540,{size:34,weight:600});para(desc,418,y+(n>1?60:82),540,{size:34,weight:600,lh:42});ctx.restore();});
-  const f=eOut(p(lt,7.4,0.4));if(f>0)txt('Cheating or extortion: up to 7 years in jail',540,1395,{size:fit('Cheating or extortion: up to 7 years in jail',700,BODY,900,38),weight:700,align:'center',color:COL.amber,alpha:f});
+  const f=eOut(p(lt,10.8,0.4));if(f>0)txt('Cheating or extortion: up to 7 years in jail',540,1395,{size:fit('Cheating or extortion: up to 7 years in jail',700,BODY,900,38),weight:700,align:'center',color:COL.amber,alpha:f});
   if(f>0)txt('BNS s.318(4), s.308(2)',540,1450,{size:30,weight:500,align:'center',color:COL.dim,alpha:f});}
 
 function sScale(lt){tag('THE SCALE · 2024',330,0.1,lt,COL.amber);head('Digital arrest, in numbers',450,0.2,lt,{size:80});
-  const a=eOut(p(lt,1.1,0.4));if(a>0){ctx.save();ctx.globalAlpha=a;card(90,530,900,300,COL.cyan);
-    txt(inr(123672*eOut(p(lt,1.1,1.0))),540,700,{size:130,weight:800,font:MONO,align:'center',color:COL.white,glow:20,glowColor:COL.cyan});
+  const a=eOut(p(lt,1.8,0.4));if(a>0){ctx.save();ctx.globalAlpha=a;card(90,530,900,300,COL.cyan);
+    txt(inr(123672*eOut(p(lt,1.8,1.0))),540,700,{size:130,weight:800,font:MONO,align:'center',color:COL.white,glow:20,glowColor:COL.cyan});
     txt('complaints on the national cyber crime portal',540,780,{size:fit('complaints on the national cyber crime portal',600,BODY,820,32),weight:600,align:'center',color:COL.dim});ctx.restore();}
-  const b=eOut(p(lt,3.0,0.4));if(b>0){ctx.save();ctx.globalAlpha=b;ctx.translate(0,(1-b)*40);card(90,870,900,380,COL.amber);
-    const v=inr(1935*eOut(p(lt,3.0,0.8)));txt('₹'+v,540,1070,{size:170,weight:900,font:DISP,align:'center',color:COL.amber,glow:34});
+  const b=eOut(p(lt,5.1,0.4));if(b>0){ctx.save();ctx.globalAlpha=b;ctx.translate(0,(1-b)*40);card(90,870,900,380,COL.amber);
+    const v=inr(1935*eOut(p(lt,5.1,0.8)));txt('₹'+v,540,1070,{size:170,weight:900,font:DISP,align:'center',color:COL.amber,glow:34});
     txt('CRORE LOST',540,1150,{size:52,weight:900,font:DISP,align:'center',ls:8});
     txt('to digital arrest scams in one year',540,1206,{size:32,weight:600,align:'center',color:COL.dim});ctx.restore();}
-  const s=eOut(p(lt,4.0,0.4));if(s>0)para('Sources: MoS Home, Rajya Sabha reply (Mar 2025) · PIB (Dec 2025)',540,1320,880,{size:30,weight:500,align:'center',color:COL.dim,alpha:s,lh:40});}
+  const s=eOut(p(lt,6.2,0.4));if(s>0)para('Sources: MoS Home, Rajya Sabha reply (Mar 2025) · PIB (Dec 2025)',540,1320,880,{size:30,weight:500,align:'center',color:COL.dim,alpha:s,lh:40});}
 
 // money tree: victim -> L1 (2) -> L2 (4) -> L3 (4) -> cash-out
 const MV=[540,590],ML1=[[330,740],[750,740]],ML2=[[200,890],[420,890],[660,890],[880,890]],ML3=[[200,1040],[420,1040],[660,1040],[880,1040]],MOUT=[540,1170];
 const ML1L=['••41','••07'],ML2L=['••18','••92','••55','••63'],ML3L=['••30','••76','••24','••89'];
-function sMoney(lt){tag('HOW THEY ARE TRACED',330,0.1,lt,COL.cyan);head('Trail 1: the money',450,1.8,lt,{size:84});
-  const va=eOut(p(lt,2.0,0.4));
-  const k1=eOut(p(lt,2.9,0.5)),k2=eOut(p(lt,3.5,0.5)),k3=eOut(p(lt,4.1,0.5)),k4=eOut(p(lt,4.6,0.4));
+function sMoney(lt){tag('HOW THEY ARE TRACED',330,0.1,lt,COL.cyan);head('Trail 1: the money',450,0.2,lt,{size:84});
+  const va=eOut(p(lt,0.6,0.4));
+  const k1=eOut(p(lt,1.6,0.5)),k2=eOut(p(lt,2.1,0.5)),k3=eOut(p(lt,2.6,0.5)),k4=eOut(p(lt,3.1,0.4));
   const E1=ML1.map(n=>[MV,n]),E2=ML2.map((n,i)=>[ML1[i<2?0:1],n]),E3=ML3.map((n,i)=>[ML2[i],n]),E4=ML3.map(n=>[n,MOUT]);
-  const tr=eOut(p(lt,7.7,1.0));
+  const tr=eOut(p(lt,7.0,1.0));
   ctx.save();ctx.globalAlpha=1-0.55*tr;
   [[E1,k1],[E2,k2],[E3,k3],[E4,k4]].forEach(([E,k],li)=>E.forEach(([a,b])=>{if(k<=0)return;stroke('rgba(255,51,88,0.55)',3);ctx.beginPath();ctx.moveTo(a[0],a[1]+32);ctx.lineTo(lerp(a[0],b[0],k),lerp(a[1]+32,b[1]-32,k));ctx.stroke();
     if(k>=1){const q=((lt*0.9+li*0.25+a[0]/900)%1);coin(a[0],a[1]+32,b[0],b[1]-32,q,COL.red);}}));
@@ -335,9 +335,9 @@ function sMoney(lt){tag('HOW THEY ARE TRACED',330,0.1,lt,COL.cyan);head('Trail 1
   ML3.forEach(([x,y],i)=>acct(x,y,ML3L[i],hi(3,i)?COL.amber:COL.red,k3,{w:140,lw:hi(3,i)?5:3}));
   if(k4>0)pill(MOUT[0],MOUT[1],'CASH-OUT',COL.red,{size:28,ls:3,alpha:k4});
   ['L1','L2','L3'].forEach((l,i)=>{const k=[k1,k2,k3][i];if(k>0)txt(l,58,[750,900,1050][i],{size:30,weight:700,font:MONO,color:COL.dim,alpha:k});});
-  const m=eOut(p(lt,5.3,0.4));if(m>0){ctx.save();ctx.globalAlpha=m;rr(90,1240,900,124,22);ctx.fillStyle='rgba(255,51,88,0.10)';ctx.fill();stroke(COL.red,2);ctx.stroke();
+  const m=eOut(p(lt,4.1,0.4));if(m>0){ctx.save();ctx.globalAlpha=m;rr(90,1240,900,124,22);ctx.fillStyle='rgba(255,51,88,0.10)';ctx.fill();stroke(COL.red,2);ctx.stroke();
     txt('MULE ACCOUNT',130,1290,{size:28,weight:800,color:COL.red,ls:3});txt('rented out, or opened in someone else’s name',130,1338,{size:fit('rented out, or opened in someone else’s name',600,BODY,820,34),weight:600});ctx.restore();}
-  const kk=eOut(p(lt,9.0,0.4));if(kk>0)txt('Bank statements + KYC → every hop',540,1450,{size:fit('Bank statements + KYC → every hop',800,BODY,900,46),weight:800,align:'center',color:COL.amber,alpha:kk,glow:12});}
+  const kk=eOut(p(lt,9.6,0.4));if(kk>0)txt('Bank statements + KYC → every hop',540,1450,{size:fit('Bank statements + KYC → every hop',800,BODY,900,46),weight:800,align:'center',color:COL.amber,alpha:kk,glow:12});}
 
 function sHold(lt){tag('SPEED MATTERS',330,0.1,lt,COL.green);head('Report fast: 1930',450,0.2,lt,{size:88});
   const a=eOut(p(lt,1.0,0.4));if(a>0){ctx.save();ctx.globalAlpha=a;ctx.translate(0,(1-a)*30);card(240,520,600,230,COL.green);
@@ -347,58 +347,58 @@ function sHold(lt){tag('SPEED MATTERS',330,0.1,lt,COL.green);head('Report fast: 
   B.forEach(([x,l],i)=>{if(ba<=0)return;ctx.save();ctx.globalAlpha=ba;card(x-140,by-130,280,260,COL.dim);iBank(x,by-30,56,COL.white);txt(l,x,by+86,{size:30,weight:800,align:'center',ls:2});ctx.restore();
     if(i<2)arrowTo(x+150,by,B[i+1][0]-150,by,'rgba(255,51,88,0.8)',ba,4,[10,8]);});
   // alert travels 1930 -> bank 1 -> bank 2 -> bank 3
-  const k=p(lt,2.3,1.5);if(k>0&&k<1){const f=k*3,si=Math.min(2,Math.floor(f)),q=f-si;const pts=[[540,760],[200,870],[540,870],[880,870]];
+  const k=p(lt,3.1,1.5);if(k>0&&k<1){const f=k*3,si=Math.min(2,Math.floor(f)),q=f-si;const pts=[[540,760],[200,870],[540,870],[880,870]];
     const x=lerp(pts[si][0],pts[si+1][0],q),y=lerp(pts[si][1],pts[si+1][1],q);ctx.save();ctx.fillStyle=COL.green;ctx.shadowColor=COL.green;ctx.shadowBlur=30;ctx.beginPath();ctx.arc(x,y,16,0,7);ctx.fill();ctx.restore();}
-  B.forEach(([x],i)=>{const t0=2.3+(i+1)*0.5;const e=eOut(p(lt,t0,0.3));if(e<=0)return;ctx.save();ctx.globalAlpha=e;stroke(COL.green,4);rr(x-140,by-130,280,260,26);ctx.stroke();ctx.restore();
+  B.forEach(([x],i)=>{const t0=3.1+(i+1)*0.5;const e=eOut(p(lt,t0,0.3));if(e<=0)return;ctx.save();ctx.globalAlpha=e;stroke(COL.green,4);rr(x-140,by-130,280,260,26);ctx.stroke();ctx.restore();
     if(i<2)txt('moved on',x,by+170,{size:30,weight:600,align:'center',color:COL.dim,alpha:e});});
-  const m=eOut(p(lt,4.3,0.4));if(m>0)txt('₹ still here',880,by+170,{size:30,weight:800,align:'center',color:COL.amber,alpha:m});
-  stamp(880,by-20,'HOLD',COL.green,p(lt,5.9,0.35),-0.14,64);
-  const c=eOut(p(lt,6.4,0.4));if(c>0)para('The alert follows the money, bank to bank. What is still there can be held.',540,1300,880,{size:36,weight:700,align:'center',alpha:c,lh:48});}
+  const m=eOut(p(lt,5.1,0.4));if(m>0)txt('₹ still here',880,by+170,{size:30,weight:800,align:'center',color:COL.amber,alpha:m});
+  stamp(880,by-20,'HOLD',COL.green,p(lt,6.3,0.35),-0.14,64);
+  const c=eOut(p(lt,6.8,0.4));if(c>0)para('The alert follows the money, bank to bank. What is still there can be held.',540,1300,880,{size:36,weight:700,align:'center',alpha:c,lh:48});}
 
 const PH=[['CDR','Who called whom, when, via which tower','doc',COL.cyan],['SIM KYC','Whose ID the SIM was issued on','sim',COL.amber],
   ['IMEI','Which handset was used','phone',COL.violet],['IP LOGS (IPDR)','For WhatsApp and internet calls','globe',COL.green]];
 function sPhone(lt){tag('HOW THEY ARE TRACED',330,0.1,lt,COL.cyan);head('Trail 2: the phone',450,0.2,lt,{size:84});
-  const at=[1.6,2.3,3.0,4.0];const G=[[90,520],[560,520],[90,880],[560,880]];
+  const at=[1.7,2.7,3.6,4.4];const G=[[90,520],[560,520],[90,880],[560,880]];
   PH.forEach(([t,d,ic,c],i)=>{const e=eOut(p(lt,at[i],0.4));if(e<=0)return;const [x,y]=G[i],w=i%2?430:440;ctx.save();ctx.globalAlpha=e;ctx.translate(0,(1-e)*40);card(x,y,w,330,c);
     const cx=x+70,cy=y+84;if(ic==='doc')iDoc(cx,cy,40,c);else if(ic==='sim')sim(cx,cy,60,c);else if(ic==='phone')phone(cx,cy,42,c,0.6);else iGlobe(cx,cy,46,c);
     txt(t,x+140,y+98,{size:fit(t,800,BODY,w-170,40),weight:800,color:c});para(d,x+40,y+190,w-80,{size:34,weight:600,lh:44});ctx.restore();});
-  const b=eOut(p(lt,6.0,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*50);ctx.globalAlpha=b;card(90,1240,880,230,COL.amber);
+  const b=eOut(p(lt,6.3,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*50);ctx.globalAlpha=b;card(90,1240,880,230,COL.amber);
     txt('BNSS, 2023 · SECTION 94',138,1306,{size:30,weight:800,color:COL.amber,ls:3});
     para('Police or a court can require production of electronic records.',138,1366,790,{size:36,weight:600,lh:46});ctx.restore();}}
 
 function sAbroad(lt){tag('CALLS FROM ABROAD',330,0.1,lt,COL.violet);head('An Indian number? Maybe not.',450,0.2,lt,{size:76});
   const ga=eOut(p(lt,0.4,0.4));if(ga>0){ctx.save();ctx.globalAlpha=ga;iGlobe(190,760,120,COL.violet);txt('ABROAD',190,900,{size:30,weight:800,align:'center',ls:4,color:COL.violet});ctx.restore();}
   const pk=eOut(p(lt,0.6,0.5));if(pk>0){ctx.save();ctx.globalAlpha=pk;phone(890,770,90,COL.cyan,0.7);txt('YOU',890,900+20,{size:30,weight:800,align:'center',ls:4,color:COL.cyan});ctx.restore();}
-  const gate=eOut(p(lt,3.4,0.4)),blk=p(lt,4.8,0.35);
+  const gate=eOut(p(lt,3.2,0.4)),blk=p(lt,5.0,0.35);
   const ck=eInOut(p(lt,0.8,1.0));if(ck>0){const x0=290,x1=830,y=760;const xe=lerp(x0,x1,ck);ctx.save();stroke(COL.violet,6);ctx.setLineDash([16,12]);ctx.lineDashOffset=-lt*60;
     ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(gate>0?Math.min(xe,lerp(xe,592,gate)):xe,y);ctx.stroke();ctx.restore();}
-  const ci=eOut(p(lt,2.2,0.4));if(ci>0){ctx.save();ctx.globalAlpha=ci;rr(270,960,540,90,20);ctx.fillStyle='rgba(155,123,255,0.12)';ctx.fill();stroke(COL.violet,2);ctx.stroke();
+  const ci=eOut(p(lt,1.9,0.4));if(ci>0){ctx.save();ctx.globalAlpha=ci;rr(270,960,540,90,20);ctx.fillStyle='rgba(155,123,255,0.12)';ctx.fill();stroke(COL.violet,2);ctx.stroke();
     txt('Caller ID: +91 98XXX XXX21',540,1018,{size:fit('Caller ID: +91 98XXX XXX21',700,MONO,500,32),weight:700,font:MONO,align:'center'});ctx.restore();}
   if(gate>0){ctx.save();ctx.globalAlpha=gate;rr(600,640-(1-gate)*60,46,250,12);ctx.fillStyle='rgba(255,182,39,0.85)';ctx.shadowColor=COL.amber;ctx.shadowBlur=26;ctx.fill();ctx.restore();
     txt('DoT CHECK',623,618,{size:30,weight:800,align:'center',color:COL.amber,ls:2,alpha:gate});}
   stamp(560,770,'BLOCKED',COL.red,blk,-0.12,60);
-  const s1=eOut(p(lt,5.9,0.4));if(s1>0){ctx.save();ctx.globalAlpha=s1;card(90,1090,880,170,COL.amber);
+  const s1=eOut(p(lt,5.6,0.4));if(s1>0){ctx.save();ctx.globalAlpha=s1;card(90,1090,880,170,COL.amber);
     txt('1.35 crore',130,1170,{size:60,weight:900,font:DISP,color:COL.amber,glow:14});para('spoofed calls blocked in the first 24 hours (DoT, Oct 2024)',480,1150,460,{size:30,weight:600,lh:38});ctx.restore();}
-  const s2=eOut(p(lt,7.4,0.4));if(s2>0){ctx.save();ctx.globalAlpha=s2;card(90,1290,880,170,COL.green);
+  const s2=eOut(p(lt,6.5,0.4));if(s2>0){ctx.save();ctx.globalAlpha=s2;card(90,1290,880,170,COL.green);
     txt('83,668+',130,1370,{size:60,weight:900,font:DISP,color:COL.green,glow:14});para('WhatsApp accounts used for digital arrest blocked (MHA, Mar 2025)',480,1350,460,{size:30,weight:600,lh:38});ctx.restore();}}
 
 function sCourt(lt){tag('SUPREME COURT · SUO MOTU CASE',330,0.1,lt,COL.amber);head('The Court has stepped in',450,0.2,lt,{size:80});
   const la=eOut(p(lt,0.6,0.8));if(la>0){ctx.save();stroke('rgba(255,182,39,0.5)',4);ctx.beginPath();ctx.moveTo(150,560);ctx.lineTo(150,lerp(560,1250,la));ctx.stroke();ctx.restore();}
-  const I=[[0.8,560,'DEC 2025','The CBI is directed to investigate digital-arrest scam cases.',COL.cyan],
-    [4.4,900,'OCT 2026','WhatsApp and other platforms are told to set out how they will prevent these scams.',COL.amber]];
+  const I=[[0.6,560,'DEC 2025','The CBI is directed to investigate digital-arrest scam cases.',COL.cyan],
+    [2.8,900,'OCT 2026','WhatsApp and other platforms are told to set out how they will prevent these scams.',COL.amber]];
   I.forEach(([t0,y,d,s,c])=>{const e=eOut(p(lt,t0,0.45));if(e<=0)return;ctx.save();ctx.globalAlpha=e;ctx.translate((1-e)*60,0);
     ctx.fillStyle=c;ctx.shadowColor=c;ctx.shadowBlur=20;ctx.beginPath();ctx.arc(150,y+70,16,0,7);ctx.fill();ctx.shadowBlur=0;
     card(200,y,790,300,c);iDoc(268,y+76,34,c);txt(d,330,y+92,{size:40,weight:900,font:DISP,color:c,ls:3});para(s,240,y+168,710,{size:36,weight:600,lh:46});ctx.restore();});
-  const f=eOut(p(lt,6.0,0.4));if(f>0){para('In Re: Victims of Digital Arrest Related to Forged Documents · pending',540,1300,900,{size:30,weight:500,align:'center',color:COL.dim,alpha:f,lh:40});}}
+  const f=eOut(p(lt,4.4,0.4));if(f>0){para('In Re: Victims of Digital Arrest Related to Forged Documents · pending',540,1300,900,{size:30,weight:500,align:'center',color:COL.dim,alpha:f,lh:40});}}
 
 const ACTS=[['Hang up.','Real officers don’t arrest on video calls.',COL.red,'x'],['Never pay.','No transfer “for verification”. Ever.',COL.red,'rupee'],
   ['Call 1930','or report at cybercrime.gov.in',COL.green,'phone'],['Report the number','Sanchar Saathi → Chakshu',COL.cyan,'flag']];
 function sAct(lt){tag('IF YOU GET THIS CALL',330,0.1,lt,COL.green);head('Do this. Right away.',450,0.2,lt,{size:84});
-  const at=[1.3,2.0,2.8,6.8];
+  const at=[1.2,1.7,2.3,6.2];
   ACTS.forEach(([h,s,c,ic],i)=>{const e=eOut(p(lt,at[i],0.4));if(e<=0)return;const y=520+i*186;ctx.save();ctx.globalAlpha=e;ctx.translate((1-e)*-60,0);card(90,y,900,166,c);
     const cx=176,cy=y+83;if(ic==='x')iCross(cx,cy,52,c);else if(ic==='rupee')iRupee(cx,cy,46,c);else if(ic==='phone')iPhone(cx,cy,50,c);else iFlag(cx,cy,50,c);
     txt(h,262,y+72,{size:50,weight:900,font:DISP,color:c});txt(s,262,y+124,{size:fit(s,600,BODY,700,34),weight:600,color:COL.white});ctx.restore();});
-  const sv=eOut(p(lt,8.8,0.4));if(sv>0){ctx.save();ctx.globalAlpha=sv;const str='Save this · Share it with your parents';ctx.font=font(800,38);const w=Math.min(900,ctx.measureText(str).width+80);
+  const sv=eOut(p(lt,8.2,0.4));if(sv>0){ctx.save();ctx.globalAlpha=sv;const str='Save this · Share it with your parents';ctx.font=font(800,38);const w=Math.min(900,ctx.measureText(str).width+80);
     rr(540-w/2,1300,w,90,45);ctx.fillStyle='rgba(46,230,255,0.14)';ctx.fill();stroke(COL.cyan,3);ctx.stroke();ctx.restore();
     txt('Save this · Share it with your parents',540,1358,{size:fit('Save this · Share it with your parents',800,BODY,820,38),weight:800,align:'center',alpha:sv});}}
 function sOut(lt){outro(lt,window.EPISODE.laws);}
@@ -414,27 +414,27 @@ window.EPISODE={
     personH:1200,
     visual:P=>{const x=P?300:540,y=P?1170:1180;ctx.save();ctx.globalAlpha=0.96;videoCallPhone(x,y,360,640,0,false);ctx.restore();stamp(x,y-10,'SCAM',COL.red,1,-0.2,96);}},
   scenes:[
-    {id:'hook',fn:sHook,dur:7.0,min:4.5,ring:[[0,1.9]],pops:[[0.1,660],[0.35,880]],impacts:[[2.0,0.9,18]],
+    {id:'hook',fn:sHook,dur:7.0,min:4.5,ring:[[0,2.0]],pops:[[0.1,660],[0.35,880],[3.0,990,0.1]],impacts:[[2.2,0.9,18]],
      vo:'“You are under digital arrest.” It’s a scam. Here’s how these callers are traced.'},
-    {id:'play',fn:sPlay,dur:13.0,min:11.4,pops:[[0.5,600],[5.0,700],[8.6,800],[10.4,520,0.12]],
+    {id:'play',fn:sPlay,dur:13.0,min:10.4,pops:[[0.5,600],[3.9,700],[7.8,800],[9.8,520,0.12]],
      vo:'First, a call about a parcel or a crime in your name. Then a video call with a fake officer and fake warrants. “Stay on camera. Tell no one. Send money to verify.”'},
-    {id:'law',fn:sLaw,dur:12.0,min:8.6,pops:[[0.2,600],[2.1,740]],typing:[[2.5,5.6]],impacts:[[7.3,0.6,10]],
+    {id:'law',fn:sLaw,dur:12.0,min:10.8,pops:[[0.2,600],[3.1,740]],typing:[[3.5,6.6]],impacts:[[10.1,0.6,10]],
      vo:'Indian law has no “digital arrest”. Under BNSS Section 43, an arrest means actually touching or confining the person. And I4C says police, CBI, ED and judges don’t arrest on video calls.'},
-    {id:'crimes',fn:sCrimes,dur:9.5,min:8.2,pops:[[1.9,520,0.12],[3.2,600],[4.2,680],[4.9,760,0.12],[6.5,840],[7.4,990,0.1]],
+    {id:'crimes',fn:sCrimes,dur:9.5,min:11.4,pops:[[2.6,520,0.12],[5.1,600],[6.0,680],[7.0,760,0.12],[9.5,840],[10.8,990,0.1]],
      vo:'The caller is the criminal: personating a public servant, cheating, forgery and extortion under the BNS, and Section 66D of the IT Act.'},
-    {id:'scale',fn:sScale,dur:6.5,min:5.0,pops:[[1.1,600]],risers:[2.2],impacts:[[3.0,0.9,18]],
+    {id:'scale',fn:sScale,dur:6.5,min:6.8,pops:[[1.8,600]],risers:[4.3],impacts:[[5.1,0.9,18]],
      vo:'In 2024 alone: over 1.2 lakh complaints, and 1,935 crore rupees lost.'},
-    {id:'money',fn:sMoney,dur:12.5,min:10.0,pops:[[1.8,660],[2.0,600],[2.9,700],[3.5,760],[4.1,820],[4.6,520,0.1],[5.3,880],[9.0,990,0.1]],risers:[7.0],impacts:[[7.7,0.7,12]],
+    {id:'money',fn:sMoney,dur:12.5,min:10.2,pops:[[0.2,660],[0.6,600],[1.6,700],[2.1,760],[2.6,820],[3.1,520,0.1],[4.1,880],[9.6,990,0.1]],risers:[6.2],impacts:[[7.0,0.7,12]],
      vo:'Trail one: money. It hops through layers of mule accounts, rented out or opened in someone else’s name. Investigators follow every hop through bank statements and KYC.'},
-    {id:'hold',fn:sHold,dur:8.5,min:7.4,pops:[[1.0,740],[1.6,600],[2.8,700],[3.3,760],[3.8,820],[4.3,880]],impacts:[[5.9,0.8,14]],
+    {id:'hold',fn:sHold,dur:8.5,min:7.4,pops:[[1.0,740],[1.6,600],[3.6,700],[4.1,760],[4.6,820],[5.1,880]],impacts:[[6.3,0.8,14]],
      vo:'Speed matters. A complaint on one-nine-three-zero alerts the banks in the chain, and money still there can be put on hold.'},
-    {id:'phone',fn:sPhone,dur:10.0,min:8.2,pops:[[1.6,600],[2.3,680],[3.0,760],[4.0,840],[6.0,740]],
+    {id:'phone',fn:sPhone,dur:10.0,min:7.0,pops:[[1.7,600],[2.7,680],[3.6,760],[4.4,840],[6.3,740]],
      vo:'Trail two: the phone. Call records, SIM KYC, the IMEI, and IP logs for WhatsApp calls. Police can require them under BNSS Section 94.'},
-    {id:'abroad',fn:sAbroad,dur:11.0,min:9.0,pops:[[0.4,600],[0.6,700],[2.2,800],[3.4,520,0.12],[5.9,880],[7.4,990,0.1]],impacts:[[4.8,0.8,16]],
+    {id:'abroad',fn:sAbroad,dur:11.0,min:7.2,pops:[[0.4,600],[0.6,700],[1.9,800],[3.2,520,0.12],[5.6,880],[6.5,990,0.1]],impacts:[[5.0,0.8,16]],
      vo:'Many calls come from abroad, faking Indian numbers. A telecom department system now blocks such calls, and over 83,000 WhatsApp accounts used in these scams have been blocked.'},
-    {id:'court',fn:sCourt,dur:9.0,min:6.6,pops:[[0.8,700],[4.4,800],[6.0,600,0.1]],
+    {id:'court',fn:sCourt,dur:9.0,min:5.0,pops:[[0.6,700],[2.8,800],[4.4,600,0.1]],
      vo:'The Supreme Court has ordered a CBI investigation, and asked WhatsApp and other platforms how they will stop these scams.'},
-    {id:'act',fn:sAct,dur:11.0,min:9.4,pops:[[1.3,520,0.12],[2.0,600],[2.8,700],[6.8,800],[8.8,990,0.1]],
+    {id:'act',fn:sAct,dur:11.0,min:8.8,pops:[[1.2,520,0.12],[1.7,600],[2.3,700],[6.2,800],[8.2,990,0.1]],
      vo:'Got this call? Hang up. Never pay. Call one-nine-three-zero or report on cybercrime dot gov dot in. Flag the number on Chakshu, and share this with your parents.'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};
