@@ -1,0 +1,11 @@
+"You are under digital arrest." That's a scam.
+⚖️ For educational purposes only. Not legal advice.
+
+Indian law has no "digital arrest": under Section 43 of the BNSS an arrest means actually touching or confining the person, and I4C says police, CBI, ED and judges don't arrest anyone on a video call. The caller commits the offences: personating a public servant (BNS 204), cheating (BNS 318, 319), forgery (BNS 336), extortion (BNS 308) and IT Act Section 66D. Investigators trace the money through mule accounts, and the phone's call records, SIM KYC, IMEI and IP logs (BNSS Section 94).
+
+Got this call? Hang up, never pay, call 1930 or report on cybercrime.gov.in, and flag the number on Sanchar Saathi (Chakshu).
+
+Save this and send it to someone who needs it.
+Voiceover: AI-generated.
+
+#DigitalArrest #CyberLaw #CyberForensics #CyberFraud #DigitalCrimes
