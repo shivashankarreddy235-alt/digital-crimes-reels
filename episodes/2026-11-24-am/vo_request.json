@@ -1,0 +1,54 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "en",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "“You are under digital arrest.” That is a scam. These callers leave trails. Here is how they are traced."
+  },
+  {
+   "scene": "play",
+   "text": "First, a call: a parcel in your name, or your number linked to a crime. Then a video call with a fake officer and fake warrants. “Stay on camera. Tell no one. Transfer your money for verification.”"
+  },
+  {
+   "scene": "law",
+   "text": "Indian law has no “digital arrest”. Under Section 43 of the BNSS, an arrest means actually touching or confining the person. And I4C says police, CBI, ED and judges do not arrest on video calls."
+  },
+  {
+   "scene": "crimes",
+   "text": "The caller is the criminal: personating a public servant, cheating by personation, forgery and extortion under the BNS, plus Section 66D of the IT Act."
+  },
+  {
+   "scene": "scale",
+   "text": "In 2024 alone: over 1.2 lakh complaints, and 1,935 crore rupees lost."
+  },
+  {
+   "scene": "money",
+   "text": "So how are they traced? Trail one: money. It hops through layers of mule accounts, rented out or opened in other people’s names. Investigators follow each hop through bank statements and KYC."
+  },
+  {
+   "scene": "hold",
+   "text": "Speed matters. A complaint on one-nine-three-zero alerts the banks in the chain, and money that is still there can be put on hold."
+  },
+  {
+   "scene": "phone",
+   "text": "Trail two: the phone. Call records, SIM KYC, the handset’s IMEI, and IP logs for WhatsApp calls. Police can require them under Section 94 of the BNSS."
+  },
+  {
+   "scene": "abroad",
+   "text": "Many calls come from abroad, faking Indian numbers. A telecom department system now blocks such spoofed calls, and over 83,000 WhatsApp accounts used in these scams have been blocked."
+  },
+  {
+   "scene": "court",
+   "text": "The Supreme Court has directed the CBI to investigate, and in October asked WhatsApp and other platforms how they plan to stop these scams."
+  },
+  {
+   "scene": "act",
+   "text": "Got this call? Hang up. Never pay. Call one-nine-three-zero or report on cybercrime dot gov dot in, and flag the number on Chakshu. Save this, and share it with your parents."
+  },
+  {
+   "scene": "outro",
+   "text": ""
+  }
+ ]
+}
