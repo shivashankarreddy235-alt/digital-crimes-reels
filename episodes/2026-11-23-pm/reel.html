@@ -278,10 +278,10 @@ function sHook(lt){
   if(a2>0){txt('GPS still knows',540,525+(1-a2)*24,{size:fit('GPS still knows',900,DISP,920,96),weight:900,font:DISP,align:'center',alpha:a2});
     txt('where you are.',540,625+(1-a2)*24,{size:96,weight:900,font:DISP,align:'center',alpha:a2,color:COL.cyan,glow:30});}
   const S=[[175,790,0.35],[905,760,-0.35]],sa=eOut(p(lt,1.1,0.5)),bk=eOut(p(lt,1.5,0.6));
-  S.forEach(([x,y,r])=>{beam(x,y+40,540,900,lt,COL.cyan,bk,sa);satellite(x,y,44,COL.cyan,r,sa);});
-  bigPhone(540,1140,260,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy+62,sw,sh-62);ctx.fillStyle='#0a1020';ctx.fillRect(sx,sy,sw,62);
+  S.forEach(([x,y,r])=>{beam(x,y+40,540,836,lt,COL.cyan,bk,sa);satellite(x,y,44,COL.cyan,r,sa);});
+  bigPhone(540,1150,310,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy+62,sw,sh-62);ctx.fillStyle='#0a1020';ctx.fillRect(sx,sy,sw,62);
     for(let i=0;i<4;i++){ctx.fillStyle='rgba(255,255,255,0.22)';ctx.fillRect(sx+18+i*11,sy+44-(8+i*6),7,8+i*6);}
-    iCross(sx+38,sy+30,22,COL.red);txt('No service',sx+80,sy+42,{size:30,weight:800,color:COL.red});
+    iCross(sx+36,sy+31,20,COL.red);txt('No service',sx+82,sy+42,{size:30,weight:800,color:COL.red});
     if(lt>2.1){const pk=eBack(clamp(p(lt,2.1,0.45))),px=sx+sw/2,py=sy+sh*0.58;
       ctx.save();ctx.globalAlpha=clamp(p(lt,2.5,0.3))*(0.55+0.45*Math.sin(lt*4));stroke(COL.green,3);ctx.beginPath();ctx.arc(px,py,46+8*Math.sin(lt*4),0,7);ctx.stroke();ctx.restore();
       iPin(px,py-(1-pk)*140,34,COL.green);}
@@ -326,7 +326,7 @@ function sDist(lt){tag('TIME = DISTANCE',330,0.1,lt,COL.green);head('Delay × sp
     txt('≈ 20,100 km',140,1360,{size:72,weight:900,font:DISP,color:COL.cyan,glow:20});ctx.restore();}
   const wa=eOut(p(lt,7.4,0.4));if(wa>0)pill(540,1480,'Clock off by 1 microsecond = 300 m off',COL.red,{size:32,alpha:wa,fillA:'33'});}
 
-const TRI={A:[290,800],B:[820,780],C:[470,1290],X:[560,1060]};
+const TRI={A:[290,880],B:[820,860],C:[470,1290],X:[560,1060]};
 function reflectX(){const[ax,ay]=TRI.A,[bx,by]=TRI.B,[px,py]=TRI.X;const dx=bx-ax,dy=by-ay,t=((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy);const fx=ax+t*dx,fy=ay+t*dy;return[2*fx-px,2*fy-py];}
 function sTri(lt){tag('TRILATERATION',330,0.1,lt,COL.violet);head('Where the circles meet',450,0.2,lt,{size:84});
   const X0=70,Y0=520,PW=940,PH=800;panel(X0,Y0,PW,PH,COL.violet,eOut(p(lt,0.2,0.4)));
@@ -346,13 +346,13 @@ function sTri(lt){tag('TRILATERATION',330,0.1,lt,COL.violet);head('Where the cir
 
 function sTwist(lt){tag('THE TWIST',330,0.1,lt,COL.red);head('Satellites don’t track you',450,0.2,lt,{size:80});
   const sa=eOut(p(lt,0.3,0.4));satellite(540,620,54,COL.cyan,0,sa);
-  const dk=eOut(p(lt,1.0,0.6));arrow(540,700,540,880,COL.cyan,7,dk);if(dk>0)pill(720,790,'ONE-WAY SIGNAL',COL.cyan,{size:28,ls:2,align:'left',alpha:dk});
-  const uk=eOut(p(lt,2.4,0.5));if(uk>0){ctx.save();ctx.globalAlpha=0.9;arrow(360,890,360,720,COL.red,7,uk);ctx.restore();
-    const xk=eOut(p(lt,3.0,0.3));if(xk>0){ctx.save();ctx.globalAlpha=xk;iCross(360,805,70*eBack(xk),COL.red);ctx.restore();}}
-  bigPhone(540,1130,190,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy,sw,sh);const ck=p(lt,4.6,1.2);if(ck<=0)return;
+  const dk=eOut(p(lt,1.0,0.6));arrow(540,700,540,850,COL.cyan,7,dk);if(dk>0)pill(720,790,'ONE-WAY SIGNAL',COL.cyan,{size:28,ls:2,align:'left',alpha:dk});
+  const uk=eOut(p(lt,2.4,0.5));if(uk>0){ctx.save();ctx.globalAlpha=0.9;arrow(360,870,360,710,COL.red,7,uk);ctx.restore();
+    const xk=eOut(p(lt,3.0,0.3));if(xk>0){ctx.save();ctx.globalAlpha=xk;iCross(360,790,70*eBack(xk),COL.red);ctx.restore();}}
+  bigPhone(540,1100,240,COL.cyan,(sx,sy,sw,sh)=>{miniMap(sx,sy,sw,sh);const ck=p(lt,4.6,1.2);if(ck<=0)return;
     ctx.fillStyle='rgba(7,12,26,0.82)';ctx.fillRect(sx,sy+sh*0.18,sw,sh*0.5);
-    txt('YOUR PHONE',sx+sw/2,sy+sh*0.27,{size:24,weight:800,color:COL.green,align:'center',ls:2});txt('CALCULATES',sx+sw/2,sy+sh*0.34,{size:24,weight:800,color:COL.green,align:'center',ls:2});
-    const L=['LAT ●●.●●●●','LON ●●.●●●●'];L.forEach((s,i)=>{const n=Math.floor(s.length*clamp(ck*2-i*0.6));txt(s.slice(0,n),sx+sw/2,sy+sh*(0.46+i*0.09),{size:24,weight:700,font:MONO,align:'center'});});
+    txt('YOUR PHONE',sx+sw/2,sy+sh*0.27,{size:28,weight:900,color:COL.green,align:'center'});txt('CALCULATES',sx+sw/2,sy+sh*0.34,{size:28,weight:900,color:COL.green,align:'center'});
+    const L=['LAT ●●.●●●●','LON ●●.●●●●'];L.forEach((s,i)=>{const n=Math.floor(s.length*clamp(ck*2-i*0.6));txt(s.slice(0,n),sx+sw/2,sy+sh*(0.46+i*0.09),{size:26,weight:700,font:MONO,align:'center'});});
     if(ck>0.8)iPin(sx+sw/2,sy+sh*0.88,22,COL.green);},sa);
   const c1=eOut(p(lt,3.0,0.4)),c2=eOut(p(lt,6.6,0.4));
   if(c1>0)pill(540,1400,'The satellite never learns where you are',COL.red,{size:32,alpha:c1});
@@ -360,9 +360,9 @@ function sTwist(lt){tag('THE TWIST',330,0.1,lt,COL.red);head('Satellites don’t
 
 function sAgps(lt){tag('A-GPS',330,0.1,lt,COL.cyan);head('The network only speeds it up',450,0.2,lt,{size:76});
   const a=eOut(p(lt,0.3,0.4));if(a>0){ctx.save();ctx.globalAlpha=a;card(90,540,900,400,COL.cyan);txt('WITH NETWORK  ·  A-GPS',140,604,{size:30,weight:800,color:COL.cyan,ls:3});
-    tower(220,880,200,COL.white,lt);phone(820,770,74,COL.cyan);ctx.restore();
-    const k=eOut(p(lt,0.9,1.0));if(k>0){const x=lerp(280,740,k);ctx.save();stroke('rgba(46,230,255,0.5)',3);ctx.setLineDash([10,10]);ctx.beginPath();ctx.moveTo(280,760);ctx.lineTo(740,760);ctx.stroke();ctx.restore();
-      pill(x,760,'satellite orbit data',COL.cyan,{size:28,alpha:a});}
+    tower(210,815,190,COL.white,lt);phone(870,740,70,COL.cyan);ctx.restore();
+    const k=eOut(p(lt,0.9,1.0));if(k>0){const x=lerp(330,620,k);ctx.save();stroke('rgba(46,230,255,0.5)',3);ctx.setLineDash([10,10]);ctx.beginPath();ctx.moveTo(280,730);ctx.lineTo(820,730);ctx.stroke();ctx.restore();
+      pill(x,730,'satellite orbit data',COL.cyan,{size:30,alpha:a});}
     const f=eOut(p(lt,2.4,0.7));bar(140,860,620,30,f,COL.green);const ta=eOut(p(lt,3.0,0.3));if(ta>0)txt('FAST FIX',940,885,{size:32,weight:900,color:COL.green,align:'right',alpha:ta});}
   const b=eOut(p(lt,4.4,0.4));if(b>0){ctx.save();ctx.globalAlpha=b;card(90,980,900,400,COL.amber);txt('WITHOUT NETWORK',140,1044,{size:30,weight:800,color:COL.amber,ls:3});
     satellite(230,1170,40,COL.cyan,0.2,1);phone(820,1200,74,COL.cyan);beam(270,1200,770,1200,lt,COL.cyan,1,0.8);ctx.restore();
@@ -412,7 +412,7 @@ function sLaw(lt){tag('AS EVIDENCE',330,0.1,lt,COL.amber);head('Where location g
 
 const PRIV=[['A bail condition cannot let police ',0],['constantly track',1],[' an accused person’s movements.',0]];
 function sPriv(lt){tag('PRIVACY',330,0.1,lt,COL.violet);head('Your location is private too',450,0.2,lt,{size:80});
-  const a=eOut(p(lt,0.3,0.5));if(a>0){ctx.save();ctx.globalAlpha=a;shield(540,690,110,COL.violet,a);iPin(540,770,30,COL.green);ctx.restore();}
+  const a=eOut(p(lt,0.3,0.5));if(a>0){ctx.save();ctx.globalAlpha=a;shield(540,700,120,COL.violet,a);ctx.restore();}
   const b=eOut(p(lt,1.8,0.5));if(b>0){ctx.save();ctx.translate(0,(1-b)*50);ctx.globalAlpha=b;card(90,880,900,470,COL.violet);
     txt('SUPREME COURT · 8 JULY 2024',140,950,{size:30,weight:800,color:COL.violet,ls:3});
     txt('The Google Maps “pin” bail-condition case',140,1000,{size:fit('The Google Maps “pin” bail-condition case',500,BODY,800,30),weight:500,color:COL.dim});
@@ -452,21 +452,21 @@ window.EPISODE={
     {id:'signal',fn:sSignal,dur:8.0,min:6.5,pops:[[0.3,600],[0.8,760],[2.2,520,0.1],[2.6,700]],typing:[[2.9,3.9],[4.3,5.4]],
      vo:'हर satellite में atomic clock है। वो लगातार बताता है: मैं यहाँ हूँ, और ये signal ठीक इतने बजे भेजा।'},
     {id:'dist',fn:sDist,dur:11.0,min:8.5,pops:[[0.3,600],[1.0,700],[2.8,800],[4.6,880]],risers:[6.4],impacts:[[7.4,0.7,12]],
-     vo:'Signal रोशनी की रफ़्तार से आता है। फ़ोन नापता है कि उसे कितना वक़्त लगा, और उससे दूरी निकाल लेता है। एक microsecond की गलती, यानी तीन सौ मीटर की गलती।'},
+     vo:'Signal रोशनी की रफ़्तार से आता है। फ़ोन नापता है कि कितना वक़्त लगा, और उससे दूरी निकाल लेता है। एक microsecond की गलती, यानी तीन सौ मीटर की गलती।'},
     {id:'tri',fn:sTri,dur:11.5,min:10.0,pops:[[0.5,600],[3.0,700],[3.8,990,0.1],[5.2,800],[7.6,880]],impacts:[[6.0,0.8,14],[9.2,0.5,8]],
      vo:'एक satellite से आप एक घेरे पर कहीं हैं। दूसरे से दो जगहें बचती हैं, तीसरे से सिर्फ़ एक। चौथा, फ़ोन की घड़ी की गलती ठीक करता है।'},
     {id:'twist',fn:sTwist,dur:10.0,min:8.0,pops:[[0.3,600],[1.0,700],[2.4,440,0.12],[4.6,880],[6.6,990,0.1]],risers:[2.2],impacts:[[3.0,0.8,16]],typing:[[4.6,5.8]],
-     vo:'और सबसे ज़रूरी बात: GPS एकतरफ़ा है। Satellite को नहीं पता कि आप कहाँ हैं। हिसाब आपका फ़ोन खुद लगाता है, इसलिए बिना network के भी GPS चलता है।'},
+     vo:'सबसे ज़रूरी बात: GPS एकतरफ़ा है। Satellite को नहीं पता कि आप कहाँ हैं। हिसाब आपका फ़ोन खुद लगाता है, इसलिए बिना network के भी GPS चलता है।'},
     {id:'agps',fn:sAgps,dur:9.0,min:7.0,pops:[[0.3,600],[0.9,700],[3.0,990,0.1],[4.4,600],[5.6,520,0.1],[6.0,800]],
-     vo:'Network हो, तो फ़ोन satellites की जानकारी internet से ले लेता है। इसे A-GPS कहते हैं, और location जल्दी मिलती है। बिना network, बस थोड़ी देर लगती है।'},
+     vo:'Network सिर्फ़ रफ़्तार बढ़ाता है। A-GPS में फ़ोन satellites का data internet से ले लेता है। बिना network, बस थोड़ी देर लगती है।'},
     {id:'acc',fn:sAcc,dur:10.0,min:7.5,pops:[[0.4,600],[1.0,880],[3.2,600],[4.2,520,0.1],[6.6,800]],
-     vo:'खुले आसमान में smartphone का GPS करीब पाँच मीटर तक सही होता है। ऊँची इमारतों और घर के अंदर कम। फिर भी tower की location से कहीं ज़्यादा सटीक।'},
+     vo:'खुले आसमान में phone का GPS करीब पाँच मीटर तक सही होता है, ऊँची इमारतों के बीच कम। फिर भी, tower की location से कहीं ज़्यादा सटीक।'},
     {id:'navic',fn:sNavic,dur:11.5,min:8.5,pops:[[0.3,600],[0.9,880],[2.4,700],[5.0,740],[6.6,800],[7.6,900]],impacts:[[5.0,0.6,10]],
-     vo:'भारत का अपना system है: ISRO का NavIC, जो भारत और आसपास पंद्रह सौ किलोमीटर तक काम करता है। तीस अक्टूबर को इसका नया satellite NVS-03 launch हुआ, देश में बनी atomic clock के साथ।'},
+     vo:'भारत का अपना system भी है: ISRO का NavIC, जो भारत और पंद्रह सौ किलोमीटर आगे तक काम करता है। तीस अक्टूबर को इसका नया satellite NVS-03 launch हुआ।'},
     {id:'law',fn:sLaw,dur:12.0,min:10.0,pops:[[0.5,440,0.1],[1.6,700],[2.2,760],[3.6,740],[7.8,740]],typing:[[4.0,6.6],[8.2,9.3]],
      vo:'Satellite आपकी location नहीं रखता, पर फ़ोन और apps रख सकते हैं। जाँच में ये records BNSS की Section 94 के तहत मंगाए जा सकते हैं, और कोर्ट में BSA की Section 63 का certificate चाहिए।'},
     {id:'privacy',fn:sPriv,dur:10.0,min:7.5,pops:[[0.3,600],[1.8,740]],typing:[[2.4,4.6]],impacts:[[6.5,0.8,14]],
-     vo:'पर location आपकी privacy भी है। 2024 में Supreme Court ने कहा: bail की ऐसी शर्त नहीं लग सकती, जिससे police आरोपी की हर हरकत लगातार track करे। ये Article 21 के ख़िलाफ़ है।'},
+     vo:'Location आपकी privacy भी है। 2024 में Supreme Court ने कहा: bail की ऐसी शर्त नहीं लग सकती, जिससे police आरोपी को लगातार track करे। ये Article 21 के ख़िलाफ़ है।'},
     {id:'take',fn:sTake,dur:6.5,min:5.0,pops:[[0.6,600],[1.1,700],[1.6,800],[2.4,990,0.12],[3.2,880],[4.0,700]],
      vo:'तो देखिए, कौन-कौन से apps आपकी location देख रहे हैं। Save कीजिए, share कीजिए।'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
