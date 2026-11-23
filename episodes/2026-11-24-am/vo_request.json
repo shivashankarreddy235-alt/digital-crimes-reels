@@ -8,15 +8,15 @@
   },
   {
    "scene": "play",
-   "text": "पहले call: आपके नाम पर parcel, या आपका number किसी crime से जुड़ा है। फिर video call पर नकली officer, नकली warrant। “Camera पर रहिए। किसी को मत बताइए। Verify के लिए पैसे भेजिए।”"
+   "text": "पहले call: आपके नाम पर parcel, या number किसी crime से जुड़ा है। फिर video call पर नकली officer, नकली warrant। “Camera पर रहिए, किसी को मत बताइए, verify के लिए पैसे भेजिए।”"
   },
   {
    "scene": "law",
-   "text": "Indian law में “digital arrest” होता ही नहीं। BNSS Section 43 में arrest का मतलब है व्यक्ति को सच में छूना या रोकना। और I4C कहता है: police, CBI, ED या judges video call पर arrest नहीं करते।"
+   "text": "Law में “digital arrest” होता ही नहीं। BNSS Section 43: arrest यानी व्यक्ति को सच में छूना या रोकना। और I4C कहता है: police, CBI, ED या judges video call पर arrest नहीं करते।"
   },
   {
    "scene": "crimes",
-   "text": "असली अपराधी call करने वाला है: public servant बनना, cheating, forgery, extortion, ये BNS में अपराध हैं, साथ में IT Act की Section 66D।"
+   "text": "असली अपराधी caller है: public servant बनना, cheating, forgery, extortion, ये BNS में अपराध हैं, और IT Act की Section 66D।"
   },
   {
    "scene": "scale",
@@ -24,7 +24,7 @@
   },
   {
    "scene": "money",
-   "text": "पहला trail: पैसा। पैसा mule accounts की कई layers से गुज़रता है, यानी किराए के या दूसरों के नाम पर खुले accounts। Investigators bank statements और KYC से हर कदम पकड़ते हैं।"
+   "text": "पहला trail: पैसा। पैसा mule accounts की layers से गुज़रता है, यानी किराए के या दूसरों के नाम पर खुले accounts। Police bank statements और KYC से हर कदम पकड़ती है।"
   },
   {
    "scene": "hold",
@@ -32,11 +32,11 @@
   },
   {
    "scene": "phone",
-   "text": "दूसरा trail: phone। Call records, SIM का KYC, IMEI, और WhatsApp calls के IP logs। BNSS Section 94 के तहत police ये records मँगवा सकती है।"
+   "text": "दूसरा trail: phone। Call records, SIM KYC, IMEI, और WhatsApp calls के IP logs। Police इन्हें BNSS Section 94 में मँगवा सकती है।"
   },
   {
    "scene": "abroad",
-   "text": "कई calls विदेश से आती हैं, Indian number का नक़ाब पहनकर। Telecom department का system अब इन्हें block करता है, और ऐसे तिरासी हज़ार से ज़्यादा WhatsApp accounts भी block हुए हैं।"
+   "text": "कई calls विदेश से आती हैं, Indian number के नक़ाब में। Telecom department अब इन्हें block करता है, और तिरासी हज़ार से ज़्यादा WhatsApp accounts भी block हुए हैं।"
   },
   {
    "scene": "court",
@@ -44,7 +44,7 @@
   },
   {
    "scene": "act",
-   "text": "ऐसा call आए तो? Call काटिए। पैसे मत भेजिए। एक नौ तीन शून्य पर call कीजिए, या cybercrime dot gov dot in पर शिकायत कीजिए। Number चक्षु पर report कीजिए, और ये video माता-पिता को भेजिए।"
+   "text": "Call काटिए। पैसे मत भेजिए। एक नौ तीन शून्य पर call कीजिए, या cybercrime dot gov dot in पर शिकायत कीजिए। और number को चक्षु पर report कीजिए।"
   },
   {
    "scene": "outro",
