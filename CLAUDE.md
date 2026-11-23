@@ -9,7 +9,8 @@ recordings or secrets in it.
 - Instagram posting: **Windsor.ai for Social Media** — connector `instagram`, account
   `17841412954133912` (digital_crimes), action `create_video_post`.
 - Public file host: GitHub Pages, `https://shivashankarreddy235-alt.github.io/digital-crimes-reels/`
-- Owner's decisions: review before every post · posts go live at **7:00 AM IST** · reels are
+- Owner's decisions: review before every post · **two reels a day**: slot `am` goes live at
+  **7:00 AM IST**, slot `pm` at **8:00 PM IST** · reels are
   **90–120 seconds** · on-screen text always **English** · voice alternates: odd episodes **English
   voice**, even episodes **Hindi voice** · voice = the owner's own ElevenLabs voice clone (see "Voice") ·
   original synthesized music only · the owner's logo and wordmark from `assets/`.
@@ -39,19 +40,27 @@ engine/voice_action.py     run by .github/workflows/voiceover.yml (ElevenLabs TT
 assets/logo.png            owner's logo, dark-background version (header + animated end screen)
 assets/wordmark.png        owner's "DigitalCrimes" wordmark in white (header + end screen)
 assets/people/             owner's own cut-out photos for covers (see its README)
-content/calendar.md        schedule (date, voice language, type, topic, hook, facts) + topic bank
-episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix/, reel.mp4, cover.jpg,
-                           caption.txt, script.md, sources.md, status.json
+content/calendar.md        schedule (date, slot, voice language, type, topic, hook, facts) + topic bank
+episodes/YYYY-MM-DD-am/    one folder per reel: the 7:00 AM reel (…-pm/ for the 8:00 PM reel):
+                           reel.html, vo_request.json, voice/durations.json, mix/, reel.mp4, cover.jpg,
+                           caption.txt, tags.json, script.md, sources.md, status.json
 ```
 
-`status.json`: `{"episode": n, "date": "YYYY-MM-DD", "topic": "...", "language": "...",
+**Slots.** Two reels a day. Slot `am` posts at 7:00 AM IST, slot `pm` at 8:00 PM IST. Episodes run in
+calendar order: odd episodes (English voice) take the `am` slot, even episodes (Hindi voice) the `pm`
+slot. Below, **D** is the reel's date, **S** its slot and **E** its folder `episodes/D-S`.
+
+`status.json`: `{"episode": n, "date": "YYYY-MM-DD", "slot": "am|pm", "topic": "...", "language": "...",
 "status": "pending|approved|posted|skipped", "approved_at": null, "posted_at": null, "media_id": null}`
 
-## Run A — make tomorrow's reel (evening run, 6:40 PM IST)
+## Run A — make the next reel (two build runs a day)
 
-1. D = tomorrow's date in IST. Take D's row in `content/calendar.md` (if none, take the next topic
-   from the topic bank keeping the 2:1 rhythm, add a row, alternate the voice language).
-   If `episodes/D/status.json` exists: `approved`/`posted` → stop and tell the owner; `pending` →
+- **Morning build, 9:40 AM IST:** D = today, S = `pm` (posts at 8:00 PM today).
+- **Evening build, 6:40 PM IST:** D = tomorrow, S = `am` (posts at 7:00 AM tomorrow).
+
+1. Take the (D, S) row in `content/calendar.md` (if none, take the next topic from the topic bank
+   keeping the 2:1 rhythm, add a row, alternate the voice language).
+   If `E/status.json` exists: `approved`/`posted` → stop and tell the owner; `pending` →
    re-send it for review (step 11) instead of rebuilding. Exception: if it went out music-only and its
    `voice/durations.json` says `ok: false`, retry the voice (step 5, bump `"attempt"`); if the voice now
    works, continue from step 6 and re-send the voiced version.
@@ -59,14 +68,14 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
    or primary source and at least one reputable source (LiveLaw, Bar & Bench, SCC Online, India Code,
    PIB, DoT, TRAI, MHA/I4C, RBI, ISRO, manufacturer or standards docs). Search the last 30 days for news
    that changes the law or gives a better hook. Old law (IPC, CrPC, Evidence Act) only as "old law".
-   Unverifiable → drop it. Write `episodes/D/sources.md` (every page opened, what it supports).
-3. **Script** (`episodes/D/script.md`): 90–120 s, 10–13 scenes. Hook in the first 2 seconds. One idea
+   Unverifiable → drop it. Write `E/sources.md` (every page opened, what it supports).
+3. **Script** (`E/script.md`): 90–120 s, 10–13 scenes. Hook in the first 2 seconds. One idea
    per scene; show the technology as a diagram, not just text. Section numbers on screen. Close with a
    takeaway, the outro and the disclaimer. Per scene: id, default length, on-screen text, voiceover.
    Voiceover runs about 2.5 words per second (≈ 230–280 words in total).
    Hindi-voice episodes: write the `vo` lines in **Hindi (Devanagari)**, natural spoken Hindi; keep
    technical/legal terms in English where people say them that way (CDR, IMEI, Section 94, BNSS).
-4. **Build the reel.** Copy `engine/reel_template.html` to `episodes/D/reel.html`. Keep the ENGINE
+4. **Build the reel.** Copy `engine/reel_template.html` to `E/reel.html`. Keep the ENGINE
    section unchanged; rewrite the EPISODE section: scene functions (local time `lt`, length `D`) and
    `window.EPISODE` (title, voice 'English'|'Hindi', laws, cover, scenes with `dur`, `min`, sounds, `vo`).
    `min` = seconds the scene's animations need; with the voice, scene length = max(min, clip + 0.8 s),
@@ -74,20 +83,20 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
    Reuse the components: tower, sector, waves, phone, sim, mapPanel, dataTable, lawCard, pill, card,
    iPin and the icons; add new drawing helpers inside the EPISODE section when a topic needs them.
    Every visual beat gets a `pop`; big reveals get an `impact`.
-5. `python3 engine/render.py vo episodes/D` → `vo_request.json`. Commit it with reel.html and push:
+5. `python3 engine/render.py vo E` → `vo_request.json`. Commit it with reel.html and push:
    the GitHub Action makes the voice clips (about 1–3 minutes) and commits `voice/durations.json`.
    Poll with `git pull` every 20 s for up to 10 minutes.
    - durations `ok: true` → the voice is ready.
    - `ok: false` (e.g. secrets missing) or no answer → continue music-only and tell the owner why.
    To retry later, change `"attempt"` in vo_request.json (add it if missing) and push.
-6. **Look before rendering:** `python3 engine/render.py stills episodes/D <6–12 busiest times>`
+6. **Look before rendering:** `python3 engine/render.py stills E <6–12 busiest times>`
    (scene starts are printed; they already include the voice stretch). Read the sheet. Fix overlaps,
    overflow and safe zones: key content between y=250 and y=1520; nothing important below y=1560 or
    right of x=980 below y=1100. Body text ≥ 30 px.
-7. `python3 engine/render.py build episodes/D`.
+7. `python3 engine/render.py build E`.
    - Voice ready → it writes `mix/music.m4a` + `mix/mix_request.json`. Commit both, push, poll for
      `mix/mixed.json` (ok + matching hash, usually under 2 minutes), then
-     `python3 engine/render.py finish episodes/D` → `reel.mp4` + `cover.jpg`.
+     `python3 engine/render.py finish E` → `reel.mp4` + `cover.jpg`.
    - No voice → it writes a music-only `reel.mp4` + `cover.jpg` directly.
    Extract and look at 3 frames from the finished video; check the length is 90–125 s.
 8. Write `caption.txt` (format below), `tags.json` (see "Account tags") and `status.json` (status `pending`). If the AI voice is in the reel,
@@ -96,25 +105,25 @@ episodes/YYYY-MM-DD/       reel.html, vo_request.json, voice/durations.json, mix
 9. Run the **pre-post checklist**. Commit `EPnn: <topic> (pending review)` (never `.work/`), push.
 10. Update the Status column in `content/calendar.md`.
 11. Send the owner the reel and cover (SendUserFile), then one message (SendUserMessage): the caption,
-    the tags, the voiceover script, whether the AI voice is in it, and: "Reply **post** to approve it for 7:00 AM
-    tomorrow, tell me what to change, or send a voice note and I'll use your real voice instead.
-    Reply **skip** to skip tomorrow."
+    the tags, the voiceover script, whether the AI voice is in it, and: "Reply **post** to approve it for
+    <8:00 PM today | 7:00 AM tomorrow>, tell me what to change, or send a voice note and I'll use your real
+    voice instead. Reply **skip** to skip this slot."
 12. When the owner replies in that session:
     - **post / approve** → status `approved`, `approved_at` = now; commit and push. If it is already past
-      7:00 AM IST on D, publish now (Run B, steps 3–6).
+      the slot's time on D (7:00 AM IST for `am`, 8:00 PM IST for `pm`), publish now (Run B, steps 3–6).
     - **changes** → edit, rebuild (re-run `vo` if voice lines changed), re-send, wait again.
-    - **a voice file** (the owner's real voice) → `python3 engine/render.py voice episodes/D <file>`
+    - **a voice file** (the owner's real voice) → `python3 engine/render.py voice E <file>`
       (needs `.work/` from a music-only build; rebuild music-only first if needed, and stretch scenes if
       the file is longer than the reel). Remove the AI-voice caption line. Commit, push, re-send.
     - **skip** → status `skipped`; commit and push.
 
-## Run B — publish the approved reel (6:59 AM IST)
+## Run B — publish the approved reel (6:59 AM IST for `am`, 7:59 PM IST for `pm`)
 
-1. D = today's date in IST. Read `episodes/D/status.json`.
+1. D = today's date in IST, S = the run's slot, E = `episodes/D-S`. Read `E/status.json`.
 2. `posted` → stop (never post twice). `skipped` → stop silently. Missing or not `approved` → do not
-   post; tell the owner "Today's reel isn't approved yet. Open last evening's review and reply post,
-   or skip." and stop.
-3. `video_url` = `https://shivashankarreddy235-alt.github.io/digital-crimes-reels/episodes/D/reel.mp4`,
+   post; tell the owner "The <7:00 AM | 8:00 PM> reel isn't approved yet. Open its review and reply
+   post, or skip." and stop.
+3. `video_url` = `https://shivashankarreddy235-alt.github.io/digital-crimes-reels/E/reel.mp4`,
    `cover_url` = the same folder's `cover.jpg`.
 4. Windsor.ai `execute_action`: connector `instagram`, account `17841412954133912`, action
    `create_video_post`, params `{"video_url": ..., "cover_url": ..., "caption": <caption.txt exactly>,
@@ -199,7 +208,7 @@ Every episode sets `EPISODE.coverSpec`; `render.py build`/`finish` turn it into 
   `coverSpec.lines`), use the strongest as `cover.jpg`, and show the 3 side by side in the review message so
   the owner can pick another.
 - **Person:** a cut-out photo of the owner from `assets/people/` whose expression fits the hook
-  (shocked, pointing, explaining, serious). Rotate photos; don't reuse yesterday's. If the folder has no
+  (shocked, pointing, explaining, serious). Rotate photos; don't reuse the previous reel's. If the folder has no
   photos, use the text-and-visual layout (`person: null`).
 - **Visual:** the topic's main diagram element behind the text (tower, phone, SIM, map pin…).
 - Never: AI-generated people, stock or strangers' photos, real officials, robes, courts, "Advocate" titles,
@@ -209,8 +218,8 @@ Every episode sets `EPISODE.coverSpec`; `render.py build`/`finish` turn it into 
 ## Account tags
 
 Follow `content/tags.md`: up to 10 relevant cyber-community pages from its **Approved** list only — never
-advocates, personal accounts or government accounts, never guessed handles, rotate daily. Run A writes
-`episodes/D/tags.json` and lists the tags in the review message. Run B passes them as `user_tags`.
+advocates, personal accounts or government accounts, never guessed handles, rotate from reel to reel.
+Run A writes `E/tags.json` and lists the tags in the review message. Run B passes them as `user_tags`.
 
 ## Pre-post checklist
 
