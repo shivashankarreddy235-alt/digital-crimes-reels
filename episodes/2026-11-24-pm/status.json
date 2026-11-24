@@ -6,10 +6,10 @@
  "series": "Follow the Money",
  "audience": "Everyday UPI users (primary); students and job seekers (mule recruitment)",
  "language": "English text, Hindi voice",
- "status": "approved",
+ "status": "posted",
  "approved_at": "2026-11-24T12:19:07+05:30",
- "posted_at": null,
- "media_id": null,
+ "posted_at": "2026-11-24T21:38:25+05:30",
+ "media_id": "18444611836177732",
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 117.3,
  "cover": "A: YOUR MONEY DOESN'T VANISH. / IT SPLITS. (alternatives B and C rendered for review)",
@@ -22,5 +22,6 @@
   "1a20c51b03224cf6"
  ],
  "reminder_sent": false,
- "note": "Approved by the owner in the session (\"Post\") at 12:19 IST; goes live in the 8:00 PM slot. Owner's email reply \"POST\" (12:20 IST) duplicates the approval; no further action."
+ "note": "Approved by the owner in the session (\"Post\") at 12:19 IST; goes live in the 8:00 PM slot. Owner's email reply \"POST\" (12:20 IST) duplicates the approval; no further action. Posted late (21:38 IST) because the 7:59 PM publish run started late.",
+ "permalink": "https://www.instagram.com/reel/DgIWPlmAkWS/"
 }
