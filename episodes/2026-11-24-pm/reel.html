@@ -487,81 +487,81 @@ function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.5,0.3));
 // 2 — the scam (chapter 1)
 function sScam(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.8,0.3))});sub('Aman, 27, Indore · a fictional example',388,eOut(p(lt,0.9,0.3)),{size:30});
   chatThread(540,920,600,940,{name:'Part-time Job (HR)',status:'online',lt,alpha:eOut(p(lt,0.75,0.3)),msgs:[
-    {t:1.1,text:'Task 3 done! Your profit: ₹18,400',time:'8:01 PM'},
-    {t:3.3,text:'To withdraw it, first pay ₹1,00,000 “tax”. Today only.',time:'8:02 PM'},
-    {t:6.0,side:'out',text:'OK. Paying now.',time:'8:05 PM'}]});
-  kineticCaption(lt,[[1.2,'PART-TIME JOB'],[3.4,'PROFIT READY?'],[5.0,'PAY ₹1,00,000 FIRST',RED]]);}
+    {t:1.3,text:'Task 3 done! Your profit: ₹18,400',time:'8:01 PM'},
+    {t:4.7,text:'To withdraw it, first pay ₹1,00,000 “tax”. Today only.',time:'8:02 PM'},
+    {t:6.9,side:'out',text:'OK. Paying now.',time:'8:05 PM'}]});
+  kineticCaption(lt,[[1.2,'PART-TIME JOB'],[3.4,'PROFIT READY?'],[5.5,'PAY ₹1,00,000 FIRST',RED]]);}
 // 3 — paid
 function sPaid(lt){dramatisedTag(540,330);sub('Aman, 27, Indore · a fictional example',388,1,{size:30});
   upiScreen(540,890,540,900,{mode:'success',amount:100000,name:'Payout Desk',vpa:'xxxxxxxx@upi',k:p(lt,0.1,1.0),time:'8:05 PM · just now',ref:'XXXXXXXX4821'});
-  notificationBanner(140,470,800,{app:'Bank',title:'₹1,00,000 debited',body:'A/c XX21 debited via UPI. Avl bal: ₹2,340.',k:p(lt,1.2,0.4),glyph:'bank',c:RED});
-  stamp(540,1220,'NO PROFIT. EVER.',RED,p(lt,2.4,0.35),-0.1,62);
-  kineticCaption(lt,[[1.2,'₹1,00,000 GONE',RED]]);}
+  notificationBanner(140,470,800,{app:'Bank',title:'₹1,00,000 debited',body:'A/c XX21 debited via UPI. Avl bal: ₹2,340.',k:p(lt,0.9,0.4),glyph:'bank',c:RED});
+  stamp(540,1220,'NO PROFIT. EVER.',RED,p(lt,1.7,0.35),-0.1,62);
+  kineticCaption(lt,[[0.9,'₹1,00,000 GONE',RED]]);}
 // 4 — mule account (chapter 2)
 const DEF=[['An account used, ',0],['knowingly or unknowingly',1],[', to receive, layer or transfer proceeds of cyber-enabled financial fraud.',0]];
 function sMule(lt){head('Where did it go?',400,0.8,lt,{size:84});
-  const spec=NET({nodes:NET().nodes.slice(0,2),layerT:[0.9,1.3],layerNames:['','']});moneyGraph(NX,600,NW,195,spec,lt);
-  const la=eOut(p(lt,7.2,0.35));if(la>0){pill(812,795,'LAYER 1',AMB,{size:30,ls:3,alpha:la,fillA:'33'});txt('I4C’s term',812,857,{size:30,weight:600,color:COL.dim,align:'center',alpha:la});}
-  const ca=eOut(p(lt,2.8,0.4));if(ca>0){ctx.save();ctx.translate(0,(1-ca)*50);lawCard(90,900,900,470,'MONEY MULE ACCOUNT','RBI draft KYC directions, Sep 2026',DEF,(lt-3.1)*30,AMB,ca,{size:40,lh:56});ctx.restore();}
-  kineticCaption(lt,[[1.2,'MULE ACCOUNT'],[4.2,'KNOWINGLY OR UNKNOWINGLY'],[7.3,'LAYER 1']]);}
+  const spec=NET({nodes:NET().nodes.slice(0,2),layerT:[0.9,2.0],layerNames:['','']});moneyGraph(NX,600,NW,195,spec,lt);
+  const la=eOut(p(lt,9.7,0.35));if(la>0){pill(812,795,'LAYER 1',AMB,{size:30,ls:3,alpha:la,fillA:'33'});txt('I4C’s term',812,857,{size:30,weight:600,color:COL.dim,align:'center',alpha:la});}
+  const ca=eOut(p(lt,3.4,0.4));if(ca>0){ctx.save();ctx.translate(0,(1-ca)*50);lawCard(90,900,900,470,'MONEY MULE ACCOUNT','RBI draft KYC directions, Sep 2026',DEF,(lt-3.7)*30,AMB,ca,{size:40,lh:56});ctx.restore();}
+  kineticCaption(lt,[[2.2,'MULE ACCOUNT'],[6.2,'KNOWINGLY OR UNKNOWINGLY'],[9.7,'LAYER 1']]);}
 // 5 — layers
 function sLayers(lt){head('Then it splits. Again.',390,0.05,lt,{size:80});
   sub('“Funds are immediately layered to another account.” — I4C alert, Oct 2024',450,eOut(p(lt,0.2,0.3)),{size:30,maxW:940});
-  moneyGraph(NX,600,NW,780,NET({layerT:[-9,-9,1.3,2.9,99],timer:{t0:0,scale:22,base:40,label:'CLOCK SINCE PAYMENT · ILLUSTRATIVE'}}),lt,{timerY:560});
-  kineticCaption(lt,[[1.4,'LAYER 2'],[3.0,'LAYER 3'],[4.4,'SMALLER AND SMALLER']]);}
+  moneyGraph(NX,600,NW,780,NET({layerT:[-9,-9,1.6,2.5,99],timer:{t0:0,scale:22,base:40,label:'CLOCK SINCE PAYMENT · ILLUSTRATIVE'}}),lt,{timerY:560});
+  kineticCaption(lt,[[1.7,'LAYER 2'],[2.6,'LAYER 3'],[3.6,'SMALLER AND SMALLER'],[5.2,'TANGLED TRAIL']]);}
 // 6 — cash-out + recruitment
 function sCash(lt){head('Then it walks out',390,0.05,lt,{size:80});
-  const dim=eOut(p(lt,3.1,0.4));ctx.save();ctx.globalAlpha*=1-0.75*dim;
-  moneyGraph(NX,600,NW,780,NET({layerT:[-9,-9,-9,-9,0.7],nodes:NET().nodes.map(n=>n.id==='cry'?Object.assign(n,{t:1.7}):n),timer:{t0:0,scale:22,base:190,label:'CLOCK SINCE PAYMENT · ILLUSTRATIVE'}}),lt,{timerY:560});ctx.restore();
+  const dim=eOut(p(lt,2.6,0.4));ctx.save();ctx.globalAlpha*=1-0.75*dim;
+  moneyGraph(NX,600,NW,780,NET({layerT:[-9,-9,-9,-9,0.6],nodes:NET().nodes.map(n=>n.id==='cry'?Object.assign(n,{t:1.8}):n),timer:{t0:0,scale:22,base:190,label:'CLOCK SINCE PAYMENT · ILLUSTRATIVE'}}),lt,{timerY:560});ctx.restore();
   if(dim>0){ctx.save();ctx.globalAlpha*=dim;pill(540,760,'HOW MULES ARE RECRUITED · EXAMPLE OFFER',COL.dim,{size:26,ls:2});ctx.restore();
-    notificationBanner(120,820,840,{app:'Chat · unknown number',title:'Easy income for students',body:'Earn ₹5,000 a month. Just lend us your bank account. No work.',k:p(lt,3.3,0.4),glyph:'chat',c:COL.violet,size:36});}
-  stamp(540,1230,'THIS IS MULE RECRUITMENT',RED,p(lt,5.8,0.35),-0.08,50);
-  kineticCaption(lt,[[0.8,'ATM CASH'],[1.8,'CRYPTO'],[3.2,'RENTED ACCOUNTS',RED],[5.2,'₹5,000 A MONTH?',RED]]);}
+    notificationBanner(120,820,840,{app:'Chat · unknown number',title:'Easy income for students',body:'Earn ₹5,000 a month. Just lend us your bank account. No work.',k:p(lt,2.8,0.4),glyph:'chat',c:COL.violet,size:36});}
+  stamp(540,1230,'THIS IS MULE RECRUITMENT',RED,p(lt,7.3,0.35),-0.08,50);
+  kineticCaption(lt,[[0.6,'ATM CASH'],[1.8,'CRYPTO'],[2.9,'RENTED ACCOUNTS',RED],[5.6,'₹5,000 A MONTH?',RED]]);}
 // 7 — the trail (chapter 3)
 const TRACE=['v','m1','b','f','cry'];
 function sTrail(lt){head('Every hop leaves a record',400,0.8,lt,{size:76});
-  moneyGraph(NX,540,NW,660,NET({trace:{ids:TRACE,t:1.0}}),lt,{flowUntil:0});
-  const R=[['UPI REF NO.',2.7],['BANK STATEMENT',4.1],['KYC',5.1]];ctx.save();ctx.font=font(700,30);ctx.letterSpacing='2px';const ws=R.map(([l])=>ctx.measureText(l).width+36);ctx.restore();
+  moneyGraph(NX,540,NW,660,NET({trace:{ids:TRACE,t:1.2}}),lt,{flowUntil:0});
+  const R=[['UPI REF NO.',3.1],['BANK STATEMENT',4.7],['KYC',5.9]];ctx.save();ctx.font=font(700,30);ctx.letterSpacing='2px';const ws=R.map(([l])=>ctx.measureText(l).width+36);ctx.restore();
   let x=540-(ws.reduce((a,b)=>a+b,0)+2*24)/2;
   R.forEach(([l,t0],i)=>{const w=ws[i];const e=eOut(p(lt,t0,0.3));if(e>0){ctx.save();const sc=1+0.25*(1-e);ctx.translate(x+w/2,1340);ctx.scale(sc,sc);pill(0,0,l,COL.cyan,{size:30,ls:2,alpha:e,fillA:'33'});ctx.restore();}x+=w+24;});
-  kineticCaption(lt,[[6.1,'EVERY HOP TRACED',AMB]]);}
+  kineticCaption(lt,[[6.9,'EVERY HOP TRACED',AMB]]);}
 // 8 — 1930 hold
 function sHold(lt){head('Report fast: 1930',400,0.05,lt,{size:84,color:GRN});
-  const spec=NET({hold:{ids:['e','g'],t:5.6}});moneyGraph(NX,540,NW,660,spec,lt,{flowUntil:0});
+  const spec=NET({hold:{ids:['e','g'],t:6.9}});moneyGraph(NX,540,NW,660,spec,lt,{flowUntil:0});
   // the complaint ticket travels bank to bank (0: victim's bank -> layer 1 -> layer 2 -> layer 3)
   const pos=id=>{const n=spec.nodes.find(q=>q.id===id);return [n._x,n._y];};const legs=[[['v','m1']],[['m1','a'],['m1','b'],['m1','c']],[['a','d'],['a','e'],['b','f'],['c','g']]];
-  legs.forEach((L,li)=>{const k=p(lt,2.9+li*0.8,0.8);if(k<=0||k>=1)return;L.forEach(([f,t])=>{const[x0,y0]=pos(f),[x1,y1]=pos(t);coin(x0,y0+48,x1,y1-48,eInOut(k),GRN,13);});});
-  const ta=eOut(p(lt,2.9,0.3))*(1-p(lt,5.3,0.3));if(ta>0)pill(840,612,'1930 TICKET',GRN,{size:26,ls:2,alpha:ta,fillA:'33'});
-  sub('Moved on? The ticket follows. Still there? The bank holds it.',1340,eOut(p(lt,6.2,0.4)),{color:COL.white,weight:700,size:34});
-  kineticCaption(lt,[[0.6,'CALL 1930',GRN],[3.0,'BANK → BANK'],[5.6,'HOLD',GRN]]);}
+  legs.forEach((L,li)=>{const k=p(lt,3.8+li*0.6,0.6);if(k<=0||k>=1)return;L.forEach(([f,t])=>{const[x0,y0]=pos(f),[x1,y1]=pos(t);coin(x0,y0+48,x1,y1-48,eInOut(k),GRN,13);});});
+  const ta=eOut(p(lt,3.8,0.3))*(1-p(lt,5.6,0.3));if(ta>0)pill(840,612,'1930 TICKET',GRN,{size:26,ls:2,alpha:ta,fillA:'33'});
+  sub('Moved on? The ticket follows. Still there? The bank holds it.',1340,eOut(p(lt,7.3,0.4)),{color:COL.white,weight:700,size:34});
+  kineticCaption(lt,[[0.6,'CALL 1930',GRN],[4.2,'BANK → BANK'],[7.0,'HOLD',GRN]]);}
 // 9 — numbers
 function sNums(lt){head('Does it work?',400,0.05,lt,{size:84});
-  dataCard(90,470,900,400,{num:11158,prefix:'₹',suffix:' crore',k:p(lt,0.5,1.4),label:'saved through 1930 / cybercrime.gov.in, in 32.80 lakh complaints',source:'Source: MHA via PIB, 12 Aug 2026 · CFCFRMS data till 30 Jun 2026',c:GRN,alpha:eOut(p(lt,0.3,0.4))});
-  dataCard(90,910,900,400,{value:'32.08 lakh',label:'Layer-1 mule accounts shared with banks',source:'Source: MHA via PIB, 12 Aug 2026 · I4C Suspect Registry, till 30 Jun 2026',c:RED,alpha:eOut(p(lt,4.4,0.4))});}
+  dataCard(90,470,900,400,{num:11158,prefix:'₹',suffix:' crore',k:p(lt,1.8,1.6),label:'saved through 1930 / cybercrime.gov.in, in 32.80 lakh complaints',source:'Source: MHA via PIB, 12 Aug 2026 · CFCFRMS data till 30 Jun 2026',c:GRN,alpha:eOut(p(lt,0.3,0.4))});
+  dataCard(90,910,900,400,{value:'32.08 lakh',label:'Layer-1 mule accounts shared with banks',source:'Source: MHA via PIB, 12 Aug 2026 · I4C Suspect Registry, till 30 Jun 2026',c:RED,alpha:eOut(p(lt,5.4,0.4))});}
 // 10 — the law (chapter 4)
 function lawBox(x,y,w,h,who,sec,what,pun,old,c,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;ctx.translate((1-a)*-50,0);card(x,y,w,h,c);
   pill(x+40,y+52,who,c,{size:26,ls:3,align:'left',fillA:'33'});txt(sec,x+w-40,y+64,{size:40,weight:900,font:DISP,color:c,align:'right'});
   const n=para(what,x+40,y+140,w-80,{size:36,weight:700,lh:46});txt(pun,x+40,y+140+n*46+18,{size:36,weight:800,color:c});
   [].concat(old).reverse().forEach((l,i)=>txt(l,x+40,y+h-28-i*38,{size:28,weight:500,color:COL.dim}));ctx.restore();}
 function sLaw(lt){head('Both ends can be charged',400,0.8,lt,{size:76});
-  lawBox(90,470,900,330,'THE SCAMMER','BNS s.318(4)','Cheating, and dishonestly inducing delivery of property','Up to 7 years + fine','Old law: IPC s.420',RED,eOut(p(lt,2.5,0.4)));
-  lawBox(90,840,900,440,'THE ACCOUNT HOLDER','BNS s.317(2)','Receiving or keeping money got by cheating, knowing or having reason to believe it is stolen','Up to 3 years, or fine, or both',['s.317(1): property got by cheating is “stolen property”','Old law: IPC s.411'],AMB,eOut(p(lt,5.1,0.4)));
-  const c=eOut(p(lt,8.2,0.4));if(c>0){pill(540,1330,'Networks: BNS s.61 conspiracy · s.111 organised crime',COL.violet,{size:30,alpha:c});sub('s.111 only when its legal conditions are met',1400,c,{size:30});}}
+  lawBox(90,470,900,330,'THE SCAMMER','BNS s.318(4)','Cheating, and dishonestly inducing delivery of property','Up to 7 years + fine','Old law: IPC s.420',RED,eOut(p(lt,3.0,0.4)));
+  lawBox(90,840,900,440,'THE ACCOUNT HOLDER','BNS s.317(2)','Receiving or keeping money got by cheating, knowing or having reason to believe it is stolen','Up to 3 years, or fine, or both',['s.317(1): property got by cheating is “stolen property”','Old law: IPC s.411'],AMB,eOut(p(lt,6.1,0.4)));
+  const c=eOut(p(lt,10.2,0.4));if(c>0){pill(540,1330,'Networks: BNS s.61 conspiracy · s.111 organised crime',COL.violet,{size:30,alpha:c});sub('s.111 only when its legal conditions are met',1400,c,{size:30});}}
 // 11 — getting it back
 const L107=[['A Magistrate can ',0],['attach proceeds of crime',1],[' and order them ',0],['distributed to the people affected',1],['.',0]];
 function sBack(lt){head('Getting it back',400,0.05,lt,{size:84});
   const a=eOut(p(lt,0.5,0.4));if(a>0){ctx.save();ctx.translate(0,(1-a)*50);lawCard(90,470,900,420,'BNSS, 2023 · SECTION 107','Attachment, forfeiture or restoration of property',L107,(lt-0.9)*24,GRN,a,{size:40,lh:56});ctx.restore();}
-  const b=eOut(p(lt,6.0,0.4));if(b>0){ctx.save();ctx.globalAlpha*=b;ctx.translate(0,(1-b)*50);card(90,930,900,380,AMB);
+  const b=eOut(p(lt,8.9,0.4));if(b>0){ctx.save();ctx.globalAlpha*=b;ctx.translate(0,(1-b)*50);card(90,930,900,380,AMB);
     txt('RBI · PROPOSED RULES (DRAFT)',140,1000,{size:30,weight:800,color:AMB,ls:3});
     para('Banks to put a temporary debit hold on suspected mule transactions of ₹1,000 or more',140,1068,800,{size:38,weight:700,lh:50});
     txt('Hold: up to 60 days',140,1232,{size:40,weight:900,font:DISP,color:AMB});txt('Draft KYC Amendment Directions, Sep 2026',140,1282,{size:26,weight:500,color:COL.dim});ctx.restore();}
-  stamp(840,1210,'DRAFT',AMB,p(lt,6.8,0.35),-0.14,44);
-  kineticCaption(lt,[[1.0,'BNSS s.107',GRN],[6.1,'RBI: HOLD MULE MONEY',AMB]]);}
+  stamp(840,1210,'DRAFT',AMB,p(lt,11.9,0.35),-0.14,44);
+  kineticCaption(lt,[[1.3,'BNSS s.107',GRN],[9.1,'RBI: HOLD MULE MONEY',AMB]]);}
 // 12 — do this now (chapter 5)
-function sAct(lt){checklistCard(90,330,900,1000,{lt,t0:1.1,step:0.42,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
+function sAct(lt){checklistCard(90,330,900,1000,{lt,t0:2.0,step:0.9,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
   flags:['You must pay first to withdraw a “profit”','Someone wants to rent or buy your bank account','You’re asked for your UPI PIN to “receive” money'],
   actions:['Call 1930 at once, or report on cybercrime.gov.in','Call your bank to block the account','Report the scam number or message on Sanchar Saathi → Chakshu']});
-  kineticCaption(lt,[[8.6,'SEND IT TO YOUR FAMILY GROUP',COL.cyan]],{sticky:true});}
+  kineticCaption(lt,[[11.1,'SEND IT TO YOUR FAMILY GROUP',COL.cyan]],{sticky:true});}
 function sOut(lt){outro(lt,window.EPISODE.laws);}
 
 window.EPISODE={
@@ -573,31 +573,31 @@ window.EPISODE={
   cover:[0,2.6],
   coverSpec:{lines:[['YOUR MONEY DOESN’T VANISH.',COL.white],['IT SPLITS.',COL.amber]],
     person:'people/grey_blazer_tie.png',
-    visual:P=>{ctx.save();ctx.globalAlpha=0.95;splitCoins(P?330:540,1080,9,0,{gens:3,spread:P?560:860,dy:150,r:70});ctx.restore();}},
+    visual:P=>{ctx.save();ctx.globalAlpha=0.95;splitCoins(P?290:540,1080,9,0,{gens:3,spread:P?500:860,dy:150,r:70});ctx.restore();}},
   scenes:[
     {id:'hook',fn:sHook,dur:6.0,min:4.5,pops:[[0.05,520,0.1],[1.0,660],[1.6,740],[2.2,820],[2.8,900],[3.0,990,0.08]],impacts:[[0.5,0.85,16]],
      vo:'आपका पैसा गायब नहीं होता। बँट जाता है। आख़िर तक देखिए, ये रुकता कैसे है।'},
-    {id:'scam',fn:sScam,dur:8.5,min:7.0,chapter:[1,'THE SCAM'],pops:[[1.1,700],[3.3,760],[6.0,900,0.1]],
+    {id:'scam',fn:sScam,dur:8.5,min:7.0,chapter:[1,'THE SCAM'],pops:[[1.3,700],[4.7,760],[6.9,900,0.1]],
      vo:'Aman को part-time job का message आता है: profit तैयार है, बस निकालने से पहले एक लाख रुपये tax भेजिए।'},
-    {id:'paid',fn:sPaid,dur:5.0,min:3.5,pops:[[0.3,880,0.1]],chimes:[1.2],impacts:[[2.4,0.8,14]],
+    {id:'paid',fn:sPaid,dur:5.0,min:3.5,pops:[[0.3,880,0.1]],chimes:[0.9],impacts:[[1.7,0.8,14]],
      vo:'Aman भेज देता है। Profit कभी नहीं आता।'},
-    {id:'mule',fn:sMule,dur:10.0,min:8.0,chapter:[2,'HOW IT WORKS'],pops:[[0.9,600],[1.3,700],[2.8,740],[7.2,880]],typing:[[3.1,6.2]],
+    {id:'mule',fn:sMule,dur:10.0,min:8.0,chapter:[2,'HOW IT WORKS'],pops:[[0.9,600],[2.0,700],[3.4,740],[9.7,880]],typing:[[3.7,7.9]],
      vo:'पैसा पहुँचता है एक mule account में: ऐसा account जिससे fraud का पैसा, जान-बूझकर या अनजाने में, आगे भेजा जाता है। I4C इसे Layer one कहता है।'},
-    {id:'layers',fn:sLayers,dur:7.0,min:5.5,pops:[[1.3,620],[1.42,680],[1.54,740],[2.9,700],[3.02,760],[3.14,820],[3.26,880]],impacts:[[1.3,0.6,8]],
+    {id:'layers',fn:sLayers,dur:7.0,min:5.5,pops:[[1.6,620],[1.72,680],[1.84,740],[2.5,700],[2.62,760],[2.74,820],[2.86,880]],impacts:[[1.6,0.6,8]],
      vo:'वहाँ से तुरंत आगे: Layer two, Layer three, छोटी-छोटी रकमों में, ताकि trail उलझ जाए।'},
-    {id:'cash',fn:sCash,dur:8.5,min:7.0,pops:[[0.7,520],[1.7,560]],chimes:[3.3],impacts:[[5.8,0.7,12]],
+    {id:'cash',fn:sCash,dur:8.5,min:7.0,pops:[[0.6,520],[1.8,560]],chimes:[2.8],impacts:[[7.3,0.7,12]],
      vo:'फिर ATM से cash, या crypto। और कई accounts किराए पर लिए जाते हैं: महीने के पाँच हज़ार, बस account दे दो।'},
-    {id:'trail',fn:sTrail,dur:8.5,min:7.0,chapter:[3,'THE TRAIL'],pops:[[1.0,600],[2.7,740],[4.1,800],[5.1,860]],impacts:[[6.1,0.6,8]],
+    {id:'trail',fn:sTrail,dur:8.5,min:7.0,chapter:[3,'THE TRAIL'],pops:[[1.2,600],[3.1,740],[4.7,800],[5.9,860]],impacts:[[6.9,0.6,8]],
      vo:'लेकिन हर hop एक record छोड़ता है: UPI reference number, bank statement, KYC। इन्हीं से पूरी chain जुड़ती है।'},
-    {id:'hold',fn:sHold,dur:8.5,min:7.0,pops:[[0.6,880],[2.9,700],[3.7,760],[4.5,820]],impacts:[[5.6,0.8,14]],
+    {id:'hold',fn:sHold,dur:8.5,min:7.0,pops:[[0.6,880],[3.8,700],[4.4,760],[5.0,820]],impacts:[[6.9,0.8,14]],
      vo:'यहीं one nine three zero काम आता है। Complaint का ticket bank से bank जाता है, और जहाँ पैसा मिला, वहीं hold।'},
-    {id:'nums',fn:sNums,dur:9.0,min:6.0,pops:[[0.3,700],[4.4,740]],impacts:[[1.9,0.6,8]],
+    {id:'nums',fn:sNums,dur:9.0,min:6.0,pops:[[0.3,700],[5.4,740]],impacts:[[3.4,0.6,8]],
      vo:'June twenty twenty-six तक, ऐसे ग्यारह हज़ार करोड़ रुपये से ज़्यादा बचाए गए। और बत्तीस लाख Layer one mule accounts की जानकारी banks तक पहुँची।'},
-    {id:'law',fn:sLaw,dur:10.0,min:9.0,chapter:[4,'THE LAW'],pops:[[2.5,620],[5.1,700],[8.2,800]],
+    {id:'law',fn:sLaw,dur:10.0,min:9.0,chapter:[4,'THE LAW'],pops:[[3.0,620],[6.1,700],[10.2,800]],
      vo:'Law में दोनों पर केस बन सकता है। ठगने वाला: BNS Section three eighteen four। और जानते-बूझते ऐसा पैसा अपने account में लेने या रखने वाला: Section three seventeen two।'},
-    {id:'back',fn:sBack,dur:10.0,min:7.5,pops:[[0.5,740],[6.0,800]],typing:[[0.9,4.4]],impacts:[[6.8,0.5,8]],
+    {id:'back',fn:sBack,dur:10.0,min:7.5,pops:[[0.5,740],[8.9,800]],typing:[[0.9,4.9]],impacts:[[11.9,0.5,8]],
      vo:'Hold हुआ पैसा: BNSS Section one hundred seven में Magistrate proceeds of crime attach करके victims को लौटाने का आदेश दे सकता है। और RBI ने mule transactions पर hold के rules propose किए हैं।'},
-    {id:'act',fn:sAct,dur:12.0,min:11.0,chapter:[5,'DO THIS NOW'],pops:[[1.1,520,0.1],[1.52,560,0.1],[1.94,600,0.1],[2.66,700,0.1],[3.08,760,0.1],[3.5,820,0.1],[8.6,990,0.08]],
+    {id:'act',fn:sAct,dur:12.0,min:11.0,chapter:[5,'DO THIS NOW'],pops:[[2.0,520,0.1],[2.9,560,0.1],[3.8,600,0.1],[5.0,700,0.1],[5.9,760,0.1],[6.8,820,0.1],[11.1,990,0.08]],
      vo:'Screenshot ले लीजिए। पहले पैसे माँगे, या कोई account किराए पर माँगे, तो मना कीजिए। पैसा गया, तो तुरंत one nine three zero, फिर अपना bank। और ये family group में भेजिए।'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};
