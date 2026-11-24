@@ -46,5 +46,7 @@ After EP17, runs follow the weekly rhythm in `content/strategy.md` and pick from
   (BNS s.336, s.204; SC suo motu directions); account frozen without notice: your rights; already paid a scammer?
   the first-hour plan; why "CBI on a video call" is always fake; got money from a stranger? why your account may freeze;
   account freeze after a UPI refund scam; what to tell your bank when your account is frozen
+- Know Your Rights (from the 24 Nov trend scan): RBI's proposed "Stop Switch", Trusted Person approval and customer-set
+  limits (draft, 23 Nov 2026; comments till 14 Dec) — once RBI finalises it
 - Follow the Money: mule accounts: why renting your account gets it frozen (BNS abetment/conspiracy; PMLA exposure, verify)
 - Myth vs Fact / recap: five rules against digital arrest and account freezes
