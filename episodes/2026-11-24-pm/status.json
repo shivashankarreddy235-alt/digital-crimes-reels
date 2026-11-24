@@ -18,7 +18,9 @@
   "1a20c12cf8f95c1c",
   "1a20c50e3105f9e4"
  ],
- "handled_reply_ids": [],
+ "handled_reply_ids": [
+  "1a20c51b03224cf6"
+ ],
  "reminder_sent": false,
- "note": "Approved by the owner in the session (\"Post\") at 12:19 IST; goes live in the 8:00 PM slot."
+ "note": "Approved by the owner in the session (\"Post\") at 12:19 IST; goes live in the 8:00 PM slot. Owner's email reply \"POST\" (12:20 IST) duplicates the approval; no further action."
 }
