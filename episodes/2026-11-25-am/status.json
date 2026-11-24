@@ -13,8 +13,10 @@
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 110.9,
  "cover": "A: ₹5,000 FROM A STRANGER. / YOUR ACCOUNT: FROZEN. (alternatives B and C rendered for review)",
- "review_thread_id": null,
- "review_message_ids": [],
+ "review_thread_id": "1a20dd1fa503f727",
+ "review_message_ids": [
+  "1a20dd1fa503f727"
+ ],
  "handled_reply_ids": [],
  "reminder_sent": false
 }
