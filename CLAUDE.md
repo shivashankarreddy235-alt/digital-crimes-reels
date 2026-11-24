@@ -18,6 +18,8 @@ recordings or secrets in it.
 
 ## Content mix
 
+Owner's instruction, 23 Nov 2026: topics, series, audience, structure, the daily trend scan and the studio standard follow content/strategy.md (a copy of the owner's strategy doc, https://claude.ai/artifact/2JcjZyduicDnPrgrkHMV8U, which is the live version). The legal rules below still win.
+
 Follow `content/calendar.md`. The rhythm is two technology/forensics episodes, then one client topic:
 - **Technology**: how GPS, cell towers, SIM cards, IMEI, walkie-talkies, IP addresses, UPI, encryption etc.
   actually work, explained simply with diagrams.
