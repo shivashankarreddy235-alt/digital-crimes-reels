@@ -13,8 +13,10 @@
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 117.3,
  "cover": "A: YOUR MONEY DOESN'T VANISH. / IT SPLITS. (alternatives B and C rendered for review)",
- "review_thread_id": null,
- "review_message_ids": [],
+ "review_thread_id": "1a20c12cf8f95c1c",
+ "review_message_ids": [
+  "1a20c12cf8f95c1c"
+ ],
  "handled_reply_ids": [],
  "reminder_sent": false
 }
