@@ -1,4 +1,4 @@
-"""Digital Crimes reel renderer (engine v2).
+"""Digital Crimes reel renderer (engine v3; a scene's voice starts at its voLead, default 0.3 s, 0.7 s on chapter scenes).
 
   python3 engine/render.py vo     EP            # write EP/vo_request.json from the scenes' `vo` lines
   python3 engine/render.py stills EP t1 t2 ...  # look at frames before a full render
@@ -81,8 +81,8 @@ def open_page(p, ep):
     pg.wait_for_function("window.ready===true")
     vd = voice_plan(ep)
     if vd:
-        base = pg.evaluate("window.EPISODE.scenes.map(s=>[s.dur, s.min || s.dur])")
-        new = [max(mn, v + VO_LEAD + VO_TAIL) if v else d for (d, mn), v in zip(base, vd + [0] * len(base))]
+        base = pg.evaluate("window.EPISODE.scenes.map(s=>[s.dur, s.min || s.dur, s.voLead ?? (s.chapter ? 0.7 : 0.3)])")
+        new = [max(mn, v + lead + VO_TAIL) if v else d for (d, mn, lead), v in zip(base, vd + [0] * len(base))]
         pg.evaluate(f"applyDurations({json.dumps(new)})")
         pg.evaluate("setAiVoice(true)")
     return b, pg, vd
@@ -168,7 +168,7 @@ def build(ep):
         os.makedirs(mix, exist_ok=True)
         run(["ffmpeg", "-y", "-loglevel", "error", "-i", music, "-c:a", "aac", "-b:a", "160k", os.path.join(mix, "music.m4a")])
         req = {"request_hash": sha(os.path.join(ep, "vo_request.json")), "T": tl["T"],
-               "offsets": [round(s["start"] + VO_LEAD, 3) for s in tl["scenes"]]}
+               "offsets": [round(s["start"] + s.get("voLead", VO_LEAD), 3) for s in tl["scenes"]]}
         json.dump(req, open(os.path.join(mix, "mix_request.json"), "w"), indent=1)
         print("WAITING_FOR_MIX: commit + push mix/music.m4a and mix/mix_request.json, wait for mix/mixed.m4a, then run finish")
     else:

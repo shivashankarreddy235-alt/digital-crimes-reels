@@ -158,6 +158,38 @@ def pop(at, f=880, g=0.13):
     add(np.sin(2 * np.pi * np.cumsum(fr) / SR) * env_exp(n, 40), at, g)
 
 
+def sting(at, g=1.0):
+    """Chapter-card sting: short noise rise into an A-minor stab with a low thud (fits the Am score)."""
+    m = int(0.28 * SR)
+    tr = np.arange(m) / SR
+    add(bp(noise(0.28), 1500, 8000) * (tr / 0.28) ** 3, at - 0.28, 0.10 * g, pan=0.2)
+    d = 0.9
+    n = int(d * SR)
+    tt = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in (220.0, 440.0, 523.25, 659.25):
+        s += np.sign(np.sin(2 * np.pi * f * tt)) * 0.25 + 0.3 * np.sin(2 * np.pi * f * 2 * tt)
+    s = lp(s, 3200) * env_exp(n, 4.5)
+    add(s, at, 0.075 * g, pan=-0.25)
+    add(np.roll(s, 380), at, 0.06 * g, pan=0.35)
+    add(kick(95, 38, 0.6, 7), at, 0.5 * g)
+
+
+for at in A.get("sting", []):
+    sting(at)
+
+
+def chime(at, g=1.0):
+    """Generic notification chime (two soft sine notes, E6 then A6)."""
+    for k, f in enumerate((1318.5, 1760.0)):
+        n = int(0.35 * SR)
+        tt = np.arange(n) / SR
+        add((np.sin(2 * np.pi * f * tt) + 0.2 * np.sin(4 * np.pi * f * tt)) * env_exp(n, 9), at + k * 0.09, 0.07 * g, pan=0.15)
+
+
+for at in A.get("chime", []):
+    chime(at)
+
 for p in A.get("pops", []):
     pop(p[0], p[1] if len(p) > 1 else 880, p[2] if len(p) > 2 else 0.13)
 
