@@ -6,8 +6,8 @@
  "series": "Follow the Money",
  "audience": "Everyday UPI users (primary); students and job seekers (mule recruitment)",
  "language": "English text, Hindi voice",
- "status": "pending",
- "approved_at": null,
+ "status": "approved",
+ "approved_at": "2026-11-24T12:19:07+05:30",
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
@@ -18,5 +18,6 @@
   "1a20c12cf8f95c1c"
  ],
  "handled_reply_ids": [],
- "reminder_sent": false
+ "reminder_sent": false,
+ "note": "Approved by the owner in the session (\"Post\") at 12:19 IST; goes live in the 8:00 PM slot."
 }
