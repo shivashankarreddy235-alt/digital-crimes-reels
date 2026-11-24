@@ -1,0 +1,58 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "अनजान ग्राहक से पाँच हज़ार आए, और पूरा bank account freeze। क्या ये सही है? Courts ने जवाब दिया है।"
+  },
+  {
+   "scene": "scam",
+   "text": "Rekha की कपड़ों की दुकान है। एक ग्राहक दो साड़ियाँ लेता है, और UPI से पाँच हज़ार देता है। सब normal।"
+  },
+  {
+   "scene": "frozen",
+   "text": "दो हफ़्ते बाद payment fail। Bank कहता है: cyber complaint आई है, account पर debit freeze है। सारी रकम अटक गई।"
+  },
+  {
+   "scene": "how",
+   "text": "असल में वो पैसा किसी fraud victim का था। ठग ने उसे mule account से घुमाया, और Rekha से सामान खरीद लिया। उसके लिए ये cash-out था।"
+  },
+  {
+   "scene": "ticket",
+   "text": "Victim की one nine three zero complaint का ticket पैसे के पीछे bank से bank चला, और UPI reference से Rekha के account तक पहुँचा।"
+  },
+  {
+   "scene": "lien",
+   "text": "अब bank दो तरह से रोक सकता है। Lien: सिर्फ़ विवादित पाँच हज़ार। या blanket debit freeze: पूरा account, एक रुपया भी बाहर नहीं।"
+  },
+  {
+   "scene": "s106",
+   "text": "ऐसे notice अक्सर BNSS Section one hundred six में आते हैं: police शक वाली property seize कर सकती है, पर Magistrate को तुरंत report करना होता है।"
+  },
+  {
+   "scene": "courts",
+   "text": "High Courts कह रहे हैं: रकम रोको, पूरा account नहीं। नौ सौ अस्सी रुपये के लिए ढाई करोड़ का account रोका गया, तो court ने कहा: पूरा account सिर्फ़ exceptional cases में।"
+  },
+  {
+   "scene": "ap",
+   "text": "Andhra Pradesh High Court ने एक हज़ार की UPI sale पर रुके account को illegal बताया: दुकानदार हर ग्राहक की जाँच नहीं कर सकता।"
+  },
+  {
+   "scene": "notacc",
+   "text": "असली sale का पैसा लेना अपने आप में अपराध नहीं। BNS Section three seventeen two में ज़रूरी है कि आप जानते हों, या मानने की वजह हो, कि पैसा ठगी का है।"
+  },
+  {
+   "scene": "griev",
+   "text": "और MHA के SOP में grievance का रास्ता है: bank सात दिन में आपकी शिकायत portal पर डाले, और जाँच अधिकारी पंद्रह दिन में फ़ैसला करे।"
+  },
+  {
+   "scene": "act",
+   "text": "Screenshot ले लीजिए। हर sale का bill और UPI reference रखिए। Account रुके, तो bank से लिखित में पूछिए: कौन सी complaint, कितनी रकम। फिर grievance और proof। और ये अपने व्यापारी group में भेजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": ""
+  }
+ ]
+}
