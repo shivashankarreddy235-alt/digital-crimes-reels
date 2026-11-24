@@ -1,0 +1,58 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "आपका पैसा गायब नहीं होता। बँट जाता है। आख़िर तक देखिए, ये रुकता कैसे है।"
+  },
+  {
+   "scene": "scam",
+   "text": "Aman को part-time job का message आता है: profit तैयार है, बस निकालने से पहले एक लाख रुपये tax भेजिए।"
+  },
+  {
+   "scene": "paid",
+   "text": "Aman भेज देता है। Profit कभी नहीं आता।"
+  },
+  {
+   "scene": "mule",
+   "text": "पैसा पहुँचता है एक mule account में: ऐसा account जिससे fraud का पैसा, जान-बूझकर या अनजाने में, आगे भेजा जाता है। I4C इसे Layer 1 कहता है।"
+  },
+  {
+   "scene": "layers",
+   "text": "वहाँ से तुरंत आगे: Layer 2, Layer 3, छोटी-छोटी रकमों में, ताकि trail उलझ जाए।"
+  },
+  {
+   "scene": "cash",
+   "text": "फिर ATM से cash, या crypto। और कई accounts किराए पर लिए जाते हैं: महीने के पाँच हज़ार, बस account दे दो।"
+  },
+  {
+   "scene": "trail",
+   "text": "लेकिन हर hop एक record छोड़ता है: UPI reference number, bank statement, KYC। इन्हीं से पूरी chain जुड़ती है।"
+  },
+  {
+   "scene": "hold",
+   "text": "यहीं one nine three zero काम आता है। Complaint का ticket bank से bank जाता है, और जहाँ पैसा मिला, वहीं hold।"
+  },
+  {
+   "scene": "nums",
+   "text": "June twenty twenty-six तक, ऐसे ग्यारह हज़ार करोड़ रुपये से ज़्यादा बचाए गए। और बत्तीस लाख Layer 1 mule accounts की जानकारी banks तक पहुँची।"
+  },
+  {
+   "scene": "law",
+   "text": "Law में दोनों पर केस बन सकता है। ठगने वाला: BNS Section three eighteen four। और जानते-बूझते ऐसा पैसा अपने account में लेने या रखने वाला: Section three seventeen two।"
+  },
+  {
+   "scene": "back",
+   "text": "Hold हुआ पैसा: BNSS Section one hundred seven में Magistrate proceeds of crime attach करके victims को लौटाने का आदेश दे सकता है। और RBI ने mule transactions पर hold के rules propose किए हैं।"
+  },
+  {
+   "scene": "act",
+   "text": "Screenshot ले लीजिए। पहले पैसे माँगे, या कोई account किराए पर माँगे, तो मना कीजिए। पैसा गया, तो तुरंत one nine three zero, फिर अपना bank। और ये family group में भेजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": ""
+  }
+ ]
+}

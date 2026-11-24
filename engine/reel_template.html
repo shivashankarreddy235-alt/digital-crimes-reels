@@ -337,7 +337,7 @@ function notificationBanner(x,y,w,o={}){const fs=o.size||33,L=wrap(o.body||'',w-
 
 // ---------- money-flow network ----------
 // spec={nodes:[{id,layer,x(0..1),label,amt,kind:'victim'|'mule'|'atm'|'crypto'|'cheque'|'gold',from}], layerT:[arrival time per layer],
-//   layerNames:[...], hold:{ids,t,label}, timer:{t0,scale,label}, trace:{ids,t}, boxW, boxH}
+//   layerNames:[...], hold:{ids,t,label}, timer:{t0,scale,base,label}, trace:{ids,t}, boxW, boxH}
 // Money arrives at layer i at layerT[i] (+0.12 s per node); amounts count up; HOLD nodes stop the flow out of them.
 function moneyGraph(X,Y,Wd,Hd,spec,lt,o={}){const nL=Math.max(...spec.nodes.map(n=>n.layer))+1,dy=Hd/(nL-1),byId={},idx={};
   spec.nodes.forEach(n=>{idx[n.layer]=(idx[n.layer]||0);n._i=idx[n.layer]++;n._x=X+n.x*Wd;n._y=Y+n.layer*dy;n._t=(n.t??spec.layerT[n.layer])+n._i*0.12;byId[n.id]=n;});
@@ -361,7 +361,7 @@ function moneyGraph(X,Y,Wd,Hd,spec,lt,o={}){const nL=Math.max(...spec.nodes.map(
     else{const ic={atm:iATM,crypto:iCrypto,cheque:iCheque,gold:iGold}[kind];if(ic)ic(x,y-14,24,c);txt(n.label,x,y+36,{size:fit(n.label,700,BODY,w-16,27),weight:800,ls:1,align:'center',color:c});}
     ctx.restore();if(H0)stamp(x+w*0.32,y-bh*0.62,spec.hold.label||'HOLD',COL.green,p(lt,spec.hold.t,0.35),-0.12,30);});
   // timer
-  if(spec.timer&&lt>=spec.timer.t0){const el=Math.max(0,(lt-spec.timer.t0)*(spec.timer.scale||60)),stopAt=spec.timer.stop??1e9;const s=Math.min(el,(stopAt-spec.timer.t0)*(spec.timer.scale||60));
+  if(spec.timer&&lt>=spec.timer.t0){const sc=spec.timer.scale||60,el=Math.max(0,(lt-spec.timer.t0)*sc),stopAt=spec.timer.stop??1e9;const s=Math.min(el,(stopAt-spec.timer.t0)*sc)+(spec.timer.base||0);
     const hh=Math.floor(s/3600),mm=Math.floor(s/60)%60,ss=Math.floor(s)%60,str=[hh,mm,ss].map(v=>String(v).padStart(2,'0')).join(':');
     ctx.save();const tx=o.timerX??X+Wd,ty=o.timerY??Y-bh/2-20;txt(spec.timer.label||'TIME SINCE PAYMENT',tx,ty-44,{size:20,weight:800,ls:2,color:COL.dim,align:'right'});
     txt(str,tx,ty,{size:44,weight:800,font:MONO,color:COL.red,align:'right',glow:14});ctx.restore();}}
