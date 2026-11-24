@@ -468,10 +468,10 @@ function frost(x,y,w,h,k,seed=7){if(k<=0)return;ctx.save();rr(x,y,w,h,26);ctx.cl
 function acctCard(x,y,w,h,o={}){const a=o.alpha??1;if(a<=0)return;const k=o.k??1,mode=o.mode||'ok';ctx.save();ctx.globalAlpha*=a;
   card(x,y,w,h,mode==='freeze'&&k>0?ICE:mode==='lien'?AMB:CY);iBank(x+64,y+70,30,COL.dim);
   txt(o.title||'Current A/c ••••4417',x+112,y+82,{size:fit(o.title||'Current A/c ••••4417',700,MONO,w-150,30),weight:700,font:MONO,color:COL.white});
-  const bal=o.bal??340000;txt('₹'+inr(bal),x+48,y+200,{size:fit('₹'+inr(bal),900,DISP,w-96,96),weight:900,font:DISP,color:mode==='freeze'&&k>0.5?ICE:COL.white});
-  txt(o.label||'Balance · illustrative',x+48,y+244,{size:26,weight:500,color:COL.dim});
+  const bal=o.bal??340000;txt('₹'+inr(bal),x+48,y+190,{size:fit('₹'+inr(bal),900,DISP,w-96,96),weight:900,font:DISP,color:mode==='freeze'&&k>0.5?ICE:COL.white});
+  txt(o.label||'Balance · illustrative',x+48,y+232,{size:26,weight:500,color:COL.dim});
   // balance bar
-  const bx=x+48,by=y+h-86,bw=w-96,bh=42;rr(bx,by,bw,bh,12);ctx.fillStyle='rgba(53,242,154,0.25)';ctx.fill();
+  const bx=x+48,by=y+Math.max(258,h-92),bw=w-96,bh=40;rr(bx,by,bw,bh,12);ctx.fillStyle='rgba(53,242,154,0.25)';ctx.fill();
   if(mode==='lien'){const lw=Math.max(90,bw*0.12)*eOut(clamp(k));if(lw>1){ctx.save();rr(bx+bw-lw,by,lw,bh,12);ctx.fillStyle='rgba(255,182,39,0.85)';ctx.fill();ctx.restore();iLock(bx+bw-lw/2,by+bh/2-6,16,'#05070d');}
     txt('Usable',bx+12,by+bh+34,{size:26,weight:700,color:GRN,alpha:clamp(k)});txt('Held: ₹5,000',bx+bw,by+bh+34,{size:26,weight:800,color:AMB,align:'right',alpha:clamp(k)});}
   if(mode==='freeze'){frost(x,y,w,h,k,o.seed||11);const e=eOut(p(k,0.55,0.45));if(e>0){ctx.save();ctx.globalAlpha*=e;ctx.fillStyle='rgba(3,5,11,0.7)';ctx.beginPath();ctx.arc(x+w-110,y+130,66,0,7);ctx.fill();iLock(x+w-110,y+124,44,ICE);ctx.restore();
@@ -497,18 +497,18 @@ function billSlip(x,y,w,h,a,rot=0.06){if(a<=0)return;ctx.save();ctx.globalAlpha*
 // one flow box: label + sub; c = colour
 function fbox(x,y,w,h,label,subl,c,a=1,o={}){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;const sc=0.85+0.15*a;ctx.translate(x,y);ctx.scale(sc,sc);ctx.translate(-x,-y);
   rr(x-w/2,y-h/2,w,h,18);ctx.fillStyle=o.fill||'rgba(14,22,46,0.96)';ctx.fill();stroke(c,o.lw||3);if(o.glow){ctx.shadowColor=c;ctx.shadowBlur=o.glow;}ctx.stroke();ctx.shadowBlur=0;
-  txt(label,x,y-(subl?6:-10),{size:fit(label,800,BODY,w-24,o.size||30),weight:800,align:'center',color:c,ls:1});
-  if(subl)txt(subl,x,y+32,{size:fit(subl,600,BODY,w-24,26),weight:600,align:'center',color:COL.white});ctx.restore();}
+  txt(label,x,y-(subl?8:-10),{size:fit(label,800,BODY,w-24,o.size||32),weight:800,align:'center',color:c,ls:1});
+  if(subl)txt(subl,x,y+36,{size:fit(subl,600,BODY,w-24,30),weight:600,align:'center',color:COL.white});ctx.restore();}
 // the money path used in scenes 4–5
-const FX={v:[540,560],m:[540,800],shop:[270,1070],atm:[540,1070],a83:[810,1070]};
+const FX={v:[540,560],m:[540,800],shop:[235,1060],atm:[540,1060],a83:[845,1060]};
 function flow(lt,o={}){const t=o.t||{v:0,m:0,shop:0,atm:0,a83:0},hi=o.hi||{};const A=id=>eOut(p(lt,t[id],0.3));
-  const leg=(f,to,t0,c)=>{const k=eOut(p(lt,t0-0.35,0.4));if(k<=0)return;const[x0,y0]=FX[f],[x1,y1]=FX[to];arrowTo(x0,y0+52,x1,y1-56,c||'rgba(255,51,88,0.75)',k,4);};
+  const leg=(f,to,t0,c)=>{const k=eOut(p(lt,t0-0.35,0.4));if(k<=0)return;const[x0,y0]=FX[f],[x1,y1]=FX[to];arrowTo(x0,y0+58,x1,y1-62,c||'rgba(255,51,88,0.75)',k,4);};
   leg('v','m',t.m,o.legC&&o.legC.m);leg('m','shop',t.shop,o.legC&&o.legC.shop);leg('m','atm',t.atm,o.legC&&o.legC.atm);leg('m','a83',t.a83,o.legC&&o.legC.a83);
-  fbox(...FX.v,400,104,'FRAUD VICTIM','lost ₹50,000 · elsewhere',CY,A('v'),{glow:hi.v});
-  fbox(...FX.m,400,104,'MULE A/c ••21','scammer-controlled',RED,A('m'),{glow:hi.m});
-  fbox(...FX.shop,250,110,o.shopLabel||'YOUR SHOP','₹5,000 · 2 sarees',o.shopC||GRN,A('shop'),{glow:hi.shop,lw:hi.shop?5:3});
-  fbox(...FX.atm,230,110,'ATM CASH','₹20,000',RED,A('atm')*(o.dimOthers?0.35:1));
-  fbox(...FX.a83,230,110,'A/c ••83','₹25,000',RED,A('a83')*(o.dimOthers?0.35:1));}
+  fbox(...FX.v,440,116,'FRAUD VICTIM','lost ₹50,000 · elsewhere',CY,A('v'),{glow:hi.v});
+  fbox(...FX.m,440,116,'MULE A/c ••21','scammer-controlled',RED,A('m'),{glow:hi.m});
+  fbox(...FX.shop,270,120,o.shopLabel||'YOUR SHOP','₹5,000 · 2 sarees',o.shopC||GRN,A('shop'),{glow:hi.shop,lw:hi.shop?5:3});
+  fbox(...FX.atm,270,120,'ATM CASH','₹20,000',RED,A('atm')*(o.dimOthers?0.35:1));
+  fbox(...FX.a83,270,120,'A/c ••83','₹25,000',RED,A('a83')*(o.dimOthers?0.35:1));}
 // screenshot card with custom sections: o.sections=[[label,items,colour,'x'|'check',t0]]
 function listCard(x,y,w,h,o={}){const lt=o.lt||0,st=o.step??0.5;if((o.alpha??1)<=0)return;ctx.save();ctx.globalAlpha*=(o.alpha??1);card(x,y,w,h,COL.white);
   const br=46;stroke(COL.white,6);for(const[cx,cy,sx,sy]of[[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]]){ctx.beginPath();ctx.moveTo(cx-sx*8,cy+sy*br);ctx.lineTo(cx-sx*8,cy-sy*8);ctx.lineTo(cx+sx*br,cy-sy*8);ctx.stroke();}
@@ -525,6 +525,10 @@ function chipRow(lt,y,chips){ctx.save();ctx.font=font(800,28);ctx.letterSpacing=
     if(e>0){ctx.save();const sc=1+0.25*(1-e);ctx.translate(x+w/2,y);ctx.scale(sc,sc);pill(0,0,l,c,{size:28,ls:1,alpha:e,fillA:'33',weight:800});ctx.restore();}
     if(i<chips.length-1){const k=p(lt,chips[i+1][2]-0.3,0.3);if(k>0)arrowTo(x+w+8,y,x+w+gap-8,y,COL.dim,k,3);}x+=w+gap;});}
 
+// chips stacked vertically with down arrows
+function chipCol(lt,y0,gap,chips){chips.forEach(([l,c,t0],i)=>{const e=eOut(p(lt,t0,0.3)),y=y0+i*gap;
+    if(e>0){ctx.save();const sc=1+0.25*(1-e);ctx.translate(540,y);ctx.scale(sc,sc);pill(0,0,l,c,{size:34,ls:1,alpha:e,fillA:'33',weight:800});ctx.restore();}
+    if(i<chips.length-1){const k=p(lt,chips[i+1][2]-0.3,0.3);if(k>0)arrowTo(540,y+34,540,y+gap-34,COL.dim,k,3);}});}
 // 1 — hook
 function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.9,0.3));
   if(a1>0)txt('₹5,000 from a stranger.',540,450+(1-a1)*24,{size:fit('₹5,000 from a stranger.',900,DISP,940,100),weight:900,font:DISP,align:'center',alpha:a1});
@@ -548,25 +552,26 @@ function sFrozen(lt){tag('TWO WEEKS LATER',330,0.05,lt,COL.dim);
 // 4 — how it got there (chapter 2)
 function sHow(lt){head('Whose money was it?',400,0.8,lt,{size:84});
   flow(lt,{t:{v:1.2,m:2.6,shop:3.7,atm:4.4,a83:4.7}});
-  sub('The “customer” paid with stolen money. For him, your goods were the cash-out.',1240,eOut(p(lt,5.6,0.4)),{color:COL.white,weight:700,size:32,maxW:940});
-  sub('Pattern reported: Telangana Today, Jun 2026',1300,eOut(p(lt,5.9,0.4)),{size:26});
+  sub('The “customer” paid with stolen money.',1220,eOut(p(lt,5.6,0.4)),{color:COL.white,weight:700,size:38});
+  sub('For him, your goods were the cash-out.',1272,eOut(p(lt,5.8,0.4)),{color:COL.white,weight:700,size:38});
+  sub('Pattern reported: Telangana Today, Jun 2026',1332,eOut(p(lt,6.0,0.4)),{size:28});
   kineticCaption(lt,[[1.2,'A FRAUD VICTIM',CY],[2.7,'MULE ACCOUNT',RED],[3.8,'BUYS FROM YOUR SHOP',AMB]]);}
 // 5 — the ticket follows the money (chapter 3)
 function sTicket(lt){head('The complaint follows the money',400,0.8,lt,{size:70});
-  const hold=p(lt,4.6,0.3);flow(lt,{hi:{v:lt>1.0&&lt<2.6?26:0,shop:hold>0?30:0},shopC:hold>0?AMB:GRN,shopLabel:hold>0?'YOUR SHOP · HOLD':'YOUR SHOP',
+  const hold=p(lt,4.6,0.3);flow(lt,{hi:{v:lt>1.0&&lt<2.6?26:0,shop:hold>0?30:0},shopC:hold>0?AMB:GRN,
     legC:{m:lt>1.8?GRN:null,shop:lt>3.0?GRN:null}});
-  const ta=eOut(p(lt,1.0,0.3));if(ta>0)pill(810,505,'1930 COMPLAINT',GRN,{size:26,ls:2,alpha:ta,fillA:'33'});
-  [[FX.v,FX.m,1.6],[FX.m,FX.shop,2.8]].forEach(([a,b,t0])=>{const k=p(lt,t0,0.8);if(k>0&&k<1)coin(a[0],a[1]+52,b[0],b[1]-56,eInOut(k),GRN,14);});
-  const ra=eOut(p(lt,3.3,0.3));if(ra>0)pill(250,940,'UPI REF XXXXXXXX7302',AMB,{size:24,alpha:ra,fillA:'33'});
-  stamp(270,1180,'HOLD',AMB,hold,-0.1,44);
+  const ta=eOut(p(lt,1.0,0.3));if(ta>0)pill(845,680,'1930 COMPLAINT',GRN,{size:26,ls:2,alpha:ta,fillA:'33'});
+  [[FX.v,FX.m,1.6],[FX.m,FX.shop,2.8]].forEach(([a,b,t0])=>{const k=p(lt,t0,0.8);if(k>0&&k<1)coin(a[0],a[1]+58,b[0],b[1]-62,eInOut(k),GRN,14);});
+  const ra=eOut(p(lt,3.3,0.3));if(ra>0)pill(250,905,'UPI REF XXXXXXXX7302',AMB,{size:26,alpha:ra,fillA:'33'});
+  stamp(235,1185,'HOLD',AMB,hold,-0.1,48);
   kineticCaption(lt,[[1.0,'1930 COMPLAINT',GRN],[2.0,'BANK → BANK'],[3.4,'UPI REF LINKS YOU',AMB]]);}
 // 6 — lien vs blanket freeze
 function sLien(lt){head('Two ways to hold it',400,0.05,lt,{size:84});
   const a=eOut(p(lt,0.8,0.4));if(a>0){pill(130,500,'LIEN',AMB,{size:30,ls:3,align:'left',alpha:a,fillA:'33'});txt('only the disputed amount',300,511,{size:32,weight:700,color:COL.white,alpha:a});}
-  acctCard(90,540,900,330,{mode:'lien',k:p(lt,1.4,0.6),alpha:a,title:'Current A/c ••••4417'});
-  const b=eOut(p(lt,3.8,0.4));if(b>0){pill(130,930,'BLANKET DEBIT FREEZE',ICE,{size:30,ls:3,align:'left',alpha:b,fillA:'33'});}
-  acctCard(90,970,900,330,{mode:'freeze',k:p(lt,4.2,1.2),alpha:b,title:'Current A/c ••••4417',seed:31});
-  sub('Same ₹5,000. Very different damage.',1380,eOut(p(lt,6.4,0.4)),{color:COL.white,weight:700,size:38});
+  acctCard(90,535,900,360,{mode:'lien',k:p(lt,1.4,0.6),alpha:a,title:'Current A/c ••••4417'});
+  const b=eOut(p(lt,3.8,0.4));if(b>0){pill(130,950,'BLANKET DEBIT FREEZE',ICE,{size:30,ls:3,align:'left',alpha:b,fillA:'33'});}
+  acctCard(90,990,900,360,{mode:'freeze',k:p(lt,4.2,1.2),alpha:b,title:'Current A/c ••••4417',seed:31});
+  sub('Same ₹5,000. Very different damage.',1420,eOut(p(lt,6.4,0.4)),{color:COL.white,weight:700,size:38});
   kineticCaption(lt,[[1.0,'LIEN: ₹5,000 ONLY',AMB],[4.0,'BLANKET FREEZE: ALL OF IT',ICE]]);}
 // 7 — BNSS s.106 (chapter 4)
 const S106=[['Any police officer may ',0],['seize any property',1],[' which may be alleged or suspected to have been stolen, or which may be found under circumstances which ',0],['create suspicion of the commission of any offence',1],['.',0]];
@@ -584,10 +589,10 @@ function sCourts(lt){head('Freeze the amount, not the account',400,0.05,lt,{size
 // 9 — AP High Court: vendors can't vet every buyer
 const APQ=[['“',0],['the vendor cannot verify the credentials',1],[' of such individual”',0]];
 function sAP(lt){head('A shopkeeper isn’t a detective',400,0.05,lt,{size:76});
-  const a=eOut(p(lt,0.5,0.4));if(a>0){ctx.save();ctx.translate(0,(1-a)*50);lawCard(90,470,900,380,'ANDHRA PRADESH HIGH COURT','22 Jun 2026 · a trader’s account frozen over a UPI sale',APQ,(lt-3.0)*30,AMB,a,{size:44,lh:60});ctx.restore();}
-  chipRow(lt,960,[['₹1,000 UPI SALE',CY,1.2],['₹8.26 LAKH FROZEN',ICE,2.0],['FREEZE ILLEGAL',GRN,5.4]]);
-  sub('The court told the bank to defreeze the account.',1080,eOut(p(lt,6.0,0.4)),{color:COL.white,weight:700,size:34});
-  stamp(540,1230,'DEFREEZE',GRN,p(lt,6.4,0.35),-0.08,56);
+  const a=eOut(p(lt,0.5,0.4));if(a>0){ctx.save();ctx.translate(0,(1-a)*50);lawCard(90,470,900,310,'ANDHRA PRADESH HIGH COURT','22 Jun 2026 · a trader’s account frozen over a UPI sale',APQ,(lt-3.0)*30,AMB,a,{size:44,lh:60});ctx.restore();}
+  chipCol(lt,850,92,[['₹1,000 UPI SALE',CY,1.2],['₹8.26 LAKH ACCOUNT FROZEN',ICE,2.0],['FREEZE DECLARED ILLEGAL',GRN,5.4]]);
+  sub('The court told the bank to defreeze the account.',1170,eOut(p(lt,6.0,0.4)),{color:COL.white,weight:700,size:34});
+  stamp(540,1300,'DEFREEZE',GRN,p(lt,6.4,0.35),-0.08,56);
   kineticCaption(lt,[[1.2,'₹1,000 UPI SALE'],[3.2,'CAN’T VERIFY EVERY BUYER',AMB],[5.4,'FREEZE: ILLEGAL',GRN]]);}
 // 10 — receiving is not a crime by itself
 const S317=[['Whoever ',0],['dishonestly',1],[' receives or retains any stolen property, ',0],['knowing or having reason to believe',1],[' the same to be stolen property…',0]];
@@ -606,10 +611,11 @@ function sGriev(lt){head('Your grievance route',400,0.05,lt,{size:84});
   step(90,690,900,190,2,'7 days','Bank uploads it to the NCRP grievance module',AMB,eOut(p(lt,2.6,0.4)));
   step(90,910,900,190,3,'15 days','The investigating officer decides',GRN,eOut(p(lt,5.0,0.4)));
   sub('No reply? District and State grievance officers come next.',1170,eOut(p(lt,6.6,0.4)),{color:COL.white,weight:700,size:32});
-  sub('MHA SOP for NCRP-CFCFRMS, 2026, para 10.2 (as quoted by the Allahabad High Court, Aug 2026)',1225,eOut(p(lt,6.8,0.4)),{size:24,maxW:960});
+  sub('Source: MHA SOP for NCRP-CFCFRMS (2026), para 10.2,',1228,eOut(p(lt,6.8,0.4)),{size:27});
+  sub('as quoted by the Allahabad High Court, Aug 2026',1266,eOut(p(lt,6.8,0.4)),{size:27});
   kineticCaption(lt,[[0.8,'GRIEVANCE',CY],[2.7,'7 DAYS: BANK UPLOADS',AMB],[5.1,'15 DAYS: OFFICER DECIDES',GRN]]);}
 // 12 — do this now (chapter 5)
-function sAct(lt){listCard(90,330,900,1040,{lt,step:0.75,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),sections:[
+function sAct(lt){listCard(90,390,900,820,{lt,step:0.75,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),sections:[
   ['KEEP READY',['A bill for every UPI sale','The UPI reference number','Delivery proof or the chat'],CY,'check',1.6],
   ['IF IT’S FROZEN',['Ask your bank in writing: which complaint, which police station, how much','Raise a grievance; send your proof to the investigating officer','Whole account held for a small sum? Get legal advice'],GRN,'check',4.4]]});
   kineticCaption(lt,[[10.6,'SEND THIS TO YOUR TRADERS’ GROUP',CY]],{sticky:true});}
@@ -620,7 +626,7 @@ window.EPISODE={
   voice:'Hindi',            // voiceover language; on-screen text is always English
   aiVoice:false,            // set by render.py when the AI voice track is used
   series:'Know Your Rights',ep:5,
-  laws:'BNSS 2023 (s.106) · BNS 2023 (s.317) · MHA SOP on NCRP-CFCFRMS (2026)',
+  laws:'BNSS 2023 (s.106) · BNS 2023 (s.317)',
   cover:[0,2.6],
   coverSpec:{lines:[['₹5,000 FROM A STRANGER.',COL.white],['YOUR ACCOUNT: FROZEN.',ICE]],
     person:'people/black_suit_glasses.png',
