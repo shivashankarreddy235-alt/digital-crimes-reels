@@ -6,8 +6,8 @@
  "series": "Know Your Rights",
  "audience": "Shopkeepers, freelancers and UPI receivers (primary); law learners",
  "language": "English text, Hindi voice",
- "status": "pending",
- "approved_at": null,
+ "status": "approved",
+ "approved_at": "2026-11-24T20:51:36+05:30",
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
@@ -15,10 +15,12 @@
  "cover": "A: ₹5,000 FROM A STRANGER. / YOUR ACCOUNT: FROZEN. (alternatives B and C rendered for review)",
  "review_thread_id": "1a20dd1fa503f727",
  "review_message_ids": [
-  "1a20dd1fa503f727"
+  "1a20dd1fa503f727",
+  "1a20e25fe038a64f"
  ],
  "handled_reply_ids": [
   "1a20e1e4d4a9792d"
  ],
- "reminder_sent": false
+ "reminder_sent": false,
+ "note": "Approved by the owner's email reply \"POST\" (20:43 IST, 24 Nov); goes live in the 7:00 AM slot on 25 Nov."
 }
