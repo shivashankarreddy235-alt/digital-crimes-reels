@@ -527,9 +527,9 @@ function sScam(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.8,0.3))});sub('Meera
   chatThread(540,920,600,920,{lt,alpha:eOut(p(lt,0.85,0.3)),name:'Rajiv Sir (MD)',status:'online',msgs:[
     {t:1.6,side:'in',text:'Meera, are you in office?',time:'3:02 PM'},
     {t:2.5,side:'out',text:'Yes sir',time:'3:02 PM'},
-    {t:3.8,side:'in',text:'Confidential acquisition. Send ₹48,50,000 to this account before 4 PM.',time:'3:03 PM'},
-    {t:5.6,side:'in',text:'I’m in a board meeting. Can’t take calls. Don’t discuss with anyone.',time:'3:04 PM'}]});
-  kineticCaption(lt,[[3.9,'URGENT',RED],[5.7,'SECRET',AMB],[6.9,'“DON’T CALL ME”',RED]]);}
+    {t:3.6,side:'in',text:'Confidential acquisition. Send ₹48,50,000 to this account before 4 PM.',time:'3:03 PM'},
+    {t:6.0,side:'in',text:'I’m in a board meeting. Can’t take calls. Don’t discuss with anyone.',time:'3:04 PM'}]});
+  kineticCaption(lt,[[3.7,'URGENT',RED],[6.1,'SECRET',AMB],[7.4,'“DON’T CALL ME”',RED]]);}
 // 3 — the money goes
 function sSent(lt){notificationBanner(140,360,800,{app:'Bank',title:'₹48,50,000 debited',body:'RTGS to A/c ••7730 · Ref XXXXXX4821 · 3:41 PM',k:p(lt,0.4,0.4),glyph:'rupee',c:RED});
   tag('NEXT MORNING',720,2.0,lt,COL.dim);
@@ -539,14 +539,14 @@ function sSent(lt){notificationBanner(140,360,800,{app:'Bank',title:'₹48,50,00
 // 4 — how the real account was taken (chapter 2)
 function sHow(lt){head('How the real account was taken',400,0.8,lt,{size:70});
   const za=eOut(p(lt,1.2,0.4));zipIcon(200,580,84,AMB,'',za);if(za>0){txt('RBI_Notice.zip',200,712,{size:26,weight:700,font:MONO,align:'center',alpha:za});txt('a fake “RBI / MCA”',200,756,{size:28,weight:700,color:AMB,align:'center',alpha:za});txt('notice',200,792,{size:28,weight:700,color:AMB,align:'center',alpha:za});}
-  const ma=eOut(p(lt,2.3,0.4)),inf=clamp((lt-4.2)/0.8);
-  if(za>0)arrowTo(270,600,410,690,COL.dim,eOut(p(lt,2.0,0.4)),4);
+  const ma=eOut(p(lt,3.0,0.4)),inf=clamp((lt-5.8)/0.8);
+  if(za>0)arrowTo(270,600,410,690,COL.dim,eOut(p(lt,2.6,0.4)),4);
   monitor(680,860,520,320,{alpha:ma,label:'MD’s office PC (Windows)',infected:inf,lt,pillText:inf>0.5?'SESSION HIJACKED':'LOGGED IN',pillC:inf>0.5?RED:GRN});
-  const ea=eOut(p(lt,3.4,0.3));if(ea>0){pill(200,880,'.exe',RED,{size:30,alpha:ea,fillA:'33'});pill(200,960,'.dll',RED,{size:30,alpha:eOut(p(lt,3.6,0.3)),fillA:'33'});}
-  if(inf>0.3)stamp(680,860,'MALWARE',RED,p(lt,4.6,0.35),-0.1,54);
-  const kk=p(lt,6.0,1.0);if(kk>0&&kk<1){const q=eInOut(kk);keyIcon(lerp(680,540,q),lerp(860,1250,q),40,AMB);}
-  laptop(540,1250,340,{alpha:eOut(p(lt,6.6,0.4)),label:'Scammer: logged in as the MD',lt});
-  kineticCaption(lt,[[1.3,'FAKE RBI NOTICE',AMB],[2.5,'WHATSAPP WEB: LOGGED IN',GRN],[4.4,'MALWARE STEALS THE SESSION',RED]],{y:1500});}
+  const ea=eOut(p(lt,4.6,0.3));if(ea>0){pill(200,880,'.exe',RED,{size:30,alpha:ea,fillA:'33'});pill(200,960,'.dll',RED,{size:30,alpha:eOut(p(lt,4.8,0.3)),fillA:'33'});}
+  if(inf>0.3)stamp(680,860,'MALWARE',RED,p(lt,6.2,0.35),-0.1,54);
+  const kk=p(lt,7.4,1.0);if(kk>0&&kk<1){const q=eInOut(kk);keyIcon(lerp(680,540,q),lerp(860,1250,q),40,AMB);}
+  laptop(540,1250,340,{alpha:eOut(p(lt,8.0,0.4)),label:'Scammer: logged in as the MD',lt});
+  kineticCaption(lt,[[1.3,'FAKE RBI NOTICE',AMB],[3.1,'WHATSAPP WEB: LOGGED IN',GRN],[6.0,'MALWARE STEALS THE SESSION',RED]],{y:1500});}
 // 5 — the takeover
 function sTake(lt){head('Now the scammer “is” the MD',400,0.05,lt,{size:72});
   const a=eOut(p(lt,0.4,0.4));if(a>0){ctx.save();ctx.globalAlpha*=a;const S=phoneFrame(250,800,300,520,{top:'#0e151d',bottom:'#0a0f15',time:'3:05'});chatUI(S.x+8,S.y+10,S.w-16,S.h-30,{title:'MD’s phone'});ctx.restore();
@@ -568,13 +568,13 @@ function sTwo(lt){head('Two disguises, one goal',400,0.05,lt,{size:80});
 const TRAIL={nodes:[{id:'co',layer:0,x:0.5,label:'COMPANY A/c',amt:104071924,kind:'victim'},
   {id:'m1',layer:1,x:0.14,label:'A/c ••41',from:'co'},{id:'m2',layer:1,x:0.5,label:'A/c ••58',from:'co'},{id:'m3',layer:1,x:0.86,label:'A/c ••93',from:'co'},
   {id:'c1',layer:2,x:0.14,label:'CASH',kind:'atm',from:'m1'},{id:'c2',layer:2,x:0.5,label:'CASH',kind:'atm',from:'m2'},{id:'c3',layer:2,x:0.86,label:'A/c ••17',from:'m3'}],
-  layerT:[1.2,2.4,3.6],layerNames:['','MULE ACCOUNTS (63 TRANSFERS)','CASH-OUT'],trace:{ids:['m2','c2'],t:5.4},boxW:210,boxH:96};
+  layerT:[1.2,2.4,3.6],layerNames:['','MULE ACCOUNTS (63 TRANSFERS)','CASH-OUT'],trace:{ids:['m2','c2'],t:4.0},boxW:210,boxH:96};
 function sTrail(lt){head('Follow the money',400,0.8,lt,{size:84});
-  moneyGraph(160,560,760,500,TRAIL,lt,{flowUntil:5.4});
-  const ba=eOut(p(lt,5.6,0.3));if(ba>0)pill(540,1190,'A BANK BRANCH FLAGS THE CASH WITHDRAWAL',AMB,{size:28,ls:1,alpha:ba,fillA:'33'});
-  stamp(540,1300,'5 ARRESTED',GRN,p(lt,7.0,0.35),-0.06,60);
-  sub('Mumbai case · Reported: Business Today, ThePrint (Jun–Jul 2026)',1390,eOut(p(lt,7.6,0.4)),{size:28});
-  sub('Allegations — not yet proved in court.',1432,eOut(p(lt,7.8,0.4)),{size:28,color:COL.white});
+  moneyGraph(160,560,760,500,TRAIL,lt,{flowUntil:4.0});
+  const ba=eOut(p(lt,4.2,0.3));if(ba>0)pill(540,1190,'A BANK BRANCH FLAGS THE CASH WITHDRAWAL',AMB,{size:28,ls:1,alpha:ba,fillA:'33'});
+  stamp(540,1300,'5 ARRESTED',GRN,p(lt,5.8,0.35),-0.06,60);
+  sub('Mumbai case · Reported: Business Today, ThePrint (Jun–Jul 2026)',1390,eOut(p(lt,6.8,0.4)),{size:28});
+  sub('Allegations — not yet proved in court.',1432,eOut(p(lt,7.0,0.4)),{size:28,color:COL.white});
   kineticCaption(lt,[[2.4,'MULE ACCOUNTS',RED],[3.7,'CASH-OUT',RED]],{y:1500,hold:2.0});}
 // 8 — tracing the malware
 function sI4C(lt){head('Tracing the malware',400,0.05,lt,{size:84});
@@ -597,16 +597,16 @@ function sLaw2(lt){head('And the IT Act',400,0.05,lt,{size:84});
   kineticCaption(lt,[[0.6,'s.66: MALWARE',CY],[3.5,'s.66D: PERSONATION',IND]],{y:1350});}
 // 11 — this week's I4C advisory
 function sAdv(lt){head('I4C’s warning, Nov 2026',400,0.05,lt,{size:80,color:CY});sub('WhatsApp Web advisory · reported 23 Nov 2026',456,eOut(p(lt,0.3,0.3)),{size:30});
-  step(90,500,900,190,1,'Log out after every session','Closing the tab is not logging out',CY,eOut(p(lt,1.0,0.4)));
-  step(90,720,900,190,2,'No official work on it','No payments or confidential files on it',AMB,eOut(p(lt,2.8,0.4)));
-  step(90,940,900,190,3,'No shared or public PCs','Not in cyber cafés, kiosks or borrowed laptops',GRN,eOut(p(lt,4.4,0.4)));
-  infoCard(90,1170,900,230,'SEBI, 17 JUL 2026','Never transfer funds on WhatsApp or social-media instructions alone.',RED,eOut(p(lt,6.2,0.4)),{size:34});
-  kineticCaption(lt,[[1.1,'LOG OUT EVERY TIME',CY],[2.9,'NO OFFICIAL WORK',AMB]],{y:1490,hold:2.4});}
+  step(90,500,900,190,1,'No official work on it','No payments or confidential files on it',AMB,eOut(p(lt,1.0,0.4)));
+  step(90,720,900,190,2,'Log out after every session','Closing the tab is not logging out',CY,eOut(p(lt,3.4,0.4)));
+  step(90,940,900,190,3,'No shared or public PCs','Not in cyber cafés, kiosks or borrowed laptops',GRN,eOut(p(lt,5.6,0.4)));
+  infoCard(90,1170,900,230,'SEBI, 17 JUL 2026','Never transfer funds on WhatsApp or social-media instructions alone.',RED,eOut(p(lt,6.8,0.4)),{size:34});
+  kineticCaption(lt,[[1.1,'NO OFFICIAL WORK',AMB],[3.5,'LOG OUT EVERY TIME',CY]],{y:1490,hold:2.4});}
 // 12 — do this now (chapter 5)
 function sAct(lt){checklistCard(90,390,900,840,{lt,t0:1.6,step:0.75,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
   flags:['Urgent + secret + “don’t call me”','A new account or a new beneficiary','A ZIP “from RBI / MCA” on WhatsApp'],
   actions:['Call back on a number you already have','Two people approve every big payment','Money gone? Call 1930 and your bank at once']});
-  kineticCaption(lt,[[10.4,'FORWARD THIS TO YOUR ACCOUNTS TEAM',CY]],{sticky:true,y:1330});}
+  kineticCaption(lt,[[14.2,'FORWARD THIS TO YOUR ACCOUNTS TEAM',CY]],{sticky:true,y:1330});}
 function sOut(lt){outro(lt,window.EPISODE.laws);}
 
 window.EPISODE={
@@ -623,17 +623,17 @@ window.EPISODE={
   scenes:[
     {id:'hook',fn:sHook,dur:5.5,min:4.5,pops:[[0.05,520,0.1],[0.5,880,0.1],[1.6,760,0.08],[3.6,990,0.08]],impacts:[[2.7,0.85,16]],chimes:[1.0],
      vo:'Message आया MD के असली WhatsApp से। वही number, वही पुरानी chats। फिर भी scam था।'},
-    {id:'scam',fn:sScam,dur:9.0,min:7.6,chapter:[1,'THE SCAM'],pops:[[2.5,700],[6.9,820,0.1]],chimes:[1.6,3.8,5.6],
+    {id:'scam',fn:sScam,dur:9.0,min:8.2,chapter:[1,'THE SCAM'],pops:[[2.5,700],[7.4,820,0.1]],chimes:[1.6,3.6,6.0],
      vo:'Meera, accounts head. MD का message: confidential deal है, आज ही अड़तालीस लाख भेजो। मैं meeting में हूँ, call मत करना।'},
     {id:'sent',fn:sSent,dur:7.0,min:5.6,pops:[[0.4,560],[2.0,640],[2.6,700]],impacts:[[4.4,0.85,16]],chimes:[0.4],
      vo:'Transfer हो गया। अगली सुबह MD बोले: मैंने तो ऐसा कोई message भेजा ही नहीं।'},
-    {id:'how',fn:sHow,dur:10.0,min:8.6,chapter:[2,'HOW IT WORKS'],pops:[[1.2,620],[2.3,680],[3.4,740],[3.6,760],[6.0,820],[6.6,700]],impacts:[[4.6,0.75,12]],risers:[5.2],
+    {id:'how',fn:sHow,dur:10.0,min:9.0,chapter:[2,'HOW IT WORKS'],pops:[[1.2,620],[3.0,680],[4.6,740],[4.8,760],[7.4,820],[8.0,700]],impacts:[[6.2,0.75,12]],risers:[6.8],
      vo:'शुरुआत एक नकली RBI notice से: एक zip file। MD के office computer पर खुली, जहाँ WhatsApp Web logged-in था। Malware ने वो session चुरा लिया।'},
     {id:'take',fn:sTake,dur:8.5,min:6.6,pops:[[0.4,620],[0.9,680],[1.4,740],[2.2,800],[3.4,860],[5.0,700]],
      vo:'अब ठग MD के असली account से सारी chats पढ़ता है, और उन्हीं के नाम से लिखता है।'},
     {id:'two',fn:sTwo,dur:10.0,min:9.0,pops:[[0.6,620],[6.4,700],[8.2,820,0.08]],impacts:[[0.8,0.6,10],[6.6,0.7,12]],
      vo:'पुराना तरीका: नया number, boss की photo; Mumbai की एक company के दस करोड़ से ज़्यादा गए। नया तरीका: असली account, और डेढ़ करोड़ minutes में।'},
-    {id:'trail',fn:sTrail,dur:10.5,min:8.6,chapter:[3,'THE TRAIL'],pops:[[1.2,560],[2.4,620],[2.52,640],[2.64,660],[3.6,700],[3.72,720],[3.84,740],[5.6,820]],impacts:[[7.0,0.8,14]],
+    {id:'trail',fn:sTrail,dur:10.5,min:8.6,chapter:[3,'THE TRAIL'],pops:[[1.2,560],[2.4,620],[2.52,640],[2.64,660],[3.6,700],[3.72,720],[3.84,740],[4.2,820]],impacts:[[5.8,0.8,14]],
      vo:'पैसा mule accounts से cash में निकाला गया। Bank branch के alert पर police ने पाँच लोग पकड़े; आरोप अभी साबित नहीं हुए।'},
     {id:'i4c',fn:sI4C,dur:8.0,min:6.6,pops:[[0.6,620],[1.6,700],[2.6,780],[3.8,640],[5.6,820,0.08]],impacts:[[4.2,0.6,10]],
      vo:'I4C ने इसके control servers block किए, और तीस दिनों में अट्ठावन हज़ार से ज़्यादा लोगों को SMS से सावधान किया।'},
@@ -641,9 +641,9 @@ window.EPISODE={
      vo:'किसी और का रूप धरकर धोखा: BNS Section three nineteen, पाँच साल तक। और धोखे से पैसा निकलवाना: Section three eighteen four, सात साल तक।'},
     {id:'law2',fn:sLaw2,dur:8.5,min:7.0,pops:[[0.5,620],[3.4,700],[5.4,820,0.08]],
      vo:'Malware डालना: IT Act Section sixty six. Computer के ज़रिये personation करके धोखा: Section sixty six D।'},
-    {id:'adv',fn:sAdv,dur:9.5,min:7.6,pops:[[0.3,880,0.08],[1.0,620],[2.8,700],[4.4,780],[6.2,640]],
+    {id:'adv',fn:sAdv,dur:9.5,min:7.6,pops:[[0.3,880,0.08],[1.0,620],[3.4,700],[5.6,780],[6.8,640]],
      vo:'हाल ही में I4C ने चेताया: WhatsApp Web पर official काम मत कीजिए, और हर बार logout कीजिए; tab बंद करना logout नहीं है।'},
-    {id:'act',fn:sAct,dur:13.0,min:11.4,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[10.4,990,0.08]],
+    {id:'act',fn:sAct,dur:13.0,min:11.4,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[14.2,990,0.08]],
      vo:'Screenshot लीजिए। Urgent, secret, और call मत करना: तीनों red flags। बड़ी payment से पहले जाने-पहचाने number पर call कीजिए, और दो लोगों की मंज़ूरी रखिए। पैसा गया, तो तुरंत one nine three zero। ये accounts team को forward कीजिए।'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};
