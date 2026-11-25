@@ -13,8 +13,11 @@
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 119.7,
  "cover": "A: YOUR MD'S REAL WHATSAPP. / STILL A SCAM. (alternatives B and C rendered for review)",
- "review_thread_id": null,
- "review_message_ids": [],
+ "review_thread_id": "1a210ff230019ff2",
+ "review_message_ids": [
+  "1a210ff230019ff2"
+ ],
  "handled_reply_ids": [],
- "reminder_sent": false
+ "reminder_sent": false,
+ "note": "Review emailed 25 Nov 2026, morning build; goes live at 8:00 PM IST only after the owner replies POST."
 }
