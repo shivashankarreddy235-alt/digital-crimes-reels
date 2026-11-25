@@ -19,7 +19,8 @@
   "1a213b1c8a595ec4"
  ],
  "handled_reply_ids": [
-  "1a21397d01907a6d"
+  "1a21397d01907a6d",
+  "1a213b479aded114"
  ],
  "reminder_sent": false,
  "note": "Evening build, 25 Nov 2026: first version (Tech Decoded: UPI overlay malware) emailed 19:11 IST. Owner replied by email (22:14 IST): \"Change the topic to something interesting to cyber forensics\"; in the session he chose \"Tracing a WhatsApp call\". Rebuilt as Forensics File; new version emailed in the same thread for the 7:00 AM slot on 26 Nov. The first version's topic is back in the topic bank."
