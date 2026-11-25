@@ -1,0 +1,58 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "Message आया MD के असली WhatsApp से। वही number, वही पुरानी chats। फिर भी scam था।"
+  },
+  {
+   "scene": "scam",
+   "text": "Meera, accounts head. MD का message: confidential deal है, आज ही अड़तालीस लाख भेजो। मैं meeting में हूँ, call मत करना।"
+  },
+  {
+   "scene": "sent",
+   "text": "Transfer हो गया। अगली सुबह MD बोले: मैंने तो ऐसा कोई message भेजा ही नहीं।"
+  },
+  {
+   "scene": "how",
+   "text": "शुरुआत एक नकली RBI notice से: एक zip file। MD के office computer पर खुली, जहाँ WhatsApp Web logged-in था। Malware ने वो session चुरा लिया।"
+  },
+  {
+   "scene": "take",
+   "text": "अब ठग MD के असली account से सारी chats पढ़ता है, और उन्हीं के नाम से लिखता है।"
+  },
+  {
+   "scene": "two",
+   "text": "पुराना तरीका: नया number, boss की photo; Mumbai की एक company के दस करोड़ से ज़्यादा गए। नया तरीका: असली account, और डेढ़ करोड़ minutes में।"
+  },
+  {
+   "scene": "trail",
+   "text": "पैसा mule accounts से cash में निकाला गया। Bank branch के alert पर police ने पाँच लोग पकड़े; आरोप अभी साबित नहीं हुए।"
+  },
+  {
+   "scene": "i4c",
+   "text": "I4C ने इसके control servers block किए, और तीस दिनों में अट्ठावन हज़ार से ज़्यादा लोगों को SMS से सावधान किया।"
+  },
+  {
+   "scene": "law1",
+   "text": "किसी और का रूप धरकर धोखा: BNS Section three nineteen, पाँच साल तक। और धोखे से पैसा निकलवाना: Section three eighteen four, सात साल तक।"
+  },
+  {
+   "scene": "law2",
+   "text": "Malware डालना: IT Act Section sixty six. Computer के ज़रिये personation करके धोखा: Section sixty six D।"
+  },
+  {
+   "scene": "adv",
+   "text": "हाल ही में I4C ने चेताया: WhatsApp Web पर official काम मत कीजिए, और हर बार logout कीजिए; tab बंद करना logout नहीं है।"
+  },
+  {
+   "scene": "act",
+   "text": "Screenshot लीजिए। Urgent, secret, और call मत करना: तीनों red flags। बड़ी payment से पहले जाने-पहचाने number पर call कीजिए, और दो लोगों की मंज़ूरी रखिए। पैसा गया, तो तुरंत one nine three zero। ये accounts team को forward कीजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": ""
+  }
+ ]
+}
