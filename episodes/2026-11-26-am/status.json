@@ -1,0 +1,21 @@
+{
+ "episode": 7,
+ "date": "2026-11-26",
+ "slot": "am",
+ "topic": "The invisible layer over your UPI app: how APK malware sees your PIN (overlay + Accessibility + SMS; IT Act ss.43, 66, 66C; BNS 318(4); peg: NPCI and UPI apps asking Google to restrict these permissions, reported 17–22 Nov 2026)",
+ "series": "Tech Decoded",
+ "audience": "Android users who pay by UPI (primary); their parents",
+ "language": "English text, Hindi voice",
+ "status": "pending",
+ "approved_at": null,
+ "posted_at": null,
+ "media_id": null,
+ "voice": "AI voice (ElevenLabs), Hindi",
+ "length_s": 114.4,
+ "cover": "A: REAL APP. REAL PIN. / SOMEONE SAW IT. (alternatives B and C rendered for review)",
+ "review_thread_id": null,
+ "review_message_ids": [],
+ "handled_reply_ids": [],
+ "reminder_sent": false,
+ "note": "Evening build, 25 Nov 2026."
+}

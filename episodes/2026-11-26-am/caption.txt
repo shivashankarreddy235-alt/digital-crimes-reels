@@ -1,0 +1,11 @@
+You typed your PIN in the real app. Someone saw it.
+⚖️ For educational purposes only. Not legal advice.
+
+A fake "bill update" app sent on WhatsApp can ask for Accessibility and "display over other apps". Security researchers report malware that lays an invisible layer over a genuine UPI app, records each digit of the PIN and reads OTPs. Planting malware: IT Act Section 66 (with 43); misusing someone's PIN or password: Section 66C; cheating: BNS Section 318(4).
+
+Install apps only from the Play Store, never turn on Accessibility for an unknown app, and if money is gone, call 1930 or report at cybercrime.gov.in at once.
+
+Save this and send it to someone who needs it.
+Voiceover: AI-generated.
+
+#UPIFraud #CyberLaw #CyberForensics #AndroidSecurity #DigitalCrimes
