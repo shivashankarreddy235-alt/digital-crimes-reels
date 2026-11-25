@@ -509,6 +509,7 @@ function permScreen(cx,cy,w,h,o={}){const a=o.alpha??1;if(a<=0)return;const S=ph
     const tx=x+ww-fs*2.9,ty=yy+fs*1.2;rr(tx,ty,fs*2.2,fs*1.1,fs*0.55);ctx.fillStyle=on>0.5?'rgba(53,242,154,0.85)':'rgba(255,255,255,0.18)';ctx.fill();
     ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(tx+fs*0.55+fs*1.1*eOut(clamp(on)),ty+fs*0.55,fs*0.44,0,7);ctx.fill();return [tx+fs*1.1,ty+fs*0.55];};
   const p1=row(S.y+fs*5.6,'Accessibility','“Bill Helper” service',o.t1||0),p2=row(S.y+fs*9.6,'Display over other apps','Draw on top of any app',o.t2||0);
+  txt('Needed to update your bill.',x,S.y+fs*14.6,{size:fs*0.72,weight:500,color:COL.dim});
   const by=S.y+S.h-fs*3.6;rr(x,by,ww,fs*2.2,fs*1.1);ctx.fillStyle=(o.t1>0.5&&o.t2>0.5)?GRN:'rgba(255,255,255,0.12)';ctx.fill();
   txt('Continue',x+ww/2,by+fs*1.45,{size:fs*0.95,weight:800,align:'center',color:(o.t1>0.5&&o.t2>0.5)?'#062414':COL.dim});ctx.restore();return [p1,p2];}
 // isometric layer: draws fn(w,h) in a skewed plane centred at (cx,cy)
@@ -526,18 +527,18 @@ function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.35,0.3));
   const n=Math.min(6,Math.floor(clamp((lt-0.6)/1.6)*6.99)),key=['4','7','1','9','3','8'][Math.min(5,Math.floor(clamp((lt-0.6)/1.6)*6))];
   const K=pinPhone(540,930,400,660,{alpha:eOut(p(lt,0.3,0.35)),n,hi:lt>0.6&&lt<2.3?{key,k:1-((lt-0.6)/1.6*6)%1}:null});
   const ov=eOut(p(lt,1.8,0.5));if(ov>0&&K){ctx.save();ctx.globalAlpha=ov*0.9;rr(352,610,376,640,40);ctx.fillStyle='rgba(255,51,88,0.14)';ctx.fill();stroke(RED,4);ctx.setLineDash([14,10]);ctx.stroke();ctx.setLineDash([]);
-    eyeIcon(540,790,70,RED,eOut(p(lt,2.0,0.4)));ctx.restore();}
-  stamp(540,1060,'RECORDED',RED,p(lt,2.4,0.35),-0.08,64);
+    eyeIcon(540,1010,70,RED,eOut(p(lt,2.0,0.4)));ctx.restore();}
+  stamp(540,1175,'RECORDED',RED,p(lt,2.4,0.35),-0.08,60);
   const a3=eOut(p(lt,2.8,0.3));if(a3>0){const sc=1+0.25*(1-eBack(a3));ctx.save();ctx.translate(540,1360);ctx.scale(sc,sc);txt('Someone saw it.',0,0,{size:96,weight:900,font:DISP,align:'center',color:RED,glow:30,alpha:clamp(a3*2)});ctx.restore();}
   sub('The last step in this reel is the one that stops it.',1460,eOut(p(lt,3.8,0.4)),{color:COL.white,weight:700,size:32});}
 // 2 — the lure (chapter 1)
 function sScam(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.8,0.3))});sub('Sunita, 58, Nagpur · a fictional example',388,eOut(p(lt,0.9,0.3)),{size:30});
   chatThread(540,900,600,880,{lt,alpha:eOut(p(lt,0.85,0.3)),name:'+91 9XXXX XXX41',status:'online',msgs:[
     {t:1.6,side:'in',text:'Dear customer, your gas connection will be disconnected TONIGHT. Bill not updated.',time:'7:38 PM'},
-    {t:3.6,side:'in',text:'Install the bill-update app below and pay ₹10 to avoid disconnection.',time:'7:38 PM'},
-    {t:5.2,side:'in',file:'Bill_Update.apk',fileMeta:'3.2 MB · APK file',fileExt:'APK',time:'7:39 PM'},
-    {t:7.0,side:'out',text:'Ok, installing',time:'7:41 PM'}]});
-  kineticCaption(lt,[[1.7,'DISCONNECTED TONIGHT',RED],[3.7,'PAY ONLY ₹10',AMB],[5.3,'AN APK FILE',RED]],{y:1440});}
+    {t:3.8,side:'in',text:'Install the bill-update app below and pay ₹10 to avoid disconnection.',time:'7:38 PM'},
+    {t:6.2,side:'in',file:'Bill_Update.apk',fileMeta:'3.2 MB · APK file',fileExt:'APK',time:'7:39 PM'},
+    {t:8.2,side:'out',text:'Ok, installing',time:'7:41 PM'}]});
+  kineticCaption(lt,[[1.7,'DISCONNECTED TONIGHT',RED],[3.9,'PAY ONLY ₹10',AMB],[6.3,'AN APK FILE',RED]],{y:1440});}
 // 3 — two taps (the fake app asks for permissions)
 function sGrant(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.05,0.3))});
   const P=permScreen(540,880,520,860,{alpha:eOut(p(lt,0.1,0.35)),t1:p(lt,2.0,0.3),t2:p(lt,3.8,0.3)});
@@ -564,8 +565,8 @@ function sHow(lt){head('The invisible layer',395,0.8,lt,{size:84});
     const P0=[T(u,v)[0],T(u,v)[1]],P1=B(u,v);if(k<1){ctx.save();stroke(TEAL,4);ctx.setLineDash([10,9]);ctx.beginPath();ctx.moveTo(P0[0],P0[1]);ctx.lineTo(lerp(P0[0],P1[0],k),lerp(P0[1],P1[1],k));ctx.stroke();ctx.restore();}
     tap(P1[0],P1[1],p(lt,t+0.7,0.5),TEAL,0.5);});
   const T=isoLayer(480,topY,lw,lh,(w,h)=>{rr(0,0,w,h,w*0.07);ctx.fillStyle=`rgba(255,51,88,${0.10+0.08*Math.sin(lt*4)})`;ctx.fill();stroke(RED,5);ctx.setLineDash([16,12]);ctx.stroke();ctx.setLineDash([]);
-    keypad(w*0.06,h*0.43,w*0.88,h*0.54,{ghost:true});ctx.save();ctx.globalAlpha*=0.9;txt('OVERLAY',w/2,h*0.2,{size:46,weight:900,font:DISP,align:'center',color:RED,ls:4});ctx.restore();},la);
-  if(T){eyeIcon(T(lw*0.5,lh*0.3)[0],T(lw*0.5,lh*0.3)[1]-10,46,RED,eOut(p(lt,2.4,0.4)));
+    keypad(w*0.06,h*0.43,w*0.88,h*0.54,{ghost:true});ctx.save();ctx.globalAlpha*=0.9;txt('OVERLAY',w*0.36,h*0.2,{size:46,weight:900,font:DISP,align:'center',color:RED,ls:4});ctx.restore();},la);
+  if(T){eyeIcon(T(lw*0.84,lh*0.2)[0],T(lw*0.84,lh*0.2)[1],40,RED,eOut(p(lt,2.4,0.4)));
     digs.forEach(([d,t])=>{const [u,v]=keyPos(lw*0.06,lh*0.43,lw*0.88,lh*0.54,d);const P=T(u,v);tap(P[0],P[1],p(lt,t,0.5),COL.white,0.5);});}
   // recorded log
   const ga=eOut(p(lt,2.9,0.3));if(ga>0){ctx.save();ctx.globalAlpha*=ga;card(620,440,370,130,RED);txt('RECORDED',650,488,{size:24,weight:900,ls:4,color:RED});
@@ -573,18 +574,18 @@ function sHow(lt){head('The invisible layer',395,0.8,lt,{size:84});
   pill(90,600,'INVISIBLE LAYER · ON TOP',RED,{size:24,ls:1,align:'left',alpha:eOut(p(lt,2.2,0.3)),fillA:'33'});
   pill(90,1000,'THE REAL UPI APP',TEAL,{size:24,ls:1,align:'left',alpha:eOut(p(lt,2.5,0.3)),fillA:'33'});
   kineticCaption(lt,[[1.9,'INVISIBLE LAYER',RED],[3.1,'RECORDS EVERY TAP',RED],[4.1,'PASSES IT ON',TEAL]],{y:1400,hold:2.0});
-  sub('Nothing on screen looks wrong.',1475,eOut(p(lt,7.4,0.4)),{color:COL.white,weight:800,size:38});
-  sub('Source: Cyble research ("Ghost Overlay"), reported Oct 2026',1520,eOut(p(lt,7.8,0.4)),{size:24});}
+  sub('Nothing on screen looks wrong.',1475,eOut(p(lt,9.2,0.4)),{color:COL.white,weight:800,size:38});
+  sub('Source: Cyble research ("Ghost Overlay"), reported Oct 2026',1520,eOut(p(lt,9.6,0.4)),{size:24});}
 // 6 — the second eye: Accessibility
 function sEyes(lt){head('The second eye: Accessibility',400,0.05,lt,{size:70});
-  const pa=eOut(p(lt,0.4,0.4));if(pa>0){ctx.save();ctx.globalAlpha*=pa;const S=phoneFrame(240,770,270,460,{top:'#141a2e',bottom:'#0a0d18',time:'8:20'});
+  const pa=eOut(p(lt,0.4,0.4));if(pa>0){ctx.save();ctx.globalAlpha*=pa;const S=phoneFrame(240,795,250,440,{top:'#141a2e',bottom:'#0a0d18',time:'8:20'});
     for(let i=0;i<4;i++){ctx.fillStyle='rgba(232,236,246,0.35)';ctx.fillRect(S.x+24,S.y+30+i*34,(S.w-48)*(i%2?0.6:0.85),12);}
     keypad(S.x+16,S.y+170,S.w-32,S.h-190,{});const sy=S.y+20+((lt*120)%(S.h-30));ctx.fillStyle='rgba(255,182,39,0.25)';ctx.fillRect(S.x,sy,S.w,6);ctx.restore();
-    eyeIcon(240,560,54,AMB,eOut(p(lt,0.8,0.4)));}
+    eyeIcon(240,515,54,AMB,eOut(p(lt,0.8,0.4)));}
   infoCard(400,500,590,220,'BUILT TO HELP','Reads the screen aloud for people who need it.',GRN,eOut(p(lt,1.4,0.4)),{size:32});
-  infoCard(400,750,590,220,'IN A FAKE APP','Reads what’s on your screen — and what you type.',RED,eOut(p(lt,4.2,0.4)),{size:32});
-  dataCard(90,1040,900,330,{value:'60 apps',label:'banking, UPI and wallet apps whose keypad one malware family can read',source:'Source: Cyble research, via CXOToday, 16 Oct 2026',c:RED,alpha:eOut(p(lt,6.0,0.4)),labelSize:32,size:100});
-  kineticCaption(lt,[[0.9,'ACCESSIBILITY',AMB],[4.3,'READS YOUR SCREEN',RED]],{y:1450,hold:2.4});}
+  infoCard(400,750,590,220,'IN A FAKE APP','Reads what’s on your screen — and what you type.',RED,eOut(p(lt,4.8,0.4)),{size:32});
+  dataCard(90,1040,900,330,{value:'60 apps',label:'banking, UPI and wallet apps whose keypad one malware family can read',source:'Source: Cyble research, via CXOToday, 16 Oct 2026',c:RED,alpha:eOut(p(lt,6.6,0.4)),labelSize:32,size:100});
+  kineticCaption(lt,[[0.9,'ACCESSIBILITY',AMB],[4.9,'READS YOUR SCREEN',RED]],{y:1450,hold:2.4});}
 // 7 — the SMS
 function sSms(lt){head('Then your SMS',400,0.05,lt,{size:84});
   smsCard(120,460,840,{sender:'AD-XXBANK',text:'XXXX21 is your OTP for a UPI transaction. Do not share it with anyone.',time:'8:21 AM',k:p(lt,0.4,0.4)});
@@ -632,7 +633,7 @@ function sAct(lt){checklistCard(90,360,900,980,{lt,t0:1.6,step:0.75,flash:1.0,al
   flags:['An app sent on WhatsApp or SMS (an .apk file)','It asks for Accessibility or “display over other apps”','A bill, KYC or fine to pay “right now”'],
   actions:['Install apps only from the Play Store','Never turn on Accessibility for an unknown app','Money gone? Call 1930 and your bank at once']});
   sub('Installed one? Data off · uninstall · change your UPI PIN · call your bank',1385,eOut(p(lt,6.4,0.4)),{size:28,color:COL.white,weight:700});
-  kineticCaption(lt,[[11.4,'SEND THIS TO YOUR PARENTS',TEAL]],{sticky:true,y:1470});}
+  kineticCaption(lt,[[10.6,'SEND THIS TO YOUR PARENTS',TEAL]],{sticky:true,y:1470});}
 function sOut(lt){outro(lt,window.EPISODE.laws);}
 
 window.EPISODE={
@@ -649,15 +650,15 @@ window.EPISODE={
   scenes:[
     {id:'hook',fn:sHook,dur:5.5,min:4.6,pops:[[0.05,520,0.1],[0.35,880,0.1],[1.8,700,0.08],[3.8,990,0.08]],impacts:[[2.4,0.8,14],[2.8,0.6,10]],
      vo:'PIN आपने असली UPI app में डाला। फिर भी किसी ने देख लिया। कैसे, और इसे कैसे रोकें?'},
-    {id:'scam',fn:sScam,dur:9.0,min:8.2,chapter:[1,'THE SCAM'],pops:[[7.0,700]],chimes:[1.6,3.6,5.2],
+    {id:'scam',fn:sScam,dur:10.0,min:9.0,chapter:[1,'THE SCAM'],pops:[[8.2,700]],chimes:[1.6,3.8,6.2],
      vo:'Sunita जी को WhatsApp: आज रात gas connection कटेगा। ये app install करके दस रुपये भरिए। साथ में एक APK file।'},
     {id:'grant',fn:sGrant,dur:7.5,min:6.2,pops:[[0.1,560],[2.0,760],[3.8,820]],impacts:[[5.0,0.8,14]],
      vo:'App बोला: Accessibility on कीजिए, और दूसरे apps के ऊपर दिखने की permission दीजिए। बस दो taps।'},
     {id:'paid',fn:sPaid,dur:8.0,min:7.2,pops:[[0.05,640],[3.2,880,0.1]],chimes:[4.8,5.5],impacts:[[6.3,0.85,16]],
      vo:'अगली सुबह, असली app से पाँच सौ का payment। सब normal। फिर account से पैसे कटने लगे।'},
-    {id:'how',fn:sHow,dur:10.5,min:8.8,chapter:[2,'HOW IT WORKS'],pops:[[1.0,560],[1.8,620],[2.4,700],[3.0,760],[3.7,640],[4.4,760],[5.4,760],[6.3,760],[7.4,880,0.08]],risers:[1.6],impacts:[[2.4,0.5,8]],
+    {id:'how',fn:sHow,dur:11.5,min:10.4,chapter:[2,'HOW IT WORKS'],pops:[[1.0,560],[1.8,620],[2.4,700],[3.0,760],[3.7,640],[4.4,760],[5.4,760],[6.3,760],[9.2,880,0.08]],risers:[1.6],impacts:[[2.4,0.5,8]],
      vo:'ये है overlay: असली app के ऊपर एक invisible परत। आप जो digit दबाते हैं, परत उसे record करके tap असली app तक भेज देती है। Screen पर सब normal दिखता है।'},
-    {id:'eyes',fn:sEyes,dur:9.0,min:7.2,pops:[[0.4,620],[1.4,700],[4.2,760]],impacts:[[6.2,0.6,10]],
+    {id:'eyes',fn:sEyes,dur:9.0,min:7.8,pops:[[0.4,620],[1.4,700],[4.8,760]],impacts:[[6.8,0.6,10]],
      vo:'दूसरी आँख: Accessibility. ये feature screen पढ़कर सुनाने के लिए बना है। पर fake app इससे आपकी screen और keypad पढ़ लेता है।'},
     {id:'sms',fn:sSms,dur:7.5,min:6.2,pops:[[0.4,620],[1.4,700],[3.6,760],[4.2,820]],chimes:[0.4],impacts:[[5.0,0.75,12]],
      vo:'और SMS भी: OTP और bank alerts सीधे ठग के server पर। PIN और OTP, दोनों उसके पास।'},
@@ -669,7 +670,7 @@ window.EPISODE={
      vo:'आरोप है: आठ हज़ार से ज़्यादा installs, और तीन हज़ार से ज़्यादा शिकायतें।'},
     {id:'law',fn:sLaw,dur:11.0,min:8.6,chapter:[4,'THE LAW'],pops:[[1.0,620],[3.8,700],[7.0,760]],impacts:[[7.2,0.6,10]],
      vo:'Malware डालना: IT Act Section sixty six. किसी का PIN इस्तेमाल करना: Section sixty six C. और धोखे से पैसा लेना: BNS Section three eighteen four, सात साल तक।'},
-    {id:'act',fn:sAct,dur:14.0,min:12.6,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[6.4,880,0.08],[11.4,990,0.08]],
+    {id:'act',fn:sAct,dur:14.0,min:12.6,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[6.4,880,0.08],[10.6,990,0.08]],
      vo:'Screenshot लीजिए। WhatsApp या SMS पर आया app कभी install मत कीजिए। अनजान app को Accessibility कभी नहीं। पैसा गया, तो तुरंत one nine three zero। ये अपने parents को भेजिए।'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};
