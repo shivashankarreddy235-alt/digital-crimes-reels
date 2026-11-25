@@ -474,21 +474,21 @@ function miniEnv(x,y,s,c,a=1){ctx.save();ctx.globalAlpha*=a;rr(x-s,y-s*0.65,s*2,
 // big "packet" envelope: sealed content (lock) + a visible address label. rows=[[label,value,t],...]
 function packetEnvelope(x,y,w,h,lt,rows,o={}){const a=o.alpha??1;if(a<=0)return;ctx.save();ctx.globalAlpha*=a;
   rr(x,y,w,h,26);ctx.fillStyle='rgba(16,24,50,0.96)';ctx.fill();stroke(AMB,4);ctx.stroke();
-  ctx.save();ctx.globalAlpha*=0.5;stroke(AMB,3);ctx.beginPath();ctx.moveTo(x+10,y+12);ctx.lineTo(x+w/2,y+h*0.42);ctx.lineTo(x+w-10,y+12);ctx.stroke();ctx.restore();
+  ctx.save();ctx.globalAlpha*=0.5;stroke(AMB,3);ctx.beginPath();ctx.moveTo(x+10,y+12);ctx.lineTo(x+w/2,y+h*0.3);ctx.lineTo(x+w-10,y+12);ctx.stroke();ctx.restore();
   // seal
-  const sk=eOut(p(lt,o.sealT??0.4,0.4));if(sk>0){ctx.save();ctx.globalAlpha*=sk;const sx=x+w/2,sy=y+h*0.42;ctx.fillStyle='#0b2a1c';ctx.beginPath();ctx.arc(sx,sy,62,0,7);ctx.fill();stroke(GRN,5);ctx.shadowColor=GRN;ctx.shadowBlur=24;ctx.stroke();ctx.shadowBlur=0;iLock(sx,sy-6,40,GRN);ctx.restore();
-    txt('CONTENT · ENCRYPTED',x+w/2,y+h*0.42+104,{size:28,weight:800,ls:3,align:'center',color:GRN,alpha:sk});}
+  const sk=eOut(p(lt,o.sealT??0.4,0.4));if(sk>0){ctx.save();ctx.globalAlpha*=sk;const sx=x+w/2,sy=y+h*0.3;ctx.fillStyle='#0b2a1c';ctx.beginPath();ctx.arc(sx,sy,62,0,7);ctx.fill();stroke(GRN,5);ctx.shadowColor=GRN;ctx.shadowBlur=24;ctx.stroke();ctx.shadowBlur=0;iLock(sx,sy-6,40,GRN);ctx.restore();
+    txt('CONTENT · ENCRYPTED',x+w/2,y+h*0.3+100,{size:28,weight:800,ls:3,align:'center',color:GRN,alpha:sk});}
   // address label
-  const lx=x+60,ly=y+h*0.62;rows.forEach(([l,v,t],i)=>{const e=eOut(p(lt,t,0.3));if(e<=0)return;const yy=ly+i*62;
+  const lx=x+60,ly=y+h*0.68;rows.forEach(([l,v,t],i)=>{const e=eOut(p(lt,t,0.3));if(e<=0)return;const yy=ly+i*62;
     ctx.save();ctx.globalAlpha*=e;ctx.translate((1-e)*-30,0);txt(l,lx,yy,{size:30,weight:800,ls:3,color:COL.dim});
     const n=Math.floor(v.length*clamp((lt-t)/0.5));txt(v.slice(0,n),lx+170,yy,{size:34,weight:700,font:MONO,color:AMB,glow:10});ctx.restore();});
   ctx.restore();}
 // NAT diagram: phones on the left share one public IP on the right; ports appear on each line
 function natDiagram(lt,o){const ys=[520,660,800,940,1080],sims=['SIM ••2290','SIM ••4417','SIM ••0631','SIM ••7718','SIM ••5502'],ports=[':40311',':40312',':51877',':33019',':47720'];
-  const nx=560,ny=800,hi=1;ys.forEach((y,i)=>{const e=eOut(p(lt,0.3+i*0.12,0.3));if(e<=0)return;ctx.save();ctx.globalAlpha*=e;
-    const isH=lt>=o.hiT&&i===hi;phone(150,y,44,isH?AMB:CY,isH?1:0.4);txt(sims[i],200,y+12,{size:28,weight:700,font:MONO,color:isH?AMB:COL.white});
-    const k=eOut(p(lt,0.9+i*0.1,0.5));ctx.save();stroke(isH?AMB:'rgba(46,230,255,0.45)',isH?5:3);ctx.beginPath();ctx.moveTo(400,y);ctx.lineTo(lerp(400,nx-80,k),lerp(y,ny,k));ctx.stroke();ctx.restore();
-    const pe=eOut(p(lt,o.portT+i*0.15,0.3));if(pe>0)pill(408,y-34,ports[i],isH?AMB:COL.dim,{size:22,align:'left',alpha:pe,fillA:isH?'44':'18',weight:800});
+  const nx=590,ny=800,hi=1;ys.forEach((y,i)=>{const e=eOut(p(lt,0.3+i*0.12,0.3));if(e<=0)return;ctx.save();ctx.globalAlpha*=e;
+    const isH=lt>=o.hiT&&i===hi;phone(100,y,40,isH?AMB:CY,isH?1:0.4);txt(sims[i],140,y+10,{size:26,weight:700,font:MONO,color:isH?AMB:COL.white});
+    const k=eOut(p(lt,0.9+i*0.1,0.5));ctx.save();stroke(isH?AMB:'rgba(46,230,255,0.45)',isH?5:3);ctx.beginPath();ctx.moveTo(430,y);ctx.lineTo(lerp(430,nx-80,k),lerp(y,ny,k));ctx.stroke();ctx.restore();
+    const pe=eOut(p(lt,o.portT+i*0.15,0.3));if(pe>0)pill(314,y,ports[i],isH?AMB:COL.dim,{size:22,align:'left',alpha:pe,fillA:isH?'44':'18',weight:800});
     ctx.restore();});
   const ne=eOut(p(lt,1.2,0.4));if(ne>0){ctx.save();ctx.globalAlpha*=ne;rr(nx-80,ny-70,160,140,22);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();stroke(CY,4);ctx.stroke();
     txt('NAT',nx,ny+12,{size:44,weight:900,font:DISP,align:'center',color:CY});txt('OPERATOR',nx,ny+100,{size:24,weight:800,ls:2,align:'center',color:COL.dim});
@@ -522,19 +522,19 @@ function coverTile(x,y,w,h){ctx.save();rr(x,y,w,h,26);ctx.fillStyle='rgba(16,24,
 function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.3,0.3));
   if(a1>0)txt('“WhatsApp calls',540,400+(1-a1)*24,{size:fit('“WhatsApp calls',900,DISP,920,96),weight:900,font:DISP,align:'center',alpha:a1});
   if(a2>0)txt('can’t be traced.”',540,500+(1-a2)*24,{size:fit('can’t be traced.”',900,DISP,920,96),weight:900,font:DISP,align:'center',alpha:a2,color:AMB,glow:22});
-  callScreen(540,920,330,560,{lt,alpha:eOut(p(lt,0.4,0.35))*(1-0.55*eOut(p(lt,1.9,0.3))),name:'Unknown',number:'+91 9XXXX XXX07',label:'WhatsApp voice call',note:'END-TO-END ENCRYPTED',noteColor:GRN});
-  stamp(540,930,'WRONG.',RED,p(lt,1.9,0.35),-0.08,110);
-  const a3=eOut(p(lt,2.7,0.35));if(a3>0){ctx.save();ctx.globalAlpha*=a3;const k=eOut(p(lt,2.7,1.2));stroke(AMB,5);ctx.setLineDash([12,12]);ctx.lineDashOffset=-lt*40;
+  callScreen(540,920,330,560,{lt,alpha:eOut(p(lt,0.4,0.35))*(1-0.55*eOut(p(lt,2.2,0.3))),name:'Unknown',number:'+91 9XXXX XXX07',label:'WhatsApp voice call',note:'END-TO-END ENCRYPTED',noteColor:GRN});
+  stamp(540,930,'WRONG.',RED,p(lt,2.2,0.35),-0.08,110);
+  const a3=eOut(p(lt,2.9,0.35));if(a3>0){ctx.save();ctx.globalAlpha*=a3;const k=eOut(p(lt,2.9,1.2));stroke(AMB,5);ctx.setLineDash([12,12]);ctx.lineDashOffset=-lt*40;
     ctx.beginPath();ctx.moveTo(540,1215);ctx.lineTo(lerp(540,880,k),lerp(1215,1300,k));ctx.stroke();ctx.restore();if(k>0.9)iPin(880,1320,22,AMB);}
-  sub('It leaves a trail. Here’s how investigators follow it.',1400,eOut(p(lt,3.2,0.4)),{color:COL.white,weight:700,size:34});}
+  sub('It leaves a trail. Here’s how investigators follow it.',1400,eOut(p(lt,3.4,0.4)),{color:COL.white,weight:700,size:34});}
 // 2 — the threat (chapter 1)
 function sThreat(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.8,0.3))});sub('Ravi, 41, Indore · a fictional example',388,eOut(p(lt,0.9,0.3)),{size:30});
   chatThread(540,880,600,840,{lt,alpha:eOut(p(lt,0.85,0.3)),name:'+91 9XXXX XXX07',status:'online',msgs:[
     {t:1.6,side:'in',text:'Send ₹2 lakh by tomorrow. Or you’ll regret it.',time:'9:10 PM'},
-    {t:4.2,side:'in',text:'Voice call · 2 min',time:'9:12 PM'},
-    {t:5.6,side:'in',text:'Don’t go to the police. WhatsApp calls can’t be traced.',time:'9:15 PM'},
-    {t:7.6,side:'out',text:'Who is this?',time:'9:15 PM'}]});
-  kineticCaption(lt,[[1.7,'₹2 LAKH · OR ELSE',RED],[4.3,'THEN THE CALLS',AMB],[5.7,'“CAN’T BE TRACED”',AMB]],{y:1440});}
+    {t:6.9,side:'in',text:'Voice call · 2 min',time:'9:12 PM'},
+    {t:8.2,side:'in',text:'Don’t go to the police. WhatsApp calls can’t be traced.',time:'9:15 PM'},
+    {t:10.6,side:'out',text:'Who is this?',time:'9:15 PM'}]});
+  kineticCaption(lt,[[1.7,'₹2 LAKH · OR ELSE',RED],[7.0,'THEN THE CALLS',AMB],[8.3,'“CAN’T BE TRACED”',AMB]],{y:1440});}
 // 3 — two kinds of call (chapter 2)
 function sKinds(lt){head('Two kinds of call',395,0.8,lt,{size:80});
   const la=eOut(p(lt,1.1,0.4));if(la>0){ctx.save();ctx.globalAlpha*=la;pill(280,470,'NORMAL CALL',CY,{size:28,fillA:'33',weight:800});tower(280,760,230,CY,lt);waves(280,540,lt,CY,3,90,0.8);
@@ -549,11 +549,11 @@ function sKinds(lt){head('Two kinds of call',395,0.8,lt,{size:80});
   kineticCaption(lt,[[1.3,'CALL → CDR',CY],[3.4,'WHATSAPP → DATA',AMB],[5.8,'THE TALK: SEALED',GRN]],{y:1450,hold:2.2});}
 // 4 — every packet has an address
 function sPacket(lt){head('Every packet has an address',395,0.05,lt,{size:76});
-  packetEnvelope(130,470,820,640,lt,[['FROM','1XX.XX.XX.18',1.1],['PORT','40312',2.0],['TIME','21:14:07 IST',2.8]],{alpha:eOut(p(lt,0.2,0.4)),sealT:0.5});
-  const a=eOut(p(lt,4.2,0.35)),b=eOut(p(lt,4.9,0.35));
+  packetEnvelope(130,470,820,640,lt,[['FROM','1XX.XX.XX.18',1.9],['PORT','40312',2.9],['TIME','21:14:07 IST',3.7]],{alpha:eOut(p(lt,0.2,0.4)),sealT:0.5});
+  const a=eOut(p(lt,4.5,0.35)),b=eOut(p(lt,5.2,0.35));
   if(a>0)txt('The letter is sealed.',540,1210+(1-a)*20,{size:fit('The letter is sealed.',900,DISP,900,68),weight:900,font:DISP,align:'center',alpha:a});
   if(b>0)txt('The envelope isn’t.',540,1300+(1-b)*20,{size:fit('The envelope isn’t.',900,DISP,900,68),weight:900,font:DISP,align:'center',alpha:b,color:AMB,glow:20});
-  kineticCaption(lt,[[1.2,'IP ADDRESS',AMB],[2.1,'PORT',AMB],[2.9,'TIME',AMB],[5.0,'METADATA, NOT CONTENT',AMB]],{y:1430,hold:1.2});}
+  kineticCaption(lt,[[2.0,'IP ADDRESS',AMB],[3.0,'PORT',AMB],[3.8,'TIME',AMB],[5.3,'METADATA, NOT CONTENT',AMB]],{y:1430,hold:1.2});}
 // 5 — thousands of phones, one IP
 function sNat(lt){head('Thousands of phones. One IP.',395,0.05,lt,{size:74});
   natDiagram(lt,{portT:2.8,hiT:4.4});
@@ -578,11 +578,11 @@ function sApp(lt){head('Step 1: ask the app',395,0.8,lt,{size:80});
 function sMatch(lt){head('Step 2: match the IPDR',395,0.05,lt,{size:80});
   const ta=eOut(p(lt,0.3,0.4));if(ta>0){ctx.save();ctx.globalAlpha*=ta;card(70,450,940,420,AMB);txt('OPERATOR’S IPDR · illustrative, masked',110,502,{size:24,weight:800,ls:2,color:AMB});
     dataTable(110,566,[['TIME',165],['PUBLIC IP : PORT',395],['SUBSCRIBER',250]],[['21:14:05','1XX.XX.XX.18:40311','SIM ••2290'],['21:14:07','1XX.XX.XX.18:40312','SIM ••4417'],['21:14:07','1XX.XX.XX.18:51877','SIM ••0631'],['21:14:09','1XX.XX.XX.18:33019','SIM ••7718']],
-      (lt-0.6)*2.4,66,{size:27,highlight:1,hk:eOut(p(lt,2.9,0.3))});ctx.restore();}
-  stamp(820,720,'MATCH',GRN,p(lt,3.2,0.35),-0.1,48);
-  infoCard(90,930,900,300,'SIM ••4417 →','KYC on file · device IMEI XXXXXXXXXXX2231 · IMSI and SIM type',GRN,eOut(p(lt,4.2,0.4)),{size:36});
-  sub('Masked sample records — not real data',1275,eOut(p(lt,4.6,0.4)),{size:26});
-  kineticCaption(lt,[[0.7,'IP + PORT + TIME',AMB],[3.3,'ONE ROW',GRN],[4.4,'SIM · KYC · IMEI',GRN]],{y:1440,hold:1.8});}
+      (lt-0.6)*2.4,66,{size:27,highlight:1,hk:eOut(p(lt,4.4,0.3))});ctx.restore();}
+  stamp(840,915,'MATCH',GRN,p(lt,4.7,0.35),-0.08,46);
+  infoCard(90,980,900,250,'SIM ••4417 →','KYC on file · IMEI ••••2231 · IMSI',GRN,eOut(p(lt,5.6,0.4)),{size:38});
+  sub('Masked sample records — not real data',1285,eOut(p(lt,6.2,0.4)),{size:26});
+  kineticCaption(lt,[[0.7,'IP + PORT + TIME',AMB],[4.8,'ONE ROW',GRN],[5.8,'SIM · KYC · IMEI',GRN]],{y:1440,hold:1.8});}
 // 9 — step 3: join the dots
 function sJoin(lt){head('Step 3: join the dots',395,0.05,lt,{size:80});
   const ma=eOut(p(lt,0.2,0.4));mapPanel(90,450,900,520,ma);if(ma>0){ctx.save();ctx.globalAlpha*=ma;tower(300,800,190,CY,lt,ma);sector(300,630,330,-0.55,0.55,CY,0.18,eOut(p(lt,0.6,0.8)));ctx.restore();}
@@ -594,23 +594,23 @@ function sJoin(lt){head('Step 3: join the dots',395,0.05,lt,{size:80});
   kineticCaption(lt,[[0.9,'TOWER',CY],[1.7,'CALLS',CY],[2.4,'MONEY',AMB],[4.1,'ONE PERSON',GRN]],{y:1440,hold:1.0});}
 // 10 — what changes next: SIM binding
 function sSim(lt){head('What changes next',395,0.05,lt,{size:80,color:BLU});
-  simBind(lt,640,700,2.4);
-  dataCard(90,1000,900,330,{value:'1 JAN 2027',label:'messaging apps due to stay tied to the active SIM in your phone',source:'DoT SIM-binding direction (Nov 2025, deadline extended) · Business Standard, 23 Oct 2026',c:BLU,alpha:eOut(p(lt,3.4,0.4)),size:96,labelSize:32});
-  sub('Aim, as reported: curb cross-border cyber fraud using Indian numbers',1385,eOut(p(lt,4.4,0.4)),{size:28,color:COL.white});
-  kineticCaption(lt,[[0.6,'SIM BINDING',BLU],[2.6,'NO SIM, NO APP',RED]],{y:1460,hold:2.0});}
+  simBind(lt,640,700,4.2);
+  dataCard(90,1000,900,330,{value:'1 JAN 2027',label:'messaging apps due to stay tied to the active SIM in your phone',source:'DoT SIM-binding direction (Nov 2025, deadline extended) · Business Standard, 23 Oct 2026',c:BLU,alpha:eOut(p(lt,1.0,0.4)),size:96,labelSize:32});
+  sub('Aim, as reported: curb cross-border cyber fraud using Indian numbers',1385,eOut(p(lt,5.4,0.4)),{size:28,color:COL.white});
+  kineticCaption(lt,[[0.6,'SIM BINDING',BLU],[4.4,'NO SIM, NO APP',RED]],{y:1460,hold:2.0});}
 // 11 — the law (chapter 4)
 function sLaw(lt){head('What the law says',400,0.8,lt,{size:84});
   infoCard(90,450,900,215,'BNSS, 2023 · SECTION 94','A police officer’s written order to produce electronic records and devices.',CY,eOut(p(lt,1.0,0.4)),{size:32});
   infoCard(90,685,900,215,'IT RULES, 2021 · RULE 3(1)(j)','On a lawful order, the app shares information it holds within 72 hours.',AMB,eOut(p(lt,4.2,0.4)),{size:32});
-  infoCard(90,920,900,215,'BSA, 2023 · SECTION 63','Proved in court with a certificate from the person in charge and an expert, with the hash value.',GRN,eOut(p(lt,7.6,0.4)),{size:32});
-  infoCard(90,1155,900,215,'BNS, 2023 · SECTION 308','Extortion by threats: up to 7 years, or fine, or both.',RED,eOut(p(lt,11.2,0.4)),{size:32});
-  kineticCaption(lt,[[1.1,'s.94: THE ORDER',CY],[4.3,'72 HOURS',AMB],[7.7,'s.63: THE CERTIFICATE',GRN],[11.3,'s.308: UP TO 7 YEARS',RED]],{y:1450,hold:2.6});}
+  infoCard(90,920,900,215,'BSA, 2023 · SECTION 63','Proved in court with a certificate from the person in charge and an expert, with the hash value.',GRN,eOut(p(lt,8.0,0.4)),{size:32});
+  infoCard(90,1155,900,215,'BNS, 2023 · SECTION 308','Extortion by threats: up to 7 years, or fine, or both.',RED,eOut(p(lt,12.2,0.4)),{size:32});
+  kineticCaption(lt,[[1.1,'s.94: THE ORDER',CY],[4.3,'72 HOURS',AMB],[8.1,'s.63: THE CERTIFICATE',GRN],[12.3,'s.308: UP TO 7 YEARS',RED]],{y:1450,hold:2.6});}
 // 12 — do this now (chapter 5)
-function sAct(lt){checklistCard(90,350,900,1000,{lt,t0:1.6,step:0.75,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
+function sAct(lt){checklistCard(90,380,900,800,{lt,t0:1.6,step:1.0,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
   flags:['Threats with a deadline to pay','“WhatsApp calls can’t be traced”','“Don’t tell the police”'],
   actions:['Don’t pay. Don’t delete the chat or call log','Screenshot the number, date, time, duration','Report at cybercrime.gov.in or to the police']});
-  sub('Already paid? Call 1930 and your bank at once.',1395,eOut(p(lt,6.4,0.4)),{size:30,color:COL.white,weight:700});
-  kineticCaption(lt,[[9.6,'SAVE THIS · SHARE IT',BLU]],{sticky:true,y:1475});}
+  sub('Already paid? Call 1930 and your bank at once.',1255,eOut(p(lt,8.6,0.4)),{size:30,color:COL.white,weight:700});
+  kineticCaption(lt,[[12.6,'SAVE THIS · SHARE IT',BLU]],{sticky:true,y:1370});}
 function sOut(lt){outro(lt,window.EPISODE.laws);}
 
 window.EPISODE={
@@ -625,13 +625,13 @@ window.EPISODE={
     personShift:120,
     visual:P=>{ctx.save();ctx.globalAlpha=0.97;if(P)coverTile(50,820,380,560);else coverTile(260,860,560,640);ctx.restore();}},
   scenes:[
-    {id:'hook',fn:sHook,dur:5.0,min:4.2,pops:[[0.05,520,0.1],[0.3,880,0.1],[0.4,700,0.08],[3.2,990,0.08]],impacts:[[1.9,0.85,16]],ring:[[0.4,1.8]],
+    {id:'hook',fn:sHook,dur:5.0,min:4.2,pops:[[0.05,520,0.1],[0.3,880,0.1],[0.4,700,0.08],[3.4,990,0.08]],impacts:[[2.2,0.85,16]],ring:[[0.4,2.1]],
      vo:'WhatsApp call है, trace नहीं होगी? गलत। देखिए, ये call कैसे पकड़ी जाती है।'},
-    {id:'threat',fn:sThreat,dur:10.0,min:8.6,chapter:[1,'THE THREAT'],pops:[[7.6,700]],chimes:[1.6,4.2,5.6],
+    {id:'threat',fn:sThreat,dur:11.5,min:11.2,chapter:[1,'THE THREAT'],pops:[[10.6,700]],chimes:[1.6,6.9,8.2],
      vo:'Ravi जी को unknown number से WhatsApp पर धमकी: कल तक दो लाख भेजो, वरना पछताओगे। फिर calls: police के पास मत जाना, WhatsApp call trace नहीं होती।'},
     {id:'kinds',fn:sKinds,dur:10.0,min:8.0,chapter:[2,'HOW IT WORKS'],pops:[[1.1,560],[3.3,700],[5.6,760]],impacts:[[5.8,0.5,8]],
      vo:'Normal call का record CDR में बनता है। WhatsApp call बस internet data है, और end-to-end encrypted: बातें WhatsApp भी नहीं सुन सकता।'},
-    {id:'packet',fn:sPacket,dur:7.5,min:6.0,pops:[[0.2,560],[1.1,700],[2.0,760],[2.8,820],[4.2,640]],impacts:[[4.9,0.6,10]],typing:[[1.1,3.4]],
+    {id:'packet',fn:sPacket,dur:7.0,min:6.3,pops:[[0.2,560],[1.9,700],[2.9,760],[3.7,820],[4.5,640]],impacts:[[5.2,0.6,10]],typing:[[1.9,4.3]],
      vo:'पर हर data packet पर पता लिखा है: IP address, port और समय। बात छुपी है, लिफ़ाफ़ा नहीं।'},
     {id:'nat',fn:sNat,dur:7.5,min:6.2,pops:[[0.3,520,0.08],[1.2,620],[2.8,700],[3.1,740],[4.4,880,0.1]],impacts:[[4.9,0.6,10]],
      vo:'हज़ारों phones एक ही public IP share करते हैं। फ़र्क बताते हैं port और सेकंड तक का समय।'},
@@ -639,15 +639,15 @@ window.EPISODE={
      vo:'DoT के नियम से operators ये IPDR records कम से कम दो साल रखते हैं।'},
     {id:'app',fn:sApp,dur:8.5,min:6.8,chapter:[3,'THE TRAIL'],pops:[[1.1,620],[2.2,700],[3.3,760],[3.9,640],[4.6,880,0.08]],typing:[[4.1,5.2]],
      vo:'शिकायत के बाद police, कानूनी order से, app से account की जानकारी और IP logs माँगती है।'},
-    {id:'match',fn:sMatch,dur:8.0,min:6.2,pops:[[0.3,620],[2.9,760],[4.2,700]],impacts:[[3.2,0.8,14]],typing:[[0.6,2.4]],
+    {id:'match',fn:sMatch,dur:8.5,min:7.2,pops:[[0.3,620],[4.4,760],[5.6,700]],impacts:[[4.7,0.8,14]],typing:[[0.6,2.4]],
      vo:'फिर IP, port और समय operator के IPDR से मिलाए जाते हैं। एक row match: SIM, KYC और phone का IMEI।'},
     {id:'join',fn:sJoin,dur:6.5,min:5.4,pops:[[0.2,560],[0.8,620],[1.6,680],[2.3,740],[3.0,800],[3.6,700]],impacts:[[4.0,0.8,14]],
      vo:'फिर tower location, calls और पैसों का रास्ता जोड़कर पहुँचते हैं एक इंसान तक।'},
-    {id:'sim',fn:sSim,dur:7.5,min:5.6,pops:[[0.2,620],[2.4,700],[3.4,760],[4.4,880,0.08]],impacts:[[2.8,0.6,10]],
+    {id:'sim',fn:sSim,dur:7.5,min:6.4,pops:[[0.2,620],[1.0,760],[4.2,700],[5.4,880,0.08]],impacts:[[4.6,0.6,10]],
      vo:'और एक जनवरी twenty twenty seven से, WhatsApp जैसे apps को phone में मौजूद active SIM से बंधे रहना है।'},
-    {id:'law',fn:sLaw,dur:14.0,min:12.6,chapter:[4,'THE LAW'],pops:[[1.0,620],[4.2,700],[7.6,760],[11.2,820]],impacts:[[11.4,0.6,10]],
+    {id:'law',fn:sLaw,dur:15.0,min:13.6,chapter:[4,'THE LAW'],pops:[[1.0,620],[4.2,700],[8.0,760],[12.2,820]],impacts:[[12.4,0.6,10]],
      vo:'Police का order: BNSS Section ninety four। App को बहत्तर घंटे में जानकारी: IT Rules। Court में सबूत: BSA Section sixty three का certificate। और धमकी से पैसे माँगना: BNS Section three zero eight, सात साल तक।'},
-    {id:'act',fn:sAct,dur:13.0,min:11.4,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[6.4,880,0.08],[9.6,990,0.08]],
+    {id:'act',fn:sAct,dur:14.0,min:13.2,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.6,560,0.1],[3.6,600,0.1],[4.9,700,0.1],[5.9,760,0.1],[6.9,820,0.1],[8.6,880,0.08],[12.6,990,0.08]],
      vo:'Screenshot लीजिए। पैसे मत भेजिए, chat और call log delete मत कीजिए। Number, तारीख़ और समय के screenshots रखिए, और cybercrime dot gov dot in पर या police में शिकायत कीजिए। ये save कीजिए।'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};

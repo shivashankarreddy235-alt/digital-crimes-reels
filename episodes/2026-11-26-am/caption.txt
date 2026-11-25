@@ -1,11 +1,11 @@
-You typed your PIN in the real app. Someone saw it.
+"WhatsApp calls can't be traced"? Wrong.
 ⚖️ For educational purposes only. Not legal advice.
 
-A fake "bill update" app sent on WhatsApp can ask for Accessibility and "display over other apps". Security researchers report malware that lays an invisible layer over a genuine UPI app, records each digit of the PIN and reads OTPs. Planting malware: IT Act Section 66 (with 43); misusing someone's PIN or password: Section 66C; cheating: BNS Section 318(4).
+A WhatsApp call is end-to-end encrypted, so no one outside the chat can listen. But it travels as internet data that carries an IP address, a port and a time. Under DoT's licence rules, operators keep these IP Detail Records (IPDR) for at least two years. On a lawful order (BNSS Section 94; IT Rules 2021, rule 3(1)(j)), investigators match the app's IP logs with the operator's records, and prove them in court with a BSA Section 63 certificate. Extortion by threats: BNS Section 308.
 
-Install apps only from the Play Store, never turn on Accessibility for an unknown app, and if money is gone, call 1930 or report at cybercrime.gov.in at once.
+Got a threat call? Don't pay and don't delete anything: screenshot the number, date and time, and report at cybercrime.gov.in or to the police.
 
 Save this and send it to someone who needs it.
 Voiceover: AI-generated.
 
-#UPIFraud #CyberLaw #CyberForensics #AndroidSecurity #DigitalCrimes
+#WhatsAppCall #CyberLaw #CyberForensics #DigitalEvidence #DigitalCrimes

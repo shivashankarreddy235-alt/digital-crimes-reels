@@ -2,17 +2,17 @@
  "episode": 7,
  "date": "2026-11-26",
  "slot": "am",
- "topic": "The invisible layer over your UPI app: how APK malware sees your PIN (overlay + Accessibility + SMS; IT Act ss.43, 66, 66C; BNS 318(4); peg: NPCI and UPI apps asking Google to restrict these permissions, reported 17–22 Nov 2026)",
- "series": "Tech Decoded",
- "audience": "Android users who pay by UPI (primary); their parents",
+ "topic": "Can a WhatsApp call be traced? How investigators follow the IP trail (IPDR and NAT logs, platform IP logs on a lawful order, SIM binding from 1 Jan 2027; BNSS s.94, IT Rules 2021 r.3(1)(j), BSA s.63, BNS s.308)",
+ "series": "Forensics File",
+ "audience": "Everyone who gets threat or scam calls on WhatsApp (primary); law students and young advocates",
  "language": "English text, Hindi voice",
  "status": "pending",
  "approved_at": null,
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
- "length_s": 114.4,
- "cover": "A: REAL APP. REAL PIN. / SOMEONE SAW IT. (alternatives B and C rendered for review)",
+ "length_s": 113.5,
+ "cover": "A: WHATSAPP CALL? / THE IP REMEMBERS. (alternatives B and C rendered for review)",
  "review_thread_id": "1a212f115d34d5a5",
  "review_message_ids": [
   "1a212f115d34d5a5"
@@ -21,5 +21,5 @@
   "1a21397d01907a6d"
  ],
  "reminder_sent": false,
- "note": "Evening build, 25 Nov 2026. Review emailed 25 Nov 2026 (evening) for the 7:00 AM slot on 26 Nov."
+ "note": "Evening build, 25 Nov 2026: first version (Tech Decoded: UPI overlay malware) emailed 19:11 IST. Owner replied by email (22:14 IST): \"Change the topic to something interesting to cyber forensics\"; in the session he chose \"Tracing a WhatsApp call\". Rebuilt as Forensics File; new version emailed in the same thread for the 7:00 AM slot on 26 Nov. The first version's topic is back in the topic bank."
 }
