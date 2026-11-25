@@ -6,8 +6,8 @@
  "series": "Corporate Cyber Brief",
  "audience": "CFOs, finance and accounts teams, CAs, directors (primary); IT and security heads",
  "language": "English text, Hindi voice",
- "status": "pending",
- "approved_at": null,
+ "status": "approved",
+ "approved_at": "2026-11-25T14:12:28+05:30",
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
@@ -15,11 +15,12 @@
  "cover": "A: YOUR MD'S REAL WHATSAPP. / STILL A SCAM. (alternatives B and C rendered for review)",
  "review_thread_id": "1a210ff230019ff2",
  "review_message_ids": [
-  "1a210ff230019ff2"
+  "1a210ff230019ff2",
+  "1a212022aa501a6d"
  ],
  "handled_reply_ids": [
   "1a211dee022ad873"
  ],
  "reminder_sent": false,
- "note": "Review emailed 25 Nov 2026, morning build; goes live at 8:00 PM IST only after the owner replies POST."
+ "note": "Review emailed 25 Nov 2026, morning build. Approved by the owner's email reply \"POST\" (14:12 IST, 25 Nov); goes live in the 8:00 PM slot on 25 Nov."
 }
