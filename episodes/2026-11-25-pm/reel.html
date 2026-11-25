@@ -511,7 +511,7 @@ function chatTile(x,y,w,h){card(x,y,w,h,WA);ctx.save();ctx.fillStyle='#3a4560';c
   txt('Rajiv Sir (MD)',x+108,y+60,{size:fit('Rajiv Sir (MD)',800,BODY,w-124,30),weight:800});txt('online',x+108,y+92,{size:24,weight:500,color:COL.dim});
   ctx.fillStyle='rgba(255,255,255,0.12)';ctx.fillRect(x+20,y+124,w-40,2);
   const L=['Urgent.','Send ₹48.5 lakh','today. In a','meeting —',"don't call."];rr(x+22,y+150,w-44,L.length*44+40,20);ctx.fillStyle='#1f2b37';ctx.fill();
-  L.forEach((l,i)=>txt(l,x+44,y+196+i*44,{size:34,weight:600,color:'#eef2fa'}));stamp(x+w/2,y+h-70,'SCAM',RED,1,-0.1,52);}
+  L.forEach((l,i)=>txt(l,x+44,y+196+i*44,{size:32,weight:600,color:'#eef2fa'}));stamp(x+w/2,y+h-70,'SCAM',RED,1,-0.1,52);}
 
 // 1 — hook
 function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.5,0.3));
