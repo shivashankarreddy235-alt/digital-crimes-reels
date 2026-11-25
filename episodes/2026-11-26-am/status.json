@@ -6,8 +6,8 @@
  "series": "Forensics File",
  "audience": "Everyone who gets threat or scam calls on WhatsApp (primary); law students and young advocates",
  "language": "English text, Hindi voice",
- "status": "pending",
- "approved_at": null,
+ "status": "approved",
+ "approved_at": "2026-11-25T22:51:54+05:30",
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
@@ -16,12 +16,13 @@
  "review_thread_id": "1a212f115d34d5a5",
  "review_message_ids": [
   "1a212f115d34d5a5",
-  "1a213b1c8a595ec4"
+  "1a213b1c8a595ec4",
+  "1a213ba502cca26b"
  ],
  "handled_reply_ids": [
   "1a21397d01907a6d",
   "1a213b479aded114"
  ],
  "reminder_sent": false,
- "note": "Evening build, 25 Nov 2026: first version (Tech Decoded: UPI overlay malware) emailed 19:11 IST. Owner replied by email (22:14 IST): \"Change the topic to something interesting to cyber forensics\"; in the session he chose \"Tracing a WhatsApp call\". Rebuilt as Forensics File; new version emailed in the same thread for the 7:00 AM slot on 26 Nov. The first version's topic is back in the topic bank."
+ "note": "Evening build, 25 Nov 2026: first version (Tech Decoded: UPI overlay malware) emailed 19:11 IST. Owner replied by email (22:14 IST): \"Change the topic to something interesting to cyber forensics\"; in the session he chose \"Tracing a WhatsApp call\". Rebuilt as Forensics File; new version emailed in the same thread for the 7:00 AM slot on 26 Nov. The first version's topic is back in the topic bank. Approved by the owner's email reply \"Post\" (22:45 IST, 25 Nov) to the new version; goes live in the 7:00 AM slot on 26 Nov."
 }
