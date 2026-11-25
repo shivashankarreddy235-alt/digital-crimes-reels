@@ -452,226 +452,203 @@ function boot(){buildTimeline();const fonts=['900 100px "Inter Display"','800 10
   Promise.all([...fonts,person,ld(LOGO,base+'logo.png',()=>{LOGO_OK=true;}),ld(WORD,base+'wordmark.png',()=>{WORD_OK=true;})]).then(()=>{window.ready=true;});}
 
 /* =====================================================================================
-   EPISODE (rewrite per episode)  —  EP07 "The invisible layer over your UPI app: how APK malware sees your PIN" (TECH DECODED)
-   Dramatised scenario (invented person, message, amounts; masked sample data only; no real bank, app or company).
-   Reported case shown by city, outlet and date only. Concept-level explanation (overlay, Accessibility, SMS): no tools, no steps.
+   EPISODE (rewrite per episode)  —  EP07 "Can a WhatsApp call be traced? How investigators follow the IP trail" (FORENSICS FILE)
+   Dramatised scenario (invented person, messages, amounts; masked sample data only; no real person, number, IP or IMEI).
+   Explains how call metadata is traced and proved. No evasion tips: no tools, no steps to hide.
    ===================================================================================== */
-const AMB=COL.amber,RED=COL.red,GRN=COL.green,CY=COL.cyan,TEAL='#19e0c8';
+const AMB=COL.amber,RED=COL.red,GRN=COL.green,CY=COL.cyan,BLU='#4d9bff';
 function sub(s,y,a,o={}){if(a<=0)return;txt(s,540,y,{size:fit(s,o.weight||600,BODY,o.maxW||900,o.size||32),weight:o.weight||600,align:'center',color:o.color||COL.dim,alpha:a});}
 // plain text card with a coloured head line (from EP06)
 function infoCard(x,y,w,h,head1,body,c,a,o={}){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;ctx.translate(0,(1-a)*40);card(x,y,w,h,c);ctx.fillStyle=c;rr(x,y+22,8,h-44,4);ctx.fill();
   txt(head1,x+48,y+64,{size:fit(head1,800,BODY,w-96,30,3),weight:800,color:c,ls:3});para(body,x+48,y+120,w-96,{size:o.size||36,weight:700,lh:(o.size||36)*1.27});
   if(o.foot)txt(o.foot,x+48,y+h-30,{size:fit(o.foot,500,BODY,w-96,26),weight:500,color:COL.dim});ctx.restore();}
 // chips stacked vertically with down arrows (from EP05)
-function chipCol(lt,y0,gap,chips){chips.forEach(([l,c,t0],i)=>{const e=eOut(p(lt,t0,0.3)),y=y0+i*gap;
-    if(e>0){ctx.save();const sc=1+0.25*(1-e);ctx.translate(540,y);ctx.scale(sc,sc);pill(0,0,l,c,{size:34,ls:1,alpha:e,fillA:'33',weight:800});ctx.restore();}
+function chipCol(lt,y0,gap,chips,o={}){chips.forEach(([l,c,t0],i)=>{const e=eOut(p(lt,t0,0.3)),y=y0+i*gap;
+    if(e>0){ctx.save();const sc=1+0.25*(1-e);ctx.translate(540,y);ctx.scale(sc,sc);pill(0,0,l,c,{size:o.size||34,ls:1,alpha:e,fillA:'33',weight:800});ctx.restore();}
     if(i<chips.length-1){const k=p(lt,chips[i+1][2]-0.3,0.3);if(k>0)arrowTo(540,y+34,540,y+gap-34,COL.dim,k,3);}});}
-// UPI PIN keypad (generic). keys in a 3x4 grid; o.hi={key,k} highlights a pressed key
-const KEYS=['1','2','3','4','5','6','7','8','9','⌫','0','✓'];
-function keyPos(x,y,w,h,key){const i=KEYS.indexOf(key),cw=w/3,ch=h/4;return [x+(i%3)*cw+cw/2,y+Math.floor(i/3)*ch+ch/2];}
-function keypad(x,y,w,h,o={}){const cw=w/3,ch=h/4;ctx.save();KEYS.forEach((k,i)=>{const kx=x+(i%3)*cw,ky=y+Math.floor(i/3)*ch;
-    rr(kx+cw*0.08,ky+ch*0.1,cw*0.84,ch*0.8,Math.min(cw,ch)*0.18);const hi=o.hi&&o.hi.key===k?o.hi.k:0;
-    ctx.fillStyle=hi>0?`rgba(25,224,200,${0.15+0.5*hi})`:(o.ghost?'rgba(0,0,0,0)':'rgba(255,255,255,0.07)');ctx.fill();
-    if(o.ghost){stroke(o.ghostC||'rgba(255,51,88,0.45)',2);ctx.setLineDash([8,8]);ctx.stroke();ctx.setLineDash([]);}
-    if(!o.ghost)txt(k,kx+cw/2,ky+ch/2+Math.min(cw,ch)*0.17,{size:Math.min(cw,ch)*0.42,weight:700,align:'center',color:k==='✓'?GRN:'#e8ecf6'});});ctx.restore();}
-// PIN slots (n filled of 6)
-function pinDots(cx,y,gap,r,n){for(let i=0;i<6;i++){const x=cx+(i-2.5)*gap;ctx.save();if(i<n){ctx.fillStyle=COL.white;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();}
-  else{stroke('rgba(255,255,255,0.5)',3);ctx.beginPath();ctx.moveTo(x-r*1.2,y+r);ctx.lineTo(x+r*1.2,y+r);ctx.stroke();}ctx.restore();}}
-// the inside of a generic UPI PIN screen, drawn in a local rect
-function pinScreen(x,y,w,h,o={}){rr(x,y,w,h,w*0.07);ctx.fillStyle='#141a2e';ctx.fill();
-  txt(o.title||'Paying Ramesh Dairy',x+w/2,y+h*0.08,{size:w*0.06,weight:700,align:'center',color:COL.dim});
-  txt(o.amount||'₹500',x+w/2,y+h*0.19,{size:w*0.14,weight:900,font:DISP,align:'center'});
-  txt('ENTER UPI PIN',x+w/2,y+h*0.29,{size:w*0.045,weight:800,ls:3,align:'center',color:COL.dim});
-  pinDots(x+w/2,y+h*0.35,w*0.12,w*0.025,o.n||0);
-  keypad(x+w*0.06,y+h*0.43,w*0.88,h*0.54,{hi:o.hi});}
-// phone with a PIN screen; returns the keypad rect in screen space
-function pinPhone(cx,cy,w,h,o={}){const a=o.alpha??1;if(a<=0)return null;const S=phoneFrame(cx,cy,w,h,{alpha:a,top:'#141a2e',bottom:'#0a0d18',time:o.time||'8:20'});
-  ctx.save();ctx.globalAlpha*=a;pinScreen(S.x+6,S.y,S.w-12,S.h-14,o);ctx.restore();const kx=S.x+6+(S.w-12)*0.06,ky=S.y+(S.h-14)*0.43;return {x:kx,y:ky,w:(S.w-12)*0.88,h:(S.h-14)*0.54};}
-// eye icon (open k 0..1)
-function eyeIcon(cx,cy,s,c,k=1){ctx.save();stroke(c,s*0.12);ctx.shadowColor=c;ctx.shadowBlur=s*0.6;ctx.beginPath();ctx.moveTo(cx-s,cy);ctx.quadraticCurveTo(cx,cy-s*0.85*k,cx+s,cy);ctx.quadraticCurveTo(cx,cy+s*0.85*k,cx-s,cy);ctx.stroke();
-  if(k>0.3){ctx.fillStyle=c;ctx.beginPath();ctx.arc(cx,cy,s*0.3*k,0,7);ctx.fill();}ctx.restore();}
-// server box
+// server box (from EP07 v1)
 function serverIcon(cx,cy,s,c){ctx.save();stroke(c,s*0.08);for(let i=0;i<3;i++){rr(cx-s*0.8,cy-s*0.9+i*s*0.62,s*1.6,s*0.5,s*0.1);ctx.stroke();ctx.fillStyle=c;ctx.beginPath();ctx.arc(cx+s*0.5,cy-s*0.65+i*s*0.62,s*0.07,0,7);ctx.fill();
   ctx.fillRect(cx-s*0.6,cy-s*0.68+i*s*0.62,s*0.6,s*0.06);}ctx.restore();}
-// fingertip + tap ripple at (x,y); k 0..1 over the tap
-function tap(x,y,k,c=COL.white,sq=1){if(k<=0||k>=1)return;ctx.save();const r=18+k*60;ctx.globalAlpha=(1-k)*0.9;stroke(c,4);ctx.beginPath();ctx.ellipse(x,y,r,r*sq,0,0,7);ctx.stroke();
-  ctx.globalAlpha=Math.min(1,(1-k)*2);ctx.fillStyle='rgba(255,255,255,0.85)';ctx.beginPath();ctx.arc(x,y,16,0,7);ctx.fill();ctx.restore();}
-// envelope (an SMS being copied)
-function envelope(x,y,s,c){ctx.save();rr(x-s,y-s*0.65,s*2,s*1.3,s*0.15);ctx.fillStyle='rgba(14,22,46,0.95)';ctx.fill();stroke(c,s*0.12);ctx.stroke();ctx.beginPath();ctx.moveTo(x-s,y-s*0.6);ctx.lineTo(x,y+s*0.1);ctx.lineTo(x+s,y-s*0.6);ctx.stroke();ctx.restore();}
-// fake "permission" screen of the dramatised app: two toggles (t1, t2 in 0..1)
-function permScreen(cx,cy,w,h,o={}){const a=o.alpha??1;if(a<=0)return;const S=phoneFrame(cx,cy,w,h,{alpha:a,top:'#1a2036',bottom:'#0b0f1c',time:'7:42'});ctx.save();ctx.globalAlpha*=a;
-  const fs=w*0.06,x=S.x+fs,ww=S.w-fs*2;ctx.fillStyle='#232b45';ctx.fillRect(S.x,S.y,S.w,fs*2.6);
-  rr(x,S.y+fs*0.6,fs*1.4,fs*1.4,fs*0.3);ctx.fillStyle=AMB;ctx.fill();iRupee(x+fs*0.7,S.y+fs*0.95,fs*0.6,'#05070d');
-  txt('Bill Update',x+fs*1.9,S.y+fs*1.7,{size:fs*1.0,weight:800});
-  txt('To continue, allow:',x,S.y+fs*4.4,{size:fs*0.95,weight:700});
-  const row=(yy,t1,t2,on,lbl)=>{rr(x,yy,ww,fs*3.4,fs*0.5);ctx.fillStyle='rgba(255,255,255,0.06)';ctx.fill();
-    txt(t1,x+fs*0.7,yy+fs*1.45,{size:fit(t1,800,BODY,ww-fs*4.4,fs*0.92),weight:800});txt(t2,x+fs*0.7,yy+fs*2.55,{size:fs*0.72,weight:500,color:COL.dim});
-    const tx=x+ww-fs*2.9,ty=yy+fs*1.2;rr(tx,ty,fs*2.2,fs*1.1,fs*0.55);ctx.fillStyle=on>0.5?'rgba(53,242,154,0.85)':'rgba(255,255,255,0.18)';ctx.fill();
-    ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(tx+fs*0.55+fs*1.1*eOut(clamp(on)),ty+fs*0.55,fs*0.44,0,7);ctx.fill();return [tx+fs*1.1,ty+fs*0.55];};
-  const p1=row(S.y+fs*5.6,'Accessibility','“Bill Helper” service',o.t1||0),p2=row(S.y+fs*9.6,'Display over other apps','Draw on top of any app',o.t2||0);
-  txt('Needed to update your bill.',x,S.y+fs*14.6,{size:fs*0.72,weight:500,color:COL.dim});
-  const by=S.y+S.h-fs*3.6;rr(x,by,ww,fs*2.2,fs*1.1);ctx.fillStyle=(o.t1>0.5&&o.t2>0.5)?GRN:'rgba(255,255,255,0.12)';ctx.fill();
-  txt('Continue',x+ww/2,by+fs*1.45,{size:fs*0.95,weight:800,align:'center',color:(o.t1>0.5&&o.t2>0.5)?'#062414':COL.dim});ctx.restore();return [p1,p2];}
-// isometric layer: draws fn(w,h) in a skewed plane centred at (cx,cy)
-function isoLayer(cx,cy,w,h,fn,a=1){if(a<=0)return null;const ox=cx-(w/2+0.55*h/2),oy=cy-(-0.18*w/2+0.42*h/2);ctx.save();ctx.globalAlpha*=a;ctx.translate(ox,oy);ctx.transform(1,-0.18,0.55,0.42,0,0);fn(w,h);ctx.restore();
-  return (u,v)=>[ox+u+0.55*v,oy-0.18*u+0.42*v];}
-// cover tile: PIN screen with the invisible layer and an eye
-function coverTile(x,y,w,h){card(x,y,w,h,RED);ctx.save();pinScreen(x+20,y+20,w-40,h-40,{n:4,title:'Paying ₹500',amount:'UPI PIN'});
-  ctx.fillStyle='rgba(255,51,88,0.16)';rr(x+20,y+20,w-40,h-40,20);ctx.fill();stroke(RED,4);ctx.setLineDash([14,10]);ctx.stroke();ctx.setLineDash([]);
-  eyeIcon(x+w/2,y+h*0.47,w*0.2,RED,1);ctx.restore();stamp(x+w/2,y+h-70,'RECORDED',RED,1,-0.1,44);}
+// small envelope (a data packet in flight)
+function miniEnv(x,y,s,c,a=1){ctx.save();ctx.globalAlpha*=a;rr(x-s,y-s*0.65,s*2,s*1.3,s*0.15);ctx.fillStyle='rgba(14,22,46,0.95)';ctx.fill();stroke(c,s*0.12);ctx.stroke();ctx.beginPath();ctx.moveTo(x-s,y-s*0.6);ctx.lineTo(x,y+s*0.1);ctx.lineTo(x+s,y-s*0.6);ctx.stroke();ctx.restore();}
+// big "packet" envelope: sealed content (lock) + a visible address label. rows=[[label,value,t],...]
+function packetEnvelope(x,y,w,h,lt,rows,o={}){const a=o.alpha??1;if(a<=0)return;ctx.save();ctx.globalAlpha*=a;
+  rr(x,y,w,h,26);ctx.fillStyle='rgba(16,24,50,0.96)';ctx.fill();stroke(AMB,4);ctx.stroke();
+  ctx.save();ctx.globalAlpha*=0.5;stroke(AMB,3);ctx.beginPath();ctx.moveTo(x+10,y+12);ctx.lineTo(x+w/2,y+h*0.42);ctx.lineTo(x+w-10,y+12);ctx.stroke();ctx.restore();
+  // seal
+  const sk=eOut(p(lt,o.sealT??0.4,0.4));if(sk>0){ctx.save();ctx.globalAlpha*=sk;const sx=x+w/2,sy=y+h*0.42;ctx.fillStyle='#0b2a1c';ctx.beginPath();ctx.arc(sx,sy,62,0,7);ctx.fill();stroke(GRN,5);ctx.shadowColor=GRN;ctx.shadowBlur=24;ctx.stroke();ctx.shadowBlur=0;iLock(sx,sy-6,40,GRN);ctx.restore();
+    txt('CONTENT · ENCRYPTED',x+w/2,y+h*0.42+104,{size:28,weight:800,ls:3,align:'center',color:GRN,alpha:sk});}
+  // address label
+  const lx=x+60,ly=y+h*0.62;rows.forEach(([l,v,t],i)=>{const e=eOut(p(lt,t,0.3));if(e<=0)return;const yy=ly+i*62;
+    ctx.save();ctx.globalAlpha*=e;ctx.translate((1-e)*-30,0);txt(l,lx,yy,{size:30,weight:800,ls:3,color:COL.dim});
+    const n=Math.floor(v.length*clamp((lt-t)/0.5));txt(v.slice(0,n),lx+170,yy,{size:34,weight:700,font:MONO,color:AMB,glow:10});ctx.restore();});
+  ctx.restore();}
+// NAT diagram: phones on the left share one public IP on the right; ports appear on each line
+function natDiagram(lt,o){const ys=[520,660,800,940,1080],sims=['SIM ••2290','SIM ••4417','SIM ••0631','SIM ••7718','SIM ••5502'],ports=[':40311',':40312',':51877',':33019',':47720'];
+  const nx=560,ny=800,hi=1;ys.forEach((y,i)=>{const e=eOut(p(lt,0.3+i*0.12,0.3));if(e<=0)return;ctx.save();ctx.globalAlpha*=e;
+    const isH=lt>=o.hiT&&i===hi;phone(150,y,44,isH?AMB:CY,isH?1:0.4);txt(sims[i],200,y+12,{size:28,weight:700,font:MONO,color:isH?AMB:COL.white});
+    const k=eOut(p(lt,0.9+i*0.1,0.5));ctx.save();stroke(isH?AMB:'rgba(46,230,255,0.45)',isH?5:3);ctx.beginPath();ctx.moveTo(400,y);ctx.lineTo(lerp(400,nx-80,k),lerp(y,ny,k));ctx.stroke();ctx.restore();
+    const pe=eOut(p(lt,o.portT+i*0.15,0.3));if(pe>0)pill(408,y-34,ports[i],isH?AMB:COL.dim,{size:22,align:'left',alpha:pe,fillA:isH?'44':'18',weight:800});
+    ctx.restore();});
+  const ne=eOut(p(lt,1.2,0.4));if(ne>0){ctx.save();ctx.globalAlpha*=ne;rr(nx-80,ny-70,160,140,22);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();stroke(CY,4);ctx.stroke();
+    txt('NAT',nx,ny+12,{size:44,weight:900,font:DISP,align:'center',color:CY});txt('OPERATOR',nx,ny+100,{size:24,weight:800,ls:2,align:'center',color:COL.dim});
+    const k=eOut(p(lt,1.5,0.4));arrowTo(nx+82,ny,lerp(nx+82,700,k),ny,CY,k,5);
+    rr(700,ny-92,290,184,22);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();stroke(CY,3);ctx.stroke();
+    txt('ONE PUBLIC IP',845,ny-40,{size:24,weight:800,ls:2,align:'center',color:COL.dim});txt('1XX.XX.XX.18',845,ny+14,{size:fit('1XX.XX.XX.18',800,MONO,260,36),weight:800,font:MONO,align:'center',color:COL.white});
+    if(lt>=o.hiT){const he=eOut(p(lt,o.hiT,0.3));txt(':40312',845,ny+60,{size:36,weight:900,font:MONO,align:'center',color:AMB,alpha:he,glow:14});}
+    ctx.restore();}
+  const te=eOut(p(lt,o.hiT+0.5,0.35));if(te>0)stamp(845,ny+170,'21:14:07 IST',AMB,p(lt,o.hiT+0.5,0.35),-0.05,34);}
+// SIM bound to an app (link); unbind at tb (SIM removed -> app paused)
+function simBind(lt,cx,cy,tb){const a=eOut(p(lt,0.2,0.4));if(a<=0)return;ctx.save();ctx.globalAlpha*=a;
+  const S=phoneFrame(cx,cy,300,520,{top:'#141a2e',bottom:'#0a0d18',time:'21:14'});
+  const out=eInOut(p(lt,tb,0.6));const sx=cx-260-out*60,sy=cy+40+out*60;sim(sx,sy,90,out>0.5?COL.dim:GRN,1-0.5*out);
+  // chain links between SIM and phone
+  const lk=1-out;if(lk>0.02){ctx.save();ctx.globalAlpha*=lk;stroke(GRN,6);for(let i=0;i<3;i++){const x0=sx+60+i*40;ctx.beginPath();ctx.ellipse(x0,sy-8,22,12,0,0,7);ctx.stroke();}ctx.restore();}
+  // app tile on the phone
+  const ax=S.x+S.w/2,ay=S.y+S.h*0.34;rr(ax-70,ay-70,140,140,32);ctx.fillStyle=out>0.5?'rgba(255,51,88,0.2)':'rgba(53,242,154,0.22)';ctx.fill();stroke(out>0.5?RED:GRN,4);ctx.stroke();
+  ctx.fillStyle=out>0.5?RED:GRN;rr(ax-40,ay-30,80,56,16);ctx.fill();ctx.beginPath();ctx.moveTo(ax-24,ay+22);ctx.lineTo(ax-36,ay+44);ctx.lineTo(ax-4,ay+24);ctx.fill();
+  txt('Messaging app',ax,ay+120,{size:26,weight:700,align:'center',color:COL.white});
+  if(out>0.5){const e=eOut(p(lt,tb+0.4,0.3));pill(ax,ay+190,'PAUSED · SIM NOT FOUND',RED,{size:22,alpha:e,fillA:'33',weight:800});}
+  else pill(ax,ay+190,'ACTIVE SIM ✓',GRN,{size:22,fillA:'33',weight:800});
+  ctx.restore();}
+// cover tile: the sealed packet with its visible address
+function coverTile(x,y,w,h){ctx.save();rr(x,y,w,h,26);ctx.fillStyle='rgba(16,24,50,0.96)';ctx.fill();stroke(AMB,5);ctx.shadowColor=AMB;ctx.shadowBlur=30;ctx.stroke();ctx.shadowBlur=0;
+  stroke(AMB,3);ctx.globalAlpha=0.5;ctx.beginPath();ctx.moveTo(x+10,y+12);ctx.lineTo(x+w/2,y+h*0.38);ctx.lineTo(x+w-10,y+12);ctx.stroke();ctx.globalAlpha=1;
+  const sx=x+w/2,sy=y+h*0.38;ctx.fillStyle='#0b2a1c';ctx.beginPath();ctx.arc(sx,sy,w*0.14,0,7);ctx.fill();stroke(GRN,5);ctx.stroke();iLock(sx,sy-4,w*0.09,GRN);
+  const fs=Math.min(30,w*0.07);txt('IP   1XX.XX.XX.18',x+w*0.1,y+h*0.68,{size:fs,weight:800,font:MONO,color:AMB});txt('PORT 40312',x+w*0.1,y+h*0.68+fs*1.5,{size:fs,weight:800,font:MONO,color:AMB});
+  txt('TIME 21:14:07',x+w*0.1,y+h*0.68+fs*3.0,{size:fs,weight:800,font:MONO,color:AMB});ctx.restore();}
 
 // 1 — hook
-function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.35,0.3));
-  if(a1>0)txt('You typed your PIN',540,390+(1-a1)*24,{size:fit('You typed your PIN',900,DISP,920,92),weight:900,font:DISP,align:'center',alpha:a1});
-  if(a2>0)txt('in the REAL app.',540,490+(1-a2)*24,{size:fit('in the REAL app.',900,DISP,920,92),weight:900,font:DISP,align:'center',alpha:a2,color:TEAL,glow:24});
-  const n=Math.min(6,Math.floor(clamp((lt-0.6)/1.6)*6.99)),key=['4','7','1','9','3','8'][Math.min(5,Math.floor(clamp((lt-0.6)/1.6)*6))];
-  const K=pinPhone(540,930,400,660,{alpha:eOut(p(lt,0.3,0.35)),n,hi:lt>0.6&&lt<2.3?{key,k:1-((lt-0.6)/1.6*6)%1}:null});
-  const ov=eOut(p(lt,1.8,0.5));if(ov>0&&K){ctx.save();ctx.globalAlpha=ov*0.9;rr(352,610,376,640,40);ctx.fillStyle='rgba(255,51,88,0.14)';ctx.fill();stroke(RED,4);ctx.setLineDash([14,10]);ctx.stroke();ctx.setLineDash([]);
-    eyeIcon(540,1010,70,RED,eOut(p(lt,2.0,0.4)));ctx.restore();}
-  stamp(540,1175,'RECORDED',RED,p(lt,2.4,0.35),-0.08,60);
-  const a3=eOut(p(lt,2.8,0.3));if(a3>0){const sc=1+0.25*(1-eBack(a3));ctx.save();ctx.translate(540,1360);ctx.scale(sc,sc);txt('Someone saw it.',0,0,{size:96,weight:900,font:DISP,align:'center',color:RED,glow:30,alpha:clamp(a3*2)});ctx.restore();}
-  sub('The last step in this reel is the one that stops it.',1460,eOut(p(lt,3.8,0.4)),{color:COL.white,weight:700,size:32});}
-// 2 — the lure (chapter 1)
-function sScam(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.8,0.3))});sub('Sunita, 58, Nagpur · a fictional example',388,eOut(p(lt,0.9,0.3)),{size:30});
-  chatThread(540,900,600,880,{lt,alpha:eOut(p(lt,0.85,0.3)),name:'+91 9XXXX XXX41',status:'online',msgs:[
-    {t:1.6,side:'in',text:'Dear customer, your gas connection will be disconnected TONIGHT. Bill not updated.',time:'7:38 PM'},
-    {t:3.8,side:'in',text:'Install the bill-update app below and pay ₹10 to avoid disconnection.',time:'7:38 PM'},
-    {t:6.2,side:'in',file:'Bill_Update.apk',fileMeta:'3.2 MB · APK file',fileExt:'APK',time:'7:39 PM'},
-    {t:8.2,side:'out',text:'Ok, installing',time:'7:41 PM'}]});
-  kineticCaption(lt,[[1.7,'DISCONNECTED TONIGHT',RED],[3.9,'PAY ONLY ₹10',AMB],[6.3,'AN APK FILE',RED]],{y:1440});}
-// 3 — two taps (the fake app asks for permissions)
-function sGrant(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.05,0.3))});
-  const P=permScreen(540,880,520,860,{alpha:eOut(p(lt,0.1,0.35)),t1:p(lt,2.0,0.3),t2:p(lt,3.8,0.3)});
-  if(P){tap(P[0][0],P[0][1],p(lt,1.85,0.5));tap(P[1][0],P[1][1],p(lt,3.65,0.5));}
-  stamp(540,1080,'FULL ACCESS',RED,p(lt,5.0,0.35),-0.08,70);
-  kineticCaption(lt,[[2.0,'ACCESSIBILITY: ON',AMB],[3.8,'DRAW OVER OTHER APPS: ON',RED],[5.1,'TWO TAPS',RED]],{y:1440});}
-// 4 — next morning: a normal payment, then the debits
-function sPaid(lt){tag('NEXT MORNING',350,0.05,lt,COL.dim);
-  const dim=1-0.65*eOut(p(lt,4.6,0.4));
-  if(lt<3.2){const n=Math.min(6,Math.floor(clamp((lt-0.9)/1.8)*6.99));pinPhone(540,880,440,760,{alpha:eOut(p(lt,0.2,0.35))*dim,n,hi:lt>0.9&&lt<2.7?{key:['4','7','1','9','3','8'][Math.min(5,Math.floor(clamp((lt-0.9)/1.8)*6))],k:1-((lt-0.9)/1.8*6)%1}:null});}
-  else upiScreen(540,880,440,760,{mode:'success',amount:500,name:'Ramesh Dairy',vpa:'ramesh••••@upi',k:p(lt,3.2,0.8),alpha:dim,time:'8:20 AM · just now',ref:'XXXXXXXX3307'});
-  notificationBanner(110,470,860,{app:'Bank',title:'₹49,999 debited',body:'UPI to xxxxxx88@upi · 8:21 AM',k:p(lt,4.8,0.4),glyph:'rupee',c:RED});
-  notificationBanner(110,700,860,{app:'Bank',title:'₹49,999 debited',body:'UPI to xxxxxx17@upi · 8:22 AM',k:p(lt,5.5,0.4),glyph:'rupee',c:RED});
-  stamp(540,1080,'SHE NEVER SENT THESE',RED,p(lt,6.3,0.35),-0.06,58);
-  pill(540,1330,'DRAMATISED · illustrative amounts',AMB,{size:22,ls:2,alpha:eOut(p(lt,0.3,0.3)),fillA:'2a'});
-  kineticCaption(lt,[[1.0,'EVERYTHING LOOKED NORMAL',TEAL],[4.9,'₹99,998 GONE',RED]],{y:1440});}
-// 5 — the invisible layer (chapter 2)
-function sHow(lt){head('The invisible layer',395,0.8,lt,{size:84});
-  const lw=380,lh=560,lift=eInOut(p(lt,1.8,0.9)),topY=lerp(1170,780,lift),la=eOut(p(lt,1.0,0.4));
-  const digs=[['4',3.0],['7',4.4],['1',5.4],['9',6.3]];const nOn=digs.filter(d=>lt>=d[1]+0.75).length;
-  const B=isoLayer(480,1170,lw,lh,(w,h)=>{pinScreen(0,0,w,h,{n:nOn,title:'Paying Ramesh Dairy'});stroke(TEAL,4);rr(0,0,w,h,w*0.07);ctx.stroke();},la);
-  // dashed links from the top layer down to the real app
-  digs.forEach(([d,t])=>{const k=p(lt,t+0.25,0.45);if(k<=0||k>=1.4||!B)return;const T=isoLayer(480,topY,lw,lh,()=>{},0.0001);const [u,v]=keyPos(lw*0.06,lh*0.43,lw*0.88,lh*0.54,d);
-    const P0=[T(u,v)[0],T(u,v)[1]],P1=B(u,v);if(k<1){ctx.save();stroke(TEAL,4);ctx.setLineDash([10,9]);ctx.beginPath();ctx.moveTo(P0[0],P0[1]);ctx.lineTo(lerp(P0[0],P1[0],k),lerp(P0[1],P1[1],k));ctx.stroke();ctx.restore();}
-    tap(P1[0],P1[1],p(lt,t+0.7,0.5),TEAL,0.5);});
-  const T=isoLayer(480,topY,lw,lh,(w,h)=>{rr(0,0,w,h,w*0.07);ctx.fillStyle=`rgba(255,51,88,${0.10+0.08*Math.sin(lt*4)})`;ctx.fill();stroke(RED,5);ctx.setLineDash([16,12]);ctx.stroke();ctx.setLineDash([]);
-    keypad(w*0.06,h*0.43,w*0.88,h*0.54,{ghost:true});ctx.save();ctx.globalAlpha*=0.9;txt('OVERLAY',w*0.36,h*0.2,{size:46,weight:900,font:DISP,align:'center',color:RED,ls:4});ctx.restore();},la);
-  if(T){eyeIcon(T(lw*0.84,lh*0.2)[0],T(lw*0.84,lh*0.2)[1],40,RED,eOut(p(lt,2.4,0.4)));
-    digs.forEach(([d,t])=>{const [u,v]=keyPos(lw*0.06,lh*0.43,lw*0.88,lh*0.54,d);const P=T(u,v);tap(P[0],P[1],p(lt,t,0.5),COL.white,0.5);});}
-  // recorded log
-  const ga=eOut(p(lt,2.9,0.3));if(ga>0){ctx.save();ctx.globalAlpha*=ga;card(620,440,370,130,RED);txt('RECORDED',650,488,{size:24,weight:900,ls:4,color:RED});
-    const sh=digs.filter(d=>lt>=d[1]+0.15).map(d=>d[0]).join('  ');txt(sh+(sh.length<10?'  _':''),650,548,{size:44,weight:800,font:MONO,color:COL.white});ctx.restore();}
-  pill(90,600,'INVISIBLE LAYER · ON TOP',RED,{size:24,ls:1,align:'left',alpha:eOut(p(lt,2.2,0.3)),fillA:'33'});
-  pill(90,1000,'THE REAL UPI APP',TEAL,{size:24,ls:1,align:'left',alpha:eOut(p(lt,2.5,0.3)),fillA:'33'});
-  kineticCaption(lt,[[1.9,'INVISIBLE LAYER',RED],[3.1,'RECORDS EVERY TAP',RED],[4.1,'PASSES IT ON',TEAL]],{y:1400,hold:2.0});
-  sub('Nothing on screen looks wrong.',1475,eOut(p(lt,9.2,0.4)),{color:COL.white,weight:800,size:38});
-  sub('Source: Cyble research ("Ghost Overlay"), reported Oct 2026',1520,eOut(p(lt,9.6,0.4)),{size:24});}
-// 6 — the second eye: Accessibility
-function sEyes(lt){head('The second eye: Accessibility',400,0.05,lt,{size:70});
-  const pa=eOut(p(lt,0.4,0.4));if(pa>0){ctx.save();ctx.globalAlpha*=pa;const S=phoneFrame(240,795,250,440,{top:'#141a2e',bottom:'#0a0d18',time:'8:20'});
-    for(let i=0;i<4;i++){ctx.fillStyle='rgba(232,236,246,0.35)';ctx.fillRect(S.x+24,S.y+30+i*34,(S.w-48)*(i%2?0.6:0.85),12);}
-    keypad(S.x+16,S.y+170,S.w-32,S.h-190,{});const sy=S.y+20+((lt*120)%(S.h-30));ctx.fillStyle='rgba(255,182,39,0.25)';ctx.fillRect(S.x,sy,S.w,6);ctx.restore();
-    eyeIcon(240,515,54,AMB,eOut(p(lt,0.8,0.4)));}
-  infoCard(400,500,590,220,'BUILT TO HELP','Reads the screen aloud for people who need it.',GRN,eOut(p(lt,1.4,0.4)),{size:32});
-  infoCard(400,750,590,220,'IN A FAKE APP','Reads what’s on your screen — and what you type.',RED,eOut(p(lt,4.8,0.4)),{size:32});
-  dataCard(90,1040,900,330,{value:'60 apps',label:'banking, UPI and wallet apps whose keypad one malware family can read',source:'Source: Cyble research, via CXOToday, 16 Oct 2026',c:RED,alpha:eOut(p(lt,6.6,0.4)),labelSize:32,size:100});
-  kineticCaption(lt,[[0.9,'ACCESSIBILITY',AMB],[4.9,'READS YOUR SCREEN',RED]],{y:1450,hold:2.4});}
-// 7 — the SMS
-function sSms(lt){head('Then your SMS',400,0.05,lt,{size:84});
-  smsCard(120,460,840,{sender:'AD-XXBANK',text:'XXXX21 is your OTP for a UPI transaction. Do not share it with anyone.',time:'8:21 AM',k:p(lt,0.4,0.4)});
-  const a=eOut(p(lt,1.4,0.4));if(a>0){ctx.save();ctx.globalAlpha*=a;phone(230,880,110,TEAL);txt('Your phone',230,1030,{size:30,weight:700,align:'center',color:COL.dim});
-    serverIcon(840,880,80,RED);txt('Scammer’s server',840,1030,{size:30,weight:700,align:'center',color:RED});ctx.restore();
-    const k=eOut(p(lt,1.8,0.5));ctx.save();stroke(RED,4);ctx.setLineDash([14,10]);ctx.lineDashOffset=-lt*60;ctx.globalAlpha=k;ctx.beginPath();ctx.moveTo(300,880);ctx.lineTo(lerp(300,750,k),880);ctx.stroke();ctx.restore();
-    if(lt>2.3)for(let j=0;j<2;j++){const q=((lt-2.3)*0.7+j*0.5)%1;envelope(lerp(310,740,q),880,26,RED);}}
-  const e1=eOut(p(lt,3.6,0.3)),e2=eOut(p(lt,4.2,0.3)),e3=eOut(p(lt,5.0,0.4));
-  if(e1>0)pill(330,1150,'YOUR PIN',AMB,{size:38,alpha:e1,fillA:'33',weight:900});if(e1>0)txt('+',540,1165,{size:60,weight:900,align:'center',alpha:e1});
-  if(e2>0)pill(750,1150,'YOUR OTP',AMB,{size:38,alpha:e2,fillA:'33',weight:900});
-  if(e3>0){const sc=1+0.2*(1-eBack(e3));ctx.save();ctx.translate(540,1290);ctx.scale(sc,sc);txt('= PAYMENTS IN YOUR NAME',0,0,{size:fit('= PAYMENTS IN YOUR NAME',900,DISP,900,70),weight:900,font:DISP,align:'center',color:RED,glow:24,alpha:clamp(e3*2)});ctx.restore();}
-  sub('CERT-In alert, via Free Press Journal (Mar 2026) · Cyble (Oct 2026)',1370,eOut(p(lt,5.4,0.4)),{size:26});
-  kineticCaption(lt,[[0.5,'OTPs + BANK ALERTS',AMB],[2.4,'SENT TO THE SCAMMER',RED]],{y:1460,hold:2.2});}
-// 8 — why now
-function sNews(lt){head('Why this matters now',400,0.05,lt,{size:80,color:TEAL});
-  sub('Reported: Business Today, 17 Nov 2026 · The420, 22 Nov 2026',456,eOut(p(lt,0.3,0.3)),{size:28});
-  infoCard(90,500,900,250,'NPCI + UPI APPS → GOOGLE','Restrict these for apps installed from outside the Play Store:',TEAL,eOut(p(lt,0.8,0.4)),{size:38});
-  [['ACCESSIBILITY SERVICES',2.4],['DEVICE ADMIN',3.2],['DISPLAY OVER OTHER APPS',4.0]].forEach(([l,t],i)=>{const e=eOut(p(lt,t,0.3));if(e<=0)return;const y=850+i*120;
-    ctx.save();ctx.translate((1-e)*-60,0);pill(200,y,l,RED,{size:36,align:'left',alpha:e,fillA:'33',weight:800});ctx.globalAlpha*=e;iLock(140,y-4,34,RED);ctx.restore();});
-  sub('Talks reported; no decision by Google yet.',1260,eOut(p(lt,5.2,0.4)),{size:32,color:COL.white,weight:700});
-  kineticCaption(lt,[[0.9,'NPCI ASKED GOOGLE',TEAL],[2.5,'LOCK THESE PERMISSIONS',RED]],{y:1380,hold:2.4});}
-// 9 — the trail (chapter 3)
-function sTrail(lt){head('The trail they leave',400,0.8,lt,{size:84});
-  chipCol(lt,520,115,[['3,206 COMPLAINTS ON THE PORTAL',CY,1.2],['111 FAKE APK FILES EXAMINED',AMB,2.4],['SERVERS THAT GOT THE SMS',AMB,3.6]]);
-  stamp(540,890,'6 ARRESTED',GRN,p(lt,4.8,0.35),-0.06,64);
-  const ta=eOut(p(lt,5.6,0.4));if(ta>0){ctx.save();ctx.globalAlpha*=ta;card(90,1000,900,330,AMB);txt('SERVER LOG · illustrative, masked',130,1052,{size:24,weight:800,ls:2,color:AMB});
-    dataTable(130,1110,[['TIME',190],['FROM',250],['MESSAGE',380]],[['08:21:04','AD-XXBANK','OTP XXXX21'],['08:21:40','AD-XXBANK','Debited ₹49,999'],['08:22:15','AD-XXBANK','Debited ₹49,999']],(lt-5.8)*2.2,58,{size:28});ctx.restore();}
-  sub('Mumbai Cyber Police · Reported: Free Press Journal, 26 Jun 2026',1385,eOut(p(lt,6.4,0.4)),{size:28});
-  sub('Allegations — not yet proved in court.',1428,eOut(p(lt,6.6,0.4)),{size:28,color:COL.white});
-  kineticCaption(lt,[[2.5,'FAKE APPS EXAMINED',AMB],[3.7,'SERVERS TRACED',AMB]],{y:1500,hold:1.6});}
-// 10 — the numbers
-function sData(lt){head('One network, allegedly',400,0.05,lt,{size:80});
-  dataCard(90,460,900,360,{num:8609,k:p(lt,0.6,1.2),label:'people installed the fake apps',source:'Mumbai case · Reported: Free Press Journal, 26 Jun 2026',c:AMB,alpha:eOut(p(lt,0.4,0.4))});
-  dataCard(90,860,900,360,{num:3206,k:p(lt,3.0,1.2),label:'complaints across India · about ₹43 crore',source:'National Cyber Crime Reporting Portal, as reported (FPJ, 26 Jun 2026)',c:RED,alpha:eOut(p(lt,2.8,0.4))});
-  sub('Allegations — not yet proved in court.',1280,eOut(p(lt,4.6,0.4)),{size:30,color:COL.white});
-  kineticCaption(lt,[[0.7,'8,609 INSTALLS',AMB],[3.1,'3,206 COMPLAINTS',RED]],{y:1400,hold:2.2});}
+function sHook(lt){const a1=eOut(p(lt,0.05,0.3)),a2=eOut(p(lt,0.3,0.3));
+  if(a1>0)txt('“WhatsApp calls',540,400+(1-a1)*24,{size:fit('“WhatsApp calls',900,DISP,920,96),weight:900,font:DISP,align:'center',alpha:a1});
+  if(a2>0)txt('can’t be traced.”',540,500+(1-a2)*24,{size:fit('can’t be traced.”',900,DISP,920,96),weight:900,font:DISP,align:'center',alpha:a2,color:AMB,glow:22});
+  callScreen(540,920,330,560,{lt,alpha:eOut(p(lt,0.4,0.35))*(1-0.55*eOut(p(lt,1.9,0.3))),name:'Unknown',number:'+91 9XXXX XXX07',label:'WhatsApp voice call',note:'END-TO-END ENCRYPTED',noteColor:GRN});
+  stamp(540,930,'WRONG.',RED,p(lt,1.9,0.35),-0.08,110);
+  const a3=eOut(p(lt,2.7,0.35));if(a3>0){ctx.save();ctx.globalAlpha*=a3;const k=eOut(p(lt,2.7,1.2));stroke(AMB,5);ctx.setLineDash([12,12]);ctx.lineDashOffset=-lt*40;
+    ctx.beginPath();ctx.moveTo(540,1215);ctx.lineTo(lerp(540,880,k),lerp(1215,1300,k));ctx.stroke();ctx.restore();if(k>0.9)iPin(880,1320,22,AMB);}
+  sub('It leaves a trail. Here’s how investigators follow it.',1400,eOut(p(lt,3.2,0.4)),{color:COL.white,weight:700,size:34});}
+// 2 — the threat (chapter 1)
+function sThreat(lt){dramatisedTag(540,330,{alpha:eOut(p(lt,0.8,0.3))});sub('Ravi, 41, Indore · a fictional example',388,eOut(p(lt,0.9,0.3)),{size:30});
+  chatThread(540,880,600,840,{lt,alpha:eOut(p(lt,0.85,0.3)),name:'+91 9XXXX XXX07',status:'online',msgs:[
+    {t:1.6,side:'in',text:'Send ₹2 lakh by tomorrow. Or you’ll regret it.',time:'9:10 PM'},
+    {t:4.2,side:'in',text:'Voice call · 2 min',time:'9:12 PM'},
+    {t:5.6,side:'in',text:'Don’t go to the police. WhatsApp calls can’t be traced.',time:'9:15 PM'},
+    {t:7.6,side:'out',text:'Who is this?',time:'9:15 PM'}]});
+  kineticCaption(lt,[[1.7,'₹2 LAKH · OR ELSE',RED],[4.3,'THEN THE CALLS',AMB],[5.7,'“CAN’T BE TRACED”',AMB]],{y:1440});}
+// 3 — two kinds of call (chapter 2)
+function sKinds(lt){head('Two kinds of call',395,0.8,lt,{size:80});
+  const la=eOut(p(lt,1.1,0.4));if(la>0){ctx.save();ctx.globalAlpha*=la;pill(280,470,'NORMAL CALL',CY,{size:28,fillA:'33',weight:800});tower(280,760,230,CY,lt);waves(280,540,lt,CY,3,90,0.8);
+    card(110,800,340,190,CY);txt('CDR',140,852,{size:34,weight:900,color:CY,ls:3});txt('A → B',140,904,{size:30,weight:700,font:MONO});txt('21:14 · 3 min',140,950,{size:30,weight:700,font:MONO,color:COL.dim});ctx.restore();}
+  const ra=eOut(p(lt,3.3,0.4));if(ra>0){ctx.save();ctx.globalAlpha*=ra;pill(800,470,'WHATSAPP CALL',AMB,{size:28,fillA:'33',weight:800});iGlobe(800,600,70,AMB);phone(800,800,62,AMB,0.8);
+    for(let j=0;j<3;j++){const q=((lt*0.9+j/3)%1);miniEnv(800,lerp(735,665,q),16,AMB,1-q);}
+    card(630,880,340,110,AMB);txt('INTERNET DATA',800,948,{size:30,weight:900,ls:2,align:'center',color:AMB});ctx.restore();}
+  const ea=eOut(p(lt,5.6,0.4));if(ea>0){ctx.save();ctx.globalAlpha*=ea;card(90,1040,900,300,GRN);iLock(170,1130,44,GRN);
+    txt('END-TO-END ENCRYPTED',240,1140,{size:36,weight:900,ls:3,color:GRN});
+    para('“No one outside of the chat, not even WhatsApp, can read, listen to, or share them.”',140,1210,800,{size:32,weight:600,lh:42});
+    txt('— WhatsApp Help Center, “About end-to-end encryption”',140,1314,{size:24,weight:500,color:COL.dim});ctx.restore();}
+  kineticCaption(lt,[[1.3,'CALL → CDR',CY],[3.4,'WHATSAPP → DATA',AMB],[5.8,'THE TALK: SEALED',GRN]],{y:1450,hold:2.2});}
+// 4 — every packet has an address
+function sPacket(lt){head('Every packet has an address',395,0.05,lt,{size:76});
+  packetEnvelope(130,470,820,640,lt,[['FROM','1XX.XX.XX.18',1.1],['PORT','40312',2.0],['TIME','21:14:07 IST',2.8]],{alpha:eOut(p(lt,0.2,0.4)),sealT:0.5});
+  const a=eOut(p(lt,4.2,0.35)),b=eOut(p(lt,4.9,0.35));
+  if(a>0)txt('The letter is sealed.',540,1210+(1-a)*20,{size:fit('The letter is sealed.',900,DISP,900,68),weight:900,font:DISP,align:'center',alpha:a});
+  if(b>0)txt('The envelope isn’t.',540,1300+(1-b)*20,{size:fit('The envelope isn’t.',900,DISP,900,68),weight:900,font:DISP,align:'center',alpha:b,color:AMB,glow:20});
+  kineticCaption(lt,[[1.2,'IP ADDRESS',AMB],[2.1,'PORT',AMB],[2.9,'TIME',AMB],[5.0,'METADATA, NOT CONTENT',AMB]],{y:1430,hold:1.2});}
+// 5 — thousands of phones, one IP
+function sNat(lt){head('Thousands of phones. One IP.',395,0.05,lt,{size:74});
+  natDiagram(lt,{portT:2.8,hiT:4.4});
+  sub('Operators’ NAT logs keep the shared IP, each phone’s port and the time',1330,eOut(p(lt,5.4,0.4)),{size:28,color:COL.white});
+  sub('Source: DoT, revised IPDR format, 16 Nov 2021 (in force 31 Mar 2022)',1375,eOut(p(lt,5.6,0.4)),{size:24});
+  kineticCaption(lt,[[0.6,'ONE PUBLIC IP',CY],[2.9,'DIFFERENT PORTS',AMB],[4.5,'+ THE EXACT SECOND',AMB]],{y:1460,hold:1.8});}
+// 6 — kept for two years
+function sKeep(lt){dataCard(90,400,900,400,{value:'2 YEARS',label:'minimum time operators must keep IP Detail Records (IPDR) — earlier, one year',source:'DoT, Unified Licence amendment, 21 Dec 2021',c:BLU,alpha:eOut(p(lt,0.2,0.4)),size:150,labelSize:34});
+  txt('WHAT AN IPDR HOLDS',540,900,{size:28,weight:900,ls:4,align:'center',color:COL.dim,alpha:eOut(p(lt,1.6,0.3))});
+  [['SUBSCRIBER (KYC ON FILE)',1.9],['SOURCE IP + PORT',2.4],['START / END TIME',2.9],['IMEI · IMSI · SIM TYPE',3.4]].forEach(([l,t],i)=>{const e=eOut(p(lt,t,0.3));if(e<=0)return;
+    ctx.save();const sc=1+0.2*(1-e);ctx.translate(540,990+i*100);ctx.scale(sc,sc);pill(0,0,l,AMB,{size:34,alpha:e,fillA:'2a',weight:800});ctx.restore();});
+  sub('DoT IPDR format, 16 Nov 2021',1370,eOut(p(lt,3.8,0.4)),{size:24});}
+// 7 — step 1: ask the app (chapter 3)
+function sApp(lt){head('Step 1: ask the app',395,0.8,lt,{size:80});
+  chipCol(lt,500,115,[['COMPLAINT · THE CALLER’S NUMBER',CY,1.1],['LAWFUL ORDER TO THE APP',AMB,2.2],['ACCOUNT DETAILS + IP LOGS',GRN,3.3]]);
+  const ta=eOut(p(lt,3.9,0.4));if(ta>0){ctx.save();ctx.globalAlpha*=ta;card(90,860,900,300,GRN);txt('APP’S RECORD · illustrative, masked',130,912,{size:24,weight:800,ls:2,color:GRN});
+    dataTable(130,970,[['TIME (IST)',250],['IP ADDRESS',330],['PORT*',180]],[['21:14:07','1XX.XX.XX.18','40312'],['21:31:52','1XX.XX.XX.18','40977']],(lt-4.1)*2.2,58,{size:28});
+    txt('*where the app logs it',130,1132,{size:24,weight:500,color:COL.dim});ctx.restore();}
+  sub('IT Rules 2021, rule 3(1)(j): information within 72 hours of a lawful order',1215,eOut(p(lt,4.6,0.4)),{size:28,color:COL.white});
+  kineticCaption(lt,[[2.3,'LAWFUL ORDER',AMB],[3.4,'IP LOGS',GRN],[4.7,'WITHIN 72 HOURS',AMB]],{y:1440,hold:1.6});}
+// 8 — step 2: match the operator's IPDR
+function sMatch(lt){head('Step 2: match the IPDR',395,0.05,lt,{size:80});
+  const ta=eOut(p(lt,0.3,0.4));if(ta>0){ctx.save();ctx.globalAlpha*=ta;card(70,450,940,420,AMB);txt('OPERATOR’S IPDR · illustrative, masked',110,502,{size:24,weight:800,ls:2,color:AMB});
+    dataTable(110,566,[['TIME',165],['PUBLIC IP : PORT',395],['SUBSCRIBER',250]],[['21:14:05','1XX.XX.XX.18:40311','SIM ••2290'],['21:14:07','1XX.XX.XX.18:40312','SIM ••4417'],['21:14:07','1XX.XX.XX.18:51877','SIM ••0631'],['21:14:09','1XX.XX.XX.18:33019','SIM ••7718']],
+      (lt-0.6)*2.4,66,{size:27,highlight:1,hk:eOut(p(lt,2.9,0.3))});ctx.restore();}
+  stamp(820,720,'MATCH',GRN,p(lt,3.2,0.35),-0.1,48);
+  infoCard(90,930,900,300,'SIM ••4417 →','KYC on file · device IMEI XXXXXXXXXXX2231 · IMSI and SIM type',GRN,eOut(p(lt,4.2,0.4)),{size:36});
+  sub('Masked sample records — not real data',1275,eOut(p(lt,4.6,0.4)),{size:26});
+  kineticCaption(lt,[[0.7,'IP + PORT + TIME',AMB],[3.3,'ONE ROW',GRN],[4.4,'SIM · KYC · IMEI',GRN]],{y:1440,hold:1.8});}
+// 9 — step 3: join the dots
+function sJoin(lt){head('Step 3: join the dots',395,0.05,lt,{size:80});
+  const ma=eOut(p(lt,0.2,0.4));mapPanel(90,450,900,520,ma);if(ma>0){ctx.save();ctx.globalAlpha*=ma;tower(300,800,190,CY,lt,ma);sector(300,630,330,-0.55,0.55,CY,0.18,eOut(p(lt,0.6,0.8)));ctx.restore();}
+  const pa=eOut(p(lt,3.6,0.35));if(pa>0){ctx.save();ctx.globalAlpha*=pa;iPin(700,760,46,AMB);avatar(700,640,70,COL.white,pa);ctx.restore();}
+  [['TOWER LOCATION',CY,0.8,300,1060],['OTHER CALLS (CDR)',CY,1.6,780,1060],['MONEY TRAIL',AMB,2.3,300,1170],['THE PHONE ITSELF',AMB,3.0,780,1170]].forEach(([l,c,t,x,y])=>{const e=eOut(p(lt,t,0.3));if(e<=0)return;
+    ctx.save();const sc=1+0.2*(1-e);ctx.translate(x,y);ctx.scale(sc,sc);pill(0,0,l,c,{size:30,alpha:e,fillA:'2a',weight:800});ctx.restore();});
+  stamp(700,880,'ONE PERSON',GRN,p(lt,4.0,0.35),-0.06,44);
+  sub('Investigators match IPDR with CDR, subscriber, device and tower data — Telangana Today, 21 Jul 2026',1275,eOut(p(lt,4.6,0.4)),{size:24});
+  kineticCaption(lt,[[0.9,'TOWER',CY],[1.7,'CALLS',CY],[2.4,'MONEY',AMB],[4.1,'ONE PERSON',GRN]],{y:1440,hold:1.0});}
+// 10 — what changes next: SIM binding
+function sSim(lt){head('What changes next',395,0.05,lt,{size:80,color:BLU});
+  simBind(lt,640,700,2.4);
+  dataCard(90,1000,900,330,{value:'1 JAN 2027',label:'messaging apps due to stay tied to the active SIM in your phone',source:'DoT SIM-binding direction (Nov 2025, deadline extended) · Business Standard, 23 Oct 2026',c:BLU,alpha:eOut(p(lt,3.4,0.4)),size:96,labelSize:32});
+  sub('Aim, as reported: curb cross-border cyber fraud using Indian numbers',1385,eOut(p(lt,4.4,0.4)),{size:28,color:COL.white});
+  kineticCaption(lt,[[0.6,'SIM BINDING',BLU],[2.6,'NO SIM, NO APP',RED]],{y:1460,hold:2.0});}
 // 11 — the law (chapter 4)
 function sLaw(lt){head('What the law says',400,0.8,lt,{size:84});
-  infoCard(90,460,900,270,'IT ACT, 2000 · s.66 WITH s.43(c)','Dishonestly planting malware on a phone: up to 3 years, or fine up to ₹5 lakh, or both.',CY,eOut(p(lt,1.0,0.4)),{size:34});
-  infoCard(90,760,900,300,'IT ACT, 2000 · SECTION 66C','Using another person’s password or unique ID feature (such as a UPI PIN): up to 3 years and fine up to ₹1 lakh.',AMB,eOut(p(lt,3.8,0.4)),{size:34});
-  infoCard(90,1090,900,270,'BNS, 2023 · SECTION 318(4)','Cheating someone into handing over money: up to 7 years and fine.',RED,eOut(p(lt,7.0,0.4)),{size:34,foot:'Old law: IPC s.420'});
-  kineticCaption(lt,[[1.1,'s.66: MALWARE',CY],[3.9,'s.66C: IDENTITY THEFT',AMB],[7.1,'s.318(4): UP TO 7 YEARS',RED]],{y:1440,hold:2.6});}
+  infoCard(90,450,900,215,'BNSS, 2023 · SECTION 94','A police officer’s written order to produce electronic records and devices.',CY,eOut(p(lt,1.0,0.4)),{size:32});
+  infoCard(90,685,900,215,'IT RULES, 2021 · RULE 3(1)(j)','On a lawful order, the app shares information it holds within 72 hours.',AMB,eOut(p(lt,4.2,0.4)),{size:32});
+  infoCard(90,920,900,215,'BSA, 2023 · SECTION 63','Proved in court with a certificate from the person in charge and an expert, with the hash value.',GRN,eOut(p(lt,7.6,0.4)),{size:32});
+  infoCard(90,1155,900,215,'BNS, 2023 · SECTION 308','Extortion by threats: up to 7 years, or fine, or both.',RED,eOut(p(lt,11.2,0.4)),{size:32});
+  kineticCaption(lt,[[1.1,'s.94: THE ORDER',CY],[4.3,'72 HOURS',AMB],[7.7,'s.63: THE CERTIFICATE',GRN],[11.3,'s.308: UP TO 7 YEARS',RED]],{y:1450,hold:2.6});}
 // 12 — do this now (chapter 5)
-function sAct(lt){checklistCard(90,360,900,980,{lt,t0:1.6,step:0.75,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
-  flags:['An app sent on WhatsApp or SMS (an .apk file)','It asks for Accessibility or “display over other apps”','A bill, KYC or fine to pay “right now”'],
-  actions:['Install apps only from the Play Store','Never turn on Accessibility for an unknown app','Money gone? Call 1930 and your bank at once']});
-  sub('Installed one? Data off · uninstall · change your UPI PIN · call your bank',1385,eOut(p(lt,6.4,0.4)),{size:28,color:COL.white,weight:700});
-  kineticCaption(lt,[[10.6,'SEND THIS TO YOUR PARENTS',TEAL]],{sticky:true,y:1470});}
+function sAct(lt){checklistCard(90,350,900,1000,{lt,t0:1.6,step:0.75,flash:1.0,alpha:eOut(p(lt,0.75,0.3)),
+  flags:['Threats with a deadline to pay','“WhatsApp calls can’t be traced”','“Don’t tell the police”'],
+  actions:['Don’t pay. Don’t delete the chat or call log','Screenshot the number, date, time, duration','Report at cybercrime.gov.in or to the police']});
+  sub('Already paid? Call 1930 and your bank at once.',1395,eOut(p(lt,6.4,0.4)),{size:30,color:COL.white,weight:700});
+  kineticCaption(lt,[[9.6,'SAVE THIS · SHARE IT',BLU]],{sticky:true,y:1475});}
 function sOut(lt){outro(lt,window.EPISODE.laws);}
 
 window.EPISODE={
-  title:'The invisible layer over your UPI app: how APK malware sees your PIN',
+  title:'Can a WhatsApp call be traced? How investigators follow the IP trail',
   voice:'Hindi',            // voiceover language; on-screen text is always English
   aiVoice:false,            // set by render.py when the AI voice track is used
-  series:'Tech Decoded',ep:7,
-  laws:'IT Act 2000 (ss.43, 66, 66C) · BNS 2023 (s.318(4))',
+  series:'Forensics File',ep:7,
+  laws:'BNSS 2023 (s.94) · IT Rules 2021 (r.3(1)(j)) · BSA 2023 (s.63) · BNS 2023 (s.308)',
   cover:[0,3.2],
-  coverSpec:{lines:[['REAL APP. REAL PIN.',COL.white],['SOMEONE SAW IT.',TEAL]],
-    person:'people/black_suit_side.png',
+  coverSpec:{lines:[['WHATSAPP CALL?',COL.white],['THE IP REMEMBERS.',AMB]],
+    person:'people/grey_blazer_tie.png',
     personShift:120,
-    visual:P=>{ctx.save();ctx.globalAlpha=0.97;if(P)coverTile(50,800,350,600);else coverTile(300,840,480,760);ctx.restore();}},
+    visual:P=>{ctx.save();ctx.globalAlpha=0.97;if(P)coverTile(50,820,380,560);else coverTile(260,860,560,640);ctx.restore();}},
   scenes:[
-    {id:'hook',fn:sHook,dur:5.5,min:4.6,pops:[[0.05,520,0.1],[0.35,880,0.1],[1.8,700,0.08],[3.8,990,0.08]],impacts:[[2.4,0.8,14],[2.8,0.6,10]],
-     vo:'PIN आपने असली UPI app में डाला। फिर भी किसी ने देख लिया। कैसे, और इसे कैसे रोकें?'},
-    {id:'scam',fn:sScam,dur:10.0,min:9.0,chapter:[1,'THE SCAM'],pops:[[8.2,700]],chimes:[1.6,3.8,6.2],
-     vo:'Sunita जी को WhatsApp: आज रात gas connection कटेगा। ये app install करके दस रुपये भरिए। साथ में एक APK file।'},
-    {id:'grant',fn:sGrant,dur:7.5,min:6.2,pops:[[0.1,560],[2.0,760],[3.8,820]],impacts:[[5.0,0.8,14]],
-     vo:'App बोला: Accessibility on कीजिए, और दूसरे apps के ऊपर दिखने की permission दीजिए। बस दो taps।'},
-    {id:'paid',fn:sPaid,dur:8.0,min:7.2,pops:[[0.05,640],[3.2,880,0.1]],chimes:[4.8,5.5],impacts:[[6.3,0.85,16]],
-     vo:'अगली सुबह, असली app से पाँच सौ का payment। सब normal। फिर account से पैसे कटने लगे।'},
-    {id:'how',fn:sHow,dur:11.5,min:10.4,chapter:[2,'HOW IT WORKS'],pops:[[1.0,560],[1.8,620],[2.4,700],[3.0,760],[3.7,640],[4.4,760],[5.4,760],[6.3,760],[9.2,880,0.08]],risers:[1.6],impacts:[[2.4,0.5,8]],
-     vo:'ये है overlay: असली app के ऊपर एक invisible परत। आप जो digit दबाते हैं, परत उसे record करके tap असली app तक भेज देती है। Screen पर सब normal दिखता है।'},
-    {id:'eyes',fn:sEyes,dur:9.0,min:7.8,pops:[[0.4,620],[1.4,700],[4.8,760]],impacts:[[6.8,0.6,10]],
-     vo:'दूसरी आँख: Accessibility. ये feature screen पढ़कर सुनाने के लिए बना है। पर fake app इससे आपकी screen और keypad पढ़ लेता है।'},
-    {id:'sms',fn:sSms,dur:7.5,min:6.2,pops:[[0.4,620],[1.4,700],[3.6,760],[4.2,820]],chimes:[0.4],impacts:[[5.0,0.75,12]],
-     vo:'और SMS भी: OTP और bank alerts सीधे ठग के server पर। PIN और OTP, दोनों उसके पास।'},
-    {id:'news',fn:sNews,dur:8.0,min:6.0,pops:[[0.3,880,0.08],[0.8,620],[2.4,700],[3.2,760],[4.0,820],[5.2,640]],
-     vo:'इसीलिए NPCI और UPI apps ने Google से कहा है: Play Store के बाहर वाले apps को ये permissions आसानी से न मिलें।'},
-    {id:'trail',fn:sTrail,dur:9.5,min:7.6,chapter:[3,'THE TRAIL'],pops:[[1.2,620],[2.4,700],[3.6,760],[5.6,640],[6.4,880,0.08]],impacts:[[4.8,0.8,14]],typing:[[5.8,7.2]],
-     vo:'पर ये apps निशान छोड़ते हैं। Mumbai में fake apps और उनके servers की जाँच से छह लोग पकड़े गए; आरोप अभी साबित नहीं हुए।'},
-    {id:'data',fn:sData,dur:7.0,min:5.4,pops:[[0.4,620],[2.8,700],[4.6,880,0.08]],impacts:[[0.7,0.5,8],[3.1,0.6,10]],
-     vo:'आरोप है: आठ हज़ार से ज़्यादा installs, और तीन हज़ार से ज़्यादा शिकायतें।'},
-    {id:'law',fn:sLaw,dur:11.0,min:8.6,chapter:[4,'THE LAW'],pops:[[1.0,620],[3.8,700],[7.0,760]],impacts:[[7.2,0.6,10]],
-     vo:'Malware डालना: IT Act Section sixty six. किसी का PIN इस्तेमाल करना: Section sixty six C. और धोखे से पैसा लेना: BNS Section three eighteen four, सात साल तक।'},
-    {id:'act',fn:sAct,dur:14.0,min:12.6,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[6.4,880,0.08],[10.6,990,0.08]],
-     vo:'Screenshot लीजिए। WhatsApp या SMS पर आया app कभी install मत कीजिए। अनजान app को Accessibility कभी नहीं। पैसा गया, तो तुरंत one nine three zero। ये अपने parents को भेजिए।'},
+    {id:'hook',fn:sHook,dur:5.0,min:4.2,pops:[[0.05,520,0.1],[0.3,880,0.1],[0.4,700,0.08],[3.2,990,0.08]],impacts:[[1.9,0.85,16]],ring:[[0.4,1.8]],
+     vo:'WhatsApp call है, trace नहीं होगी? गलत। देखिए, ये call कैसे पकड़ी जाती है।'},
+    {id:'threat',fn:sThreat,dur:10.0,min:8.6,chapter:[1,'THE THREAT'],pops:[[7.6,700]],chimes:[1.6,4.2,5.6],
+     vo:'Ravi जी को unknown number से WhatsApp पर धमकी: कल तक दो लाख भेजो, वरना पछताओगे। फिर calls: police के पास मत जाना, WhatsApp call trace नहीं होती।'},
+    {id:'kinds',fn:sKinds,dur:10.0,min:8.0,chapter:[2,'HOW IT WORKS'],pops:[[1.1,560],[3.3,700],[5.6,760]],impacts:[[5.8,0.5,8]],
+     vo:'Normal call का record CDR में बनता है। WhatsApp call बस internet data है, और end-to-end encrypted: बातें WhatsApp भी नहीं सुन सकता।'},
+    {id:'packet',fn:sPacket,dur:7.5,min:6.0,pops:[[0.2,560],[1.1,700],[2.0,760],[2.8,820],[4.2,640]],impacts:[[4.9,0.6,10]],typing:[[1.1,3.4]],
+     vo:'पर हर data packet पर पता लिखा है: IP address, port और समय। बात छुपी है, लिफ़ाफ़ा नहीं।'},
+    {id:'nat',fn:sNat,dur:7.5,min:6.2,pops:[[0.3,520,0.08],[1.2,620],[2.8,700],[3.1,740],[4.4,880,0.1]],impacts:[[4.9,0.6,10]],
+     vo:'हज़ारों phones एक ही public IP share करते हैं। फ़र्क बताते हैं port और सेकंड तक का समय।'},
+    {id:'keep',fn:sKeep,dur:6.0,min:4.4,pops:[[0.2,620],[1.9,700],[2.4,740],[2.9,780],[3.4,820]],impacts:[[0.4,0.6,10]],
+     vo:'DoT के नियम से operators ये IPDR records कम से कम दो साल रखते हैं।'},
+    {id:'app',fn:sApp,dur:8.5,min:6.8,chapter:[3,'THE TRAIL'],pops:[[1.1,620],[2.2,700],[3.3,760],[3.9,640],[4.6,880,0.08]],typing:[[4.1,5.2]],
+     vo:'शिकायत के बाद police, कानूनी order से, app से account की जानकारी और IP logs माँगती है।'},
+    {id:'match',fn:sMatch,dur:8.0,min:6.2,pops:[[0.3,620],[2.9,760],[4.2,700]],impacts:[[3.2,0.8,14]],typing:[[0.6,2.4]],
+     vo:'फिर IP, port और समय operator के IPDR से मिलाए जाते हैं। एक row match: SIM, KYC और phone का IMEI।'},
+    {id:'join',fn:sJoin,dur:6.5,min:5.4,pops:[[0.2,560],[0.8,620],[1.6,680],[2.3,740],[3.0,800],[3.6,700]],impacts:[[4.0,0.8,14]],
+     vo:'फिर tower location, calls और पैसों का रास्ता जोड़कर पहुँचते हैं एक इंसान तक।'},
+    {id:'sim',fn:sSim,dur:7.5,min:5.6,pops:[[0.2,620],[2.4,700],[3.4,760],[4.4,880,0.08]],impacts:[[2.8,0.6,10]],
+     vo:'और एक जनवरी twenty twenty seven से, WhatsApp जैसे apps को phone में मौजूद active SIM से बंधे रहना है।'},
+    {id:'law',fn:sLaw,dur:14.0,min:12.6,chapter:[4,'THE LAW'],pops:[[1.0,620],[4.2,700],[7.6,760],[11.2,820]],impacts:[[11.4,0.6,10]],
+     vo:'Police का order: BNSS Section ninety four। App को बहत्तर घंटे में जानकारी: IT Rules। Court में सबूत: BSA Section sixty three का certificate। और धमकी से पैसे माँगना: BNS Section three zero eight, सात साल तक।'},
+    {id:'act',fn:sAct,dur:13.0,min:11.4,chapter:[5,'DO THIS NOW'],pops:[[1.6,520,0.1],[2.35,560,0.1],[3.1,600,0.1],[4.15,700,0.1],[4.9,760,0.1],[5.65,820,0.1],[6.4,880,0.08],[9.6,990,0.08]],
+     vo:'Screenshot लीजिए। पैसे मत भेजिए, chat और call log delete मत कीजिए। Number, तारीख़ और समय के screenshots रखिए, और cybercrime dot gov dot in पर या police में शिकायत कीजिए। ये save कीजिए।'},
     {id:'outro',fn:sOut,dur:5.5,min:5.5,pops:[[1.3,880,0.1]],impacts:[[0.5,0.6,8]],vo:''},
   ]};
 boot();
