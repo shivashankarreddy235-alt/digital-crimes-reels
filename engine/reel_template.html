@@ -19,6 +19,9 @@
      Components: seriesBadge, chapterCard, dramatisedTag, phoneFrame, callScreen, chatThread, smsCard, upiScreen,
      notificationBanner, moneyGraph, dataCard, kineticCaption, checklistCard (+ avatar, arrowTo, stamp, acct, coin,
      iBank, iCam, iATM, iCrypto, iCheque, iGold, handset). Mock screens: masked data and a DRAMATISED tag only.
+   - Format (owner's instruction, 25 Nov 2026): reels are 35–45 s. Frame 1 is the hook: draw the hook text at full opacity
+     from t = 0 and give the first scene voLead ≤ 0.1; no fade from black (EPISODE.fadeIn is off by default); use small
+     corner chapter labels rather than full-screen chapter cards; at most one law card; a send line in the last 5 s.
    ===================================================================================== */
 const cv=document.getElementById('c'), ctx=cv.getContext('2d');
 const buf=document.createElement('canvas'); buf.width=1080; buf.height=1920; const bctx=buf.getContext('2d');
@@ -442,7 +445,8 @@ function draw(t){const TL=window.TIMELINE,T=TL.T,S=window._S;ctx.setTransform(1,
     ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=0.14*s;ctx.drawImage(buf,10*s,0);ctx.drawImage(buf,-10*s,0);ctx.restore();
     ctx.fillStyle=`rgba(255,255,255,${0.16*s*s})`;ctx.fillRect(0,0,W,H);}}
   if(t>T-0.5){ctx.fillStyle=`rgba(0,0,0,${p(t,T-0.5,0.5)})`;ctx.fillRect(0,0,W,H);}
-  if(t<0.15){ctx.fillStyle=`rgba(0,0,0,${1-t/0.15})`;ctx.fillRect(0,0,W,H);}}
+  // frame 1 is the hook (Reach fixes, 25 Nov 2026): no fade from black unless an episode sets EPISODE.fadeIn
+  if(t<0.15&&window.EPISODE.fadeIn){ctx.fillStyle=`rgba(0,0,0,${1-t/0.15})`;ctx.fillRect(0,0,W,H);}}
 window.renderFrame=(t,q=0.92)=>{draw(t);return cv.toDataURL('image/jpeg',q);};
 window.ready=false;
 function boot(){buildTimeline();const fonts=['900 100px "Inter Display"','800 100px "Inter Display"','800 40px "Inter"','700 40px "Inter"','600 40px "Inter"','500 40px "Inter"','700 26px "DejaVu Sans Mono"','500 26px "DejaVu Sans Mono"'].map(f=>document.fonts.load(f));

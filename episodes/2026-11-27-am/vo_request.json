@@ -1,0 +1,38 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "Phone ज़ब्त हुआ — court कैसे जानेगा कि उसमें कुछ बदला नहीं?"
+  },
+  {
+   "scene": "seize",
+   "text": "ज़ब्ती की video बनती है, phone सील होकर lab जाता है।"
+  },
+  {
+   "scene": "how",
+   "text": "Lab पूरे data की copy बनाकर उसका hash निकालती है — data का fingerprint।"
+  },
+  {
+   "scene": "proof",
+   "text": "एक अक्षर बदला, तो पूरा hash बदल जाता है। Hash वही, तो data वही।"
+  },
+  {
+   "scene": "law",
+   "text": "Section sixty three के certificate में ये hash ज़रूरी है — Supreme Court ने इसे electronic fingerprint कहा।"
+  },
+  {
+   "scene": "check",
+   "text": "अभी star hash zero six hash dial कीजिए — certificate आपके phone को इसी IMEI से पहचानता है।"
+  },
+  {
+   "scene": "act",
+   "text": "Hash न मिले, तो data पर सवाल उठता है। ये card save कीजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": "ये video किसी law student को भेजिए।"
+  }
+ ]
+}
