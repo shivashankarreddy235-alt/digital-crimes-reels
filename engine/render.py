@@ -1,5 +1,8 @@
 """Digital Crimes reel renderer (engine v3; a scene's voice starts at its voLead, default 0.3 s, 0.7 s on chapter scenes).
 
+Format (owner's instruction, 25 Nov 2026): reels are 35–45 seconds. Frame 1 is the hook, so the first scene sets
+voLead ≤ 0.1 and draws the hook text from t = 0; build/finish warn when the reel is outside 35–45 s.
+
   python3 engine/render.py vo     EP            # write EP/vo_request.json from the scenes' `vo` lines
   python3 engine/render.py stills EP t1 t2 ...  # look at frames before a full render
   python3 engine/render.py build  EP            # render; see below
@@ -194,6 +197,10 @@ def mux(ep, video, audio):
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", video, "-i", audio, "-map", "0:v", "-map", "1:a",
          "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", tmp])
     os.replace(tmp, os.path.join(ep, "reel.mp4"))
+    length = float(run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                        os.path.join(ep, "reel.mp4")]).strip())
+    print(f"reel.mp4 length: {length:.1f} s" + ("" if 35 <= length <= 45 else
+          "  WARNING: outside 35-45 s (owner's format, 25 Nov 2026): cut script lines, never speed up the voice"))
 
 
 def cover(ep, t):

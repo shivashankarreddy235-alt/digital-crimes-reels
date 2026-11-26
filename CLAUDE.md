@@ -11,7 +11,7 @@ recordings or secrets in it.
 - Public file host: GitHub Pages, `https://shivashankarreddy235-alt.github.io/digital-crimes-reels/`
 - Owner's decisions: review before every post, **by email** (see "Review by email") · **two reels a day**: slot `am` goes live at
   **7:00 AM IST**, slot `pm` at **8:00 PM IST** · reels are
-  **90–120 seconds** · on-screen text and titles always **English** · voice **Hindi for every episode** (owner's instruction,
+  **35–45 seconds** (owner's instruction, 25 Nov 2026; was 90–120 — see "Reach fixes" below) · on-screen text and titles always **English** · voice **Hindi for every episode** (owner's instruction,
   23 Nov 2026, until he says otherwise; this replaces the old English/Hindi alternation) ·
   voice = the owner's own ElevenLabs voice clone (see "Voice") ·
   original synthesized music only · the owner's logo and wordmark from `assets/`.
@@ -75,10 +75,22 @@ voice and English on-screen text (owner's instruction, 23 Nov 2026, until he say
    PIB, DoT, TRAI, MHA/I4C, RBI, ISRO, manufacturer or standards docs). Search the last 30 days for news
    that changes the law or gives a better hook. Old law (IPC, CrPC, Evidence Act) only as "old law".
    Unverifiable → drop it. Write `E/sources.md` (every page opened, what it supports).
-3. **Script** (`E/script.md`): 90–120 s, 10–13 scenes. Hook in the first 2 seconds. One idea
-   per scene; show the technology as a diagram, not just text. Section numbers on screen. Close with a
-   takeaway, the outro and the disclaimer. Per scene: id, default length, on-screen text, voiceover.
-   Voiceover runs about 2.5 words per second (≈ 230–280 words in total).
+3. **Script** (`E/script.md`): **35–45 s**, 8–10 scenes, one idea per reel, following the strategy doc's
+   five-part spine at its short-format timings. Show the technology as a diagram, not just text. Close with the
+   send line, the outro and the disclaimer. Per scene: id, default length, on-screen text, voiceover.
+   Voiceover runs about 2.5 words per second (≈ 90–110 words in total). If the finished reel runs over 45 s,
+   cut script lines; never speed up the voice.
+   **Reach fixes (owner's instruction, 25 Nov 2026; wins over any other length or format rule here, in the
+   strategy doc's older text and in the engine defaults):**
+   - Frame 1 is the hook: the stake in big text and the first spoken line start together at 0 s (voice within
+     the first 0.5 s, `voLead` ≤ 0.1 on the first scene). No logo, title, series or chapter card before them;
+     the logo is a small corner watermark, never an intro. Chapter labels are small corner labels.
+   - One idea per reel.
+   - At most one law card on screen; the other sections go in the caption.
+   - A send line in the last 5 seconds, spoken and on screen, naming who needs it ("Send this to …").
+   - Every hook and cover line speaks to "you", and the reel ends with one check the viewer can do on
+     their own phone in under a minute.
+   The legal rules, the disclaimer and the outro still apply in full.
    Hindi-voice episodes: write the `vo` lines in **Hindi (Devanagari)**, natural spoken Hindi; keep
    technical/legal terms in English where people say them that way (CDR, IMEI, Section 94, BNSS).
 4. **Build the reel.** Copy `engine/reel_template.html` to `E/reel.html`. Keep the ENGINE
@@ -104,7 +116,8 @@ voice and English on-screen text (owner's instruction, 23 Nov 2026, until he say
      `mix/mixed.json` (ok + matching hash, usually under 2 minutes), then
      `python3 engine/render.py finish E` → `reel.mp4` + `cover.jpg`.
    - No voice → it writes a music-only `reel.mp4` + `cover.jpg` directly.
-   Extract and look at 3 frames from the finished video; check the length is 90–125 s.
+   Extract and look at 3 frames from the finished video; check the length is 35–45 s (ffprobe) and that
+   frame 1 shows the hook text with the voice starting within the first 0.5 s.
 8. Write `caption.txt` (format below), `tags.json` (see "Account tags") and `status.json` (status `pending`). If the AI voice is in the reel,
    the caption must include the line `Voiceover: AI-generated.` (the reel also shows
    an "AI VOICE" tag automatically).
@@ -300,7 +313,8 @@ Run A writes `E/tags.json` and lists the tags in the review message. Run B passe
 4. No emblem or agency logo; no real people; no how-to for tampering, spoofing or evasion.
 5. Disclaimer and "Laws cited" on the outro; caption has the educational line under the hook, the AI-voice
    line if used, 5 hashtags, no comment/DM prompts; tags only from the Approved list.
-6. Safe zones respected; frames checked by eye; length 90–125 s; file ≤ 100 MB.
+6. Safe zones respected; frames checked by eye; length 35–45 s; frame 1 is the hook, voice within 0.5 s;
+   one law card at most; send line in the last 5 s; file ≤ 100 MB.
 
 ## Housekeeping
 
