@@ -539,7 +539,7 @@ function sHow(lt){chapLabel(lt,2,'HOW IT WORKS');head('It’s not a challan. It�
   const sa=eOut(p(lt,2.6,0.35));serverBox(640,960,350,130,sa);
   if(sa>0){ctx.save();ctx.globalAlpha*=sa;stroke('rgba(255,51,88,0.55)',4);ctx.setLineDash([12,10]);ctx.lineDashOffset=-lt*50;ctx.beginPath();ctx.moveTo(285,800);ctx.lineTo(640,1020);ctx.stroke();ctx.restore();
     for(let j=0;j<2;j++){const q=((lt-2.6)*0.7+j*0.5)%1;if(lt<2.7)break;pill(lerp(300,620,q),lerp(810,1010,q),'OTP ••92',AMB,{size:22,fillA:'44',weight:800});}
-    txt('Your OTPs, forwarded',815,1132,{size:28,weight:800,color:AMB,alpha:sa,align:'center'});}
+    txt('Your OTPs, forwarded',815,1132,{size:31,weight:800,color:AMB,alpha:sa,align:'center'});}
   // the same file spreads to contacts (reported)
   const ca=eOut(p(lt,4.4,0.35));if(ca>0){const xs=[200,380,560,740];xs.forEach((x,i)=>{const e=eOut(p(lt,4.4+i*0.15,0.3));if(e<=0)return;
       ctx.save();ctx.globalAlpha*=e;arrowTo(220,1100,x,1190,'rgba(255,182,39,0.7)',e,3);ctx.fillStyle='#2a3352';ctx.beginPath();ctx.arc(x,1236,40,0,7);ctx.fill();avatar(x,1244,46,'#8b95b8');apkTile(x+34,1206,34);ctx.restore();});
@@ -561,13 +561,13 @@ function sLaw(lt){chapLabel(lt,4,'THE LAW');
   const la=eOut(p(lt,0.15,0.35));lawCard(90,390,900,440,'IT ACT, 2000 · SECTION 66D','Cheating by personation, by phone or computer',
     [['Pretending to be the traffic police or RTO in a message, to cheat you: ',false],['up to 3 years in jail and a fine.',true]],Math.max(0,(lt-0.5)*70),AMB,la,{size:44,lh:60});
   dataCard(90,870,900,330,{num:44,prefix:'₹',suffix:' LAKH',k:p(lt,2.25,0.7),label:'lost in 8 fake e-challan cases in Mangaluru this year',source:'Mangaluru police, via News Karnataka, 31 Oct 2026',c:RED,alpha:eOut(p(lt,2.2,0.35)),size:104});
-  sub('More sections in the caption',1260,eOut(p(lt,3.4,0.35)),{size:28});
+  sub('More sections in the caption',1260,eOut(p(lt,3.4,0.35)),{size:30});
   kineticCaption(lt,[[0.6,'s.66D · UP TO 3 YEARS',AMB],[2.5,'₹44 LAKH · ONE CITY',RED]],{y:1450,hold:2.2});}
 // 6 — do this now (part 5a): the one-minute check on your own phone
 function sCheck(lt){chapLabel(lt,5,'DO THIS NOW');head('Check your phone. Now.',430,0.1,lt,{size:70});
   unknownAppsScreen(540,880,560,720,lt,{alpha:eOut(p(lt,0.2,0.3)),tType:0.5,tOff:2.6});
   stamp(540,1292,'WHATSAPP: OFF',GRN,p(lt,3.1,0.35),-0.06,50);
-  sub('Menus differ: search Settings for “Install unknown apps”',1395,eOut(p(lt,3.4,0.35)),{size:28});
+  sub('Menus differ: search Settings for “Install unknown apps”',1395,eOut(p(lt,3.4,0.35)),{size:31,maxW:940});
   kineticCaption(lt,[[0.55,'SETTINGS → “INSTALL UNKNOWN APPS”',CY],[2.65,'WHATSAPP: OFF',GRN]],{y:1460,hold:2.4});}
 // 7 — screenshot card (part 5b) + send line; holds for the screenshot
 function sAct(lt){chapLabel(lt,5,'DO THIS NOW');checklistCard(90,370,900,860,{lt,t0:0.45,step:0.42,flash:3.5,alpha:eOut(p(lt,0.1,0.3)),
@@ -590,7 +590,7 @@ window.EPISODE={
   coverSpec:{lines:[['PENDING CHALLAN?',COL.white],['DON’T TAP IT.',COL.red]],
     person:'people/black_suit_side.png',
     personShift:120,
-    visual:P=>{ctx.save();if(P)coverPhone(40,830,420,640);else coverPhone(270,860,540,800);ctx.restore();}},
+    visual:P=>{ctx.save();if(P)coverPhone(40,840,420,520);else coverPhone(270,860,540,660);ctx.restore();}},
   scenes:[
     {id:'hook',fn:sHook,dur:4.4,min:3.0,voLead:0.1,pops:[[0.02,520,0.1],[0.12,880,0.1],[0.35,700,0.08],[0.9,760,0.08],[2.4,990,0.08]],impacts:[[1.5,0.85,16]],chimes:[0.35,0.9],
      vo:'Pending challan आया है? Tap मत कीजिए — खाता खाली हो सकता है।'},

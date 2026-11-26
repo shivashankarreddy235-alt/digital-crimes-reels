@@ -1,0 +1,11 @@
+Pending challan on WhatsApp? Don't tap it.
+⚖️ For educational purposes only. Not legal advice.
+
+The "RTO e-Challan" file is not a challan. It is an Android app (APK) that can read your SMS, forward your OTPs to fraudsters and, as reported, send itself on to your contacts. That is why it often comes from a friend. Pretending to be the traffic police to cheat is an offence under IT Act Section 66D; Section 66C (identity theft) and BNS Sections 318(4) and 319 can also apply.
+
+Check challans only on echallan.parivahan.gov.in or the mParivahan app. Already tapped it? Call 1930 and your bank at once, and report on cybercrime.gov.in.
+
+Save this and send it to someone who needs it.
+Voiceover: AI-generated.
+
+#EChallanScam #CyberLaw #CyberForensics #ScamAlert #DigitalCrimes

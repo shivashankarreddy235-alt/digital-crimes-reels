@@ -1,0 +1,21 @@
+{
+ "episode": 8,
+ "date": "2026-11-26",
+ "slot": "pm",
+ "topic": "Pending challan on WhatsApp? Don't tap it — the fake \"RTO e-Challan\" APK that reads SMS, forwards OTPs and spreads to contacts (IT Act s.66D, 66C, 43; BNS s.318(4), 319)",
+ "series": "Scam Alert",
+ "audience": "Vehicle owners and everyday WhatsApp / UPI users (primary); parents and family groups",
+ "language": "English text, Hindi voice",
+ "status": "pending",
+ "approved_at": null,
+ "posted_at": null,
+ "media_id": null,
+ "voice": "AI voice (ElevenLabs), Hindi",
+ "length_s": 42.9,
+ "cover": "A: PENDING CHALLAN? / DON'T TAP IT. (alternatives B and C rendered for review)",
+ "review_thread_id": null,
+ "review_message_ids": [],
+ "handled_reply_ids": [],
+ "reminder_sent": false,
+ "note": "Morning build, 26 Nov 2026. First reel in the 35–45 s format from the owner's strategy doc (Reach fixes, 25 Nov 2026); CLAUDE.md and the build task still say 90–120 s — flagged in the review email."
+}
