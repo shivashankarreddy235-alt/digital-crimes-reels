@@ -17,7 +17,9 @@
  "review_message_ids": [
   "1a216228a9fd1a2d"
  ],
- "handled_reply_ids": [],
+ "handled_reply_ids": [
+  "1a216437afa61e4b"
+ ],
  "reminder_sent": false,
  "note": "Morning build, 26 Nov 2026. First reel in the 35–45 s format from the owner's strategy doc (Reach fixes, 25 Nov 2026); CLAUDE.md and the build task still say 90–120 s — flagged in the review email. Review emailed 10:05 IST, 26 Nov."
 }
