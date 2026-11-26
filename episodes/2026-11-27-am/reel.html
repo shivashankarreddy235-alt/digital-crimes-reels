@@ -594,9 +594,10 @@ function sLaw(lt){chapLabel(lt,4,'THE LAW');
   kineticCaption(lt,[[0.5,'s.63(4) CERTIFICATE',AMB],[1.7,'HASH ON RECORD',AMB],[2.8,'SUPREME COURT: “FINGERPRINT”',SER]],{y:1460,hold:2.2});}
 // 6 — do this now (part 5a): the one-minute check on your own phone
 function sCheck(lt){chapLabel(lt,5,'DO THIS NOW');head('Check your phone. Now.',432,0.05,lt,{size:72});
-  dialer(540,900,540,760,lt,{alpha:eOut(p(lt,0.15,0.3)),ts:[0.45,0.7,0.95,1.2,1.45],tPop:1.8});
-  sub('The certificate names your phone by this number',1336,eOut(p(lt,2.8,0.35)),{size:32,color:COL.white,weight:700,maxW:940});
-  kineticCaption(lt,[[0.45,'DIAL *#06#',CY],[1.85,'= YOUR IMEI',GRN]],{y:1460,hold:2.6});}
+  dialer(540,880,540,700,lt,{alpha:eOut(p(lt,0.15,0.3)),ts:[0.45,0.7,0.95,1.2,1.45],tPop:1.8});
+  sub('The certificate names your phone by this number',1350,eOut(p(lt,2.8,0.35)),{size:32,color:COL.white,weight:700,maxW:940});
+  pill(540,1272,'Also in your phone’s Settings',COL.dim,{size:28,alpha:eOut(p(lt,4.2,0.35)),fillA:'22',weight:700});
+  kineticCaption(lt,[[0.45,'DIAL *#06#',CY],[1.85,'= YOUR IMEI',GRN],[4.2,'NOTE IT DOWN',AMB]],{y:1460,hold:2.6});}
 // 7 — screenshot card (part 5b); holds for the screenshot
 function sAct(lt){chapLabel(lt,5,'DO THIS NOW');checklistCard(90,380,900,780,{lt,t0:0.4,step:0.4,flash:3.3,alpha:eOut(p(lt,0.1,0.3)),
   flags:['The two hash values don’t match','No hash value in the certificate','Seizure not recorded on video'],
@@ -630,7 +631,7 @@ window.EPISODE={
      vo:'एक अक्षर बदला, तो पूरा hash बदल जाता है। Hash वही, तो data वही।'},
     {id:'law',fn:sLaw,dur:6.0,min:5.0,stings:[0.02],pops:[[0.15,620],[2.5,700],[3.6,560,0.08]],impacts:[[2.6,0.7,12]],typing:[[0.45,2.0]],
      vo:'Section sixty three के certificate में ये hash ज़रूरी है — Supreme Court ने इसे electronic fingerprint कहा।'},
-    {id:'check',fn:sCheck,dur:5.4,min:4.4,stings:[0.02],pops:[[0.15,560],[0.45,700,0.08],[0.7,740,0.08],[0.95,780,0.08],[1.2,820,0.08],[1.45,860,0.08],[1.8,880,0.1],[2.8,560,0.08]],impacts:[[1.85,0.6,10]],
+    {id:'check',fn:sCheck,dur:5.4,min:4.4,stings:[0.02],pops:[[0.15,560],[0.45,700,0.08],[0.7,740,0.08],[0.95,780,0.08],[1.2,820,0.08],[1.45,860,0.08],[1.8,880,0.1],[2.8,560,0.08],[4.2,620,0.08]],impacts:[[1.85,0.6,10]],
      vo:'अभी star hash zero six hash dial कीजिए — certificate आपके phone को इसी IMEI से पहचानता है।'},
     {id:'act',fn:sAct,dur:6.3,min:6.3,pops:[[0.1,520,0.1],[0.4,560,0.1],[0.8,600,0.1],[1.2,640,0.1],[1.9,700,0.1],[2.3,760,0.1],[2.7,820,0.1]],
      vo:'Hash न मिले, तो data पर सवाल उठता है। ये card save कीजिए।'},
