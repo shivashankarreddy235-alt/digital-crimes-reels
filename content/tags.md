@@ -1,18 +1,19 @@
 # Account tags (user tags on each reel)
 
-Owner's rules (23 Nov 2026):
-- Tag only cyber-community / cyber-awareness / cyber-law-education / tech-explainer **pages** whose audience
-  cares about the topic. Up to **10** per reel (owner's choice; 3–5 strongly relevant tags are safer — tagging
-  accounts that aren't in the post can be treated as spam by Instagram).
-- **Always** tag the owner's own account **adv.shivashankar** on every reel, first in `tags.json` (owner's
-  instruction, 23 Nov 2026; this replaces the earlier rule against tagging the owner's own account). It counts
-  toward the 10.
-- **Never** tag: other advocates' or lawyers' accounts, other personal accounts of any kind,
-  government departments, police, ministries, officials or any government-run page.
-- Only handles from the **Approved** list below. Never guess or invent a handle.
-- Pick the most relevant ones for the episode's topic and rotate: never the identical set two days running.
+Owner's rules (updated 26 Nov 2026, to protect reach):
+- **Always** tag the owner's own account **adv.shivashankar**, first in `tags.json` (owner's instruction, 23 Nov 2026).
+- Community pages: **at most 3** per reel (was up to 10), only from the **Approved** list below, and only when the
+  page's subject matches the reel's topic exactly (a UPI-fraud reel gets a fraud-awareness page, not a general tech
+  page). Tagging pages that have nothing to do with a reel can be treated as spam by Instagram and stop the reel
+  being recommended. No tag is better than a weak one.
+- The same page at most once in any 7 days.
+- **Never** tag: other advocates' or lawyers' accounts, other personal accounts of any kind, government
+  departments, police, ministries, officials or any government-run page, or brands, banks and payment apps.
+- No Collab invites (the legal rules bar collaborations).
+- Only handles from the **Approved** list. Never guess or invent a handle; a page joins the list only when the
+  owner sends its handle.
 - Record the chosen handles in `episodes/D/tags.json` (`{"user_tags": ["handle1", ...]}`) and show them to the
-  owner in the review message.
+  owner in the review email.
 
 ## Approved (confirmed by the owner)
 

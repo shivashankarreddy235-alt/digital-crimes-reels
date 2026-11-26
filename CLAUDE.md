@@ -44,6 +44,8 @@ assets/logo.png            owner's logo, dark-background version (header + anima
 assets/wordmark.png        owner's "DigitalCrimes" wordmark in white (header + end screen)
 assets/people/             owner's own cut-out photos for covers (see its README)
 content/calendar.md        schedule (date, slot, voice language, type, topic, hook, facts) + topic bank
+content/hashtags.md        how the 5 hashtags are chosen
+content/tags.md            account-tag rules and the Approved pages
 episodes/YYYY-MM-DD-am/    one folder per reel: the 7:00 AM reel (…-pm/ for the 8:00 PM reel):
                            reel.html, vo_request.json, voice/durations.json, mix/, reel.mp4, cover.jpg,
                            caption.txt, tags.json, script.md, sources.md, status.json
@@ -268,10 +270,10 @@ non-sensational legal awareness.
 Save this and send it to someone who needs it.
 [Voiceover: AI-generated.]   <- only when the AI voice is used
 
-#Topic #CyberLaw #CyberForensics #<second topic tag> #DigitalCrimes
+#<big> #<awareness> #<exact> #<audience> #DigitalCrimes
 ```
 
-Exactly 5 hashtags (Instagram's limit). No "comment X / type X / DM for…" prompts, no @mentions in the
+Exactly 5 hashtags (Instagram's limit), chosen by `content/hashtags.md` (owner's instruction, 26 Nov 2026). No "comment X / type X / DM for…" prompts, no @mentions in the
 caption. The educational line always sits directly under the hook.
 
 ## Cover (thumbnail)
@@ -301,7 +303,7 @@ Every episode sets `EPISODE.coverSpec`; `render.py build`/`finish` turn it into 
 ## Account tags
 
 Follow `content/tags.md`. Every reel tags the owner's own account **adv.shivashankar** (owner's instruction,
-23 Nov 2026), plus up to 9 relevant cyber-community pages from its **Approved** list only — never other
+23 Nov 2026), plus at most 3 cyber-community pages from its **Approved** list, only when the page's subject matches the reel's topic exactly (owner's instruction, 26 Nov 2026) — never other
 advocates, personal accounts or government accounts, never guessed handles, rotate from reel to reel.
 Run A writes `E/tags.json` and lists the tags in the review message. Run B passes them as `user_tags`.
 
@@ -312,7 +314,7 @@ Run A writes `E/tags.json` and lists the tags in the review message. Run B passe
 3. No identifiable client, victim, accused person, judge or officer; only masked sample data.
 4. No emblem or agency logo; no real people; no how-to for tampering, spoofing or evasion.
 5. Disclaimer and "Laws cited" on the outro; caption has the educational line under the hook, the AI-voice
-   line if used, 5 hashtags, no comment/DM prompts; tags only from the Approved list.
+   line if used, 5 hashtags per `content/hashtags.md`, no comment/DM prompts; tags only from the Approved list.
 6. Safe zones respected; frames checked by eye; length 35–45 s; frame 1 is the hook, voice within 0.5 s;
    one law card at most; send line in the last 5 s; file ≤ 100 MB.
 
