@@ -6,10 +6,11 @@
  "series": "Scam Alert",
  "audience": "Vehicle owners and everyday WhatsApp / UPI users (primary); parents and family groups",
  "language": "English text, Hindi voice",
- "status": "approved",
+ "status": "posted",
  "approved_at": "2026-11-26T10:40:50+05:30",
- "posted_at": null,
- "media_id": null,
+ "posted_at": "2026-11-26T20:01:24+05:30",
+ "media_id": "18157208704529118",
+ "permalink": "https://www.instagram.com/reel/DgNUxFrAKmz/",
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 42.9,
  "cover": "A: PENDING CHALLAN? / DON'T TAP IT. (alternatives B and C rendered for review)",
@@ -22,5 +23,5 @@
   "1a216437afa61e4b"
  ],
  "reminder_sent": false,
- "note": "Morning build, 26 Nov 2026. First reel in the 35–45 s format from the owner's strategy doc (Reach fixes, 25 Nov 2026); CLAUDE.md and the build task still say 90–120 s — flagged in the review email. Review emailed 10:05 IST, 26 Nov. Approved by the owner's email reply \"Post\" (10:40 IST, 26 Nov); goes live in the 8:00 PM slot on 26 Nov."
+ "note": "Morning build, 26 Nov 2026. First reel in the 35–45 s format from the owner's strategy doc (Reach fixes, 25 Nov 2026); CLAUDE.md and the build task still say 90–120 s — flagged in the review email. Review emailed 10:05 IST, 26 Nov. Approved by the owner's email reply \"Post\" (10:40 IST, 26 Nov); goes live in the 8:00 PM slot on 26 Nov. Posted 20:01 IST, 26 Nov."
 }
