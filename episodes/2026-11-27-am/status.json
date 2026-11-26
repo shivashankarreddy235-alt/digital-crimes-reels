@@ -1,0 +1,21 @@
+{
+ "episode": 9,
+ "date": "2026-11-27",
+ "slot": "am",
+ "topic": "Your phone is seized: the hash value that proves nothing changed — forensic copy, SHA-256 hash as the data's fingerprint, BSA s.63(4) certificate (device incl. IMEI + hash; Part B by an expert), Supreme Court 22 May 2026 \"electronic fingerprint\"; BNSS s.105 videography",
+ "series": "Forensics File",
+ "audience": "Law students and young advocates (primary); anyone whose phone could be seized, and their families",
+ "language": "English text, Hindi voice",
+ "status": "pending",
+ "approved_at": null,
+ "posted_at": null,
+ "media_id": null,
+ "voice": "AI voice (ElevenLabs), Hindi",
+ "length_s": 41.7,
+ "cover": "A: YOUR PHONE IS SEIZED. / WHO PROVES NOTHING CHANGED? (alternatives B and C rendered for review)",
+ "review_thread_id": null,
+ "review_message_ids": [],
+ "handled_reply_ids": [],
+ "reminder_sent": false,
+ "note": "Evening build, 26 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity (engine fade-from-black now off by default), voice from about 0.25 s, one law card, send line spoken and shown in the outro."
+}

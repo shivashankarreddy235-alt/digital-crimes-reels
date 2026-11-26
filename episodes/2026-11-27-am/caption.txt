@@ -1,0 +1,11 @@
+Your phone is seized. Who proves nothing on it changed?
+⚖️ For educational purposes only. Not legal advice.
+
+A seizure must be video-recorded (BNSS Section 105), and experts usually examine a forensic copy of the phone's data. That copy gets a hash value: a 64-character code that changes if even one character changes. Under BSA Section 63(4), the evidence certificate names the device (make, model, IMEI) and records this hash, with Part B signed by an expert; in May 2026 the Supreme Court upheld the rule, calling a hash value an "electronic fingerprint".
+
+Note your phone's IMEI today (Settings, or the code in the reel). If your phone is ever seized, ask a lawyer to compare the hash values.
+
+Save this and send it to someone who needs it.
+Voiceover: AI-generated.
+
+#DigitalEvidence #CyberLaw #CyberForensics #HashValue #DigitalCrimes
