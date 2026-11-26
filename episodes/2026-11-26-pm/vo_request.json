@@ -1,0 +1,38 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "Pending challan आया है? Tap मत कीजिए — खाता खाली हो सकता है।"
+  },
+  {
+   "scene": "scam",
+   "text": "दोस्त के number से challan की file आई। Neha ने खोली — अगले दिन पैसे गायब।"
+  },
+  {
+   "scene": "how",
+   "text": "ये challan नहीं, app है: SMS पढ़कर OTP ठगों को भेजता है, और दोस्तों तक फैल सकता है।"
+  },
+  {
+   "scene": "trail",
+   "text": "पैसा मिनटों में दूसरे खातों में जाता है। तुरंत one nine three zero पर call कीजिए।"
+  },
+  {
+   "scene": "law",
+   "text": "Police बनकर ठगी: IT Act Section sixty six D, तीन साल तक जेल।"
+  },
+  {
+   "scene": "check",
+   "text": "अभी Settings में ‘Install unknown apps’ खोजिए — WhatsApp off रखिए।"
+  },
+  {
+   "scene": "act",
+   "text": "Challan सिर्फ़ official site पर देखिए, और ये video हर गाड़ी वाले को भेजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": ""
+  }
+ ]
+}
