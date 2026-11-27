@@ -6,8 +6,8 @@
  "series": "Know Your Rights",
  "audience": "Everyday families and young people (primary); law students",
  "language": "English text, Hindi voice",
- "status": "pending",
- "approved_at": null,
+ "status": "approved",
+ "approved_at": "2026-11-27T20:52:17+05:30",
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
@@ -24,5 +24,5 @@
   "1a21d6246d26ae21"
  ],
  "reminder_sent": true,
- "note": "Built in chat on 27 Nov 2026 (~12:45 PM–1:30 PM IST) on the owner's instruction, replacing the ransomware reel (now episodes/bank-ransomware-cert-in/, status skipped). Title set by the owner: 'When police arrest you'. Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email). Review emailed about 1:35 PM IST, 27 Nov. New version 27 Nov ~1:20 PM IST: owner's new title \"Police arrested you? Know your rights\" (hook, cover, caption line 1, first voice line). New version 27 Nov ~1:55 PM IST: owner asked for an arrest scene at the start; the hook now plays over an illustrated, dramatised arrest (silhouettes, red-blue lights; no uniforms, badges, emblems, vehicle markings or real people). Family-message banner removed."
+ "note": "Built in chat on 27 Nov 2026 (~12:45 PM–1:30 PM IST) on the owner's instruction, replacing the ransomware reel (now episodes/bank-ransomware-cert-in/, status skipped). Title set by the owner: 'When police arrest you'. Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email). Review emailed about 1:35 PM IST, 27 Nov. New version 27 Nov ~1:20 PM IST: owner's new title \"Police arrested you? Know your rights\" (hook, cover, caption line 1, first voice line). New version 27 Nov ~1:55 PM IST: owner asked for an arrest scene at the start; the hook now plays over an illustrated, dramatised arrest (silhouettes, red-blue lights; no uniforms, badges, emblems, vehicle markings or real people). Family-message banner removed. Owner replied \"Post\" by email at 19:51 IST, 27 Nov (to the arrest-scene version, after the 7:50 check run); approved and published by the 20:50 review-check run, after the 8:00 PM slot."
 }
