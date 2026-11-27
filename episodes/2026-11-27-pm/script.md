@@ -1,4 +1,4 @@
-# EP10 (replacement) — When police arrest you, you have 11 rights.
+# EP10 (replacement) — Police arrested you? Know your rights.
 
 **Series:** KNOW YOUR RIGHTS (green badge) · **Primary audience:** everyday families (the person who gets the call that a
 relative has been picked up), young people and students; second audience: law students (saved as study notes).
@@ -21,7 +21,7 @@ Five-part spine: 01 the scenario (hook: family message) · 02–03 the rights in
 
 | # | Scene | Default length | On screen | Voiceover (Hindi) |
 | --- | --- | --- | --- | --- |
-| 1 | hook | 4.0 s (voice from 0.1 s) | From frame 1: "WHEN POLICE ARREST YOU" / "YOU HAVE 11 RIGHTS." (green; title set by the owner, 27 Nov) · 11 numbered tiles light up · message banner "Didi — They took Papa to the police station. Nobody told us why." · DRAMATISED · open loop "Right no. 9 got stronger this month." | जब police arrest करे — तो ये ग्यारह हक़ आपके हैं। |
+| 1 | hook | 4.0 s (voice from 0.1 s) | From frame 1: "POLICE ARRESTED YOU?" / "KNOW YOUR RIGHTS." (green; title set by the owner, 27 Nov, 1:05 PM) · 11 numbered tiles light up · message banner "Didi — They took Papa to the police station. Nobody told us why." · DRAMATISED · open loop "Right no. 9 got stronger this month." | Police ने arrest किया? तो अपने ये ग्यारह हक़ जानिए। |
 | 2 | r1 (RIGHTS 01–03) | 5.0 s | Cards: 01 Know WHY — in writing · 02 Told about bail · 03 Officer's name, visible · meter fills 1→3 · captions IN WRITING · BAIL · NAME VISIBLE | कारण लिखित में, bailable case में bail की जानकारी, और officer का नाम। |
 | 3 | r2 (RIGHTS 04–06) | 5.0 s | Cards: 04 An arrest memo · 05 Your family is told · 06 Meet your lawyer · captions ARREST MEMO · FAMILY TOLD · YOUR LAWYER | Arrest memo पर गवाह के sign, परिवार को खबर, और पूछताछ में वकील। |
 | 4 | r3 (RIGHTS 07–08) | 4.4 s | Cards: 07 A free lawyer · 08 A medical check · "₹0 lawyer's fee through legal aid" panel · medical report with heartbeat line, stamp YOUR COPY | पैसे नहीं, तो free वकील। और medical जाँच। |
@@ -40,7 +40,7 @@ and held-vs-written timeline · lawCard (one: Supreme Court, 5 Nov 2026) · suns
 contact" screen (15100) for the one-minute check · kineticCaptions · screenshot card with all 11 and camera flash · send
 line in the outro · 3-second outro with disclaimer and laws.
 
-Covers (5 written, 3 rendered): A "WHEN POLICE ARREST YOU / YOU HAVE 11 RIGHTS." (owner's title) (chosen; matches the first frame) ·
+Covers (5 written, 3 rendered): A "POLICE ARRESTED YOU? / KNOW YOUR RIGHTS." (owner's title) (chosen; matches the first frame) ·
 B "THE 24-HOUR CLOCK / STARTS WHEN THEY HOLD YOU." · C "NO ONE TOLD YOU WHY? / THAT'S RIGHT NO. 1." · not rendered:
 "ARRESTED AT NIGHT? / KNOW THESE 11 RIGHTS." (the night rule is for women only, so it would mislead), "LAWYER REVEALS
 11 RIGHTS" (barred phrasing).
