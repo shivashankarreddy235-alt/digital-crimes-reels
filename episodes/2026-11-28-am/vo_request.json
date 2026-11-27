@@ -1,0 +1,42 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "Police ने पकड़ा? अब अगले चौबीस घंटे।"
+  },
+  {
+   "scene": "h0",
+   "text": "घड़ी उसी पल चलती है, जब police आपको रोकती है।"
+  },
+  {
+   "scene": "arrest",
+   "text": "Arrest memo, arrest का कारण, और घरवालों को खबर।"
+  },
+  {
+   "scene": "station",
+   "text": "थाने में medical जाँच, पूछताछ में वकील, और bailable case में वहीं bail।"
+  },
+  {
+   "scene": "grounds",
+   "text": "पेशी से कम से कम दो घंटे पहले, कारण लिखित में।"
+  },
+  {
+   "scene": "mag",
+   "text": "चौबीस घंटे में Magistrate, जो तय करते हैं: रिहाई, bail, या custody।"
+  },
+  {
+   "scene": "check",
+   "text": "Free legal aid आपका हक़ है। अभी घर का एक नंबर emergency contact में, और एक पाँच एक शून्य शून्य save कीजिए।"
+  },
+  {
+   "scene": "shot",
+   "text": "ये timeline screenshot कीजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": "ये video घरवालों और college group में भेजिए।"
+  }
+ ]
+}
