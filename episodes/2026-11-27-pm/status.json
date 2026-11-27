@@ -1,0 +1,21 @@
+{
+ "episode": 10,
+ "date": "2026-11-27",
+ "slot": "pm",
+ "topic": "Ransomware on your server: the 6-hour CERT-In clock — report within 6 hours of noticing (CERT-In Directions 28 Apr 2022, IT Act s.70B(6)); isolate, don't wipe, keep the logs; ignoring the directions: up to 1 year or ₹1 crore fine (s.70B(7), Jan Vishwas Act 2023); one-minute check: save CERT-In's toll-free 1800-11-4949",
+ "series": "Corporate Cyber Brief",
+ "audience": "CXOs, IT and security heads, owners of SMEs, schools and clinics with their own server (primary); accounts and admin teams",
+ "language": "English text, Hindi voice",
+ "status": "pending",
+ "approved_at": null,
+ "posted_at": null,
+ "media_id": null,
+ "voice": "AI voice (ElevenLabs), Hindi",
+ "length_s": 38.8,
+ "cover": "A: YOUR FILES ARE LOCKED. / YOUR 6 HOURS START NOW. (alternatives B and C rendered for review)",
+ "review_thread_id": null,
+ "review_message_ids": [],
+ "handled_reply_ids": [],
+ "reminder_sent": false,
+ "note": "Morning build, 27 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity, voice from 0.1 s, one law card + one number card, send line spoken and shown in the outro. The routine's stored prompt still says 90–120 s; CLAUDE.md's owner instruction of 25 Nov (35–45 s) wins. Correction found while verifying: the s.70B(7) fine is now up to ₹1 crore (Jan Vishwas Act 2023, from 30 Nov 2023), not ₹1 lakh."
+}

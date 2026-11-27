@@ -1,0 +1,11 @@
+Your files are locked. Your 6 hours start now.
+⚖️ For educational purposes only. Not legal advice.
+
+Companies must report cyber incidents, ransomware included, to CERT-In within 6 hours of noticing them (CERT-In Directions of April 2022, IT Act Section 70B(6)). Ignoring the directions can mean up to 1 year in jail or a fine up to ₹1 crore (Section 70B(7)). The ransom demand is extortion under BNS Section 308; the break-in falls under IT Act Section 66 read with Section 43. From 13 May 2027, DPDP Rules (rule 7) will also require telling affected people and the Data Protection Board.
+
+Isolate systems, don't wipe them, report to CERT-In (toll-free 1800-11-4949) and complain at cybercrime.gov.in. Paying doesn't guarantee your files back.
+
+Save this and send it to someone who needs it.
+Voiceover: AI-generated.
+
+#CyberSecurity #InfoSec #Ransomware #DataProtection #DigitalCrimes

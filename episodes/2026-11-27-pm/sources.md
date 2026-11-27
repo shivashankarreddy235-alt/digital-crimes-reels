@@ -88,3 +88,13 @@ Every claim in the reel and caption, and the page(s) that support it. Pages mark
 - "Fine up to ₹1 lakh" — outdated since 30 Nov 2023 (now ₹1 crore).
 - "Don't switch the systems off" — CISA says power down if you can't disconnect them, so the reel only says isolate and don't wipe.
 - Any ransomware statistic for India — no current, primary-sourced number found; no number card other than the ₹1 crore fine.
+
+## IT Act s.66 and s.43 (caption only)
+- **IT Act 2000 s.66** (bare text, opened this run) — https://lawx.in/acts/section/17/224/2227 — "If any person, dishonestly or
+  fraudulently, does any act referred to in section 43, he shall be punishable with imprisonment for a term which may extend to
+  three years or with fine which may extend to five lakh rupees or with both." Also https://cis-india.org/internet-governance/resources/section-66-it-act.txt
+- **IT Act 2000 s.43** — the clause on introducing "any computer contaminant or computer virus" was verified from bare text by the
+  EP08 run on 26 Nov 2026 (incometaxindia.gov.in copy, see episodes/2026-11-26-pm/sources.md); this run's fetch of that page was
+  blocked, so the caption only says "Section 66 read with Section 43".
+- **cybercrime.gov.in** as the national complaint portal — verified by the EP06 run (PIB, 7 Aug 2026; see
+  episodes/2026-11-25-pm/sources.md).
