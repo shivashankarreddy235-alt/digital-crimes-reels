@@ -2,7 +2,7 @@
  "episode": 10,
  "date": "2026-11-27",
  "slot": "pm",
- "topic": "When police arrest you: your 11 rights — grounds in writing (Art 22(1), BNSS s.47; Mihir Rajesh Shah, SC 2025), bail information (s.47(2)), officer's name + arrest memo (s.36), family told (s.48), lawyer (s.38), free legal aid (LSA Act s.12(g)), medical check (s.53), Magistrate in 24 h from actual detention (Art 22(2), s.58; Sujit Das, SC 5 Nov 2026), no compelled self-incrimination (Art 20(3)), women not arrested at night without a Magistrate's prior permission (s.43(5)); one-minute check: save NALSA 15100",
+ "topic": "Police arrested you? Know your rights (11 rights) — grounds in writing (Art 22(1), BNSS s.47; Mihir Rajesh Shah, SC 2025), bail information (s.47(2)), officer's name + arrest memo (s.36), family told (s.48), lawyer (s.38), free legal aid (LSA Act s.12(g)), medical check (s.53), Magistrate in 24 h from actual detention (Art 22(2), s.58; Sujit Das, SC 5 Nov 2026), no compelled self-incrimination (Art 20(3)), women not arrested at night without a Magistrate's prior permission (s.43(5)); one-minute check: save NALSA 15100",
  "series": "Know Your Rights",
  "audience": "Everyday families and young people (primary); law students",
  "language": "English text, Hindi voice",
@@ -11,13 +11,13 @@
  "posted_at": null,
  "media_id": null,
  "voice": "AI voice (ElevenLabs), Hindi",
- "length_s": 43.4,
- "cover": "A: WHEN POLICE ARREST YOU / YOU HAVE 11 RIGHTS. (alternatives B and C rendered for review)",
+ "length_s": 44.2,
+ "cover": "A: POLICE ARRESTED YOU? / KNOW YOUR RIGHTS. (owner's title, 27 Nov 1:05 PM; alternatives B and C rendered)",
  "review_thread_id": "1a21bf72d31a420a",
  "review_message_ids": [
   "1a21bf72d31a420a"
  ],
  "handled_reply_ids": [],
  "reminder_sent": false,
- "note": "Built in chat on 27 Nov 2026 (~12:45 PM–1:30 PM IST) on the owner's instruction, replacing the ransomware reel (now episodes/bank-ransomware-cert-in/, status skipped). Title set by the owner: 'When police arrest you'. Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email). Review emailed about 1:35 PM IST, 27 Nov."
+ "note": "Built in chat on 27 Nov 2026 (~12:45 PM–1:30 PM IST) on the owner's instruction, replacing the ransomware reel (now episodes/bank-ransomware-cert-in/, status skipped). Title set by the owner: 'When police arrest you'. Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email). Review emailed about 1:35 PM IST, 27 Nov. New version 27 Nov ~1:20 PM IST: owner's new title \"Police arrested you? Know your rights\" (hook, cover, caption line 1, first voice line)."
 }
