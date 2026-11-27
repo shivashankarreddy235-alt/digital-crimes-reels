@@ -630,10 +630,10 @@ function sArrest(lt){chapLabel(lt,'AT THE ARREST');dial24(lerp(0.0015,0.35,eInOu
   evRow(90,ROWS_Y[1],900,iSpeech,'THE REASON','The grounds of arrest, in your language',p(lt,1.2,0.35));
   evRow(90,ROWS_Y[2],900,iPhone,'FAMILY TOLD','A relative or friend learns where you are',p(lt,2.2,0.35));}
 // 4 — at the police station
-function sStation(lt){chapLabel(lt,'AT THE STATION');dial24(lerp(0.35,2.4,eInOut(clamp(lt/4.0))),{top:'HOUR 0 · POLICE HOLD YOU',sub:'SINCE POLICE HELD YOU'});dialNote(1);
-  evRow(90,ROWS_Y[0],900,iPulse,'MEDICAL CHECK','Soon after arrest — you get a copy',p(lt,0.3,0.35));
-  evRow(90,ROWS_Y[1],900,iBrief,'YOUR LAWYER','You can meet them during questioning',p(lt,1.5,0.35));
-  evRow(90,ROWS_Y[2],900,iUnlock,'BAILABLE OFFENCE?','Bail can be given at the police station',p(lt,2.8,0.35));}
+function sStation(lt){chapLabel(lt,'AT THE STATION');dial24(lerp(0.35,2.4,eInOut(clamp(lt/5.6))),{top:'HOUR 0 · POLICE HOLD YOU',sub:'SINCE POLICE HELD YOU'});dialNote(1);
+  evRow(90,ROWS_Y[0],900,iPulse,'MEDICAL CHECK','Soon after arrest — you get a copy',p(lt,0.4,0.35));
+  evRow(90,ROWS_Y[1],900,iBrief,'YOUR LAWYER','You can meet them during questioning',p(lt,2.0,0.35));
+  evRow(90,ROWS_Y[2],900,iUnlock,'BAILABLE OFFENCE?','Bail can be given at the police station',p(lt,3.5,0.35));}
 // 5 — two hours before the Magistrate: the one law card (Mihir Rajesh Shah, SC, 6 Nov 2025)
 function sGrounds(lt){chapLabel(lt,'2 HOURS BEFORE COURT');const sw=eInOut(clamp((lt-0.15)/0.8));
   dial24(lerp(2.4,22,sw),{top:sw>0.98?'HOUR 24 · MAGISTRATE':'HOUR 0 · POLICE HOLD YOU',topColor:sw>0.98?AMB:SER,sub:sw>0.98?'2 H BEFORE COURT':'SINCE POLICE HELD YOU',subColor:sw>0.98?'#ffb3c0':COL.dim,wedge:p(lt,0.75,0.4)});
@@ -644,17 +644,17 @@ function sGrounds(lt){chapLabel(lt,'2 HOURS BEFORE COURT');const sw=eInOut(clamp
 function sMag(lt){chapLabel(lt,'BY HOUR 24');const k=eInOut(clamp(lt/0.7)),done=lt>=0.7;
   dial24(lerp(22,24,k),{top:'HOUR 24 · MAGISTRATE',topColor:AMB,sub:done?'BEFORE A MAGISTRATE':'2 H BEFORE COURT',subColor:done?SER:'#ffb3c0',wedge:1,done:p(lt,0.7,0.7)});
   sub('+ travel time to the court is not counted',982,eOut(p(lt,0.9,0.3)),{size:32,color:COL.white,weight:700});
-  sub('The Magistrate checks the arrest, then decides:',1052,eOut(p(lt,1.8,0.3)),{size:34,color:COL.white,weight:800});
+  sub('The Magistrate checks the arrest, then decides:',1052,eOut(p(lt,2.1,0.3)),{size:34,color:COL.white,weight:800});
   const bx=[90,402,714],bw=276,by=1090,bh=300;
-  [[2.6,iUnlock,'RELEASE','if the arrest is illegal',GRN],[3.2,iFree,'BAIL','on conditions',AMB],[3.8,iBars,'CUSTODY','police or jail, for a set time',RED]].forEach(([t,ic,ti,bo,c],i)=>{
+  [[3.3,iUnlock,'RELEASE','if the arrest is illegal',GRN],[3.9,iFree,'BAIL','on conditions',AMB],[4.5,iBars,'CUSTODY','police or jail, for a set time',RED]].forEach(([t,ic,ti,bo,c],i)=>{
     optBox(bx[i],by,bw,bh,ic,ti,bo,p(lt,t,0.3),c);});
-  sub('Nothing here is automatic — the Magistrate decides.',1452,eOut(p(lt,4.2,0.3)),{size:32,color:COL.dim,weight:700});}
+  sub('Nothing here is automatic — the Magistrate decides.',1452,eOut(p(lt,5.1,0.3)),{size:32,color:COL.dim,weight:700});}
 // 7 — do this now: the one-minute check on your own phone
 function sCheck(lt){chapLabel(lt,'DO THIS NOW');const a=eOut(p(lt,0.05,0.3));
   ctx.save();ctx.globalAlpha*=a;ctx.translate(0,(1-a)*30);card(90,380,900,132,AMB);iFree(170,458,40,AMB);
   txt('In custody? A free legal-aid lawyer',260,436,{size:fit('In custody? A free legal-aid lawyer',800,BODY,700,40),weight:800});txt('is your right — ask for one.',260,486,{size:36,weight:600,color:'#c9d3ea'});ctx.restore();
-  emergencyScreen(540,972,600,800,lt,{alpha:eOut(p(lt,1.6,0.3)),t1:2.1,t2:4.2});
-  kineticCaption(lt,[[0.3,'FREE LEGAL AID',AMB],[2.1,'EMERGENCY CONTACT',SER],[4.2,'15100',AMB],[5.4,'SAVED',GRN]],{y:1450,hold:2.0});}
+  emergencyScreen(540,972,600,800,lt,{alpha:eOut(p(lt,1.6,0.3)),t1:2.1,t2:4.8});
+  kineticCaption(lt,[[0.3,'FREE LEGAL AID',AMB],[2.1,'EMERGENCY CONTACT',SER],[4.8,'15100',AMB],[6.0,'SAVED',GRN]],{y:1450,hold:2.0});}
 // 8 — screenshot card: the whole timeline; holds for the screenshot
 function sShot(lt){shotCard(lt,0.2,0.14,3.2,eOut(p(lt,0.05,0.3)));}
 // 9 — outro: the send line (spoken + on screen), logo, disclaimer and laws visible at once
@@ -684,13 +684,13 @@ window.EPISODE={
      vo:'घड़ी उसी पल चलती है, जब police आपको रोकती है।'},
     {id:'arrest',fn:sArrest,dur:4.0,min:3.2,stings:[0.02],pops:[[0.3,600],[1.2,660],[2.2,720]],
      vo:'Arrest memo, arrest का कारण, और घरवालों को खबर।'},
-    {id:'station',fn:sStation,dur:4.8,min:3.8,stings:[0.02],pops:[[0.3,600],[1.5,660],[2.8,720]],
+    {id:'station',fn:sStation,dur:4.8,min:3.8,stings:[0.02],pops:[[0.4,600],[2.0,660],[3.5,720]],
      vo:'थाने में medical जाँच, पूछताछ में वकील, और bailable case में वहीं bail।'},
     {id:'grounds',fn:sGrounds,dur:5.0,min:4.4,stings:[0.02],pops:[[0.2,500,0.06],[1.0,620]],risers:[0.05],typing:[[1.15,3.4]],impacts:[[0.8,0.85,14]],
      vo:'पेशी से कम से कम दो घंटे पहले, कारण लिखित में।'},
-    {id:'mag',fn:sMag,dur:5.0,min:4.6,stings:[0.02],pops:[[0.9,560,0.08],[1.8,600],[2.6,660],[3.2,720],[3.8,780]],impacts:[[0.72,0.9,14]],
+    {id:'mag',fn:sMag,dur:5.0,min:4.6,stings:[0.02],pops:[[0.9,560,0.08],[2.1,600],[3.3,660],[3.9,720],[4.5,780]],impacts:[[0.72,0.9,14]],
      vo:'चौबीस घंटे में Magistrate, जो तय करते हैं: रिहाई, bail, या custody।'},
-    {id:'check',fn:sCheck,dur:6.4,min:6.0,stings:[0.02],pops:[[0.1,560],[1.6,620,0.08],[3.3,880,0.1],[5.3,880,0.1]],typing:[[2.1,3.1],[4.2,5.2]],chimes:[3.35,5.35],impacts:[[0.15,0.5,6]],
+    {id:'check',fn:sCheck,dur:6.4,min:6.0,stings:[0.02],pops:[[0.1,560],[1.6,620,0.08],[3.3,880,0.1],[5.9,880,0.1]],typing:[[2.1,3.1],[4.8,5.8]],chimes:[3.35,5.95],impacts:[[0.15,0.5,6]],
      vo:'Free legal aid आपका हक़ है। अभी घर का एक नंबर emergency contact में, और एक पाँच एक शून्य शून्य save कीजिए।'},
     {id:'shot',fn:sShot,dur:4.6,min:4.4,pops:[[0.20,520,0.05],[0.34,560,0.05],[0.48,600,0.05],[0.62,640,0.05],[0.76,680,0.05],[0.90,720,0.05],[1.04,760,0.05]],impacts:[[3.2,0.4,4]],
      vo:'ये timeline screenshot कीजिए।'},
