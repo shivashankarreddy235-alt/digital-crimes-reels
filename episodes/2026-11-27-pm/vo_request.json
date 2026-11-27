@@ -4,35 +4,39 @@
  "segments": [
   {
    "scene": "hook",
-   "text": "आपके server पर ये note आया? तो आपकी छह घंटे की घड़ी शुरू।"
+   "text": "जब police arrest करे — तो ये ग्यारह हक़ आपके हैं।"
   },
   {
-   "scene": "attack",
-   "text": "Files lock हो गईं, और धमकी — crypto में पैसे दो, वरना data leak।"
+   "scene": "r1",
+   "text": "कारण लिखित में, bailable case में bail की जानकारी, और officer का नाम।"
   },
   {
-   "scene": "how",
-   "text": "एक phishing click या कमज़ोर password — hacker अंदर, files lock, data चोरी।"
+   "scene": "r2",
+   "text": "Arrest memo पर गवाह के sign, परिवार को खबर, और पूछताछ में वकील।"
   },
   {
-   "scene": "hour",
-   "text": "पहले systems को network से अलग कीजिए, कुछ मत मिटाइए — logs सबूत हैं।"
+   "scene": "r3",
+   "text": "पैसे नहीं, तो free वकील। और medical जाँच।"
   },
   {
-   "scene": "law",
-   "text": "पता चलने के छह घंटे में Cert-In को report ज़रूरी — वरना एक करोड़ तक का fine।"
+   "scene": "r4",
+   "text": "चौबीस घंटे में Magistrate — और घड़ी हिरासत के पल से चलती है।"
+  },
+  {
+   "scene": "r5",
+   "text": "अपने ख़िलाफ़ बयान के लिए मजबूर नहीं। महिला को रात में arrest — सिर्फ़ Magistrate की इजाज़त से।"
   },
   {
    "scene": "check",
-   "text": "अभी Cert-In का toll-free number अपने phone में save कीजिए।"
+   "text": "Free legal aid helpline — एक पाँच एक शून्य शून्य — अभी save कीजिए।"
   },
   {
-   "scene": "act",
-   "text": "Ransom देने से files लौटने की guarantee नहीं। ये card save कीजिए।"
+   "scene": "shot",
+   "text": "ये list screenshot कीजिए।"
   },
   {
    "scene": "outro",
-   "text": "ये video अपने आई-टी head को भेजिए।"
+   "text": "ये video family group में भेजिए।"
   }
  ]
 }

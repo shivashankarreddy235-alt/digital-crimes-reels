@@ -6,7 +6,7 @@
  "series": "Corporate Cyber Brief",
  "audience": "CXOs, IT and security heads, owners of SMEs, schools and clinics with their own server (primary); accounts and admin teams",
  "language": "English text, Hindi voice",
- "status": "pending",
+ "status": "skipped",
  "approved_at": null,
  "posted_at": null,
  "media_id": null,
@@ -19,5 +19,5 @@
  ],
  "handled_reply_ids": [],
  "reminder_sent": false,
- "note": "Morning build, 27 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity, voice from 0.1 s, one law card + one number card, send line spoken and shown in the outro. The routine's stored prompt still says 90–120 s; CLAUDE.md's owner instruction of 25 Nov (35–45 s) wins. Correction found while verifying: the s.70B(7) fine is now up to ₹1 crore (Jan Vishwas Act 2023, from 30 Nov 2023), not ₹1 lakh. Review emailed about 10:08 IST, 27 Nov."
+ "note": "Morning build, 27 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity, voice from 0.1 s, one law card + one number card, send line spoken and shown in the outro. The routine's stored prompt still says 90–120 s; CLAUDE.md's owner instruction of 25 Nov (35–45 s) wins. Correction found while verifying: the s.70B(7) fine is now up to ₹1 crore (Jan Vishwas Act 2023, from 30 Nov 2023), not ₹1 lakh. Review emailed about 10:08 IST, 27 Nov. | 27 Nov 2026, 1:00 PM IST: owner replaced this 8 PM slot with \"When police arrest you: your 11 rights\" (owner's instruction in chat). Folder moved to episodes/bank-ransomware-cert-in/ and the topic returned to the topic bank; re-verify and rebuild with a new date before reusing."
 }

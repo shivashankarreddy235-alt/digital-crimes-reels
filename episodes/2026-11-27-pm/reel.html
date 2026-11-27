@@ -456,188 +456,213 @@ function boot(){buildTimeline();const fonts=['900 100px "Inter Display"','800 10
   Promise.all([...fonts,person,ld(LOGO,base+'logo.png',()=>{LOGO_OK=true;}),ld(WORD,base+'wordmark.png',()=>{WORD_OK=true;})]).then(()=>{window.ready=true;});}
 
 /* =====================================================================================
-   EPISODE (rewrite per episode)  —  EP10 "Ransomware on your server: the 6-hour CERT-In clock" (CORPORATE CYBER BRIEF)
-   Dramatised scene (invented office server, file names, ransom note and logs; no real company, gang, person, IP address or
-   account; no agency logo, emblem or seal). Explains what ransomware does and what the law asks of a company in the first hours.
-   Explain, never enable: entry routes shown only as labels (phishing email, weak password); nothing on how attacks are built,
-   how to pay, or how to hide an incident.
-   35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity; small corner chapter labels; one law card +
-   one number card; the send line is spoken and shown in the outro (last 3 s).
-   CERT-In's toll-free line 1800-11-4949 is the official number (csk.gov.in; CERT-In Directions 28 Apr 2022, direction (ii)).
+   EPISODE (rewrite per episode)  —  EP10 "When police arrest you: your 11 rights" (KNOW YOUR RIGHTS)
+   Owner's instruction, 27 Nov 2026: replaces the planned 8 PM reel (ransomware, moved back to the topic bank).
+   Dramatised cold open only (an invented family message; no real person, case, officer, station or number).
+   No police uniforms, badges, emblems or logos: rights are shown as icons and plain-word cards.
+   35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity; small corner labels; one law card
+   (Supreme Court, Sujit Das, 5 Nov 2026); every section number lives in the caption; send line in the outro.
+   NALSA's toll-free legal aid helpline 15100 (nalsa.gov.in) is the one-minute check.
    ===================================================================================== */
-const AMB=COL.amber,RED=COL.red,GRN=COL.green,CY=COL.cyan,SER='#8a7dff';
+const AMB=COL.amber,RED=COL.red,GRN=COL.green,CY=COL.cyan,SER='#35f29a';
 function sub(s,y,a,o={}){if(a<=0)return;txt(s,540,y,{size:fit(s,o.weight||600,BODY,o.maxW||900,o.size||32),weight:o.weight||600,align:'center',color:o.color||COL.dim,alpha:a});}
-// small top-corner chapter label (no full-screen card in the short format); sting via the scene's stings:[0.02]
-function chapLabel(lt,n,title){const e=eOut(p(lt,0,0.25));if(e<=0)return;ctx.save();ctx.translate((1-e)*-40,0);
-  const str=String(n).padStart(2,'0')+'  '+title;pill(90,330,str,SER,{size:22,ls:3,align:'left',alpha:e,fillA:'33',weight:900});ctx.restore();}
+// small top-corner label (no full-screen card in the short format); sting via the scene's stings:[0.02]
+function chapLabel(lt,str){const e=eOut(p(lt,0,0.25));if(e<=0)return;ctx.save();ctx.translate((1-e)*-40,0);
+  pill(90,330,str,SER,{size:22,ls:3,align:'left',alpha:e,fillA:'33',weight:900});ctx.restore();}
+// 11-dot progress meter (top right). n0 = rights shown before this scene; reveals = local times of this scene's new rights
+function meter(lt,n0,reveals){let n=n0;for(const t of reveals)if(lt>=t)n++;ctx.save();
+  for(let i=0;i<11;i++){const x=676+i*29,y=330,on=i<n;ctx.beginPath();ctx.arc(x,y,9,0,7);
+    if(on){const j=i-n0,just=j>=0?eOut(p(lt,reveals[j],0.25)):1;ctx.save();ctx.globalAlpha*=0.45+0.55*just;ctx.fillStyle=SER;ctx.shadowColor=SER;ctx.shadowBlur=14*just;ctx.fill();ctx.restore();}
+    else{stroke('rgba(255,255,255,0.28)',2);ctx.stroke();}}
+  ctx.restore();}
 // "send this" line (spoken and on screen)
-function sendLine(y,a,str){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;ctx.translate(0,(1-a)*30);rr(90,y,900,104,52);ctx.fillStyle='rgba(138,125,255,0.16)';ctx.fill();stroke(SER,3);ctx.shadowColor=SER;ctx.shadowBlur=18;ctx.stroke();ctx.shadowBlur=0;
+function sendLine(y,a,str){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;ctx.translate(0,(1-a)*30);rr(90,y,900,104,52);ctx.fillStyle='rgba(53,242,154,0.14)';ctx.fill();stroke(SER,3);ctx.shadowColor=SER;ctx.shadowBlur=18;ctx.stroke();ctx.shadowBlur=0;
   ctx.fillStyle=SER;ctx.beginPath();ctx.moveTo(140,y+52);ctx.lineTo(196,y+28);ctx.lineTo(176,y+80);ctx.lineTo(166,y+60);ctx.closePath();ctx.fill();
   txt(str,560,y+66,{size:fit(str,800,BODY,760,40),weight:800,align:'center'});ctx.restore();}
 const hms=s=>{s=Math.max(0,s);return [Math.floor(s/3600),Math.floor(s/60)%60,Math.floor(s)%60].map(v=>String(v).padStart(2,'0')).join(':');};
-// ---- icons for the network diagram ----
-function iServer(cx,cy,s,c,a=1){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;for(let i=0;i<3;i++){const y=cy-s*0.75+i*s*0.52;rr(cx-s*0.7,y,s*1.4,s*0.42,s*0.08);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();stroke(c,s*0.07);ctx.stroke();
-    ctx.fillStyle=c;ctx.beginPath();ctx.arc(cx+s*0.48,y+s*0.21,s*0.06,0,7);ctx.fill();ctx.fillRect(cx-s*0.52,y+s*0.17,s*0.5,s*0.08);}ctx.restore();}
-function iPC(cx,cy,s,c,a=1){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;rr(cx-s*0.75,cy-s*0.6,s*1.5,s*0.95,s*0.1);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();stroke(c,s*0.08);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx,cy+s*0.35);ctx.lineTo(cx,cy+s*0.6);ctx.moveTo(cx-s*0.35,cy+s*0.62);ctx.lineTo(cx+s*0.35,cy+s*0.62);ctx.stroke();ctx.restore();}
-function iMail(cx,cy,s,c,a=1){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;stroke(c,s*0.09);rr(cx-s*0.8,cy-s*0.52,s*1.6,s*1.04,s*0.12);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx-s*0.72,cy-s*0.42);ctx.lineTo(cx,cy+s*0.1);ctx.lineTo(cx+s*0.72,cy-s*0.42);ctx.stroke();ctx.restore();}
-function iKey(cx,cy,s,c,a=1){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;stroke(c,s*0.11);ctx.beginPath();ctx.arc(cx-s*0.4,cy,s*0.32,0,7);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx-s*0.08,cy);ctx.lineTo(cx+s*0.8,cy);ctx.moveTo(cx+s*0.55,cy);ctx.lineTo(cx+s*0.55,cy+s*0.28);ctx.moveTo(cx+s*0.78,cy);ctx.lineTo(cx+s*0.78,cy+s*0.22);ctx.stroke();ctx.restore();}
-function iCloud(cx,cy,s,c,a=1){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;ctx.beginPath();ctx.arc(cx-s*0.45,cy+s*0.1,s*0.38,Math.PI*0.5,Math.PI*1.5);ctx.arc(cx-s*0.05,cy-s*0.22,s*0.48,Math.PI*1.1,Math.PI*1.95);
-  ctx.arc(cx+s*0.5,cy+s*0.05,s*0.42,Math.PI*1.4,Math.PI*0.5);ctx.closePath();ctx.fillStyle='rgba(40,8,18,0.92)';ctx.fill();stroke(c,s*0.07);ctx.shadowColor=c;ctx.shadowBlur=20;ctx.stroke();ctx.restore();}
-function lockBadge(cx,cy,s,k){if(k<=0)return;const sc=lerp(1.6,1,eBack(clamp(k)));ctx.save();ctx.globalAlpha*=clamp(k*3);ctx.translate(cx,cy);ctx.scale(sc,sc);
-  ctx.fillStyle=RED;ctx.shadowColor=RED;ctx.shadowBlur=18;ctx.beginPath();ctx.arc(0,0,s,0,7);ctx.fill();ctx.shadowBlur=0;iLock(0,-s*0.05,s*0.55,'#fff');ctx.restore();}
-// ---- office file server window: files get ".locked" one by one, then the ransom note ----
-const FILES=['Invoices_Nov.xlsx','Payroll_2026.xlsx','GST_Returns.pdf','Contracts.docx','Backup_Q3.zip'];
-function monitor(cx,cy,w,h,lt,o={}){const a=o.alpha??1;if(a<=0)return;const x=cx-w/2,y=cy-h/2;ctx.save();ctx.globalAlpha*=a;
-  ctx.fillStyle='#1a2036';rr(cx-70,y+h,140,46,6);ctx.fill();rr(cx-170,y+h+40,340,18,9);ctx.fill();
-  ctx.shadowColor=o.noteT!=null&&lt>=o.noteT?'rgba(255,51,88,0.45)':'rgba(46,230,255,0.25)';ctx.shadowBlur=40;rr(x,y,w,h,22);ctx.fillStyle='#05070d';ctx.fill();ctx.shadowBlur=0;stroke('rgba(255,255,255,0.25)',4);ctx.stroke();
-  const sx=x+16,sy=y+16,sw=w-32,sh=h-32;ctx.save();rr(sx,sy,sw,sh,12);ctx.clip();ctx.fillStyle='#0d1322';ctx.fillRect(sx,sy,sw,sh);
-  ctx.fillStyle='#1b2338';ctx.fillRect(sx,sy,sw,54);txt('ACCOUNTS-SERVER  ›  Shared  ›  Finance',sx+24,sy+36,{size:fit('ACCOUNTS-SERVER  ›  Shared  ›  Finance',700,MONO,sw-60,24),weight:700,font:MONO,color:COL.dim});
-  const rh=Math.min(66,(sh-80)/FILES.length),fs=Math.min(30,rh*0.46);
-  FILES.forEach((f,i)=>{const ry=sy+70+i*rh,lk=o.lockT?lt-o.lockT[i]:-1,on=lk>=0;
-    if(on&&lk<0.3){ctx.fillStyle=`rgba(255,51,88,${0.25*(1-lk/0.3)})`;ctx.fillRect(sx,ry,sw,rh);}
-    const ix=sx+50,iy=ry+rh/2;if(on){lockBadge(ix,iy,rh*0.3,p(lk,0,0.3));}else{rr(ix-rh*0.22,iy-rh*0.28,rh*0.44,rh*0.56,4);ctx.fillStyle=['#2fbf71','#2fbf71','#e5534b','#4d8bff','#c9a227'][i];ctx.fill();}
-    txt(f,sx+96,iy+fs*0.36,{size:fs,weight:600,font:MONO,color:on?'#7d879f':'#e8ecf6'});
-    if(on){ctx.save();ctx.font=font(600,fs,MONO);const ww=ctx.measureText(f).width;ctx.restore();txt('.locked',sx+96+ww,iy+fs*0.36,{size:fs,weight:800,font:MONO,color:RED,alpha:eOut(p(lk,0,0.2))});}
-    ctx.fillStyle='rgba(255,255,255,0.05)';ctx.fillRect(sx+24,ry+rh-1,sw-48,1);});
-  if(o.noteT!=null){const k=eOut(p(lt,o.noteT,0.35));if(k>0){ctx.save();ctx.globalAlpha*=k;const nx=sx+sw*0.07,ny=sy+sh*0.08+(1-k)*30,nw=sw*0.86,nh=sh*0.84;
-    ctx.fillStyle='rgba(0,0,0,0.55)';ctx.fillRect(sx,sy,sw,sh);rr(nx,ny,nw,nh,16);ctx.fillStyle='#1a0610';ctx.fill();stroke(RED,4);ctx.shadowColor=RED;ctx.shadowBlur=26;ctx.stroke();ctx.shadowBlur=0;
-    const ns=Math.min(1,nw/740);iLock(nx+70*ns,ny+78*ns,42*ns,RED);
-    txt('YOUR FILES ARE ENCRYPTED',nx+130*ns,ny+92*ns,{size:fit('YOUR FILES ARE ENCRYPTED',900,DISP,nw-160*ns,46*ns),weight:900,font:DISP,color:RED,glow:12});
-    const L=['We have also copied your data.','Pay in crypto within 72 hours,','or we publish it.'];
-    L.forEach((l,i)=>txt(l,nx+44*ns,ny+(170+i*50)*ns,{size:34*ns,weight:700,color:'#f3d7dd',alpha:eOut(p(lt,o.noteT+0.15+i*0.18,0.25))}));
-    const tl=72*3600-1-Math.max(0,lt-o.noteT);txt(hms(tl),nx+nw/2,ny+nh-36*ns,{size:56*ns,weight:800,font:MONO,align:'center',color:RED,glow:16});
-    ctx.restore();}}
-  ctx.restore();ctx.restore();}
-// 6-hour reporting countdown chip
-function clockChip(cx,y,lt,a,o={}){if(a<=0)return;const s=6*3600-(o.offset||0)-Math.max(0,lt-(o.t0||0));const str='REPORT TO CERT-In IN  '+hms(s);ctx.save();ctx.globalAlpha*=a;ctx.font=font(800,34,MONO);const w=ctx.measureText(str).width+120,h=78;
-  rr(cx-w/2,y-h/2,w,h,h/2);ctx.fillStyle='rgba(255,182,39,0.14)';ctx.fill();stroke(AMB,3);ctx.shadowColor=AMB;ctx.shadowBlur=16;ctx.stroke();ctx.shadowBlur=0;
-  const ix=cx-w/2+44;stroke(AMB,4);ctx.beginPath();ctx.arc(ix,y,17,0,7);ctx.stroke();ctx.beginPath();ctx.moveTo(ix,y);ctx.lineTo(ix+Math.cos(lt*4-1.57)*12,y+Math.sin(lt*4-1.57)*12);ctx.stroke();
-  txt(str,ix+34,y+12,{size:34,weight:800,font:MONO,color:AMB});ctx.restore();}
-// server unplugged from the network (isolation)
-function isolateViz(lt,t0,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;iServer(250,700,110,RED);txt('INFECTED SERVER',250,830,{size:26,weight:800,align:'center',color:COL.dim,ls:2});
-  rr(700,640,240,120,16);ctx.fillStyle='rgba(14,22,46,0.96)';ctx.fill();stroke(CY,3);ctx.stroke();for(let i=0;i<5;i++){rr(724+i*42,690,30,22,4);ctx.fillStyle=i===1?'#0b1020':CY+'66';ctx.fill();}
-  txt('OFFICE NETWORK',820,800,{size:26,weight:800,align:'center',color:COL.dim,ls:2});
-  const k=eOut(p(lt,t0,0.35)),gap=k*150;stroke(k>0?'#7d879f':CY,8);ctx.beginPath();ctx.moveTo(340,700);ctx.lineTo(480-gap*0.4,700);ctx.stroke();ctx.beginPath();ctx.moveTo(560+gap*0.4,700);ctx.lineTo(766,700);ctx.stroke();
-  ctx.fillStyle=k>0?'#7d879f':CY;rr(470-gap*0.4,684,34,32,6);ctx.fill();rr(536+gap*0.4,684,34,32,6);ctx.fill();
-  if(k>0&&k<1){ctx.save();ctx.globalAlpha*=(1-k);ctx.fillStyle=AMB;for(let j=0;j<8;j++){const an=j/8*6.28;ctx.beginPath();ctx.arc(520+Math.cos(an)*k*50,700+Math.sin(an)*k*50,5,0,7);ctx.fill();}ctx.restore();}
-  if(lt<t0){for(let j=0;j<3;j++){const q=((lt*1.2)+j/3)%1;ctx.fillStyle=RED;ctx.beginPath();ctx.arc(lerp(350,760,q),700,7,0,7);ctx.fill();}}
-  stamp(520,610,'ISOLATED',GRN,p(lt,t0+0.2,0.35),-0.08,40);ctx.restore();}
-const LOGS=[['02:41:07','VPN LOGIN  admin  FAILED'],['02:41:19','VPN LOGIN  admin  OK'],['02:58:33','NEW ADMIN ACCOUNT ADDED'],['03:12:04','FILES RENAMED  *.locked']];
-function logPanel(x,y,w,h,lt,t0,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;rr(x,y,w,h,20);ctx.fillStyle='rgba(8,14,30,0.95)';ctx.fill();stroke(AMB,3);ctx.stroke();
-  txt('SERVER LOGS  ·  KEEP 180 DAYS',x+30,y+46,{size:24,weight:900,color:AMB,ls:3});ctx.fillStyle=AMB+'55';ctx.fillRect(x+30,y+64,w-60,2);
-  LOGS.forEach(([t,m],i)=>{const k=clamp((lt-(t0+i*0.3))/0.3);if(k<=0)return;const yy=y+118+i*56,full=t+'   '+m,n=Math.floor(full.length*k),last=i===LOGS.length-1;
-    if(last&&k>=1){rr(x+16,yy-38,w-32,52,10);ctx.fillStyle='rgba(255,51,88,0.14)';ctx.fill();}
-    txt(full.slice(0,n),x+30,yy,{size:fit(full,700,MONO,w-60,30),weight:700,font:MONO,color:last?RED:'#dfe5f2'});});
-  pill(x+w-24,y+38,'Sample log · masked',COL.dim,{size:18,align:'right',fillA:'22'});ctx.restore();}
-// mock "new contact" screen on a phone
+
+// ---- icons for the rights (generic; no police badge, emblem or uniform) ----
+function iDocQ(cx,cy,s,c){iDoc(cx,cy,s,c);}
+function iUnlock(cx,cy,s,c){ctx.save();stroke(c,s*0.12);rr(cx-s*0.6,cy-s*0.1,s*1.2,s*0.95,s*0.15);ctx.stroke();
+  ctx.beginPath();ctx.arc(cx+s*0.55,cy-s*0.12,s*0.38,Math.PI,Math.PI*1.95);ctx.stroke();ctx.fillStyle=c;ctx.beginPath();ctx.arc(cx,cy+s*0.35,s*0.11,0,7);ctx.fill();ctx.restore();}
+function iBadge(cx,cy,s,c){ctx.save();stroke(c,s*0.11);rr(cx-s*0.62,cy-s*0.85,s*1.24,s*1.7,s*0.16);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx-s*0.2,cy-s*0.85);ctx.lineTo(cx-s*0.2,cy-s*1.05);ctx.lineTo(cx+s*0.2,cy-s*1.05);ctx.lineTo(cx+s*0.2,cy-s*0.85);ctx.stroke();
+  ctx.beginPath();ctx.arc(cx,cy-s*0.3,s*0.24,0,7);ctx.stroke();for(let i=0;i<2;i++){ctx.beginPath();ctx.moveTo(cx-s*0.36,cy+s*0.2+i*s*0.3);ctx.lineTo(cx+s*0.36,cy+s*0.2+i*s*0.3);ctx.stroke();}ctx.restore();}
+function iBrief(cx,cy,s,c){ctx.save();stroke(c,s*0.11);rr(cx-s*0.85,cy-s*0.45,s*1.7,s*1.15,s*0.14);ctx.stroke();
+  rr(cx-s*0.3,cy-s*0.75,s*0.6,s*0.3,s*0.08);ctx.stroke();ctx.beginPath();ctx.moveTo(cx-s*0.85,cy+s*0.02);ctx.lineTo(cx+s*0.85,cy+s*0.02);ctx.stroke();ctx.restore();}
+function iFree(cx,cy,s,c){txt('₹0',cx,cy+s*0.38,{size:s*1.05,weight:900,font:DISP,align:'center',color:c});}
+function iPulse(cx,cy,s,c){ctx.save();stroke(c,s*0.12);ctx.beginPath();ctx.moveTo(cx-s*0.95,cy);ctx.lineTo(cx-s*0.4,cy);ctx.lineTo(cx-s*0.2,cy-s*0.6);ctx.lineTo(cx+s*0.08,cy+s*0.55);ctx.lineTo(cx+s*0.3,cy-s*0.2);ctx.lineTo(cx+s*0.45,cy);ctx.lineTo(cx+s*0.95,cy);ctx.stroke();ctx.restore();}
+function iClock(cx,cy,s,c){ctx.save();stroke(c,s*0.12);ctx.beginPath();ctx.arc(cx,cy,s*0.8,0,7);ctx.stroke();ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy-s*0.5);ctx.moveTo(cx,cy);ctx.lineTo(cx+s*0.38,cy+s*0.12);ctx.stroke();ctx.restore();}
+function iMute(cx,cy,s,c){ctx.save();stroke(c,s*0.11);rr(cx-s*0.85,cy-s*0.65,s*1.7,s*1.05,s*0.3);ctx.stroke();ctx.beginPath();ctx.moveTo(cx-s*0.35,cy+s*0.4);ctx.lineTo(cx-s*0.5,cy+s*0.8);ctx.lineTo(cx,cy+s*0.4);ctx.stroke();
+  stroke(COL.red,s*0.13);ctx.beginPath();ctx.moveTo(cx-s*0.95,cy-s*0.85);ctx.lineTo(cx+s*0.95,cy+s*0.75);ctx.stroke();ctx.restore();}
+function iMoon(cx,cy,s,c){ctx.save();ctx.fillStyle=c;ctx.beginPath();ctx.arc(cx,cy,s*0.75,0,7);ctx.fill();ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(cx+s*0.38,cy-s*0.25,s*0.62,0,7);ctx.fill();ctx.restore();}
+function iSun(cx,cy,s,c){ctx.save();ctx.fillStyle=c;ctx.shadowColor=c;ctx.shadowBlur=s*0.6;ctx.beginPath();ctx.arc(cx,cy,s*0.42,0,7);ctx.fill();stroke(c,s*0.1);
+  for(let i=0;i<8;i++){const a=i*Math.PI/4;ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*s*0.62,cy+Math.sin(a)*s*0.62);ctx.lineTo(cx+Math.cos(a)*s*0.9,cy+Math.sin(a)*s*0.9);ctx.stroke();}ctx.restore();}
+
+// ---- the 11 rights: [n, title, plain-words line, icon]. Sections are in the caption, not on screen ----
+const RIGHTS=[
+  [1,'Know WHY — in writing','The grounds of arrest on paper, in a language you understand',iDocQ],
+  [2,'Told about bail','Bailable offence? Police must tell you that you can get bail',iUnlock],
+  [3,'Officer’s name, visible','The arresting officer must carry clear identification of their name',iBadge],
+  [4,'An arrest memo','Signed by a witness — family or a local person — and by you',iDoc],
+  [5,'Your family is told','A relative or friend is told of the arrest, and where you are held',iPhone],
+  [6,'Meet your lawyer','During police questioning — though not all through it',iBrief],
+  [7,'A free lawyer','Can’t afford one? Legal aid gives you a lawyer, free',iFree],
+  [8,'A medical check','Soon after arrest — and you get a copy of the report',iPulse],
+  [9,'Magistrate in 24 hours','Travel time to court excluded. Holding you longer needs a Magistrate’s order',iClock],
+  [10,'Can’t be forced to confess','No one can compel you to be a witness against yourself',iMute],
+  [11,'Women: no arrest at night','Not after sunset or before sunrise — except rare cases, with a Magistrate’s prior permission',iMoon],
+];
+// right card: slides in from the right (k 0..1)
+function rightCard(x,y,w,h,r,k){if(k<=0)return;const [n,title,body,icon]=r;const e=eOut(clamp(k));ctx.save();ctx.globalAlpha*=clamp(k*2.5);ctx.translate((1-e)*90,0);
+  rr(x,y,w,h,26);ctx.fillStyle='rgba(10,22,32,0.93)';ctx.fill();stroke(SER,2.5);ctx.save();ctx.globalAlpha*=0.7;ctx.stroke();ctx.restore();
+  ctx.fillStyle=SER;rr(x,y+26,8,h-52,4);ctx.fill();
+  const num=String(n).padStart(2,'0');ctx.save();ctx.font=font(900,100,DISP);ctx.textAlign='center';ctx.lineWidth=4;ctx.strokeStyle=SER;ctx.shadowColor=SER;ctx.shadowBlur=18;ctx.strokeText(num,x+104,y+h/2+36);ctx.restore();
+  const tx=x+196,tw=w-196-112;txt(title,tx,y+84,{size:fit(title,900,DISP,tw,54),weight:900,font:DISP});
+  para(body,tx,y+138,w-196-44,{size:31,weight:500,color:'#c9d3ea',lh:40});
+  ctx.save();ctx.globalAlpha*=0.95;icon(x+w-70,y+66,30,SER);ctx.restore();
+  ctx.restore();}
+// rights cards for a scene: list of [rightIndex, revealTime]; card i at y0 + i*(h+gap)
+function rightsStack(lt,items,y0=392,h=250,gap=28){items.forEach(([ri,t],i)=>rightCard(90,y0+i*(h+gap),900,h,RIGHTS[ri],p(lt,t,0.35)));}
+
+// ---- hook: 11 numbered tiles lighting up ----
+function tiles(lt,t0,step,cy0,o={}){const size=o.size||140,cx=o.cx||540,gx=o.gap||34,rows=[4,4,3];let i=0;
+  rows.forEach((n,ri)=>{const tw=n*size+(n-1)*gx,x0=cx-tw/2;for(let j=0;j<n;j++,i++){const x=x0+j*(size+gx),hh=size*0.82;
+      const yy=cy0+ri*(hh+(o.rowGap??28));const k=eOut(p(lt,t0+i*step,0.25)),on=k>0.5;
+      ctx.save();ctx.globalAlpha*=(o.alpha??1)*(0.35+0.65*k);rr(x,yy,size,hh,size*0.15);ctx.fillStyle=on?'rgba(53,242,154,0.16)':'rgba(255,255,255,0.04)';ctx.fill();
+      stroke(on?SER:'rgba(255,255,255,0.22)',3);if(on){ctx.shadowColor=SER;ctx.shadowBlur=22*k;}ctx.stroke();ctx.shadowBlur=0;
+      txt(String(i+1).padStart(2,'0'),x+size/2,yy+hh/2+size*0.17,{size:size*0.46,weight:900,font:DISP,align:'center',color:on?SER:'rgba(255,255,255,0.35)'});ctx.restore();}});}
+
+// ---- "the clock starts when you are held" (Sujit Das, SC, 5 Nov 2026) ----
+function clockRing(cx,cy,R,lt,t0,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;stroke('rgba(255,255,255,0.12)',16);ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.stroke();
+  const k=clamp((lt-t0)/3.0);stroke(SER,16);ctx.shadowColor=SER;ctx.shadowBlur=22;ctx.beginPath();ctx.arc(cx,cy,R,-Math.PI/2,-Math.PI/2+Math.PI*2*(1-k*0.25));ctx.stroke();ctx.shadowBlur=0;
+  txt(hms(24*3600-k*6*3600),cx,cy+12,{size:42,weight:800,font:MONO,align:'center'});txt('HOURS LEFT',cx,cy+52,{size:18,weight:800,ls:3,align:'center',color:COL.dim});ctx.restore();}
+function startViz(lt,t0,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;const x0=470,x1=985,y=860;
+  stroke('rgba(255,255,255,0.22)',6);ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x1,y);ctx.stroke();
+  const k1=eOut(p(lt,t0,0.3));if(k1>0){const fx=lerp(x0+24,x1-24,clamp((lt-t0)/3.0));stroke(SER,6);ctx.shadowColor=SER;ctx.shadowBlur=14;ctx.beginPath();ctx.moveTo(x0+24,y);ctx.lineTo(fx,y);ctx.stroke();ctx.shadowBlur=0;
+    ctx.fillStyle=SER;ctx.beginPath();ctx.arc(x0+24,y,15*k1,0,7);ctx.fill();
+    txt('HELD BY POLICE',x0,y-40,{size:24,weight:900,ls:1,color:SER,alpha:k1});txt('CLOCK STARTS ✓',x0,y+52,{size:24,weight:800,color:'#fff',alpha:k1});}
+  const k2=eOut(p(lt,t0+0.9,0.3));if(k2>0){ctx.save();ctx.globalAlpha*=k2;stroke(RED,4);ctx.beginPath();ctx.moveTo(x1-24,y-18);ctx.lineTo(x1-24,y+18);ctx.stroke();
+    txt('ARREST WRITTEN',x1,y-40,{size:24,weight:900,ls:1,color:'#ffb3c0',align:'right'});txt('NOT the start',x1,y+52,{size:24,weight:800,color:RED,align:'right'});ctx.restore();}
+  ctx.restore();}
+
+// ---- women at night: sunset → sunrise bar ----
+function nightBar(lt,t0,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;const x0=150,x1=930,y=1090;
+  const g=ctx.createLinearGradient(x0,0,x1,0);g.addColorStop(0,'rgba(255,182,39,0.55)');g.addColorStop(0.18,'rgba(40,40,110,0.9)');g.addColorStop(0.82,'rgba(40,40,110,0.9)');g.addColorStop(1,'rgba(255,182,39,0.55)');
+  rr(x0,y-34,x1-x0,68,34);ctx.fillStyle=g;ctx.fill();stroke('rgba(255,255,255,0.25)',2);ctx.stroke();
+  iSun(x0,y,44,AMB);iSun(x1,y,44,AMB);iMoon(540,y,34,'#dfe6ff');
+  txt('SUNSET',x0,y+90,{size:24,weight:800,ls:2,align:'center',color:COL.dim});txt('SUNRISE',x1,y+90,{size:24,weight:800,ls:2,align:'center',color:COL.dim});
+  stamp(540,y-110,'NO ARREST OF A WOMAN',SER,p(lt,t0+0.3,0.35),-0.03,40);
+  sub('*Only in rare cases, with a Magistrate’s prior permission',y+160,eOut(p(lt,t0+0.8,0.3)),{size:30,color:COL.white,weight:700,maxW:900});ctx.restore();}
+
+// ---- free lawyer + medical report visual ----
+function aidViz(lt,t0,a){if(a<=0)return;ctx.save();ctx.globalAlpha*=a;card(90,1000,420,330,SER);
+  txt('₹0',300,1180,{size:150,weight:900,font:DISP,align:'center',color:SER,glow:26});txt('LAWYER’S FEE',300,1250,{size:26,weight:900,ls:3,align:'center',color:COL.dim});txt('through legal aid',300,1292,{size:26,weight:600,align:'center',color:COL.dim});
+  const b=eOut(p(lt,t0+1.6,0.35));if(b>0){ctx.save();ctx.globalAlpha*=b;card(570,1000,420,330,CY);txt('MEDICAL REPORT',610,1062,{size:26,weight:900,ls:2,color:CY});
+    for(let i=0;i<3;i++){ctx.fillStyle='rgba(255,255,255,0.22)';rr(610,1095+i*40,i===2?200:330,14,7);ctx.fill();}
+    ctx.save();stroke(CY,5);ctx.beginPath();const y=1255;ctx.moveTo(610,y);for(let x=610;x<=950;x+=6){const q=(x-610)/340;const sp=(q>0.38&&q<0.5)?Math.sin((q-0.38)*52)*42:0;ctx.lineTo(x,y-sp);}ctx.stroke();ctx.restore();ctx.restore();}
+  stamp(860,1300,'YOUR COPY',GRN,p(lt,t0+2.2,0.35),-0.1,30);ctx.restore();}
+
+// ---- mock "new contact" screen on a phone ----
 function contactScreen(cx,cy,w,h,lt,o){const a=o.alpha??1;if(a<=0)return;const S=phoneFrame(cx,cy,w,h,{alpha:a,top:'#141a2e',bottom:'#0a0d18',time:'8:02'});ctx.save();ctx.globalAlpha*=a;const fs=w*0.06;
   txt('New contact',cx,S.y+fs*1.6,{size:fs*1.05,weight:800,align:'center'});
-  ctx.fillStyle='#5b4fd6';ctx.beginPath();ctx.arc(cx,S.y+fs*4.2,fs*1.6,0,7);ctx.fill();shield(cx,S.y+fs*4.15,fs*0.95,'#fff');
+  ctx.fillStyle='#1f8f63';ctx.beginPath();ctx.arc(cx,S.y+fs*4.2,fs*1.6,0,7);ctx.fill();iBrief(cx,S.y+fs*4.25,fs*0.8,'#fff');
   const field=(lbl,val,yy,t0,dur,mono)=>{txt(lbl,S.x+fs*1.1,yy,{size:fs*0.62,weight:700,color:COL.dim,ls:1});rr(S.x+fs*0.9,yy+fs*0.4,S.w-fs*1.8,fs*1.9,fs*0.4);ctx.fillStyle='rgba(255,255,255,0.07)';ctx.fill();
-    const n=Math.floor(val.length*clamp((lt-t0)/dur));const s=val.slice(0,n);txt(s,S.x+fs*1.4,yy+fs*1.72,{size:fit(val,700,mono?MONO:BODY,S.w-fs*2.8,fs*0.95),weight:700,font:mono?MONO:BODY,color:'#fff'});
-    if(n<val.length&&lt>t0-0.4&&Math.floor(lt*4)%2===0){ctx.save();ctx.font=font(700,fit(val,700,mono?MONO:BODY,S.w-fs*2.8,fs*0.95),mono?MONO:BODY);const ww=ctx.measureText(s).width;ctx.restore();ctx.fillStyle=CY;ctx.fillRect(S.x+fs*1.45+ww,yy+fs*0.95,3,fs*0.95);}};
-  field('NAME','CERT-In (incident report)',S.y+fs*7.0,o.tName,0.6,false);field('PHONE','1800-11-4949',S.y+fs*10.2,o.tPhone,0.6,true);
-  txt('Toll-free · CERT-In',S.x+fs*1.1,S.y+fs*13.4,{size:fs*0.8,weight:700,color:COL.dim});
+    const n=Math.floor(val.length*clamp((lt-t0)/dur));const s=val.slice(0,n);const sz=fit(val,700,mono?MONO:BODY,S.w-fs*2.8,fs*0.95);txt(s,S.x+fs*1.4,yy+fs*1.72,{size:sz,weight:700,font:mono?MONO:BODY,color:'#fff'});
+    if(n<val.length&&lt>t0-0.4&&Math.floor(lt*4)%2===0){ctx.save();ctx.font=font(700,sz,mono?MONO:BODY);const ww=ctx.measureText(s).width;ctx.restore();ctx.fillStyle=CY;ctx.fillRect(S.x+fs*1.45+ww,yy+fs*0.95,3,fs*0.95);}};
+  field('NAME',o.name,S.y+fs*7.0,o.tName,0.6,false);field('PHONE',o.phone,S.y+fs*10.2,o.tPhone,0.4,true);
+  txt(o.note,S.x+fs*1.1,S.y+fs*13.4,{size:fit(o.note,700,BODY,S.w-fs*2.2,fs*0.8),weight:700,color:COL.dim});
   const bk=p(lt,o.tSave,0.2),press=bk>0&&bk<1?0.94:1;ctx.save();const bx=cx,by=S.y+S.h-fs*2.6;ctx.translate(bx,by);ctx.scale(press,press);rr(-S.w*0.38,-fs*1.05,S.w*0.76,fs*2.1,fs*1.05);ctx.fillStyle=GRN;ctx.fill();
   txt('Save',0,fs*0.36,{size:fs*0.95,weight:800,align:'center',color:'#062414'});ctx.restore();
   const ta=eOut(p(lt,o.tSave+0.25,0.3));if(ta>0){ctx.save();ctx.globalAlpha*=ta;const ty=S.y+fs*4.2;rr(S.x+fs,ty-fs*1.2,S.w-fs*2,fs*2.4,fs*0.6);ctx.fillStyle='rgba(20,60,42,0.97)';ctx.fill();stroke(GRN,3);ctx.stroke();
     iCheck(S.x+fs*2.2,ty,fs*0.7,GRN,clamp(ta*1.4));txt('Contact saved',S.x+fs*3.4,ty+fs*0.36,{size:fs*1.0,weight:800,color:'#fff'});ctx.restore();}
   ctx.restore();}
 
+// ---- screenshot card: all 11 rights ----
+const SHOT=['Grounds of arrest in writing, in your language','Bailable offence? You’re told about bail','Officer’s name clearly visible',
+  'Arrest memo: a witness + your signature','Family or a friend told where you are','Meet your lawyer during questioning','A free lawyer through legal aid',
+  'Medical check + a copy of the report','Before a Magistrate within 24 hours','Not forced to speak against yourself','Women: no night arrest without a Magistrate’s OK'];
+function shotCard(lt,t0,step,flash,a){if(a<=0)return;const x=70,y=372,w=940,h=1108;ctx.save();ctx.globalAlpha*=a;card(x,y,w,h,COL.white);
+  const br=46;stroke(COL.white,6);for(const[cx,cy,sx,sy]of[[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]]){ctx.beginPath();ctx.moveTo(cx-sx*8,cy+sy*br);ctx.lineTo(cx-sx*8,cy-sy*8);ctx.lineTo(cx+sx*br,cy-sy*8);ctx.stroke();}
+  txt('SCREENSHOT THIS',x+w/2,y+72,{size:44,weight:900,font:DISP,align:'center',ls:4});
+  txt('11 RIGHTS WHEN POLICE ARREST YOU',x+w/2,y+122,{size:28,weight:900,ls:3,align:'center',color:SER});
+  ctx.fillStyle=SER+'66';ctx.fillRect(x+48,y+146,w-96,2);
+  SHOT.forEach((s,i)=>{const k=eOut(p(lt,t0+i*step,0.25));if(k<=0)return;const yy=y+214+i*82;ctx.save();ctx.globalAlpha*=k;ctx.translate((1-k)*-40,0);
+    ctx.fillStyle=SER+'2e';ctx.beginPath();ctx.arc(x+88,yy-11,26,0,7);ctx.fill();stroke(SER,2.5);ctx.stroke();
+    txt(String(i+1).padStart(2,'0'),x+88,yy-1,{size:26,weight:900,font:DISP,align:'center',color:SER});
+    txt(s,x+136,yy,{size:fit(s,700,BODY,w-180,34),weight:700});ctx.restore();});
+  ctx.restore();
+  const f=p(lt,flash,0.35);if(f>0&&f<1){ctx.fillStyle=`rgba(255,255,255,${0.55*(1-f)})`;ctx.fillRect(0,0,W,H);}}
+
 // 1 — hook: frame 1 = the stake in big text at full opacity; the voice starts with it
 function sHook(lt){const k=eOut(p(lt,0,0.3));
-  ctx.save();ctx.translate(540,430);ctx.scale(1+0.05*(1-k),1+0.05*(1-k));txt('YOUR FILES ARE LOCKED.',0,0,{size:fit('YOUR FILES ARE LOCKED.',900,DISP,920,112),weight:900,font:DISP,align:'center'});ctx.restore();
-  txt('YOUR 6 HOURS START NOW.',540,548,{size:fit('YOUR 6 HOURS START NOW.',900,DISP,920,88),weight:900,font:DISP,align:'center',color:RED,glow:22});
-  monitor(540,930,840,500,lt,{noteT:0.15,lockT:[-9,-9,-9,-9,-9]});
-  clockChip(540,1300,lt,eOut(p(lt,0.6,0.3)),{t0:0.6});
-  dramatisedTag(540,1384,{label:'DRAMATISED · based on reported cases',size:18,alpha:eOut(p(lt,0.4,0.3))});
-  sub('Miss it: a fine of up to ₹1 crore.',1468,eOut(p(lt,2.0,0.35)),{color:COL.white,weight:800,size:44});}
-// 2 — the attack (part 1): files locked one by one, then the threat
-function sAttack(lt){chapLabel(lt,1,'THE ATTACK');head('Files locked. Then the threat.',432,0.05,lt,{size:70});
-  monitor(540,860,860,560,lt,{lockT:[0.25,0.45,0.65,0.85,1.05],noteT:1.9});
-  dramatisedTag(540,1250,{label:'DRAMATISED',size:18,alpha:eOut(p(lt,0.2,0.3))});
-  kineticCaption(lt,[[0.25,'FILES ENCRYPTED',RED],[1.9,'DATA COPIED OUT',AMB],[2.8,'PAY — OR WE LEAK',RED]],{y:1460,hold:2.2});}
-// 3 — how it works (part 2): one way in, it spreads, locks and copies
-const NODES={pc1:[480,700],pc2:[480,1010],srv:[720,855],bak:[900,1040]};
-function sHow(lt){chapLabel(lt,2,'HOW IT WORKS');head('One way in. Then it spreads.',432,0.05,lt,{size:68});
-  const ba=eOut(p(lt,0.05,0.3));if(ba>0){ctx.save();ctx.globalAlpha*=ba;rr(370,520,620,620,28);ctx.fillStyle='rgba(14,22,46,0.55)';ctx.fill();ctx.setLineDash([12,10]);stroke('rgba(46,230,255,0.45)',3);ctx.stroke();ctx.setLineDash([]);
-    txt('YOUR OFFICE NETWORK',400,566,{size:22,weight:900,color:COL.dim,ls:3});ctx.restore();}
-  iMail(180,700,64,AMB,eOut(p(lt,0.15,0.3)));txt('PHISHING',180,790,{size:26,weight:900,align:'center',color:AMB,ls:2,alpha:eOut(p(lt,0.15,0.3))});txt('EMAIL',180,822,{size:26,weight:900,align:'center',color:AMB,ls:2,alpha:eOut(p(lt,0.15,0.3))});
-  iKey(185,1010,64,AMB,eOut(p(lt,0.4,0.3)));txt('WEAK',180,1090,{size:26,weight:900,align:'center',color:AMB,ls:2,alpha:eOut(p(lt,0.4,0.3))});txt('PASSWORD',180,1122,{size:26,weight:900,align:'center',color:AMB,ls:2,alpha:eOut(p(lt,0.4,0.3))});
-  arrowTo(250,700,410,700,RED,eOut(p(lt,0.55,0.3)),5);arrowTo(250,1010,410,1010,RED,eOut(p(lt,0.75,0.3)),5);
-  const sp=[['pc1','srv',1.15],['pc2','srv',1.25],['srv','bak',1.6]];sp.forEach(([a,b,t])=>{const A=NODES[a],B=NODES[b];arrowTo(A[0]+40,A[1],B[0]-50,B[1],RED,eOut(p(lt,t,0.3)),4,[10,8]);});
-  const lockAt={pc1:0.85,pc2:1.0,srv:1.45,bak:1.85};
-  iPC(...NODES.pc1,70,lt>=lockAt.pc1?RED:CY,eOut(p(lt,0.1,0.3)));iPC(...NODES.pc2,70,lt>=lockAt.pc2?RED:CY,eOut(p(lt,0.15,0.3)));
-  iServer(...NODES.srv,72,lt>=lockAt.srv?RED:CY,eOut(p(lt,0.2,0.3)));iServer(...NODES.bak,58,lt>=lockAt.bak?RED:CY,eOut(p(lt,0.25,0.3)));
-  txt('SERVER',NODES.srv[0],NODES.srv[1]+90,{size:22,weight:800,align:'center',color:COL.dim,ls:2,alpha:eOut(p(lt,0.2,0.3))});txt('BACKUP',NODES.bak[0],NODES.bak[1]+76,{size:22,weight:800,align:'center',color:COL.dim,ls:2,alpha:eOut(p(lt,0.25,0.3))});
-  for(const[n,t]of Object.entries(lockAt)){const P=NODES[n];lockBadge(P[0]+46,P[1]-46,24,p(lt,t,0.3));}
-  const ca=eOut(p(lt,2.3,0.35));iCloud(760,1262,120,RED,ca);txt('ATTACKER',760,1272,{size:26,weight:900,align:'center',color:'#fff',ls:2,alpha:ca});
-  txt('gets a copy of your data',760,1380,{size:30,weight:700,align:'center',color:'#f3d7dd',alpha:ca});
-  if(lt>2.4){for(let j=0;j<4;j++){const q=((lt-2.4)*1.1+j/4)%1;const x=lerp(NODES.srv[0],760,q),y=lerp(NODES.srv[1]+60,1200,q);ctx.save();ctx.fillStyle=AMB;ctx.shadowColor=AMB;ctx.shadowBlur=14;ctx.fillRect(x-8,y-8,16,16);ctx.restore();}}
-  pill(90,1250,'Concept only',COL.dim,{size:20,align:'left',alpha:eOut(p(lt,0.6,0.3)),fillA:'22'});
-  kineticCaption(lt,[[0.2,'ONE CLICK',AMB],[1.15,'IT SPREADS',RED],[1.6,'FILES LOCKED',RED],[2.4,'DATA STOLEN',AMB]],{y:1460,hold:1.6});}
-// 4 — the first hour (part 3): isolate, don't wipe, keep the logs
-function sHour(lt){chapLabel(lt,3,'THE FIRST HOUR');head('Cut it off. Keep the logs.',432,0.05,lt,{size:72});
-  isolateViz(lt,0.55,eOut(p(lt,0.05,0.3)));
-  logPanel(90,890,900,400,lt,1.5,eOut(p(lt,1.35,0.3)));
-  stamp(800,1238,'EVIDENCE',AMB,p(lt,2.75,0.35),-0.08,34);
-  pill(540,1356,'Don’t wipe or reinstall anything yet',COL.white,{size:30,alpha:eOut(p(lt,1.1,0.3)),fillA:'22',weight:700});
-  kineticCaption(lt,[[0.55,'ISOLATE THE SYSTEMS',GRN],[1.3,'DON’T WIPE ANYTHING',AMB],[2.6,'LOGS = EVIDENCE',AMB]],{y:1460,hold:2.2});}
-// 5 — the law (part 4): one law card + one number card
-function sLaw(lt){chapLabel(lt,4,'THE LAW');
-  const la=eOut(p(lt,0.15,0.35));lawCard(90,390,900,410,'CERT-In DIRECTIONS · 28 APR 2022','Issued under IT Act s.70B(6)',
-    [['Report a cyber incident — ',false],['ransomware included',true],[' — to CERT-In ',false],['within 6 hours',true],[' of noticing it.',false]],Math.max(0,(lt-0.45)*70),AMB,la,{size:46,lh:62});
-  dataCard(90,840,900,340,{value:'UP TO ₹1 CRORE',label:'Fine for ignoring CERT-In’s directions — or up to 1 year in jail, or both',source:'IT Act s.70B(7), as amended by the Jan Vishwas Act, 2023',c:RED,alpha:eOut(p(lt,2.4,0.35)),size:96});
-  sub('More laws in the caption',1240,eOut(p(lt,3.5,0.35)),{size:30});
-  kineticCaption(lt,[[0.6,'RANSOMWARE INCLUDED',AMB],[1.5,'WITHIN 6 HOURS',AMB],[2.5,'UP TO ₹1 CRORE FINE',RED]],{y:1460,hold:2.2});}
-// 6 — do this now (part 5a): the one-minute check on your own phone
-function sCheck(lt){chapLabel(lt,5,'DO THIS NOW');head('Save this number. Now.',432,0.05,lt,{size:72});
-  contactScreen(540,890,540,740,lt,{alpha:eOut(p(lt,0.1,0.3)),tName:0.35,tPhone:1.05,tSave:1.9});
-  sub('CERT-In’s toll-free line for reporting incidents',1340,eOut(p(lt,2.5,0.35)),{size:32,color:COL.white,weight:700,maxW:940});
-  kineticCaption(lt,[[0.35,'CERT-In',SER],[1.05,'1800-11-4949',AMB],[2.2,'SAVED',GRN]],{y:1460,hold:2.6});}
-// 7 — screenshot card (part 5b); holds for the screenshot
-function sAct(lt){chapLabel(lt,5,'DO THIS NOW');checklistCard(90,370,900,780,{lt,t0:0.4,step:0.4,flash:3.3,alpha:eOut(p(lt,0.1,0.3)),
-  flags:['Files won’t open, names changed','A note demanding crypto','A threat to publish your data'],
-  actions:['Isolate. Don’t wipe. Keep the logs','Report to CERT-In within 6 hours','Police complaint. Paying is no guarantee']});}
-// 8 — outro: the send line (spoken + on screen), logo, disclaimer and laws visible at once
-function sOut(lt){sendLine(380,eOut(p(lt,0,0.25)),'Send this to your IT head.');
+  ctx.save();ctx.translate(540,430);ctx.scale(1+0.05*(1-k),1+0.05*(1-k));txt('WHEN POLICE ARREST YOU',0,0,{size:fit('WHEN POLICE ARREST YOU',900,DISP,940,118),weight:900,font:DISP,align:'center'});ctx.restore();
+  txt('YOU HAVE 11 RIGHTS.',540,548,{size:fit('YOU HAVE 11 RIGHTS.',900,DISP,920,100),weight:900,font:DISP,align:'center',color:SER,glow:24});
+  tiles(lt,0.15,0.1,628,{size:140});
+  notificationBanner(90,1100,900,{app:'Messages',title:'Didi',body:'They took Papa to the police station. Nobody told us why.',time:'now',c:'#25c26e',glyph:'chat',k:p(lt,1.3,0.4)});
+  dramatisedTag(540,1352,{label:'DRAMATISED',size:18,alpha:eOut(p(lt,1.5,0.3))});
+  sub('Right no. 9 got stronger this month.',1466,eOut(p(lt,2.3,0.35)),{color:COL.white,weight:800,size:44});}
+// 2 — rights 1–3
+function sR1(lt){chapLabel(lt,'RIGHTS 01–03');meter(lt,0,[0.3,1.55,2.9]);rightsStack(lt,[[0,0.3],[1,1.55],[2,2.9]]);
+  kineticCaption(lt,[[0.3,'IN WRITING',SER],[1.55,'BAIL',SER],[2.9,'NAME VISIBLE',SER]],{y:1470,hold:1.4});}
+// 3 — rights 4–6
+function sR2(lt){chapLabel(lt,'RIGHTS 04–06');meter(lt,3,[0.3,1.6,2.8]);rightsStack(lt,[[3,0.3],[4,1.6],[5,2.8]]);
+  kineticCaption(lt,[[0.3,'ARREST MEMO',SER],[1.6,'FAMILY TOLD',SER],[2.8,'YOUR LAWYER',SER]],{y:1470,hold:1.4});}
+// 4 — rights 7–8
+function sR3(lt){chapLabel(lt,'RIGHTS 07–08');meter(lt,6,[0.3,1.7]);rightsStack(lt,[[6,0.3],[7,1.7]],392,250,28);aidViz(lt,0.3,eOut(p(lt,0.5,0.35)));
+  kineticCaption(lt,[[0.3,'FREE LAWYER',SER],[1.7,'MEDICAL CHECK',SER]],{y:1470,hold:2.2});}
+// 5 — right 9 + the one law card (Supreme Court, 5 Nov 2026)
+function sR4(lt){chapLabel(lt,'RIGHT 09 · NEW');meter(lt,8,[0.3]);rightCard(90,392,900,250,RIGHTS[8],p(lt,0.3,0.35));
+  clockRing(260,860,118,lt,0.9,eOut(p(lt,0.8,0.3)));startViz(lt,1.0,eOut(p(lt,0.9,0.3)));
+  lawCard(90,1030,900,400,'SUPREME COURT · 5 NOV 2026','Sujit Das v. Union of India',
+    [['The 24 hours start ',false],['the moment police actually hold you',true],[' — not when the arrest is written down.',false]],Math.max(0,(lt-1.9)*60),AMB,eOut(p(lt,1.7,0.35)),{size:42,lh:58});}
+// 6 — rights 10–11
+function sR5(lt){chapLabel(lt,'RIGHTS 10–11');meter(lt,9,[0.3,1.9]);rightsStack(lt,[[9,0.3],[10,1.9]]);nightBar(lt,1.9,eOut(p(lt,2.0,0.35)));}
+// 7 — do this now: the one-minute check on your own phone
+function sCheck(lt){chapLabel(lt,'DO THIS NOW');head('Save this number. Now.',432,0.05,lt,{size:72});
+  contactScreen(540,890,540,740,lt,{alpha:eOut(p(lt,0.1,0.3)),name:'Free Legal Aid (NALSA)',phone:'15100',note:'Toll-free legal aid helpline · NALSA',tName:0.3,tPhone:1.0,tSave:1.7});
+  sub('NALSA’s toll-free helpline for free legal aid',1340,eOut(p(lt,2.3,0.35)),{size:32,color:COL.white,weight:700,maxW:940});
+  kineticCaption(lt,[[0.3,'FREE LEGAL AID',SER],[1.0,'15100',AMB],[2.0,'SAVED',GRN]],{y:1460,hold:2.6});}
+// 8 — screenshot card: all 11; holds for the screenshot
+function sShot(lt){shotCard(lt,0.2,0.11,3.3,eOut(p(lt,0.05,0.3)));}
+// 9 — outro: the send line (spoken + on screen), logo, disclaimer and laws visible at once
+function sOut(lt){sendLine(380,eOut(p(lt,0,0.25)),'Send this to your family group.');
   const a=eOut(p(lt,0,0.3));logoMark(540,700,130,a);brand(540,925,WORD_OK?92:86,{align:'center',alpha:a,glow:20});
   txt('Cyber law · cyber forensics · tech, explained.',540,995,{size:fit('Cyber law · cyber forensics · tech, explained.',500,BODY,880,36),weight:500,color:COL.dim,align:'center',alpha:a});
   const da=eOut(p(lt,0.15,0.3));txt('Legal awareness only · Not legal advice',540,1120,{size:36,weight:700,color:COL.white,align:'center',alpha:da});
-  ['Laws cited: IT Act 2000 (s.70B, 43, 66)','CERT-In Directions 2022 · BNS 2023 (s.308)','DPDP Rules 2025 (r.7, from 13 May 2027)'].forEach((l,i)=>
+  ['Laws cited: Constitution (Art. 20(3), 22)','BNSS 2023 (s.36, 38, 43, 47, 48, 53, 58)','Legal Services Authorities Act 1987 (s.12)','SC: Mihir Rajesh Shah (2025) · Sujit Das (2026)'].forEach((l,i)=>
     txt(l,540,1180+i*44,{size:fit(l,500,BODY,940,32),weight:500,color:COL.dim,align:'center',alpha:da}));}
 
 window.EPISODE={
-  title:'Ransomware on your server: the 6-hour CERT-In clock',
+  title:'When police arrest you: your 11 rights',
   voice:'Hindi',            // voiceover language; on-screen text is always English
   aiVoice:false,            // set by render.py when the AI voice track is used
-  series:'Corporate Cyber Brief',ep:10,
-  laws:'IT Act 2000 (s.70B, 43, 66) · CERT-In Directions 2022 · BNS 2023 (s.308) · DPDP Rules 2025 (r.7)',
+  series:'Know Your Rights',ep:10,
+  laws:'Constitution (Art. 20(3), 22) · BNSS 2023 (s.36, 38, 43, 47, 48, 53, 58) · LSA Act 1987 (s.12)',
   cover:[0,2.0],
-  coverSpec:{lines:[['YOUR FILES ARE LOCKED.',COL.white],['YOUR 6 HOURS START NOW.',COL.red]],
-    person:'people/grey_blazer.png',
+  coverSpec:{lines:[['WHEN POLICE ARREST YOU',COL.white],['YOU HAVE 11 RIGHTS.',SER]],
+    person:'people/black_suit_front.png',
     personShift:120,
-    visual:P=>{ctx.save();if(P)monitor(300,1240,500,330,9,{noteT:0,lockT:[-9,-9,-9,-9,-9]});else monitor(540,1180,800,520,9,{noteT:0,lockT:[-9,-9,-9,-9,-9]});ctx.restore();}},
+    visual:P=>{if(P)tiles(9,0,0,1130,{size:96,cx:290,gap:22,rowGap:20});else tiles(9,0,0,1000,{size:150});}},
   scenes:[
-    {id:'hook',fn:sHook,dur:4.0,min:3.0,voLead:0.1,pops:[[0.02,520,0.1],[0.15,880,0.1],[0.6,700,0.08],[2.0,990,0.08]],impacts:[[0.2,0.75,12],[2.05,0.5,8]],
-     vo:'आपके server पर ये note आया? तो आपकी छह घंटे की घड़ी शुरू।'},
-    {id:'attack',fn:sAttack,dur:4.4,min:3.6,stings:[0.02],pops:[[0.25,560,0.08],[0.45,600,0.08],[0.65,640,0.08],[0.85,680,0.08],[1.05,720,0.08]],impacts:[[1.95,0.8,14]],
-     vo:'Files lock हो गईं, और धमकी — crypto में पैसे दो, वरना data leak।'},
-    {id:'how',fn:sHow,dur:5.0,min:3.8,stings:[0.02],pops:[[0.15,560],[0.4,620],[0.85,700,0.08],[1.0,720,0.08],[1.45,760,0.1],[1.85,800,0.08],[2.3,880,0.1]],impacts:[[1.5,0.6,10],[2.35,0.6,10]],
-     vo:'एक phishing click या कमज़ोर password — hacker अंदर, files lock, data चोरी।'},
-    {id:'hour',fn:sHour,dur:5.0,min:3.8,stings:[0.02],pops:[[0.1,560],[1.1,620,0.08],[1.35,700],[2.75,880,0.1]],typing:[[1.5,2.7]],impacts:[[0.6,0.7,12],[2.8,0.6,10]],
-     vo:'पहले systems को network से अलग कीजिए, कुछ मत मिटाइए — logs सबूत हैं।'},
-    {id:'law',fn:sLaw,dur:6.0,min:4.6,stings:[0.02],pops:[[0.15,620],[2.4,700],[3.5,560,0.08]],impacts:[[2.5,0.85,14]],typing:[[0.45,1.9]],
-     vo:'पता चलने के छह घंटे में Cert-In को report ज़रूरी — वरना एक करोड़ तक का fine।'},
-    {id:'check',fn:sCheck,dur:4.6,min:3.4,stings:[0.02],pops:[[0.1,560],[1.9,880,0.1],[2.5,620,0.08]],typing:[[0.35,0.95],[1.05,1.65]],chimes:[2.15],impacts:[[2.2,0.5,6]],
-     vo:'अभी Cert-In का toll-free number अपने phone में save कीजिए।'},
-    {id:'act',fn:sAct,dur:6.3,min:6.3,pops:[[0.1,520,0.1],[0.4,560,0.1],[0.8,600,0.1],[1.2,640,0.1],[1.9,700,0.1],[2.3,760,0.1],[2.7,820,0.1]],
-     vo:'Ransom देने से files लौटने की guarantee नहीं। ये card save कीजिए।'},
+    {id:'hook',fn:sHook,dur:4.0,min:3.2,voLead:0.1,pops:[[0.02,520,0.1],[0.15,700,0.05],[0.35,740,0.05],[0.55,780,0.05],[0.75,820,0.05],[0.95,860,0.05],[1.15,900,0.05]],impacts:[[0.2,0.75,12]],chimes:[1.35],
+     vo:'जब police arrest करे — तो ये ग्यारह हक़ आपके हैं।'},
+    {id:'r1',fn:sR1,dur:5.0,min:4.0,stings:[0.02],pops:[[0.3,600],[1.55,660],[2.9,720]],impacts:[[0.35,0.5,8]],
+     vo:'कारण लिखित में, bailable case में bail की जानकारी, और officer का नाम।'},
+    {id:'r2',fn:sR2,dur:5.0,min:4.0,stings:[0.02],pops:[[0.3,600],[1.6,660],[2.8,720]],
+     vo:'Arrest memo पर गवाह के sign, परिवार को खबर, और पूछताछ में वकील।'},
+    {id:'r3',fn:sR3,dur:4.4,min:3.6,stings:[0.02],pops:[[0.3,600],[0.5,520,0.08],[1.7,680],[1.9,620,0.08]],impacts:[[2.5,0.5,6]],
+     vo:'पैसे नहीं, तो free वकील। और medical जाँच।'},
+    {id:'r4',fn:sR4,dur:5.6,min:4.6,stings:[0.02],pops:[[0.3,600],[0.8,700,0.08],[1.9,620]],typing:[[1.9,3.4]],impacts:[[1.75,0.85,14]],
+     vo:'चौबीस घंटे में Magistrate — और घड़ी हिरासत के पल से चलती है।'},
+    {id:'r5',fn:sR5,dur:5.6,min:4.4,stings:[0.02],pops:[[0.3,600],[1.9,660],[2.2,720,0.08]],impacts:[[2.25,0.7,10]],
+     vo:'अपने ख़िलाफ़ बयान के लिए मजबूर नहीं। महिला को रात में arrest — सिर्फ़ Magistrate की इजाज़त से।'},
+    {id:'check',fn:sCheck,dur:4.4,min:3.4,stings:[0.02],pops:[[0.1,560],[1.7,880,0.1],[2.3,620,0.08]],typing:[[0.3,0.9],[1.0,1.4]],chimes:[1.95],impacts:[[2.0,0.5,6]],
+     vo:'Free legal aid helpline — एक पाँच एक शून्य शून्य — अभी save कीजिए।'},
+    {id:'shot',fn:sShot,dur:5.0,min:4.6,pops:[[0.20,520,0.05],[0.31,550,0.05],[0.42,580,0.05],[0.53,610,0.05],[0.64,640,0.05],[0.75,670,0.05],[0.86,700,0.05],[0.97,730,0.05],[1.08,760,0.05],[1.19,790,0.05],[1.30,820,0.05]],impacts:[[3.3,0.4,4]],
+     vo:'ये list screenshot कीजिए।'},
     {id:'outro',fn:sOut,dur:3.0,min:3.0,voLead:0.1,pops:[[0.05,880,0.1]],impacts:[[0.1,0.5,6]],
-     vo:'ये video अपने आई-टी head को भेजिए।'},
+     vo:'ये video family group में भेजिए।'},
   ]};
 boot();
 </script></body></html>
