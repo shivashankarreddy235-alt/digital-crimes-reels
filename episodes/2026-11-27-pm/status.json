@@ -19,5 +19,5 @@
  ],
  "handled_reply_ids": [],
  "reminder_sent": false,
- "note": "Morning build, 27 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity, voice from 0.1 s, one law card + one number card, send line spoken and shown in the outro. The routine's stored prompt still says 90–120 s; CLAUDE.md's owner instruction of 25 Nov (35–45 s) wins. Correction found while verifying: the s.70B(7) fine is now up to ₹1 crore (Jan Vishwas Act 2023, from 30 Nov 2023), not ₹1 lakh. Review emailed about 10:12 IST, 27 Nov."
+ "note": "Morning build, 27 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity, voice from 0.1 s, one law card + one number card, send line spoken and shown in the outro. The routine's stored prompt still says 90–120 s; CLAUDE.md's owner instruction of 25 Nov (35–45 s) wins. Correction found while verifying: the s.70B(7) fine is now up to ₹1 crore (Jan Vishwas Act 2023, from 30 Nov 2023), not ₹1 lakh. Review emailed about 10:08 IST, 27 Nov."
 }
