@@ -13,7 +13,7 @@ police actually hold you.
 Why this topic today: the owner asked for it; and in November 2026 the Supreme Court held (Sujit Das, 5 Nov) that the
 24 hours start when liberty is actually curtailed, not when the arrest memo is written — a fresh peg for an evergreen,
 highly shareable topic.
-Scenario: **dramatised** — an invented family message ("Didi: They took Papa to the police station. Nobody told us why.").
+Scenario: **dramatised** — an illustrated arrest scene with plain silhouettes (owner's request, 27 Nov; replaced the earlier family-message banner).
 No real person, case, officer, police station or number. No uniforms, badges, emblems or police logos: generic icons only.
 
 Five-part spine: 01 the scenario (hook: family message) · 02–03 the rights in plain words (cards 01–08) · 04 the law (right 09
@@ -21,7 +21,7 @@ Five-part spine: 01 the scenario (hook: family message) · 02–03 the rights in
 
 | # | Scene | Default length | On screen | Voiceover (Hindi) |
 | --- | --- | --- | --- | --- |
-| 1 | hook | 4.0 s (voice from 0.1 s) | From frame 1: "POLICE ARRESTED YOU?" / "KNOW YOUR RIGHTS." (green; title set by the owner, 27 Nov, 1:05 PM) · 11 numbered tiles light up · message banner "Didi — They took Papa to the police station. Nobody told us why." · DRAMATISED · open loop "Right no. 9 got stronger this month." | Police ने arrest किया? तो अपने ये ग्यारह हक़ जानिए। |
+| 1 | hook | 4.0 s (voice from 0.1 s) | From frame 1: "POLICE ARRESTED YOU?" / "KNOW YOUR RIGHTS." (green; owner's title) over an illustrated, **dramatised arrest scene** (owner's request, 27 Nov): night street, a van with a flashing red-blue light bar (no markings), two plain silhouettes walking a handcuffed man from a lit doorway; red/blue light wash; DRAMATISED tag. No uniforms, badges, emblems or real people · 11 small tiles light up 01→11 · open loop "Right no. 9 got stronger this month." | Police ने arrest किया? तो अपने ये ग्यारह हक़ जानिए। |
 | 2 | r1 (RIGHTS 01–03) | 5.0 s | Cards: 01 Know WHY — in writing · 02 Told about bail · 03 Officer's name, visible · meter fills 1→3 · captions IN WRITING · BAIL · NAME VISIBLE | कारण लिखित में, bailable case में bail की जानकारी, और officer का नाम। |
 | 3 | r2 (RIGHTS 04–06) | 5.0 s | Cards: 04 An arrest memo · 05 Your family is told · 06 Meet your lawyer · captions ARREST MEMO · FAMILY TOLD · YOUR LAWYER | Arrest memo पर गवाह के sign, परिवार को खबर, और पूछताछ में वकील। |
 | 4 | r3 (RIGHTS 07–08) | 4.4 s | Cards: 07 A free lawyer · 08 A medical check · "₹0 lawyer's fee through legal aid" panel · medical report with heartbeat line, stamp YOUR COPY | पैसे नहीं, तो free वकील। और medical जाँच। |
