@@ -594,14 +594,50 @@ function shotCard(lt,t0,step,flash,a){if(a<=0)return;const x=70,y=372,w=940,h=11
   ctx.restore();
   const f=p(lt,flash,0.35);if(f>0&&f<1){ctx.fillStyle=`rgba(255,255,255,${0.55*(1-f)})`;ctx.fillRect(0,0,W,H);}}
 
-// 1 — hook: frame 1 = the stake in big text at full opacity; the voice starts with it
+// ---- dramatised arrest scene (illustrated silhouettes: no uniforms, badges, emblems, vehicle markings or real people) ----
+function lineSeg(x0,y0,x1,y1){ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();}
+// a plain human silhouette, front view. pose: 'held' (hands together in front, head down) | 'escort' (one arm reaching to side o.dir)
+function figure(x,yF,h,ph,o={}){const c='#03050a',hd=h*0.12,sh=yF-h*0.8,sw=Math.sin(ph)*h*0.07,bob=Math.abs(Math.sin(ph))*h*0.012;yF-=bob;
+  ctx.save();ctx.fillStyle=c;ctx.strokeStyle=c;ctx.lineCap='round';ctx.lineJoin='round';ctx.shadowColor=o.glow||'#ff2a4a';ctx.shadowBlur=o.blur??26;
+  ctx.beginPath();ctx.arc(x+(o.pose==='held'?h*0.01:0),yF-h+hd+(o.pose==='held'?h*0.025:0)-bob,hd,0,7);ctx.fill();
+  ctx.beginPath();ctx.moveTo(x-h*0.12,sh-bob);ctx.lineTo(x+h*0.12,sh-bob);ctx.lineTo(x+h*0.1,yF-h*0.43);ctx.lineTo(x-h*0.1,yF-h*0.43);ctx.closePath();ctx.fill();
+  ctx.lineWidth=h*0.075;lineSeg(x-h*0.045,yF-h*0.45,x-h*0.045+sw,yF);lineSeg(x+h*0.045,yF-h*0.45,x+h*0.045-sw,yF);
+  ctx.lineWidth=h*0.058;const sy=sh-bob+h*0.035;
+  if(o.pose==='held'){lineSeg(x-h*0.115,sy,x-h*0.03,sy+h*0.3);lineSeg(x+h*0.115,sy,x+h*0.03,sy+h*0.3);ctx.lineWidth=h*0.02;ctx.strokeStyle='#8a93ad';ctx.shadowBlur=8;ctx.shadowColor='#c9d3ea';
+    ctx.beginPath();ctx.arc(x-h*0.025,sy+h*0.31,h*0.022,0,7);ctx.stroke();ctx.beginPath();ctx.arc(x+h*0.025,sy+h*0.31,h*0.022,0,7);ctx.stroke();}
+  else{const d=o.dir||1;lineSeg(x+d*h*0.115,sy,x+d*h*0.3,sy+h*0.14);lineSeg(x-d*h*0.115,sy,x-d*h*0.15-sw*0.4,sy+h*0.32);}
+  ctx.restore();}
+function arrestScene(lt,x,y,w,h){const flash=Math.floor(lt*6)%2,FC=flash?'#ff2a4a':'#2a6bff',FC2=flash?'#2a6bff':'#ff2a4a';
+  ctx.save();rr(x,y,w,h,30);ctx.clip();
+  const g=ctx.createLinearGradient(0,y,0,y+h);g.addColorStop(0,'#060a1a');g.addColorStop(0.7,'#0b1128');g.addColorStop(1,'#05070f');ctx.fillStyle=g;ctx.fillRect(x,y,w,h);
+  ctx.fillStyle='rgba(220,230,255,0.85)';const r=rng(11);for(let i=0;i<26;i++){const sx=x+r()*w,sy=y+r()*h*0.35;ctx.globalAlpha=0.3+0.5*Math.abs(Math.sin(lt*2+i));ctx.fillRect(sx,sy,2,2);}ctx.globalAlpha=1;
+  ctx.fillStyle='#04060d';ctx.fillRect(x,y+h*0.42,w*0.2,h*0.4);ctx.fillRect(x+w*0.16,y+h*0.5,w*0.14,h*0.32);
+  const hx=x+w*0.66,hy=y+h*0.3;ctx.fillStyle='#070a16';ctx.beginPath();ctx.moveTo(hx-20,hy+40);ctx.lineTo(hx+w*0.17,hy-50);ctx.lineTo(hx+w*0.38,hy+40);ctx.closePath();ctx.fill();ctx.fillRect(hx,hy+40,w*0.36,h*0.85-(hy-y)-40);
+  const dg=ctx.createLinearGradient(0,hy+h*0.28,0,y+h*0.85);dg.addColorStop(0,'#ffc56b');dg.addColorStop(1,'#b8701f');ctx.fillStyle=dg;ctx.shadowColor='#ffb627';ctx.shadowBlur=40;ctx.fillRect(hx+w*0.13,hy+h*0.3,w*0.09,y+h*0.85-(hy+h*0.3));ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(255,197,107,0.55)';ctx.fillRect(hx+w*0.03,hy+h*0.12,w*0.06,h*0.08);ctx.fillRect(hx+w*0.25,hy+h*0.12,w*0.06,h*0.08);
+  const gy=y+h*0.85;ctx.fillStyle='#03050a';ctx.fillRect(x,gy,w,h-h*0.85);
+  const vx=x+w*0.04,vy=gy;ctx.fillStyle='#05070e';rr(vx,vy-h*0.25,w*0.34,h*0.22,18);ctx.fill();rr(vx+w*0.03,vy-h*0.36,w*0.22,h*0.13,14);ctx.fill();
+  ctx.fillStyle='rgba(140,170,220,0.18)';rr(vx+w*0.05,vy-h*0.335,w*0.08,h*0.08,6);ctx.fill();rr(vx+w*0.15,vy-h*0.335,w*0.08,h*0.08,6);ctx.fill();
+  ctx.fillStyle='#02030a';for(const wx of[0.08,0.28]){ctx.beginPath();ctx.arc(vx+w*wx,vy-h*0.03,h*0.045,0,7);ctx.fill();}
+  ctx.save();ctx.shadowBlur=36;ctx.shadowColor=FC;ctx.fillStyle=FC;rr(vx+w*0.07,vy-h*0.39,w*0.07,h*0.03,5);ctx.fill();ctx.shadowColor=FC2;ctx.fillStyle=FC2;ctx.globalAlpha=0.35;rr(vx+w*0.14,vy-h*0.39,w*0.07,h*0.03,5);ctx.fill();ctx.restore();
+  const wash=ctx.createRadialGradient(vx+w*0.14,vy-h*0.38,10,vx+w*0.14,vy-h*0.38,w*0.9);wash.addColorStop(0,FC+'66');wash.addColorStop(1,FC+'00');ctx.fillStyle=wash;ctx.fillRect(x,y,w,h);
+  const k=clamp(lt/3.6),cx=lerp(x+w*0.66,x+w*0.5,eInOut(k)),fh=h*0.46,ph=lt*7;
+  figure(cx+fh*0.36,gy,fh*1.04,ph+1.2,{pose:'escort',dir:-1,glow:FC});figure(cx,gy,fh*0.98,ph,{pose:'held',glow:FC2});figure(cx-fh*0.36,gy,fh*1.04,ph+2.4,{pose:'escort',dir:1,glow:FC});
+  const vg=ctx.createRadialGradient(x+w/2,y+h/2,h*0.3,x+w/2,y+h/2,w*0.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,0.55)');ctx.fillStyle=vg;ctx.fillRect(x,y,w,h);
+  ctx.restore();ctx.save();rr(x,y,w,h,30);stroke(FC,3);ctx.globalAlpha=0.6;ctx.shadowColor=FC;ctx.shadowBlur=24;ctx.stroke();ctx.restore();
+  pill(x+w-24,y+40,'DRAMATISED',AMB,{size:18,ls:2,align:'right',fillA:'33'});}
+// 11 small tiles in one row (lights up one by one)
+function tileRow(lt,t0,step,y){const n=11,sz=70,gap=12,x0=540-(n*sz+(n-1)*gap)/2;for(let i=0;i<n;i++){const k=eOut(p(lt,t0+i*step,0.2)),on=k>0.5,x=x0+i*(sz+gap);
+  ctx.save();ctx.globalAlpha*=0.35+0.65*k;rr(x,y,sz,sz,12);ctx.fillStyle=on?'rgba(53,242,154,0.18)':'rgba(255,255,255,0.04)';ctx.fill();stroke(on?SER:'rgba(255,255,255,0.22)',2.5);if(on){ctx.shadowColor=SER;ctx.shadowBlur=16*k;}ctx.stroke();ctx.shadowBlur=0;
+  txt(String(i+1).padStart(2,'0'),x+sz/2,y+sz/2+11,{size:30,weight:900,font:DISP,align:'center',color:on?SER:'rgba(255,255,255,0.35)'});ctx.restore();}}
+
+// 1 — hook: frame 1 = the title over the dramatised arrest scene; the voice starts with it
 function sHook(lt){const k=eOut(p(lt,0,0.3));
+  arrestScene(lt,90,612,900,680);
   ctx.save();ctx.translate(540,430);ctx.scale(1+0.05*(1-k),1+0.05*(1-k));txt('POLICE ARRESTED YOU?',0,0,{size:fit('POLICE ARRESTED YOU?',900,DISP,940,118),weight:900,font:DISP,align:'center'});ctx.restore();
   txt('KNOW YOUR RIGHTS.',540,548,{size:fit('KNOW YOUR RIGHTS.',900,DISP,920,104),weight:900,font:DISP,align:'center',color:SER,glow:24});
-  tiles(lt,0.15,0.1,628,{size:140});
-  notificationBanner(90,1100,900,{app:'Messages',title:'Didi',body:'They took Papa to the police station. Nobody told us why.',time:'now',c:'#25c26e',glyph:'chat',k:p(lt,1.3,0.4)});
-  dramatisedTag(540,1352,{label:'DRAMATISED',size:18,alpha:eOut(p(lt,1.5,0.3))});
-  sub('Right no. 9 got stronger this month.',1466,eOut(p(lt,2.3,0.35)),{color:COL.white,weight:800,size:44});}
+  tileRow(lt,0.9,0.1,1320);
+  sub('Right no. 9 got stronger this month.',1466,eOut(p(lt,2.2,0.35)),{color:COL.white,weight:800,size:44});}
 // 2 — rights 1–3
 function sR1(lt){chapLabel(lt,'RIGHTS 01–03');meter(lt,0,[0.3,1.55,2.9]);rightsStack(lt,[[0,0.3],[1,1.55],[2,2.9]]);
   kineticCaption(lt,[[0.3,'IN WRITING',SER],[1.55,'BAIL',SER],[2.9,'NAME VISIBLE',SER]],{y:1470,hold:1.4});}
@@ -645,7 +681,7 @@ window.EPISODE={
     personShift:120,
     visual:P=>{if(P)tiles(9,0,0,1130,{size:96,cx:290,gap:22,rowGap:20});else tiles(9,0,0,1000,{size:150});}},
   scenes:[
-    {id:'hook',fn:sHook,dur:4.0,min:3.2,voLead:0.1,pops:[[0.02,520,0.1],[0.15,700,0.05],[0.35,740,0.05],[0.55,780,0.05],[0.75,820,0.05],[0.95,860,0.05],[1.15,900,0.05]],impacts:[[0.2,0.75,12]],chimes:[1.35],
+    {id:'hook',fn:sHook,dur:4.0,min:3.4,voLead:0.1,pops:[[0.02,520,0.1],[0.9,620,0.05],[1.0,645,0.05],[1.1,670,0.05],[1.2,695,0.05],[1.3,720,0.05],[1.4,745,0.05],[1.5,770,0.05],[1.6,795,0.05],[1.7,820,0.05],[1.8,845,0.05],[1.9,870,0.05]],impacts:[[0.05,0.85,14]],risers:[0.0],
      vo:'Police ने arrest किया? तो अपने ये ग्यारह हक़ जानिए।'},
     {id:'r1',fn:sR1,dur:5.0,min:4.0,stings:[0.02],pops:[[0.3,600],[1.55,660],[2.9,720]],impacts:[[0.35,0.5,8]],
      vo:'कारण लिखित में, bailable case में bail की जानकारी, और officer का नाम।'},
