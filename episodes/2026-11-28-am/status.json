@@ -17,7 +17,9 @@
  "review_message_ids": [
   "1a21d38f7f000572"
  ],
- "handled_reply_ids": [],
+ "handled_reply_ids": [
+  "1a21d6260f30e7cb"
+ ],
  "reminder_sent": false,
  "note": "Topic fixed by the owner on 27 Nov 2026 (calendar row 11). Built in the 27 Nov evening run (6:40 PM IST). Opening per the owner's request: dramatised station-desk scene with a ticking wall clock that becomes the 24-hour dial (plain silhouettes; no uniforms, badges, emblems or real people). Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email, as for EP10). Review emailed about 7:05 PM IST, 27 Nov."
 }
