@@ -13,9 +13,11 @@
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 43.4,
  "cover": "A: WHEN POLICE ARREST YOU / YOU HAVE 11 RIGHTS. (alternatives B and C rendered for review)",
- "review_thread_id": null,
- "review_message_ids": [],
+ "review_thread_id": "1a21bf72d31a420a",
+ "review_message_ids": [
+  "1a21bf72d31a420a"
+ ],
  "handled_reply_ids": [],
  "reminder_sent": false,
- "note": "Built in chat on 27 Nov 2026 (~12:45 PM–1:30 PM IST) on the owner's instruction, replacing the ransomware reel (now episodes/bank-ransomware-cert-in/, status skipped). Title set by the owner: 'When police arrest you'. Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email)."
+ "note": "Built in chat on 27 Nov 2026 (~12:45 PM–1:30 PM IST) on the owner's instruction, replacing the ransomware reel (now episodes/bank-ransomware-cert-in/, status skipped). Title set by the owner: 'When police arrest you'. Hashtags step outside content/hashtags.md's cyber lists because the topic is general arrest procedure (flagged in the review email). Review emailed about 1:35 PM IST, 27 Nov."
 }
