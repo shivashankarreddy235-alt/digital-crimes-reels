@@ -6,10 +6,10 @@
  "series": "Forensics File",
  "audience": "Law students and young advocates (primary); anyone whose phone could be seized, and their families",
  "language": "English text, Hindi voice",
- "status": "approved",
+ "status": "posted",
  "approved_at": "2026-11-27T07:51:51+05:30",
- "posted_at": null,
- "media_id": null,
+ "posted_at": "2026-11-27T07:52:38+05:30",
+ "media_id": "18215884600371121",
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 41.7,
  "cover": "A: YOUR PHONE IS SEIZED. / WHO PROVES NOTHING CHANGED? (alternatives B and C rendered for review)",
@@ -22,5 +22,6 @@
   "1a21aac7963afd39"
  ],
  "reminder_sent": true,
- "note": "Evening build, 26 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity (engine fade-from-black now off by default), voice from about 0.25 s, one law card, send line spoken and shown in the outro. Review emailed about 19:08 IST, 26 Nov. Hashtag line changed at the owner's request in chat, 26 Nov 22:40 IST (content/hashtags.md v1): #CyberCrime #CyberSecurityAwareness #DigitalForensics #LawStudent #DigitalCrimes. Nothing else in the reel, caption or tags changed. Reminder emailed in the review thread 06:51 IST, 27 Nov (no reply by then). Owner replied \"Post now\" by email at 07:14 IST, 27 Nov (after the 7:00 AM slot) — approved and published by the 07:50 review-check run."
+ "note": "Evening build, 26 Nov 2026. 35–45 s format (Reach fixes, 25 Nov 2026): frame 1 is the hook at full opacity (engine fade-from-black now off by default), voice from about 0.25 s, one law card, send line spoken and shown in the outro. Review emailed about 19:08 IST, 26 Nov. Hashtag line changed at the owner's request in chat, 26 Nov 22:40 IST (content/hashtags.md v1): #CyberCrime #CyberSecurityAwareness #DigitalForensics #LawStudent #DigitalCrimes. Nothing else in the reel, caption or tags changed. Reminder emailed in the review thread 06:51 IST, 27 Nov (no reply by then). Owner replied \"Post now\" by email at 07:14 IST, 27 Nov (after the 7:00 AM slot) — approved and published by the 07:50 review-check run.",
+ "permalink": "https://www.instagram.com/reel/DgOmLV4RUCu/"
 }
