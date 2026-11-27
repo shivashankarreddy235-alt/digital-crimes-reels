@@ -617,12 +617,12 @@ function sR4(lt){chapLabel(lt,'RIGHT 09 · NEW');meter(lt,8,[0.3]);rightCard(90,
   lawCard(90,1030,900,400,'SUPREME COURT · 5 NOV 2026','Sujit Das v. Union of India',
     [['The 24 hours start ',false],['the moment police actually hold you',true],[' — not when the arrest is written down.',false]],Math.max(0,(lt-1.9)*60),AMB,eOut(p(lt,1.7,0.35)),{size:42,lh:58});}
 // 6 — rights 10–11
-function sR5(lt){chapLabel(lt,'RIGHTS 10–11');meter(lt,9,[0.3,1.9]);rightsStack(lt,[[9,0.3],[10,1.9]]);nightBar(lt,1.9,eOut(p(lt,2.0,0.35)));}
+function sR5(lt){chapLabel(lt,'RIGHTS 10–11');meter(lt,9,[0.3,2.5]);rightsStack(lt,[[9,0.3],[10,2.5]]);nightBar(lt,2.5,eOut(p(lt,2.6,0.35)));}
 // 7 — do this now: the one-minute check on your own phone
 function sCheck(lt){chapLabel(lt,'DO THIS NOW');head('Save this number. Now.',432,0.05,lt,{size:72});
-  contactScreen(540,890,540,740,lt,{alpha:eOut(p(lt,0.1,0.3)),name:'Free Legal Aid (NALSA)',phone:'15100',note:'Toll-free legal aid helpline · NALSA',tName:0.3,tPhone:1.0,tSave:1.7});
-  sub('NALSA’s toll-free helpline for free legal aid',1340,eOut(p(lt,2.3,0.35)),{size:32,color:COL.white,weight:700,maxW:940});
-  kineticCaption(lt,[[0.3,'FREE LEGAL AID',SER],[1.0,'15100',AMB],[2.0,'SAVED',GRN]],{y:1460,hold:2.6});}
+  contactScreen(540,890,540,740,lt,{alpha:eOut(p(lt,0.1,0.3)),name:'Free Legal Aid (NALSA)',phone:'15100',note:'Toll-free legal aid helpline · NALSA',tName:0.3,tPhone:1.8,tSave:3.6});
+  sub('NALSA’s toll-free helpline for free legal aid',1340,eOut(p(lt,1.0,0.35)),{size:32,color:COL.white,weight:700,maxW:940});
+  kineticCaption(lt,[[0.3,'FREE LEGAL AID',SER],[1.8,'15100',AMB],[3.9,'SAVED',GRN]],{y:1460,hold:2.6});}
 // 8 — screenshot card: all 11; holds for the screenshot
 function sShot(lt){shotCard(lt,0.2,0.11,3.3,eOut(p(lt,0.05,0.3)));}
 // 9 — outro: the send line (spoken + on screen), logo, disclaimer and laws visible at once
@@ -653,11 +653,11 @@ window.EPISODE={
      vo:'Arrest memo पर गवाह के sign, परिवार को खबर, और पूछताछ में वकील।'},
     {id:'r3',fn:sR3,dur:4.4,min:3.6,stings:[0.02],pops:[[0.3,600],[0.5,520,0.08],[1.7,680],[1.9,620,0.08]],impacts:[[2.5,0.5,6]],
      vo:'पैसे नहीं, तो free वकील। और medical जाँच।'},
-    {id:'r4',fn:sR4,dur:5.6,min:4.6,stings:[0.02],pops:[[0.3,600],[0.8,700,0.08],[1.9,620]],typing:[[1.9,3.4]],impacts:[[1.75,0.85,14]],
+    {id:'r4',fn:sR4,dur:5.6,min:5.6,stings:[0.02],pops:[[0.3,600],[0.8,700,0.08],[1.9,620]],typing:[[1.9,3.4]],impacts:[[1.75,0.85,14]],
      vo:'चौबीस घंटे में Magistrate — और घड़ी हिरासत के पल से चलती है।'},
-    {id:'r5',fn:sR5,dur:5.6,min:4.4,stings:[0.02],pops:[[0.3,600],[1.9,660],[2.2,720,0.08]],impacts:[[2.25,0.7,10]],
+    {id:'r5',fn:sR5,dur:5.6,min:5.0,stings:[0.02],pops:[[0.3,600],[2.5,660],[2.8,720,0.08]],impacts:[[2.85,0.7,10]],
      vo:'अपने ख़िलाफ़ बयान के लिए मजबूर नहीं। महिला को रात में arrest — सिर्फ़ Magistrate की इजाज़त से।'},
-    {id:'check',fn:sCheck,dur:4.4,min:3.4,stings:[0.02],pops:[[0.1,560],[1.7,880,0.1],[2.3,620,0.08]],typing:[[0.3,0.9],[1.0,1.4]],chimes:[1.95],impacts:[[2.0,0.5,6]],
+    {id:'check',fn:sCheck,dur:5.2,min:4.8,stings:[0.02],pops:[[0.1,560],[1.0,620,0.08],[3.6,880,0.1]],typing:[[0.3,0.9],[1.8,2.2]],chimes:[3.85],impacts:[[3.9,0.5,6]],
      vo:'Free legal aid helpline — एक पाँच एक शून्य शून्य — अभी save कीजिए।'},
     {id:'shot',fn:sShot,dur:5.0,min:4.6,pops:[[0.20,520,0.05],[0.31,550,0.05],[0.42,580,0.05],[0.53,610,0.05],[0.64,640,0.05],[0.75,670,0.05],[0.86,700,0.05],[0.97,730,0.05],[1.08,760,0.05],[1.19,790,0.05],[1.30,820,0.05]],impacts:[[3.3,0.4,4]],
      vo:'ये list screenshot कीजिए।'},
