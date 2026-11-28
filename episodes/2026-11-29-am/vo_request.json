@@ -1,0 +1,46 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "OTP कभी share नहीं किया? फिर भी पैसा जा सकता है।"
+  },
+  {
+   "scene": "m1",
+   "text": "Myth: पैसा पाने के लिए PIN डालो।"
+  },
+  {
+   "scene": "f1",
+   "text": "Fact: पैसा लेने में PIN कभी नहीं लगता।"
+  },
+  {
+   "scene": "m2",
+   "text": "Myth: पैसा गया तो गया। Fact: फ़ौरन एक नौ तीन शून्य, पैसा रुक सकता है।"
+  },
+  {
+   "scene": "f2",
+   "text": "ग्यारह हज़ार करोड़ से ज़्यादा ऐसे बचे हैं।"
+  },
+  {
+   "scene": "m3",
+   "text": "Myth: bank पैसा नहीं लौटाता। Fact: गलती आपकी नहीं, जल्दी बताया, तो liability zero।"
+  },
+  {
+   "scene": "y27",
+   "text": "एक जनवरी से, गलती आपकी हो तब भी, छोटे नुकसान पर पच्चीस हज़ार तक वापस।"
+  },
+  {
+   "scene": "check",
+   "text": "अभी bank app में अपना registered mobile number check कीजिए।"
+  },
+  {
+   "scene": "shot",
+   "text": "ये screenshot कीजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": "ये video अपने parents को भेजिए।"
+  }
+ ]
+}
