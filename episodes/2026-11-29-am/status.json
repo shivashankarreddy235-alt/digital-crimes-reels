@@ -1,0 +1,21 @@
+{
+ "episode": 13,
+ "date": "2026-11-29",
+ "slot": "am",
+ "topic": "Never shared your OTP? You can still lose money — 3 money myths: (1) you enter a PIN to receive money (NPCI: never; a PIN on a 'Paying' screen sends money out); (2) scammed money is gone, so don't report (1930 / cybercrime.gov.in can get it blocked in the next accounts; ₹11,158 crore+ saved till 30 Jun 2026, MHA; ₹1.04 lakh returned in Delhi, ANI 27 Nov 2026); (3) the bank never pays back (RBI circular 6 Jul 2017: not your fault + reported within 3 working days = zero liability; RBI Directions from 1 Jan 2027: 5 calendar days, and up to ₹25,000 on a small loss even if tricked); one-minute check: your registered mobile number in your bank app",
+ "series": "Myth vs Fact",
+ "audience": "Everyone, parents (primary)",
+ "language": "English text, Hindi voice",
+ "status": "pending",
+ "approved_at": null,
+ "posted_at": null,
+ "media_id": null,
+ "voice": "AI voice (ElevenLabs), Hindi",
+ "length_s": 42.4,
+ "cover": "A: NEVER SHARED YOUR OTP? / YOU CAN STILL LOSE MONEY. (matches frame 1; alternatives B and C rendered)",
+ "review_thread_id": null,
+ "review_message_ids": [],
+ "handled_reply_ids": [],
+ "reminder_sent": false,
+ "note": "Calendar row 13 planned 5 myths; cut to 3 to fit 35–45 s and one idea (dropped myths covered in EP03/EP05/EP12 or planned for EP27). Built in the 28 Nov evening run (6:40 PM IST)."
+}

@@ -530,7 +530,7 @@ function bankProfile(cx,cy,w,h,lt,o={}){const a=o.alpha??1;if(a<=0)return;const 
     iCheck(S.x+fs*2.2,y+fs*1.2,fs*0.7,GRN,clamp(ok*1.4));txt('Yes. Alerts reach me.',S.x+fs*3.4,y+fs*1.55,{size:fit('Yes. Alerts reach me.',800,BODY,S.w-fs*4.2,34),weight:800,color:'#dff7e9'});ctx.restore();}
   ctx.restore();}
 // screenshot card: the whole reel in 5 rows
-const ROWS=[['MYTH: “ENTER PIN TO RECEIVE”','A PIN only ever sends money out',RED],['MYTH: “IT’S GONE, DON’T REPORT”','Call 1930 at once: it can be held',RED],
+const ROWS=[['MYTH: “ENTER PIN TO RECEIVE”','You never need a PIN to receive money',RED],['MYTH: “IT’S GONE, DON’T REPORT”','Call 1930 at once: it can be held',RED],
   ['MYTH: “THE BANK NEVER PAYS”','Not your fault + reported fast = zero liability',RED],['FROM 1 JAN 2027','Tricked? Up to ₹25,000 back if reported in 5 days',SER],
   ['DO THIS NOW','Check your registered mobile in your bank app',AMB]];
 function shotCard(lt,t0,step,flash,a){if(a<=0)return;const x=70,y=372,w=940,h=1108;ctx.save();ctx.globalAlpha*=a;card(x,y,w,h,COL.white);
