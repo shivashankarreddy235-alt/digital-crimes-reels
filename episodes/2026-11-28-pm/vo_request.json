@@ -1,0 +1,46 @@
+{
+ "model_id": "eleven_multilingual_v2",
+ "language": "hi",
+ "segments": [
+  {
+   "scene": "hook",
+   "text": "Cyber case में नाम आया? Arrest अपने-आप नहीं होता।"
+  },
+  {
+   "scene": "line",
+   "text": "IT Act के ज़्यादातर अपराध — तीन साल तक, bailable। Cheating की धारा जुड़ी, तो सात साल तक, non-bailable।"
+  },
+  {
+   "scene": "rule",
+   "text": "सात साल तक के मामलों में notice नियम है, arrest अपवाद।"
+  },
+  {
+   "scene": "notice",
+   "text": "Notice मिले, तो हाज़िर होइए। ये हाथों-हाथ दिया जाता है, WhatsApp पर नहीं।"
+  },
+  {
+   "scene": "rank",
+   "text": "IT Act की जाँच कम से कम Inspector करता है।"
+  },
+  {
+   "scene": "phone",
+   "text": "फ़ोन ज़ब्त हो, तो seizure list, video recording और hash value।"
+  },
+  {
+   "scene": "fake",
+   "text": "और video call पर arrest? वो हमेशा scam है।"
+  },
+  {
+   "scene": "check",
+   "text": "अभी cyber helpline एक नौ तीन शून्य save कीजिए।"
+  },
+  {
+   "scene": "shot",
+   "text": "ये checklist screenshot कीजिए।"
+  },
+  {
+   "scene": "outro",
+   "text": "ये video अपने office group में भेजिए।"
+  }
+ ]
+}

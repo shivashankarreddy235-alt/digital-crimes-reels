@@ -1,0 +1,33 @@
+# Sources — EP12: Named in a cyber case? Arrest isn't automatic (verified 28 Nov 2026, morning build)
+
+| Point in the reel | Source opened | Supports |
+| --- | --- | --- |
+| Offences punishable "less than seven years or which may extend to seven years": arrest without warrant only if the officer has reason to believe AND is satisfied arrest is necessary for one of five purposes; reasons recorded in writing; reasons also recorded for NOT arresting | BNSS 2023 s.35(1)(b)(i)–(ii)(a)–(e) and proviso — official India Code PDF (indiacode.nic.in/bitstream/123456789/20099/3/A2023-46.pdf, pp. 27–30) | Hook "Arrest isn't automatic"; law card ("reasons in writing"); caption |
+| Where arrest isn't required: notice to appear (s.35(3)); duty to comply (s.35(4)); a person who complies and continues to comply is not arrested unless, for reasons recorded, the officer thinks arrest is needed (s.35(5)); on non-compliance the officer "may" arrest (s.35(6)) | Same India Code PDF, s.35(3)–(6) | Notice scene ("Appear — it's your duty", "Skip it: police may arrest you"); caption |
+| For offences up to 7 years a s.35(3) notice "is the rule", arrest under s.35(6) r/w 35(1)(b) "a clear exception" (para 31); notice issued "as a matter of course" (para 26); no mandatory arrest even where s.35(1)(b) conditions exist (para 29); reasons recorded for arrest or for notice (para 21) | Satender Kumar Antil v. CBI, SC, 15 Jan 2026 (Sundresh and N. Kotiswar Singh JJ.), 2026 LiveLaw (SC) 114 — full order PDF on livelaw.in; JSA Prism client note, Mar 2026 | **The one law card** (SUPREME COURT · 15 JAN 2026); caption |
+| s.35 notices must be served physically as the statute prescribes, not via WhatsApp or other electronic modes; the mode of service affects liberty; Haryana's plea to modify the 21 Jan 2025 order dismissed | Bar & Bench, 30 Jul 2025; SCC Online blog, 31 Jul 2025 (decision of 16 Jul 2025, Sundresh and N.K. Singh JJ., 2025 SCC OnLine SC 1578); the 15 Jan 2026 order reaffirms it (paras 27–28) | Notice scene ("By hand — not on WhatsApp · Supreme Court, Jul 2025"); caption |
+| IT Act s.77B: offences punishable with 3 years and above cognizable; "punishable with imprisonment of three years shall be bailable" | IT Act 2000 s.77B — lawx.in/acts/section/17/224/2254; PRS copy of the IT Act | Sections scene ("IT Act · most offences · up to 3 years · BAILABLE"); caption |
+| s.66, 66C, 66D, 66E: up to 3 years (most IT Act offences are 3 years or less; 66F, 67A, 67B, 69, 70 are the exceptions) | PRS copy of the IT Act 2000 | Sections scene ("most offences"); caption |
+| SC set aside a High Court view that s.66 is non-bailable: s.77B "has to be read to ascertain the nature of offence" | Maharaj Saran v. State of Punjab, SC, 16 Jul 2026 (Sundresh and Varale JJ.), 2026 LiveLaw (SC) 707 — LiveLaw, 22 Jul 2026; SCC Online blog, 23 Jul 2026 | Sections scene source line ("Supreme Court · Jul 2026"); caption |
+| BNS s.318(4) (cheating and dishonestly inducing delivery of property): up to 7 years and fine; cognizable, non-bailable, triable by a Magistrate of the first class | Bare text verified in EP04/EP06/EP08 runs (devgan.in BNS s.318); classification: iPleaders BNS s.318 table (cognizable "Yes", bailable "No"), Jurigram (Non-Bailable), AdvocateKhoj BNSS First Schedule (non-bailable) | Sections scene ("BNS cheating · often added · up to 7 years · NON-BAILABLE"); caption |
+| IT Act s.78: "a police officer not below the rank of Inspector shall investigate any offence under this Act" (Inspector replaced DSP in 2009) | lawx.in/acts/section/17/224/2255; PRS copy of the IT Act | Investigator scene; caption |
+| s.78 not yet amended; a committee has backed letting officers below Inspector investigate specified cyber offences | ThePrint, 14 Nov 2026 | Investigator scene note ("A change is being discussed — not law yet") |
+| Search/seizure, "including preparation of the list of all things seized and signing of such list by witnesses", recorded "through any audio-video electronic means", recording sent to a Magistrate | BNSS s.105 — India Code PDF, p. 45 | Phone scene rows "ON VIDEO" and "SEIZURE LIST"; caption |
+| List of things seized, signed by witnesses (s.103(5)); a copy delivered to the occupant (s.103(6)); receipt to an arrested person for articles taken (s.49) | BNSS s.103, s.49 — India Code PDF, pp. 32–33, 44 | Phone scene row "SEIZURE LIST" (the reel does not promise a copy in every case) |
+| Hash value of the electronic record in the BSA s.63(4) certificate; SC upheld the hash requirement | EP09 sources (BSA Schedule via AdvocateKhoj; LiveLaw, 28 May 2026, 2026 LiveLaw (SC) 551) | Phone scene row "HASH VALUE" (one line, "see EP09"); caption |
+| "CBI/Police/Custom/ED/Judges DO NOT arrest you on video call"; report on 1930 or cybercrime.gov.in | I4C advisory, Oct 2024, as reported by PTI — ThePrint, 6 Oct 2024; The Federal; Tribune | Fake-arrest scene; caption |
+| 1930 helpline and cybercrime.gov.in are run under I4C | PIB (MHA), 12 Mar 2025, "Steps taken to address the issue of digital arrest scams" (PRID 2110809) | One-minute check (save 1930); caption |
+| Reported case: a woman in Saharanpur kept under "digital arrest" for 7 days by callers posing as officers; ₹66 lakh transferred (18–23 Nov); ₹40 lakh frozen | The420, 27 Nov 2026 | Fake-arrest scene data line ("Reported: The420, 27 Nov 2026"); no names |
+| Grounds of arrest in writing, in a language the person understands, for all offences | Mihir Rajesh Shah v. State of Maharashtra, SC, 6 Nov 2025 (EP11 sources: LiveLaw, Bar & Bench) | Screenshot-card row "ARRESTED?"; caption |
+
+Background (not on screen): Delhi HC, 11 Nov 2026 (LiveLaw) — anticipatory bail refused where the accused allegedly didn't
+join the investigation after a s.35(3) notice; Mumbai Police warning on WhatsApp / video-call impersonation (NewsBytes,
+27 Nov 2026); Delhi Police IFSO mule-ring arrests (NationPress, 27 Nov 2026).
+
+Dropped / kept off screen: "police cannot arrest" in any form (arrest is allowed with recorded reasons); "notices on
+WhatsApp can be ignored" (the reel says how a real notice is served, and that you must appear); "police never question
+anyone on video" (the I4C advisory covers arrest only; BNSS allows some audio-video recording); "police never ask for
+money" as an official quote (no official wording found; the reel says a video-call "arrest" is a scam); BNSS s.35(7) (DSP
+permission applies only to offences under 3 years for the infirm or over-60s); BNS s.319(2) bail status (sources disagree
+on wording; not used); a copy of the seizure list in every case (s.103(6) is for searches of a place; s.49 receipt only in
+certain arrests).
