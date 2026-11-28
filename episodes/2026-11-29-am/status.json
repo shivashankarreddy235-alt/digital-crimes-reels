@@ -13,9 +13,11 @@
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 42.4,
  "cover": "A: NEVER SHARED YOUR OTP? / YOU CAN STILL LOSE MONEY. (matches frame 1; alternatives B and C rendered)",
- "review_thread_id": null,
- "review_message_ids": [],
+ "review_thread_id": "1a2225e1f98e96d5",
+ "review_message_ids": [
+  "1a2225e1f98e96d5"
+ ],
  "handled_reply_ids": [],
  "reminder_sent": false,
- "note": "Calendar row 13 planned 5 myths; cut to 3 to fit 35–45 s and one idea (dropped myths covered in EP03/EP05/EP12 or planned for EP27). Built in the 28 Nov evening run (6:40 PM IST)."
+ "note": "Calendar row 13 planned 5 myths; cut to 3 to fit 35–45 s and one idea (dropped myths covered in EP03/EP05/EP12 or planned for EP27). Built in the 28 Nov evening run (6:40 PM IST). Review emailed about 7:08 PM IST, 28 Nov."
 }
