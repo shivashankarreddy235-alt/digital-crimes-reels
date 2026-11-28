@@ -657,11 +657,11 @@ function sHook(lt){const k=eOut(p(lt,0,0.3));
   sub('Plus: the one “arrest” that is always fake.',1404,eOut(p(lt,1.9,0.35)),{color:COL.white,weight:800,size:40});}
 // 2 — the 7-year line: the sections in the FIR decide
 function sLine(lt){chapLabel(lt,'THE 7-YEAR LINE');head('The FIR’s sections decide.',440,0.05,lt,{size:64});
-  const f=lt<2.4?3*eInOut(p(lt,0.4,1.0)):3+4*eInOut(p(lt,2.5,0.9));
-  ruler(930,{fill:f,pin3:p(lt,1.3,0.3),pin7:p(lt,3.3,0.3)});
-  offCard(90,520,900,250,p(lt,0.5,0.35),SER,'IT ACT · MOST OFFENCES','Up to 3 years',['BAILABLE',p(lt,1.6,0.3)],'The IT Act says so · Supreme Court, Jul 2026');
-  offCard(90,1110,900,250,p(lt,2.5,0.35),AMB,'BNS CHEATING · OFTEN ADDED','Up to 7 years',['NON-BAILABLE',p(lt,3.6,0.3)],'Bail isn’t automatic');
-  kineticCaption(lt,[[1.6,'3 YEARS · BAILABLE',SER],[3.6,'7 YEARS · NON-BAILABLE',AMB]],{y:1452,hold:2.0});}
+  const f=lt<3.8?3*eInOut(p(lt,0.4,1.2)):3+4*eInOut(p(lt,3.9,1.0));
+  ruler(930,{fill:f,pin3:p(lt,1.6,0.3),pin7:p(lt,4.9,0.3)});
+  offCard(90,520,900,250,p(lt,0.5,0.35),SER,'IT ACT · MOST OFFENCES','Up to 3 years',['BAILABLE',p(lt,2.6,0.3)],'The IT Act says so · Supreme Court, Jul 2026');
+  offCard(90,1110,900,250,p(lt,3.9,0.35),AMB,'BNS CHEATING · OFTEN ADDED','Up to 7 years',['NON-BAILABLE',p(lt,5.8,0.3)],'Bail isn’t automatic');
+  kineticCaption(lt,[[2.6,'3 YEARS · BAILABLE',SER],[5.8,'7 YEARS · NON-BAILABLE',AMB]],{y:1452,hold:2.4});}
 // 3 — the rule: the one law card (Satender Kumar Antil v. CBI, SC, 15 Jan 2026)
 function sRule(lt){chapLabel(lt,'THE RULE');ruler(560,{fill:7,pin3:1,pin7:1,zone:p(lt,0.1,0.5)});
   const a1=eOut(p(lt,0.45,0.3)),a2=eOut(p(lt,1.05,0.3));
@@ -682,31 +682,31 @@ function sNotice(lt){chapLabel(lt,'THE NOTICE');
   kineticCaption(lt,[[0.7,'APPEAR',SER],[2.5,'BY HAND',GRN],[3.6,'NOT ON WHATSAPP',RED]],{y:1452,hold:1.6});}
 // 5 — who investigates IT Act offences
 function sRank(lt){chapLabel(lt,'WHO INVESTIGATES');head('Who investigates IT Act offences?',440,0.05,lt,{size:56});
-  rankLadder(lt,0.15,0.75,1.6);
-  sub('Today’s law · a change is under discussion, not yet made',1300,eOut(p(lt,2.0,0.3)),{size:30,color:COL.dim,weight:600,maxW:940});
-  kineticCaption(lt,[[1.6,'INSPECTOR OR ABOVE',SER]],{y:1452,hold:2.4});}
+  rankLadder(lt,0.15,0.9,2.0);
+  sub('Today’s law · a change is under discussion, not yet made',1300,eOut(p(lt,2.4,0.3)),{size:30,color:COL.dim,weight:600,maxW:940});
+  kineticCaption(lt,[[2.0,'INSPECTOR OR ABOVE',SER]],{y:1452,hold:2.4});}
 // 6 — your phone or laptop is seized
 function sPhone(lt){chapLabel(lt,'YOUR PHONE');const a=eOut(p(lt,0.05,0.3));
   evidenceBag(540,680,420,500,{alpha:a,seal:p(lt,0.4,0.3)});
-  evRow(90,ROWS_Y[0],900,iDoc,'SEIZURE LIST','What’s taken, signed by witnesses',p(lt,0.6,0.35));
-  evRow(90,ROWS_Y[1],900,(x,y,s,c)=>iCam(x+4,y,s*0.9,c),'ON VIDEO','The search and seizure is recorded',p(lt,1.5,0.35));
-  evRow(90,ROWS_Y[2],900,iHash,'HASH VALUE','Proof the data wasn’t changed · see EP09',p(lt,2.4,0.35));}
+  evRow(90,ROWS_Y[0],900,iDoc,'SEIZURE LIST','What’s taken, signed by witnesses',p(lt,0.9,0.35));
+  evRow(90,ROWS_Y[1],900,(x,y,s,c)=>iCam(x+4,y,s*0.9,c),'ON VIDEO','The search and seizure is recorded',p(lt,1.9,0.35));
+  evRow(90,ROWS_Y[2],900,iHash,'HASH VALUE','Proof the data wasn’t changed · see EP09',p(lt,2.9,0.35));}
 const ROWS_Y=[990,1146,1302];
 // 7 — the fake "arrest": a video call
 function sFake(lt){chapLabel(lt,'THE FAKE “ARREST”');
   callScreen(540,690,420,640,{lt,video:true,name:'“Officer”',number:'+91 9XXXX XXXXX',label:'Incoming video call',alpha:eOut(p(lt,0.05,0.25))});
   const b=eOut(p(lt,0.6,0.3));if(b>0){ctx.save();ctx.globalAlpha*=b;ctx.translate(0,(1-b)*20);rr(250,900,580,140,22);ctx.fillStyle='rgba(8,12,24,0.95)';ctx.fill();stroke(RED,3);ctx.stroke();
     txt('“You are under digital arrest.',540,958,{size:fit('“You are under digital arrest.',700,BODY,540,34),weight:700,align:'center'});txt('Stay on camera.”',540,1006,{size:34,weight:700,align:'center'});ctx.restore();}
-  stamp(540,600,'SCAM',RED,p(lt,1.3,0.3),-0.12,84);
-  const c=eOut(p(lt,1.9,0.35));if(c>0){ctx.save();ctx.globalAlpha*=c;ctx.translate(0,(1-c)*30);card(90,1086,900,240,RED);ctx.fillStyle=RED;rr(90,1110,8,192,4);ctx.fill();
+  stamp(540,600,'SCAM',RED,p(lt,1.6,0.3),-0.12,84);
+  const c=eOut(p(lt,2.2,0.35));if(c>0){ctx.save();ctx.globalAlpha*=c;ctx.translate(0,(1-c)*30);card(90,1086,900,240,RED);ctx.fillStyle=RED;rr(90,1110,8,192,4);ctx.fill();
     txt('7 DAYS · ₹66 LAKH',134,1170,{size:64,weight:900,font:DISP,color:RED,glow:18});
     txt('“Digital arrest” by callers posing as officers',134,1226,{size:fit('“Digital arrest” by callers posing as officers',700,BODY,820,34),weight:700});
     txt('Reported: The420, 27 Nov 2026 · Saharanpur',134,1288,{size:30,weight:600,color:COL.dim});ctx.restore();}
-  sub('I4C: police, CBI, ED, judges do NOT arrest you on a video call.',1400,eOut(p(lt,2.6,0.3)),{size:32,color:COL.white,weight:800,maxW:960});}
+  sub('I4C: police, CBI, ED, judges do NOT arrest you on a video call.',1400,eOut(p(lt,2.8,0.3)),{size:32,color:COL.white,weight:800,maxW:960});}
 // 8 — do this now: the one-minute check on your own phone
 function sCheck(lt){chapLabel(lt,'DO THIS NOW');head('Save this number. Now.',432,0.05,lt,{size:72});
-  dialerScreen(540,935,520,860,lt,{alpha:eOut(p(lt,0.1,0.3)),tNum:0.5,tContact:1.8,tSave:3.2});
-  kineticCaption(lt,[[0.5,'1930',AMB],[3.2,'SAVED',GRN]],{y:1460,hold:2.6});}
+  dialerScreen(540,935,520,860,lt,{alpha:eOut(p(lt,0.1,0.3)),tNum:1.0,tContact:2.1,tSave:3.2});
+  kineticCaption(lt,[[1.0,'1930',AMB],[3.2,'SAVED',GRN]],{y:1460,hold:2.6});}
 // 9 — screenshot card; holds for the screenshot
 function sShot(lt){shotCard(lt,0.2,0.14,3.0,eOut(p(lt,0.05,0.3)));}
 // 10 — outro: the send line (spoken + on screen), logo, disclaimer and laws visible at once
@@ -731,19 +731,19 @@ window.EPISODE={
   scenes:[
     {id:'hook',fn:sHook,dur:3.6,min:3.4,voLead:0.1,pops:[[0.02,520,0.1],[0.5,700,0.06],[1.0,620,0.06]],impacts:[[0.05,0.85,14],[1.35,0.6,8]],risers:[0.0],
      vo:'Cyber case में नाम आया? Arrest अपने-आप नहीं होता।'},
-    {id:'line',fn:sLine,dur:5.4,min:4.6,stings:[0.02],pops:[[0.5,600],[1.3,700,0.08],[1.6,760],[2.5,620],[3.3,560,0.08],[3.6,520]],impacts:[[3.65,0.6,8]],
+    {id:'line',fn:sLine,dur:7.0,min:6.4,stings:[0.02],pops:[[0.5,600],[1.6,700,0.08],[2.6,760],[3.9,620],[4.9,560,0.08],[5.8,520]],impacts:[[5.85,0.6,8]],
      vo:'IT Act के ज़्यादातर अपराध तीन साल वाले, bailable। Cheating जुड़ी, तो सात साल, non-bailable।'},
     {id:'rule',fn:sRule,dur:5.0,min:4.4,stings:[0.02],pops:[[0.1,500,0.06],[0.45,700],[1.05,560]],risers:[0.05],typing:[[1.4,3.9]],impacts:[[1.2,0.85,14]],
      vo:'सात साल तक के मामलों में notice नियम है, arrest अपवाद।'},
     {id:'notice',fn:sNotice,dur:5.0,min:4.4,stings:[0.02],pops:[[0.05,520],[0.7,660],[1.6,480],[3.2,600]],impacts:[[2.5,0.6,8],[3.6,0.6,8]],
      vo:'Notice मिले, तो हाज़िर होइए। ये हाथों-हाथ दिया जाता है, WhatsApp पर नहीं।'},
-    {id:'rank',fn:sRank,dur:3.6,min:3.0,stings:[0.02],pops:[[0.15,440,0.05],[0.25,480,0.05],[0.35,520,0.05],[0.45,560,0.05],[0.55,600,0.05],[1.6,760,0.1]],impacts:[[1.6,0.6,8]],
+    {id:'rank',fn:sRank,dur:3.6,min:3.2,stings:[0.02],pops:[[0.15,440,0.05],[0.25,480,0.05],[0.35,520,0.05],[0.45,560,0.05],[0.55,600,0.05],[2.0,760,0.1]],impacts:[[2.0,0.6,8]],
      vo:'IT Act की जाँच कम से कम Inspector करता है।'},
-    {id:'phone',fn:sPhone,dur:4.4,min:3.4,stings:[0.02],pops:[[0.05,520],[0.6,600],[1.5,660],[2.4,720]],impacts:[[0.45,0.6,8]],
+    {id:'phone',fn:sPhone,dur:4.4,min:3.6,stings:[0.02],pops:[[0.05,520],[0.9,600],[1.9,660],[2.9,720]],impacts:[[0.45,0.6,8]],
      vo:'फ़ोन ज़ब्त हो, तो seizure list, video recording और hash value।'},
-    {id:'fake',fn:sFake,dur:4.4,min:3.8,stings:[0.02],ring:[[0.05,1.2]],pops:[[0.6,560],[1.9,620],[2.6,700]],impacts:[[1.3,0.9,14]],
+    {id:'fake',fn:sFake,dur:4.4,min:3.9,stings:[0.02],ring:[[0.05,1.4]],pops:[[0.6,560],[2.2,620],[2.8,700]],impacts:[[1.6,0.9,14]],
      vo:'और video call पर arrest? वो हमेशा scam है।'},
-    {id:'check',fn:sCheck,dur:4.6,min:4.0,stings:[0.02],pops:[[0.1,560],[0.5,880,0.05],[0.72,880,0.05],[0.95,880,0.05],[1.18,880,0.05],[1.8,620]],typing:[[2.0,2.8]],chimes:[3.25],impacts:[[3.3,0.5,6]],
+    {id:'check',fn:sCheck,dur:4.6,min:4.0,stings:[0.02],pops:[[0.1,560],[1.0,880,0.05],[1.22,880,0.05],[1.45,880,0.05],[1.68,880,0.05],[2.1,620]],typing:[[2.3,3.0]],chimes:[3.25],impacts:[[3.3,0.5,6]],
      vo:'अभी cyber helpline एक नौ तीन शून्य save कीजिए।'},
     {id:'shot',fn:sShot,dur:4.4,min:4.2,pops:[[0.20,520,0.05],[0.34,560,0.05],[0.48,600,0.05],[0.62,640,0.05],[0.76,680,0.05],[0.90,720,0.05],[1.04,760,0.05]],impacts:[[3.0,0.4,4]],
      vo:'ये checklist screenshot कीजिए।'},
