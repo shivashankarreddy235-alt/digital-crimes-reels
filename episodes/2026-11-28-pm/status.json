@@ -13,9 +13,11 @@
  "voice": "AI voice (ElevenLabs), Hindi",
  "length_s": 43.7,
  "cover": "A: NAMED IN A CYBER CASE? / ARREST ISN'T AUTOMATIC. (matches frame 1; alternatives B and C rendered)",
- "review_thread_id": null,
- "review_message_ids": [],
+ "review_thread_id": "1a2207dafb3ccb98",
+ "review_message_ids": [
+  "1a2207dafb3ccb98"
+ ],
  "handled_reply_ids": [],
  "reminder_sent": false,
- "note": "Topic fixed by the owner on 27 Nov 2026 (calendar row 12; the Real Case Breakdown on hacked CCTVs stays in the topic bank). Built in the 28 Nov morning run (9:40 AM IST). Opening per the owner's request: dramatised desk scene — laptop and phone into an evidence bag, the person led away (plain silhouettes; no uniforms, badges, emblems or real people). Fresh hook line: Saharanpur 7-day 'digital arrest', reported by The420 on 27 Nov 2026 (no names)."
+ "note": "Topic fixed by the owner on 27 Nov 2026 (calendar row 12; the Real Case Breakdown on hacked CCTVs stays in the topic bank). Built in the 28 Nov morning run (9:40 AM IST). Opening per the owner's request: dramatised desk scene — laptop and phone into an evidence bag, the person led away (plain silhouettes; no uniforms, badges, emblems or real people). Fresh hook line: Saharanpur 7-day 'digital arrest', reported by The420 on 27 Nov 2026 (no names). Review emailed about 10:40 AM IST, 28 Nov."
 }
