@@ -493,7 +493,7 @@ function mythCard(lt,y,str,t0,strikeT){const k=eOut(p(lt,t0,0.3));if(k<=0)return
 // ---- the FACT card (series colour) ----
 function factCard(x,y,w,h,k,big,small,src){if(k<=0)return;const e=eOut(clamp(k));ctx.save();ctx.globalAlpha*=clamp(k*2.5);ctx.translate(0,(1-e)*36);
   rr(x,y,w,h,26);ctx.fillStyle='rgba(22,32,8,0.94)';ctx.fill();stroke(SER,3);ctx.shadowColor=SER;ctx.shadowBlur=20;ctx.stroke();ctx.shadowBlur=0;
-  pill(x+38,y+52,'FACT',SER,{size:28,ls:3,align:'left',fillA:'55',weight:900,textColor:'#0b1405'});
+  pill(x+38,y+52,'FACT',SER,{size:28,ls:3,align:'left',fillA:'ff',weight:900,textColor:'#0b1405'});
   const L=wrap(big,w-80,font(800,42));L.forEach((l,i)=>txt(l,x+40,y+128+i*52,{size:42,weight:800}));
   if(small)txt(small,x+40,y+128+L.length*52+4,{size:fit(small,600,BODY,w-80,32),weight:600,color:'#dbe8c0'});
   if(src)txt(src,x+w-36,y+52+10,{size:fit(src,500,BODY,w*0.55,24),weight:500,color:COL.dim,align:'right'});ctx.restore();}
@@ -524,10 +524,10 @@ function bankProfile(cx,cy,w,h,lt,o={}){const a=o.alpha??1;if(a<=0)return;const 
     txt(l,S.x+fs*1.3,y+fs*0.95,{size:fs*0.6,weight:700,color:COL.dim,ls:1});if(v==='MASK'){ctx.fillStyle='#5a6584';rr(S.x+fs*1.3,y+fs*1.35,S.w*0.45,fs*0.6,fs*0.2);ctx.fill();}
     else txt(v,S.x+fs*1.3,y+fs*1.95,{size:fs*0.92,weight:700,font:mono?MONO:BODY,color:'#fff'});};
   const hk=lt>=o.tHi;row(0,'NAME','MASK',false);row(1,'REGISTERED MOBILE','+91 98XXX XXX12',hk,true);row(2,'SMS ALERTS','ON',false);row(3,'EMAIL','MASK',false);
-  const q=eOut(p(lt,o.tQ,0.3));if(q>0){const y=S.y+fs*16.6;ctx.save();ctx.globalAlpha*=q;ctx.translate(0,(1-q)*20);rr(S.x+fs*0.8,y,S.w-fs*1.6,fs*2.6,fs*0.5);ctx.fillStyle='rgba(3,5,11,0.92)';ctx.fill();stroke(AMB,3);ctx.stroke();
-    txt('Is this the number you use today?',cx,y+fs*1.6,{size:fit('Is this the number you use today?',800,BODY,S.w-fs*2.6,fs*0.85),weight:800,align:'center',color:'#ffd27a'});ctx.restore();}
-  const ok=eOut(p(lt,o.tOk,0.3));if(ok>0){const y=S.y+fs*20.0;ctx.save();ctx.globalAlpha*=ok;ctx.fillStyle=GRN+'2a';rr(S.x+fs*0.8,y,S.w-fs*1.6,fs*2.4,fs*1.2);ctx.fill();stroke(GRN,3);ctx.stroke();
-    iCheck(S.x+fs*2.2,y+fs*1.2,fs*0.7,GRN,clamp(ok*1.4));txt('Yes. Bank alerts reach me.',S.x+fs*3.4,y+fs*1.55,{size:fit('Yes. Bank alerts reach me.',800,BODY,S.w-fs*4.6,fs*0.85),weight:800,color:'#dff7e9'});ctx.restore();}
+  const q=eOut(p(lt,o.tQ,0.3));if(q>0){const y=S.y+fs*16.2;ctx.save();ctx.globalAlpha*=q;ctx.translate(0,(1-q)*20);rr(S.x+fs*0.8,y,S.w-fs*1.6,fs*3.3,fs*0.5);ctx.fillStyle='rgba(3,5,11,0.92)';ctx.fill();stroke(AMB,3);ctx.stroke();
+    txt('Is this the number',cx,y+fs*1.45,{size:34,weight:800,align:'center',color:'#ffd27a'});txt('you use today?',cx,y+fs*2.65,{size:34,weight:800,align:'center',color:'#ffd27a'});ctx.restore();}
+  const ok=eOut(p(lt,o.tOk,0.3));if(ok>0){const y=S.y+fs*20.3;ctx.save();ctx.globalAlpha*=ok;ctx.fillStyle=GRN+'2a';rr(S.x+fs*0.8,y,S.w-fs*1.6,fs*2.4,fs*1.2);ctx.fill();stroke(GRN,3);ctx.stroke();
+    iCheck(S.x+fs*2.2,y+fs*1.2,fs*0.7,GRN,clamp(ok*1.4));txt('Yes. Alerts reach me.',S.x+fs*3.4,y+fs*1.55,{size:fit('Yes. Alerts reach me.',800,BODY,S.w-fs*4.2,34),weight:800,color:'#dff7e9'});ctx.restore();}
   ctx.restore();}
 // screenshot card: the whole reel in 5 rows
 const ROWS=[['MYTH: “ENTER PIN TO RECEIVE”','A PIN only ever sends money out',RED],['MYTH: “IT’S GONE, DON’T REPORT”','Call 1930 at once: it can be held',RED],
@@ -554,7 +554,7 @@ function sHook(lt){const k=eOut(p(lt,0,0.3));
   const S=phoneFrame(540,1010,430,700,{top:'#141a2e',bottom:'#0a0d18',time:'9:14',glow:lt>0.6?'rgba(255,51,88,0.45)':undefined});
   txt('9:14',540,S.y+150,{size:110,weight:300,align:'center',color:'rgba(240,244,255,0.9)'});txt('Sunday, 29 November',540,S.y+200,{size:28,weight:500,align:'center',color:COL.dim});
   const ok=eOut(p(lt,0.05,0.25));ctx.save();ctx.globalAlpha*=ok;rr(S.x+28,S.y+250,S.w-56,84,42);ctx.fillStyle='rgba(53,242,154,0.14)';ctx.fill();stroke(GRN,3);ctx.stroke();
-  iCheck(S.x+76,S.y+292,22,GRN,1);txt('OTP shared: never',S.x+112,S.y+303,{size:32,weight:800,color:'#dff7e9'});ctx.restore();
+  iCheck(S.x+72,S.y+292,20,GRN,1);txt('OTP shared: never',S.x+104,S.y+303,{size:fit('OTP shared: never',800,BODY,S.w-150,32),weight:800,color:'#dff7e9'});ctx.restore();
   notificationBanner(S.x+14,S.y+360,S.w-28,{app:'Bank',title:'₹5,000 debited',body:'A/c XX4821 · UPI · just now',c:RED,glyph:'rupee',k:p(lt,0.55,0.35),size:31});
   if(lt>0.55){const f=p(lt,0.55,0.5);if(f<1){ctx.fillStyle=`rgba(255,51,88,${0.22*(1-f)})`;ctx.fillRect(0,0,W,H);}}
   sub('3 myths that cost you money',1420,eOut(p(lt,1.5,0.35)),{color:COL.white,weight:800,size:44});}
@@ -568,7 +568,7 @@ function sF1(lt){chapLabel(lt,'FACT 1');mythCard(lt,390,'“To receive money, en
   const a1=eOut(p(lt,0.5,0.3));acct(780,690,'YOUR A/C',CY,a1,{w:300,h:84,size:34});
   arrowTo(780,740,780,980,RED,eOut(p(lt,1.4,0.4)),7);
   const a2=eOut(p(lt,1.7,0.3));if(a2>0){ctx.save();ctx.globalAlpha*=a2;txt('−₹5,000',780,1060,{size:76,weight:900,font:DISP,align:'center',color:RED,glow:20});txt('money OUT',780,1108,{size:32,weight:700,align:'center',color:'#ffb3c0'});ctx.restore();}
-  stamp(310,1180,'“PAYING”',RED,p(lt,1.2,0.3),-0.1,44);
+  stamp(310,1015,'“PAYING”',RED,p(lt,1.2,0.3),-0.1,40);
   factCard(90,1236,900,230,p(lt,2.0,0.35),'You never need a PIN to receive money.','A PIN on a “Paying” screen sends money out.','NPCI · UPI Safety Shield');}
 // 4 — myth 2: "it's gone, reporting won't help" → report on 1930: it can be held in the next accounts
 const G2={nodes:[{id:'v',layer:0,x:0.5,label:'YOU',amt:50000,kind:'victim'},{id:'a1',layer:1,x:0.5,label:'A/C XX17',amt:50000,from:'v'},
@@ -577,26 +577,26 @@ const G2={nodes:[{id:'v',layer:0,x:0.5,label:'YOU',amt:50000,kind:'victim'},{id:
 function sM2(lt){chapLabel(lt,'MYTH 2 OF 3',RED);mythCard(lt,390,'“It’s gone. Reporting won’t help.”',0.05,1.1);
   moneyGraph(150,660,780,560,G2,lt);
   const c=eOut(p(lt,1.9,0.3));if(c>0){ctx.save();ctx.globalAlpha*=c;ctx.translate(0,(1-c)*24);rr(90,1300,900,120,60);ctx.fillStyle='rgba(22,32,8,0.94)';ctx.fill();stroke(SER,3);ctx.shadowColor=SER;ctx.shadowBlur=18;ctx.stroke();ctx.shadowBlur=0;
-    pill(128,1360,'FACT',SER,{size:26,ls:3,align:'left',fillA:'55',weight:900,textColor:'#0b1405'});
+    pill(128,1360,'FACT',SER,{size:26,ls:3,align:'left',fillA:'ff',weight:900,textColor:'#0b1405'});
     txt('Report at once: 1930 · cybercrime.gov.in',290,1374,{size:fit('Report at once: 1930 · cybercrime.gov.in',800,BODY,660,40),weight:800});ctx.restore();}
   kineticCaption(lt,[[2.7,'IT CAN BE HELD',GRN]],{y:1490,hold:3.0});}
 // 5 — fact 2: the official number + this week's reported refund
 function sF2(lt){chapLabel(lt,'FACT 2');
-  dataCard(90,420,900,420,{num:11158,prefix:'₹',suffix:' CRORE+',k:p(lt,0.15,1.2),label:'saved through 1930 and the cyber-crime portal, in 32.80 lakh+ complaints',source:'Till 30 Jun 2026 · MHA reply in Lok Sabha, Aug 2026',c:SER,size:120,alpha:eOut(p(lt,0.05,0.3))});
-  const c=eOut(p(lt,1.3,0.35));if(c>0){ctx.save();ctx.globalAlpha*=c;ctx.translate(0,(1-c)*30);card(90,890,900,300,AMB);ctx.fillStyle=AMB;rr(90,914,8,252,4);ctx.fill();
-    txt('THIS WEEK',134,950,{size:26,weight:900,ls:3,color:AMB});
-    txt('₹1.04 LAKH RETURNED',134,1030,{size:64,weight:900,font:DISP,color:AMB,glow:16});
-    txt('to an online-shopping fraud victim in Delhi,',134,1086,{size:fit('to an online-shopping fraud victim in Delhi,',700,BODY,820,34),weight:700});
-    txt('after a complaint on the national portal',134,1128,{size:fit('after a complaint on the national portal',700,BODY,820,34),weight:700});
-    txt('Reported: ANI, 27 Nov 2026',134,1170,{size:28,weight:600,color:COL.dim});ctx.restore();}
-  kineticCaption(lt,[[0.5,'REPORT FAST',SER]],{y:1300,hold:4.0});}
+  dataCard(90,420,900,380,{num:11158,prefix:'₹',suffix:' CRORE+',k:p(lt,0.15,1.2),label:'saved through 1930 and the cyber-crime portal, in 32.80 lakh+ complaints',source:'Till 30 Jun 2026 · MHA reply in Lok Sabha, Aug 2026',c:SER,size:120,alpha:eOut(p(lt,0.05,0.3))});
+  const c=eOut(p(lt,1.3,0.35));if(c>0){ctx.save();ctx.globalAlpha*=c;ctx.translate(0,(1-c)*30);card(90,850,900,300,AMB);ctx.fillStyle=AMB;rr(90,874,8,252,4);ctx.fill();
+    txt('THIS WEEK',134,910,{size:26,weight:900,ls:3,color:AMB});
+    txt('₹1.04 LAKH RETURNED',134,990,{size:64,weight:900,font:DISP,color:AMB,glow:16});
+    txt('to an online-shopping fraud victim in Delhi,',134,1046,{size:fit('to an online-shopping fraud victim in Delhi,',700,BODY,820,34),weight:700});
+    txt('after a complaint on the national portal',134,1088,{size:fit('after a complaint on the national portal',700,BODY,820,34),weight:700});
+    txt('Reported: ANI, 27 Nov 2026',134,1130,{size:28,weight:600,color:COL.dim});ctx.restore();}
+  kineticCaption(lt,[[0.5,'REPORT FAST',SER]],{y:1290,hold:4.0});}
 // 6 — myth 3: "the bank never pays it back" → the one law card (RBI rule in force today)
 function sM3(lt){chapLabel(lt,'MYTH 3 OF 3',RED);mythCard(lt,390,'“The bank never pays it back.”',0.05,0.9);
-  lawCard(90,580,900,600,'RBI RULE · IN FORCE TODAY','Customer protection circular, 6 Jul 2017',
+  lawCard(90,580,900,520,'RBI RULE · IN FORCE TODAY','Customer protection circular, 6 Jul 2017',
     [['Fraud ',false],['not your fault',true],[' (a bank lapse, or a breach elsewhere)? Report it within ',false],['3 working days',true],[' of the bank’s alert, and your liability is ',false],['zero',true],['. The bank must prove any fault was yours.',false]],
     Math.max(0,(lt-1.3)*95),SER,eOut(p(lt,1.1,0.3)),{size:40,lh:58});
-  sub('From 1 Jan 2027: within 5 calendar days',1240,eOut(p(lt,3.2,0.3)),{size:34,color:COL.white,weight:700});
-  kineticCaption(lt,[[2.9,'LIABILITY: ZERO',SER]],{y:1400,hold:3.0});}
+  sub('From 1 Jan 2027: within 5 calendar days',1170,eOut(p(lt,3.2,0.3)),{size:34,color:COL.white,weight:700});
+  kineticCaption(lt,[[2.9,'LIABILITY: ZERO',SER]],{y:1330,hold:3.0});}
 // 7 — from 1 Jan 2027: up to ₹25,000 back even if you were tricked (the one number card)
 function sY27(lt){chapLabel(lt,'FROM 1 JAN 2027');head('Even if you were tricked:',446,0.05,lt,{size:66});
   dataCard(90,500,900,390,{num:25000,prefix:'UP TO ₹',k:p(lt,0.4,1.0),label:'back on a small loss: 85% of a loss up to ₹50,000',source:'RBI Directions, 24 Jun 2026 · in force from 1 Jan 2027',c:SER,size:112,alpha:eOut(p(lt,0.25,0.3))});
@@ -605,7 +605,7 @@ function sY27(lt){chapLabel(lt,'FROM 1 JAN 2027');head('Even if you were tricked
   kineticCaption(lt,[[2.5,'5 DAYS',AMB]],{y:1330,hold:3.0});}
 // 8 — do this now: the one-minute check on your own phone
 function sCheck(lt){chapLabel(lt,'DO THIS NOW',AMB);head('Check this now.',432,0.05,lt,{size:72});
-  bankProfile(540,960,500,840,lt,{alpha:eOut(p(lt,0.1,0.3)),tHi:0.9,tQ:1.4,tOk:2.5});
+  bankProfile(540,960,540,840,lt,{alpha:eOut(p(lt,0.1,0.3)),tHi:0.9,tQ:1.4,tOk:2.5});
   kineticCaption(lt,[[0.9,'YOUR NUMBER?',AMB],[2.5,'ALERTS REACH YOU',GRN]],{y:1460,hold:2.6});}
 // 9 — screenshot card; holds for the screenshot
 function sShot(lt){shotCard(lt,0.2,0.16,3.0,eOut(p(lt,0.05,0.3)));}
@@ -614,7 +614,7 @@ function sOut(lt){sendLine(380,eOut(p(lt,0,0.25)),'Send this to your parents.');
   const a=eOut(p(lt,0,0.3));logoMark(540,700,130,a);brand(540,925,WORD_OK?92:86,{align:'center',alpha:a,glow:20});
   txt('Cyber law · cyber forensics · tech, explained.',540,995,{size:fit('Cyber law · cyber forensics · tech, explained.',500,BODY,880,36),weight:500,color:COL.dim,align:'center',alpha:a});
   const da=eOut(p(lt,0.15,0.3));txt('Legal awareness only · Not legal advice',540,1120,{size:36,weight:700,color:COL.white,align:'center',alpha:da});
-  ['Laws and rules cited: RBI circular on limiting customer liability,','6 Jul 2017 (paras 6, 7, 12) · RBI (Commercial Banks – Responsible Business','Conduct) Third Amendment Directions, 2026 (paras 76M, 76N, 76T) · NPCI UPI Safety Shield'].forEach((l,i)=>
+  ['Laws and rules cited: RBI circular, 6 Jul 2017 (paras 6, 7, 12)','RBI (Commercial Banks – Responsible Business Conduct)','Third Amendment Directions, 2026 (paras 76M, 76N, 76T)','NPCI UPI Safety Shield'].forEach((l,i)=>
     txt(l,540,1180+i*44,{size:fit(l,500,BODY,940,30),weight:500,color:COL.dim,align:'center',alpha:da}));}
 
 window.EPISODE={
